@@ -9,9 +9,9 @@ Generated using [DbSchema](https://dbschema.com)
 
 ## Tables
 
-1. [public.AvailableBot](#table-publicavailablebot) 2. [public.BotMessage](#table-publicbotmessage)
-   3. [public.Chatbot](#table-publicchatbot) 4. [public.ChatMessage](#table-publicchatmessage)
-   5. [public.User](#table-publicuser)
+1. [AvailableBot](#table-publicavailablebot) 2. [BotMessage](#table-publicbotmessage)
+   3. [Chatbot](#table-publicchatbot) 4. [ChatMessage](#table-publicchatmessage)
+   5. [User](#table-publicuser)
 
 ### Table public.AvailableBot
 
@@ -30,10 +30,10 @@ Generated using [DbSchema](https://dbschema.com)
 
 ##### Foreign Keys
 
-|  |    |                                                             |
-|--|----|-------------------------------------------------------------|
-|  | fk | ( bot\_id ) ref [public.Chatbot](#table-publicchatbot) (id) |
-|  | fk | ( user\_id ) ref [public.User](#table-publicuser) (id)      |
+|  |    |                                                      |
+|--|----|------------------------------------------------------|
+|  | fk | ( bot\_id ) ref [Chatbot](#table-publicchatbot) (id) |
+|  | fk | ( user\_id ) ref [User](#table-publicuser) (id)      |
 
 ### Table public.BotMessage
 
@@ -53,10 +53,10 @@ Generated using [DbSchema](https://dbschema.com)
 
 ##### Foreign Keys
 
-|  |    |                                                                |
-|--|----|----------------------------------------------------------------|
-|  | fk | ( sender\_id ) ref [public.Chatbot](#table-publicchatbot) (id) |
-|  | fk | ( receiver\_id ) ref [public.User](#table-publicuser) (id)     |
+|  |    |                                                         |
+|--|----|---------------------------------------------------------|
+|  | fk | ( sender\_id ) ref [Chatbot](#table-publicchatbot) (id) |
+|  | fk | ( receiver\_id ) ref [User](#table-publicuser) (id)     |
 
 ### Table public.ChatMessage
 
@@ -76,10 +76,10 @@ Generated using [DbSchema](https://dbschema.com)
 
 ##### Foreign Keys
 
-|  |    |                                                            |
-|--|----|------------------------------------------------------------|
-|  | fk | ( sender\_id ) ref [public.User](#table-publicuser) (id)   |
-|  | fk | ( receiver\_id ) ref [public.User](#table-publicuser) (id) |
+|  |    |                                                     |
+|--|----|-----------------------------------------------------|
+|  | fk | ( sender\_id ) ref [User](#table-publicuser) (id)   |
+|  | fk | ( receiver\_id ) ref [User](#table-publicuser) (id) |
 
 ### Table public.Chatbot
 

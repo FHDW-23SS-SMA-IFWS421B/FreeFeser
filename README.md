@@ -9,9 +9,9 @@ Generated using [DbSchema](https://dbschema.com)
 
 ## Tables
 
-1. [public.AvailableBot](#table-public.availablebot) 2. [public.BotMessage](#table-public.botmessage)
-   3. [public.Chatbot](#table-public.chatbot) 4. [public.ChatMessage](#table-public.chatmessage)
-   5. [public.User](#table-public.user)
+1. [public.AvailableBot](#table-publicavailablebot) 2. [public.BotMessage](#table-publicbotmessage)
+   3. [public.Chatbot](#table-publicchatbot) 4. [public.ChatMessage](#table-publicchatmessage)
+   5. [public.User](#table-publicuser)
 
 ### Table public.AvailableBot
 

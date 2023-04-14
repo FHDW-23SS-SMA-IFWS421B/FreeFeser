@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 public class Chatroom {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -19,11 +19,11 @@ public class Chatroom {
     @Column(name = "updated_at", nullable = false)
     private LocalDateTime updatedAt;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

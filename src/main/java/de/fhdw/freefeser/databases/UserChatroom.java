@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 public class UserChatroom {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
@@ -24,11 +24,11 @@ public class UserChatroom {
     @Column(name = "updated_at", nullable = false)
     private LocalDateTime updatedAt;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

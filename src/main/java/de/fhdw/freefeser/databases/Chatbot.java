@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "chatbots")
-public class ChatBot {
+public class Chatbot {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

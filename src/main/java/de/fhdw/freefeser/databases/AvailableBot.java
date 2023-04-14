@@ -11,7 +11,7 @@ public class AvailableBot {
 
     @ManyToOne
     @JoinColumn(name = "bot_id", nullable = false)
-    private ChatBot bot;
+    private Chatbot bot;
 
     @Column(nullable = false)
     private boolean enabled;
@@ -24,11 +24,11 @@ public class AvailableBot {
         this.id = id;
     }
 
-    public ChatBot getBot() {
+    public Chatbot getBot() {
         return bot;
     }
 
-    public void setBot(ChatBot bot) {
+    public void setBot(Chatbot bot) {
         this.bot = bot;
     }
 

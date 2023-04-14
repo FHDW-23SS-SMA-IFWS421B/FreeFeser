@@ -8,7 +8,7 @@
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <class>de.fhdw.freefeser.databases.User</class>
         <class>de.fhdw.freefeser.databases.ChatMessage</class>
-        <class>de.fhdw.freefeser.databases.ChatBot</class>
+        <class>de.fhdw.freefeser.databases.Chatbot</class>
         <class>de.fhdw.freefeser.databases.BotMessage</class>
         <class>de.fhdw.freefeser.databases.AvailableBot</class>
         <properties>

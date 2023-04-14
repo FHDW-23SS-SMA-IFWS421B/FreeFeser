@@ -12,7 +12,7 @@ public class BotMessage {
 
     @ManyToOne
     @JoinColumn(name = "bot_id", nullable = false)
-    private ChatBot bot;
+    private Chatbot bot;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
@@ -32,11 +32,11 @@ public class BotMessage {
         this.id = id;
     }
 
-    public ChatBot getBot() {
+    public Chatbot getBot() {
         return bot;
     }
 
-    public void setBot(ChatBot bot) {
+    public void setBot(Chatbot bot) {
         this.bot = bot;
     }
 

@@ -9,7 +9,6 @@
         <class>de.fhdw.freefeser.databases.User</class>
         <class>de.fhdw.freefeser.databases.Message</class>
         <class>de.fhdw.freefeser.databases.Chatroom</class>
-        <class>de.fhdw.freefeser.databases.UserChatroom</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
             <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/chatbotdb"/>

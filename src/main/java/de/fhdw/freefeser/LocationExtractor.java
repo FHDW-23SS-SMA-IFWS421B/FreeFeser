@@ -1,10 +1,9 @@
 package de.fhdw.freefeser;
 
 import com.google.api.gax.core.FixedCredentialsProvider;
-import com.google.auth.oauth2.GoogleCredentials;
-import com.google.auth.oauth2.ServiceAccountCredentials;
+import com.google.auth.oauth2.*;
 import com.google.cloud.language.v1.*;
-import com.google.cloud.language.v1.Document.Type;
+import com.google.cloud.language.v1.Document.*;
 import java.io.FileInputStream;
 import java.util.List;
 

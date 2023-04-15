@@ -1,5 +1,7 @@
 package de.fhdw.freefeser;
 
+import de.fhdw.freefeser.textanalyzer.TextAnalyzer;
+
 public class Main {
     public static void main(String[] args) throws Exception {
         String text = "Wie ist das Wetter in Berlin?";

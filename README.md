@@ -8,11 +8,11 @@ Generated using [DbSchema](https://dbschema.com)
 
 ## Tables
 
-1. [AvailableBot](#table-publicavailablebot) 2. [BotMessage](#table-publicbotmessage)
-   3. [Chatbot](#table-publicchatbot) 4. [ChatMessage](#table-publicchatmessage)
-   5. [User](#table-publicuser)
+1. [AvailableBot](#availablebot) 2. [BotMessage](#table-botmessage)
+   3. [Chatbot](#table-chatbot) 4. [ChatMessage](#table-chatmessage)
+   5. [User](#table-user)
 
-### Table public.AvailableBot
+### AvailableBot
 
 |             |          |         |
 |-------------|----------|---------|
@@ -29,12 +29,12 @@ Generated using [DbSchema](https://dbschema.com)
 
 ##### Foreign Keys
 
-|  |    |                                                      |
-|--|----|------------------------------------------------------|
-|  | fk | ( bot\_id ) ref [Chatbot](#table-publicchatbot) (id) |
-|  | fk | ( user\_id ) ref [User](#table-publicuser) (id)      |
+|  |    |                                                |
+|--|----|------------------------------------------------|
+|  | fk | ( bot\_id ) ref [Chatbot](#table-chatbot) (id) |
+|  | fk | ( user\_id ) ref [User](#table-user) (id)      |
 
-### Table public.BotMessage
+### Table BotMessage
 
 |             |              |           |
 |-------------|--------------|-----------|
@@ -52,12 +52,12 @@ Generated using [DbSchema](https://dbschema.com)
 
 ##### Foreign Keys
 
-|  |    |                                                         |
-|--|----|---------------------------------------------------------|
-|  | fk | ( sender\_id ) ref [Chatbot](#table-publicchatbot) (id) |
-|  | fk | ( receiver\_id ) ref [User](#table-publicuser) (id)     |
+|  |    |                                                   |
+|--|----|---------------------------------------------------|
+|  | fk | ( sender\_id ) ref [Chatbot](#table-chatbot) (id) |
+|  | fk | ( receiver\_id ) ref [User](#table-user) (id)     |
 
-### Table public.ChatMessage
+### Table ChatMessage
 
 |             |              |           |
 |-------------|--------------|-----------|
@@ -75,12 +75,12 @@ Generated using [DbSchema](https://dbschema.com)
 
 ##### Foreign Keys
 
-|  |    |                                                     |
-|--|----|-----------------------------------------------------|
-|  | fk | ( sender\_id ) ref [User](#table-publicuser) (id)   |
-|  | fk | ( receiver\_id ) ref [User](#table-publicuser) (id) |
+|  |    |                                               |
+|--|----|-----------------------------------------------|
+|  | fk | ( sender\_id ) ref [User](#table-user) (id)   |
+|  | fk | ( receiver\_id ) ref [User](#table-user) (id) |
 
-### Table public.Chatbot
+### Table Chatbot
 
 |                       |         |             |
 |-----------------------|---------|-------------|
@@ -95,7 +95,7 @@ Generated using [DbSchema](https://dbschema.com)
 | &#128273; | pk\_chatbot        | ON id   |
 | &#128269; | unq\_chatbot\_name | ON name |
 
-### Table public.User
+### Table User
 
 |                       |          |              |
 |-----------------------|----------|--------------|

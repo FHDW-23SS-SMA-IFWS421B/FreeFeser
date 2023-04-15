@@ -33,21 +33,6 @@ public class LocationExtractor {
 
             // If no location entity was found, return null
             return null;
-
-            /*
-            Sample code for analyzing which Bot is used
-            List<Entity> entities = response.getEntities();
-        for (Entity entity : entities) {
-            String entityName = entity.getName().toLowerCase();
-            if (entityName.equals("wetterbot")) {
-                // ...
-            } else if (entityName.equals("wikibot")) {
-                // ...
-            } else if (entityName.equals("translationbot")) {
-                // ...
-            }
-        }
-             */
         }
     }
 }

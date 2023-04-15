@@ -10,7 +10,7 @@ import java.util.List;
 public class TextAnalyzer {
     public static String extractLocation(String text) throws Exception {
         // Load the credentials from the config file
-        GoogleCredentials credentials = ServiceAccountCredentials.fromStream(new FileInputStream("src/main/java/de/fhdw/freefeser/credentials.json"));
+        GoogleCredentials credentials = ServiceAccountCredentials.fromStream(new FileInputStream("src/main/java/de/fhdw/freefeser/textanalyzer/credentials.json"));
 
         // Instantiates a client
         try (LanguageServiceClient language = LanguageServiceClient.create(LanguageServiceSettings.newBuilder().setCredentialsProvider(FixedCredentialsProvider.create(credentials)).build())) {
@@ -38,7 +38,7 @@ public class TextAnalyzer {
 
     public static String extractBot(String text) throws Exception {
         // Load the credentials from the config file
-        GoogleCredentials credentials = ServiceAccountCredentials.fromStream(new FileInputStream("src/main/java/de/fhdw/freefeser/credentials.json"));
+        GoogleCredentials credentials = ServiceAccountCredentials.fromStream(new FileInputStream("src/main/java/de/fhdw/freefeser/textanalyzer/credentials.json"));
 
         // Instantiates a client
         try (LanguageServiceClient language = LanguageServiceClient.create(LanguageServiceSettings.newBuilder().setCredentialsProvider(FixedCredentialsProvider.create(credentials)).build())) {

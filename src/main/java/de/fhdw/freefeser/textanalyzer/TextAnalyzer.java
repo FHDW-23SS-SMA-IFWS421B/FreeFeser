@@ -82,17 +82,25 @@ public class TextAnalyzer {
                     .setType(Type.PLAIN_TEXT)
                     .build();
 
-            // Detects the sentiment of the text
-            Sentiment sentiment = language.analyzeSentiment(doc).getDocumentSentiment();
+            // Analyze the sentiment of the document
+            AnalyzeSentimentResponse sentimentResponse = language.analyzeSentiment(doc);
+            Sentiment sentiment = sentimentResponse.getDocumentSentiment();
 
-            // Extracts the weather type based on the detected sentiment
-            if (sentiment.getScore() > 0) {
-                // The user is asking for current weather
-                return "current";
+            // Check if the sentiment is positive (for current weather) or negative (for a forecast)
+            if (sentiment.getScore() >= 0) {
+                // Check for keywords indicating current weather
+                if (text.toLowerCase().contains("heute") || text.toLowerCase().contains("jetzt")) {
+                    return "current";
+                }
             } else {
-                // The user is asking for weather forecast
-                return "forecast";
+                // Check for keywords indicating a weather forecast
+                if (text.toLowerCase().contains("morgen") || text.toLowerCase().contains("wird") || text.toLowerCase().contains("wochenende") || text.toLowerCase().contains("nächsten tagen")) {
+                    return "forecast";
+                }
             }
+
+            // If no keywords were found, return null
+            return null;
         }
     }
 }

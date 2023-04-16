@@ -94,7 +94,7 @@ public class TextAnalyzer {
                 }
             } else {
                 // Check for keywords indicating a weather forecast
-                if (text.toLowerCase().contains("morgen") || text.toLowerCase().contains("wird") || text.toLowerCase().contains("wochenende") || text.toLowerCase().contains("nächsten tagen")) {
+                if (text.toLowerCase().contains("morgen") || text.toLowerCase().contains("wochenende") || text.toLowerCase().contains("nächsten tagen")) {
                     return "forecast";
                 }
             }

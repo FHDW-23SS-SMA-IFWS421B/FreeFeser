@@ -9,7 +9,7 @@ public class Main {
         String text3 = "wikiBot";
         String text4 = "WeatherBot";
         String text5 = "Wie ist das Wetter in Berlin?";
-        String text6 = "Wie wird das Wetter in Bielefeld sein?";
+        String text6 = "Wie wird das Wetter in Bielefeld morgen?";
 
         String location = TextAnalyzer.extractLocation(text);
         String location2 = TextAnalyzer.extractLocation(text2);

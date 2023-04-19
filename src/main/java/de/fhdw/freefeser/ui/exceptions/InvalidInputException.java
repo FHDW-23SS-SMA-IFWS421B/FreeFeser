@@ -1,4 +1,4 @@
 package de.fhdw.freefeser.ui.exceptions;
 
-public class InvalidInputException {
+public class InvalidInputException extends Exception {
 }

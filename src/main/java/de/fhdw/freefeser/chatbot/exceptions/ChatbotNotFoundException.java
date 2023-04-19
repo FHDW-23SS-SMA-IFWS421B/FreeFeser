@@ -1,4 +1,4 @@
 package de.fhdw.freefeser.chatbot.exceptions;
 
-public class ChatbotNotFoundException {
+public class ChatbotNotFoundException extends Exception {
 }

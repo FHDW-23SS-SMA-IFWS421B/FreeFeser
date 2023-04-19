@@ -1,4 +1,4 @@
-package de.fhdw.freefeser.databases;
+package de.fhdw.freefeser.prototype.databases;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;

@@ -6,11 +6,11 @@
              version="2.0">
     <persistence-unit name="ChatBotPU" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        <class>de.fhdw.freefeser.databases.User</class>
-        <class>de.fhdw.freefeser.databases.ChatMessage</class>
-        <class>de.fhdw.freefeser.databases.Chatbot</class>
-        <class>de.fhdw.freefeser.databases.BotMessage</class>
-        <class>de.fhdw.freefeser.databases.AvailableBot</class>
+        <class>de.fhdw.freefeser.prototype.databases.User</class>
+        <class>de.fhdw.freefeser.prototype.databases.ChatMessage</class>
+        <class>de.fhdw.freefeser.prototype.databases.Chatbot</class>
+        <class>de.fhdw.freefeser.prototype.databases.BotMessage</class>
+        <class>de.fhdw.freefeser.prototype.databases.AvailableBot</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
             <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/chatbotdb"/>

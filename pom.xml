@@ -10,7 +10,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>freefeser-api</module>
-        <module>freefeser-impl</module>
+        <module>freefeser-app</module>
     </modules>
 
     <properties>

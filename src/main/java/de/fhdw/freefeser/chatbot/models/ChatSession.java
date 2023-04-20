@@ -1,5 +1,9 @@
 package de.fhdw.freefeser.chatbot.models;
 
+import de.fhdw.freefeser.chatbot.interfaces.Bot;
+import de.fhdw.freefeser.chatbot.interfaces.Message;
+import de.fhdw.freefeser.chatbot.interfaces.User;
+
 import java.util.ArrayList;
 import java.util.List;
 

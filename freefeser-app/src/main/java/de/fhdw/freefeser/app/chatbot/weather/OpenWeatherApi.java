@@ -1,4 +1,5 @@
 package de.fhdw.freefeser.app.chatbot.weather;
 
-public class WeatherBot {
+public class OpenWeatherApi {
+
 }

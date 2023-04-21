@@ -22,5 +22,7 @@ public class FreeFeserApp {
         String weather = TextAnalyzer.extractWeatherCurrentOrForecast(text5);
         String weather2 = TextAnalyzer.extractWeatherCurrentOrForecast(text6);
         System.out.println(weather + "\n" + weather2);
+
+
     }
 }

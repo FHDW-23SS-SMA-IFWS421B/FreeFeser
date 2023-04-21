@@ -10,14 +10,17 @@ import java.util.concurrent.ExecutionException;
 public class DeepLTranslationApi implements TranslationApi {
 
     @Override
-    public CompletableFuture<HttpResponse<String>> translate(String destinationLanguage, String value) throws InterruptedException, ExecutionException {
-        String apiUrl = "";
+    public CompletableFuture<HttpResponse<String>> translate(String targetLanguage, String value) throws InterruptedException, ExecutionException {
+        String endpoint = "https://api.deepl.com/v2/translate";
+        String apiKey = "3f881fa8-df8f-647c-9658-5cdf3e8f85ac:fx";
+        String params = "auth_key=" + apiKey + "&text=" + value + "&target_lang=" + targetLanguage;
+        String url = endpoint + "?" + params;
 
         HttpClient httpClient = HttpClient.newBuilder().build();
 
         HttpRequest httpRequest = HttpRequest
                 .newBuilder()
-                .uri(URI.create(apiUrl))
+                .uri(URI.create(url))
                 .GET()
                 .build();
 

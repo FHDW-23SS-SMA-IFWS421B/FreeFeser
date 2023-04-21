@@ -5,10 +5,11 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 public class MediaWikiApi implements WikiApi {
     @Override
-    public CompletableFuture<WikiResult[]> search(String keyword) {
+    public CompletableFuture<WikiResult[]> search(String keyword) throws InterruptedException, ExecutionException {
         String endpoint = "https://de.wikipedia.org/w/rest.php/v1/search/";
         String params = "page?q=" + keyword + "&limit=5";
         String url = endpoint + params;

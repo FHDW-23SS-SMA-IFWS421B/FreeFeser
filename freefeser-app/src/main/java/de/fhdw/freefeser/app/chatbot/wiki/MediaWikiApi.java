@@ -1,5 +1,7 @@
 package de.fhdw.freefeser.app.chatbot.wiki;
 
+import com.google.gson.Gson;
+
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -8,6 +10,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
 public class MediaWikiApi implements WikiApi {
+    private static final Gson gson = new Gson();
     @Override
     public CompletableFuture<WikiResult[]> search(String keyword) throws InterruptedException, ExecutionException {
         String endpoint = "https://de.wikipedia.org/w/rest.php/v1/search/";
@@ -24,9 +27,10 @@ public class MediaWikiApi implements WikiApi {
 
         CompletableFuture<HttpResponse<String>> futureResponse = httpClient.sendAsync(httpRequest, HttpResponse.BodyHandlers.ofString());
 
-        return futureResponse.thenApply(response -> {
+        return futureResponse.thenApply((HttpResponse<String> response) -> {
             System.out.println(response.body());
-            return (WikiResult[]) response;
+            WikiResult[] wikiResults = gson.fromJson(response.body(), WikiResult[].class);
+            return wikiResults;
         });
     }
 }

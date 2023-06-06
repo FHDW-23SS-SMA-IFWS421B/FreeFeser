@@ -1,16 +1,18 @@
 package de.fhdw.freefeser.app.prototype.textanalyzer;
 
 import com.google.api.gax.core.FixedCredentialsProvider;
-import com.google.auth.oauth2.*;
+import com.google.auth.oauth2.GoogleCredentials;
+import com.google.auth.oauth2.ServiceAccountCredentials;
 import com.google.cloud.language.v1.*;
-import com.google.cloud.language.v1.Document.*;
+import com.google.cloud.language.v1.Document.Type;
+
 import java.io.FileInputStream;
 import java.util.List;
 
 public class TextAnalyzer {
     public static String extractBot(String text) throws Exception {
         // Load the credentials from the config file
-        GoogleCredentials credentials = ServiceAccountCredentials.fromStream(new FileInputStream("src/main/java/de/fhdw/freefeser/textanalyzer/credentials.json"));
+        GoogleCredentials credentials = ServiceAccountCredentials.fromStream(new FileInputStream("/home/florenzen/FreeFeser/freefeser-app/src/main/resources/credentials.json"));
 
         // Instantiates a client
         try (LanguageServiceClient language = LanguageServiceClient.create(LanguageServiceSettings.newBuilder().setCredentialsProvider(FixedCredentialsProvider.create(credentials)).build())) {
@@ -43,7 +45,7 @@ public class TextAnalyzer {
 
     public static String extractLocation(String text) throws Exception {
         // Load the credentials from the config file
-        GoogleCredentials credentials = ServiceAccountCredentials.fromStream(new FileInputStream("src/main/java/de/fhdw/freefeser/textanalyzer/credentials.json"));
+        GoogleCredentials credentials = ServiceAccountCredentials.fromStream(new FileInputStream("/home/florenzen/FreeFeser/freefeser-app/src/main/resources/credentials.json"));
 
         // Instantiates a client
         try (LanguageServiceClient language = LanguageServiceClient.create(LanguageServiceSettings.newBuilder().setCredentialsProvider(FixedCredentialsProvider.create(credentials)).build())) {
@@ -72,8 +74,7 @@ public class TextAnalyzer {
 
     public static String extractWeatherCurrentOrForecast(String text) throws Exception {
         // Load the credentials from the config file
-        GoogleCredentials credentials = ServiceAccountCredentials.fromStream(new FileInputStream("src/main/java/de/fhdw/freefeser/textanalyzer/credentials.json"));
-
+        GoogleCredentials credentials = ServiceAccountCredentials.fromStream(new FileInputStream("/home/florenzen/FreeFeser/freefeser-app/src/main/resources/credentials.json"));
         // Instantiates a client
         try (LanguageServiceClient language = LanguageServiceClient.create(LanguageServiceSettings.newBuilder().setCredentialsProvider(FixedCredentialsProvider.create(credentials)).build())) {
             // Set the text content and type (plain text)

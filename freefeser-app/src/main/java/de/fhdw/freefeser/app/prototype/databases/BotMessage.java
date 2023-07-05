@@ -16,7 +16,7 @@ public class BotMessage {
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    private AppUser user;
 
     @Column(nullable = false)
     private String message;
@@ -40,11 +40,11 @@ public class BotMessage {
         this.bot = bot;
     }
 
-    public User getUser() {
+    public AppUser getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(AppUser user) {
         this.user = user;
     }
 

@@ -6,11 +6,11 @@ import java.util.List;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class AppUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     @Column(name = "username", nullable = false, unique = true)
     private String username;
@@ -22,7 +22,7 @@ public class User {
     @OrderBy("timestamp DESC")
     private List<ChatMessage> chatMessages = new ArrayList<>();
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 

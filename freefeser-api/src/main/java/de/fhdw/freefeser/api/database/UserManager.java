@@ -2,13 +2,13 @@ package de.fhdw.freefeser.api.database;
 
 import java.util.concurrent.CompletableFuture;
 
-public interface UserManager {
+public interface UserManager extends DatabaseManager<User> {
 
-    CompletableFuture<User> loadUser(long id);
+    CompletableFuture<User> load(long id);
 
-    CompletableFuture<Void> saveUser(User user);
+    CompletableFuture<Void> save(User user);
 
-    CompletableFuture<User> createUser(String username, String password);
+    CompletableFuture<User> create(User entityWithoutId);
 
-    CompletableFuture<Void> deleteUser(long id);
+    CompletableFuture<Void> delete(long id);
 }

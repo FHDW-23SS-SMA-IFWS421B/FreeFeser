@@ -3,7 +3,7 @@ public interface User {
 
     long getId();
 
-    void setId(Long id);
+    void setId(long id);
 
     String getUsername();
 

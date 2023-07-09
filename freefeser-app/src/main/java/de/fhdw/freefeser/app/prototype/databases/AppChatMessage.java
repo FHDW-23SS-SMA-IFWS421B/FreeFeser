@@ -1,15 +1,18 @@
 package de.fhdw.freefeser.app.prototype.databases;
 
+import de.fhdw.freefeser.api.database.ChatMessage;
+import de.fhdw.freefeser.app.core.interfaces.Bot;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "messages")
-public class ChatMessage {
+public class AppChatMessage implements ChatMessage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     @Column(name = "text", nullable = false)
     private String text;
@@ -18,14 +21,18 @@ public class ChatMessage {
     private LocalDateTime timestamp;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id")
     private AppUser user;
 
-    public Long getId() {
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "bot_id")
+    private AppChatbot chatbot;
+
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -51,5 +58,13 @@ public class ChatMessage {
 
     public void setUser(AppUser user) {
         this.user = user;
+    }
+
+    public AppChatbot getChatbot() {
+        return chatbot;
+    }
+
+    public void setChatbot(AppChatbot chatbot) {
+        this.chatbot = chatbot;
     }
 }

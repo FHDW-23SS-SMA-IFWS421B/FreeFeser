@@ -1,12 +1,12 @@
 package de.fhdw.freefeser.app.prototype.databases;
 
+import de.fhdw.freefeser.api.database.User;
+
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "users")
-public class AppUser {
+public class AppUser implements User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,15 +18,11 @@ public class AppUser {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    @OrderBy("timestamp DESC")
-    private List<ChatMessage> chatMessages = new ArrayList<>();
-
     public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -44,13 +40,5 @@ public class AppUser {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public List<ChatMessage> getChatMessages() {
-        return chatMessages;
-    }
-
-    public void setChatMessages(List<ChatMessage> chatMessages) {
-        this.chatMessages = chatMessages;
     }
 }

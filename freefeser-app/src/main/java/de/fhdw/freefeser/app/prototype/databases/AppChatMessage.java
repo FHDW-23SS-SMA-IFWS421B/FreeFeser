@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "messages")
-public class AppChatMessage implements ChatMessage {
+public class AppChatMessage implements ChatMessage<AppUser, AppChatbot> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

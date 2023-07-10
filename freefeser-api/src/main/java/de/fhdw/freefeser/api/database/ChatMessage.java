@@ -2,7 +2,7 @@ package de.fhdw.freefeser.api.database;
 
 import java.time.LocalDateTime;
 
-public interface ChatMessage {
+public interface ChatMessage<U extends User, C extends Chatbot> {
 
     long getId();
 
@@ -16,11 +16,11 @@ public interface ChatMessage {
 
     void setTimestamp(LocalDateTime timemestamp);
 
-    User getUser();
+    U getUser();
 
-    void setUser(User user);
+    void setUser(U user);
 
-    Chatbot getChatbot();
+    C getChatbot();
 
-    void setChatbot(Chatbot chatbot);
+    void setChatbot(C chatbot);
 }

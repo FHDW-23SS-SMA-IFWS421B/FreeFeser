@@ -1,8 +1,8 @@
 package de.fhdw.freefeser.app;
 
-import de.fhdw.freefeser.app.prototype.textanalyzer.TextAnalyzer;
+// import de.fhdw.freefeser.app.prototype.textanalyzer.TextAnalyzer;
 
-import java.util.List;
+// import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -36,8 +36,8 @@ public class FreeFeserApp {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             // start a transaction
             transaction = session.beginTransaction();
-            // save the student objects
-            session.save(appUser);
+            // save the appUser object
+            session.persist(appUser);
             // commit transaction
             transaction.commit();
         } catch (Exception e) {

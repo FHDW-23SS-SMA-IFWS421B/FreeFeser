@@ -1,6 +1,7 @@
 package de.fhdw.freefeser.api.bot;
 
-import de.fhdw.freefeser.api.command.CommandManager;
+
+import de.fhdw.freefeser.api.bot.command.CommandManager;
 
 public interface Chatbot {
 

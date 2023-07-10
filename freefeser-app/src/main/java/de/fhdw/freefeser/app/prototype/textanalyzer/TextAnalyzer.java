@@ -61,6 +61,7 @@ public class TextAnalyzer {
 
             // Look for entities that are locations and return the first one found
             for (Entity entity : entities) {
+
                 if (entity.getType() == Entity.Type.LOCATION) {
                     // return in lowercase for further use
                     return entity.getName().toLowerCase();

@@ -18,6 +18,11 @@ public class AppChatbot implements Chatbot {
     @Column(name = "active", nullable = false)
     private boolean status;
 
+    public AppChatbot(String botname, boolean status) {
+        this.botname = botname;
+        this.status = status;
+    }
+
     public long getId() {
         return id;
     }

@@ -31,7 +31,7 @@ public class FreeFeserApp {
         String weather2 = TextAnalyzer.extractWeatherCurrentOrForecast(text6);
         System.out.println(weather + "\n" + weather2);*/
 
-        AppUser appUser = new AppUser();
+        AppUser appUser = new AppUser("testuser", "test123");
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             // start a transaction
@@ -48,8 +48,8 @@ public class FreeFeserApp {
         }
 
         /*try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            List <AppUser> appUsers = session.createQuery("from AppUser", AppUser.class).list();
-            appUsers.forEach(a -> System.out.println(a.getUserName()));
+            List <AppUser> appUsers = session.createQuery("from users", AppUser.class).list();
+            appUsers.forEach(a -> System.out.println(a.getUsername()));
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();

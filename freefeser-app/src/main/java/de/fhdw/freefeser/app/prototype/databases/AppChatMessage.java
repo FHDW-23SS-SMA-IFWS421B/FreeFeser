@@ -28,6 +28,13 @@ public class AppChatMessage implements ChatMessage<AppUser, AppChatbot> {
     @JoinColumn(name = "bot_id")
     private AppChatbot chatbot;
 
+    public AppChatMessage(String text, LocalDateTime timestamp, AppUser user, AppChatbot chatbot) {
+        this.text = text;
+        this.timestamp = timestamp;
+        this.user = user;
+        this.chatbot = chatbot;
+    }
+
     public long getId() {
         return id;
     }

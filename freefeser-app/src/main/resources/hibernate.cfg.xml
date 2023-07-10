@@ -7,7 +7,7 @@
         <property name="hibernate.connection.driver_class">org.h2.Driver</property>
         <property name="hibernate.connection.url">jdbc:h2:mem:test;DB_CLOSE_DELAY=-1</property>
         <property name="hibernate.connection.username">default</property>
-        <property name="hibernate.connection.password"></property>
+        <property name="hibernate.connection.password">root12</property>
 
         <!-- JDBC connection pool settings ... using built-in test pool -->
         <property name="hibernate.connection.pool_size">1</property>
@@ -32,6 +32,8 @@
         <property name="hibernate.dbcp.maxWaitMillis">-1</property>
 
         <!-- Mapping hibernate classes example with AppUser.java -->
-        <mapping class="de.fhdw.freefeser.app.prototype.databases.AppUser" />
+        <mapping class="de.fhdw.freefeser.app.prototype.databases.AppChatbot"/>
+        <mapping class="de.fhdw.freefeser.app.prototype.databases.AppChatMessage"/>
+        <mapping class="de.fhdw.freefeser.app.prototype.databases.AppUser"/>
     </session-factory>
 </hibernate-configuration>

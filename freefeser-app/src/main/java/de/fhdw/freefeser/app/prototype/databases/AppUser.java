@@ -10,6 +10,7 @@ public class AppUser implements User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private long id;
 
     @Column(name = "username", nullable = false, unique = true)
@@ -17,6 +18,10 @@ public class AppUser implements User {
 
     @Column(name = "password", nullable = false)
     private String password;
+
+    public AppUser() {
+
+    }
 
     public AppUser(String username, String password) {
         this.username = username;

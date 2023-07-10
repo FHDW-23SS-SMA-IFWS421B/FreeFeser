@@ -10,6 +10,7 @@ public class AppChatbot implements Chatbot {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private long id;
 
     @Column(name = "botname", nullable = false, unique = true)
@@ -17,6 +18,10 @@ public class AppChatbot implements Chatbot {
 
     @Column(name = "active", nullable = false)
     private boolean status;
+
+    public AppChatbot() {
+
+    }
 
     public AppChatbot(String botname, boolean status) {
         this.botname = botname;

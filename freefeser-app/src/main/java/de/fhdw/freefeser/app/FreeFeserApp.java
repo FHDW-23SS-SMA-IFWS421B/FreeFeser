@@ -31,12 +31,14 @@ public class FreeFeserApp {
         System.out.println(weather + "\n" + weather2);*/
 
         AppUser appUser = new AppUser("testuser", "test123");
+        AppUser appUser1 = new AppUser("testuser2", "admin");
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             // start a transaction
             transaction = session.beginTransaction();
             // save the appUser object
             session.persist(appUser);
+            session.persist(appUser1);
             // commit transaction
             transaction.commit();
         } catch (Exception e) {

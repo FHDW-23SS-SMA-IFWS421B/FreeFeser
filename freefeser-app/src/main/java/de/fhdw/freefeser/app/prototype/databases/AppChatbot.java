@@ -1,30 +1,29 @@
 package de.fhdw.freefeser.app.prototype.databases;
 
 import de.fhdw.freefeser.api.database.Chatbot;
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 @Entity
-@Table(name = "chatbots")
 public class AppChatbot implements Chatbot {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private long id;
 
-    @Column(name = "botname", nullable = false, unique = true)
     private String botname;
 
-    @Column(name = "active", nullable = false)
-    private boolean status;
+    private boolean active;
 
     public AppChatbot() {
 
     }
 
-    public AppChatbot(String botname, boolean status) {
+    public AppChatbot(String botname, boolean active) {
         this.botname = botname;
-        this.status = status;
+        this.active = active;
     }
 
     public long getId() {
@@ -44,10 +43,10 @@ public class AppChatbot implements Chatbot {
     }
 
     public boolean getStatus() {
-        return status;
+        return active;
     }
 
-    public void setStatus(boolean status) {
-        this.status = status;
+    public void setStatus(boolean active) {
+        this.active = active;
     }
 }

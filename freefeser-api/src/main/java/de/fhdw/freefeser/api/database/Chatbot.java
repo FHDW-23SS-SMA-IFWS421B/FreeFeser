@@ -12,5 +12,5 @@ public interface Chatbot {
 
     boolean getStatus();
 
-    void setStatus(boolean status);
+    void setStatus(boolean active);
 }

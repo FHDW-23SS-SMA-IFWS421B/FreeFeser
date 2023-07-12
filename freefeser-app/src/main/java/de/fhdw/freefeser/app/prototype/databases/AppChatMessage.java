@@ -6,7 +6,6 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "messages")
 public class AppChatMessage implements ChatMessage<AppUser, AppChatbot> {
 
     @Id
@@ -21,11 +20,9 @@ public class AppChatMessage implements ChatMessage<AppUser, AppChatbot> {
     private LocalDateTime timestamp;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
     private AppUser user;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "bot_id")
     private AppChatbot chatbot;
 
     public AppChatMessage() {

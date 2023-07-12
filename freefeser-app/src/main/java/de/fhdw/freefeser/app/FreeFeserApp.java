@@ -4,8 +4,8 @@ package de.fhdw.freefeser.app;
 
 import de.fhdw.freefeser.app.prototype.databases.AppUser;
 import de.fhdw.freefeser.app.util.HibernateUtil;
+import jakarta.persistence.TypedQuery;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 import java.util.List;
 
@@ -30,7 +30,7 @@ public class FreeFeserApp {
         String weather2 = TextAnalyzer.extractWeatherCurrentOrForecast(text6);
         System.out.println(weather + "\n" + weather2);*/
 
-        AppUser appUser = new AppUser("testuser", "test123");
+        /*AppUser appUser = new AppUser("testuser", "test123");
         AppUser appUser1 = new AppUser("testuser2", "admin");
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
@@ -57,6 +57,19 @@ public class FreeFeserApp {
                 transaction.rollback();
             }
             e.printStackTrace();
+        }*/
+
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        String jpql = "SELECT a FROM AppUser a";
+        TypedQuery<AppUser> query = session.createQuery(jpql, AppUser.class);
+        List<AppUser> results = query.getResultList();
+
+        for (AppUser appUser : results) {
+            System.out.println(appUser.getId() + " - " + appUser.getUsername());
         }
+
+        session.close();
+        HibernateUtil.shutdown();
     }
 }

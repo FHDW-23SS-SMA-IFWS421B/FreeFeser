@@ -1,8 +1,7 @@
 package de.fhdw.freefeser.app.prototype.databases;
 
 import de.fhdw.freefeser.api.database.Chatbot;
-
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "chatbots")

@@ -2,13 +2,12 @@ package de.fhdw.freefeser.app;
 
 // import de.fhdw.freefeser.app.prototype.textanalyzer.TextAnalyzer;
 
-// import java.util.List;
-
+import de.fhdw.freefeser.app.prototype.databases.AppUser;
+import de.fhdw.freefeser.app.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import de.fhdw.freefeser.app.prototype.databases.AppUser;
-import de.fhdw.freefeser.app.util.HibernateUtil;
+import java.util.List;
 
 public class FreeFeserApp {
     public static void main(String[] args) throws Exception {
@@ -41,20 +40,21 @@ public class FreeFeserApp {
             // commit transaction
             transaction.commit();
         } catch (Exception e) {
+            e.printStackTrace();
             if (transaction != null) {
                 transaction.rollback();
             }
             e.printStackTrace();
         }
 
-        /*try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            List <AppUser> appUsers = session.createQuery("from users", AppUser.class).list();
-            appUsers.forEach(a -> System.out.println(a.getUsername()));
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            List<AppUser> appUsers = session.createQuery("from AppUser", AppUser.class).list();
+            appUsers.forEach(a -> System.out.println(a.getId()));
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
             }
             e.printStackTrace();
-        }*/
+        }
     }
 }

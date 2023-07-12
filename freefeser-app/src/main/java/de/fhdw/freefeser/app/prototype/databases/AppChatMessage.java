@@ -1,8 +1,8 @@
 package de.fhdw.freefeser.app.prototype.databases;
 
 import de.fhdw.freefeser.api.database.ChatMessage;
+import jakarta.persistence.*;
 
-import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity

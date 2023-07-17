@@ -31,8 +31,8 @@
         <property name="hibernate.dbcp.maxWaitMillis">-1</property>
 
         <!-- Mapping hibernate classes example with AppUser.java -->
-        <mapping class="de.fhdw.freefeser.app.databases.AppChatbot"/>
-        <mapping class="de.fhdw.freefeser.app.databases.AppChatMessage"/>
-        <mapping class="de.fhdw.freefeser.app.databases.AppUser"/>
+        <mapping class="de.fhdw.freefeser.app.databases.entities.AppChatbot"/>
+        <mapping class="de.fhdw.freefeser.app.databases.entities.AppChatMessage"/>
+        <mapping class="de.fhdw.freefeser.app.databases.entities.AppUser"/>
     </session-factory>
 </hibernate-configuration>

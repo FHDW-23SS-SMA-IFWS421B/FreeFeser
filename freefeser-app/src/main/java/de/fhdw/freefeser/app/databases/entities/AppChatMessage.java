@@ -1,4 +1,4 @@
-package de.fhdw.freefeser.app.databases;
+package de.fhdw.freefeser.app.databases.entities;
 
 import de.fhdw.freefeser.api.database.ChatMessage;
 import jakarta.persistence.*;

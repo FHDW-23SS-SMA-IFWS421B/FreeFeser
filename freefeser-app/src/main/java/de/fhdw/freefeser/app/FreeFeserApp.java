@@ -1,6 +1,7 @@
 package de.fhdw.freefeser.app;
 
-import de.fhdw.freefeser.app.databases.AppUser;
+import de.fhdw.freefeser.app.textanalyzer.*;
+import de.fhdw.freefeser.app.databases.entities.AppUser;
 import de.fhdw.freefeser.app.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -26,10 +27,12 @@ public class FreeFeserApp {
 
         String weather = TextAnalyzer.extractWeatherCurrentOrForecast(text5);
         String weather2 = TextAnalyzer.extractWeatherCurrentOrForecast(text6);
-        System.out.println(weather + "\n" + weather2);*/
+        System.out.println(weather + "\n" + weather2);
 
-        AppUser appUser = new AppUser("testuser5", "test123");
-        AppUser appUser1 = new AppUser("testuser6", "admin");
+        */
+
+        AppUser appUser = new AppUser("testuser11", "test123");
+        AppUser appUser1 = new AppUser("testuser12", "admin");
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             // start a transaction

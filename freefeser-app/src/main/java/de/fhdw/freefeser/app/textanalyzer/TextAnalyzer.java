@@ -1,4 +1,4 @@
-package de.fhdw.freefeser.app.prototype.textanalyzer;
+package de.fhdw.freefeser.app.textanalyzer;
 
 import com.google.api.gax.core.FixedCredentialsProvider;
 import com.google.auth.oauth2.GoogleCredentials;

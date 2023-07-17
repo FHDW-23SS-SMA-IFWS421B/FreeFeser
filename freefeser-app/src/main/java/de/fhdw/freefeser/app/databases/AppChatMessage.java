@@ -4,14 +4,15 @@ import de.fhdw.freefeser.api.database.ChatMessage;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Entity
 public class AppChatMessage implements ChatMessage<AppUser, AppChatbot> {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id")
-    private long id;
+    private UUID id;
 
     @Column(name = "text", nullable = false)
     private String text;
@@ -36,11 +37,11 @@ public class AppChatMessage implements ChatMessage<AppUser, AppChatbot> {
         this.chatbot = chatbot;
     }
 
-    public long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

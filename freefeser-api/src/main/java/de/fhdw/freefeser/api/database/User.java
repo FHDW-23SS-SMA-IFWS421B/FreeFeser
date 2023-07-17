@@ -1,9 +1,12 @@
 package de.fhdw.freefeser.api.database;
+
+import java.util.UUID;
+
 public interface User {
 
-    long getId();
+    UUID getId();
 
-    void setId(long id);
+    void setId(UUID id);
 
     String getUsername();
 

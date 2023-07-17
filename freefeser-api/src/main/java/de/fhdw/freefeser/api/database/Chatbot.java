@@ -1,10 +1,12 @@
 package de.fhdw.freefeser.api.database;
 
+import java.util.UUID;
+
 public interface Chatbot {
 
-    long getId();
+    UUID getId();
 
-    void setId(long Id);
+    void setId(UUID Id);
 
     String getBotname();
 

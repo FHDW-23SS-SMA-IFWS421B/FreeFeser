@@ -28,8 +28,8 @@ public class FreeFeserApp {
         String weather2 = TextAnalyzer.extractWeatherCurrentOrForecast(text6);
         System.out.println(weather + "\n" + weather2);*/
 
-        AppUser appUser = new AppUser("testuser", "test123");
-        AppUser appUser1 = new AppUser("testuser2", "admin");
+        AppUser appUser = new AppUser("testuser5", "test123");
+        AppUser appUser1 = new AppUser("testuser6", "admin");
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             // start a transaction

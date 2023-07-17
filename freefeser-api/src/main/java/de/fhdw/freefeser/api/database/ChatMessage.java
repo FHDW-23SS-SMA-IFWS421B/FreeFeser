@@ -1,12 +1,13 @@
 package de.fhdw.freefeser.api.database;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 public interface ChatMessage<U extends User, C extends Chatbot> {
 
-    long getId();
+    UUID getId();
 
-    void setId(long id);
+    void setId(UUID id);
 
     String getText();
 

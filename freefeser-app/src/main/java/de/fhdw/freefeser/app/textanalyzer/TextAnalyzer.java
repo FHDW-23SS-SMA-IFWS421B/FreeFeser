@@ -12,7 +12,7 @@ import java.util.List;
 public class TextAnalyzer {
     public static String extractBot(String text) throws Exception {
         // Load the credentials from the config file
-        GoogleCredentials credentials = ServiceAccountCredentials.fromStream(new FileInputStream("/home/florenzen/FreeFeser/freefeser-app/src/main/resources/credentials.json"));
+        GoogleCredentials credentials = ServiceAccountCredentials.fromStream(new FileInputStream("./FreeFeser/freefeser-app/src/main/resources/credentials.json"));
 
         // Instantiates a client
         try (LanguageServiceClient language = LanguageServiceClient.create(LanguageServiceSettings.newBuilder().setCredentialsProvider(FixedCredentialsProvider.create(credentials)).build())) {

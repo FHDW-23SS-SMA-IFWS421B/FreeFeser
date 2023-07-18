@@ -10,25 +10,25 @@ public class AppUserManager implements UserManager {
 
     @Override
     public CompletableFuture<User> load(UUID id) {
-        // SELECT Statement
+        // SELECT Statement?
         return null;
     }
 
     @Override
     public CompletableFuture<Void> save(User user) {
-        // UPDATE Statement
+        // UPDATE Statement?
         return null;
     }
 
     @Override
     public CompletableFuture<User> create(User entityWithoutId) {
-        // INSERT VALUE Statement
+        // INSERT VALUE Statement?
         return null;
     }
 
     @Override
     public CompletableFuture<Void> delete(UUID id) {
-        // DELETE Statement
+        // DELETE Statement?
         return null;
     }
 }

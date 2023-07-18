@@ -10,25 +10,25 @@ public class AppChatMessageManager implements ChatMessageManager {
 
     @Override
     public CompletableFuture<ChatMessage> load(UUID id) {
-        // SELECT Statement
+        // SELECT Statement?
         return null;
     }
 
     @Override
     public CompletableFuture<Void> save(ChatMessage message) {
-        // UPDATE Statement
+        // UPDATE Statement?
         return null;
     }
 
     @Override
     public CompletableFuture<ChatMessage> create(ChatMessage entityWithoutId) {
-        // INSERT Statement
+        // INSERT Statement?
         return null;
     }
 
     @Override
     public CompletableFuture<Void> delete(UUID id) {
-        // DELETE Statement
+        // DELETE Statement?
         return null;
     }
 }

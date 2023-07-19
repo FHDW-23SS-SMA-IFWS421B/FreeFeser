@@ -1,12 +1,13 @@
 package de.fhdw.freefeser.app;
 
-import de.fhdw.freefeser.app.textanalyzer.*;
-import de.fhdw.freefeser.app.databases.entities.AppUser;
-import de.fhdw.freefeser.app.util.HibernateUtil;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-
-import java.util.List;
+import de.fhdw.freefeser.api.bot.command.CommandManager;
+import de.fhdw.freefeser.api.console.ConsoleReader;
+import de.fhdw.freefeser.api.console.ConsoleReaderCallback;
+import de.fhdw.freefeser.app.bot.command.AppCommandManager;
+import de.fhdw.freefeser.app.chatbot.translation.commands.TranslationCommand;
+import de.fhdw.freefeser.app.console.AppConsoleReader;
+import de.fhdw.freefeser.app.console.callbacks.CommandManagerConsoleReaderCallback;
+import de.fhdw.freefeser.app.console.callbacks.LoginConsoleReaderCallback;
 
 public class FreeFeserApp {
     public static void main(String[] args) throws Exception {
@@ -29,10 +30,8 @@ public class FreeFeserApp {
         String weather2 = TextAnalyzer.extractWeatherCurrentOrForecast(text6);
         System.out.println(weather + "\n" + weather2);
 
-        */
-
-        AppUser appUser = new AppUser("testuser11", "test123");
-        AppUser appUser1 = new AppUser("testuser12", "admin");
+        AppUser appUser = new AppUser("testuser", "test123");
+        AppUser appUser1 = new AppUser("testuser2", "admin");
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             // start a transaction
@@ -58,6 +57,19 @@ public class FreeFeserApp {
                 transaction.rollback();
             }
             e.printStackTrace();
-        }
+        }*/
+
+        CommandManager commandManager = new AppCommandManager();
+        commandManager.registerCommand(new TranslationCommand(null, "translate", "Translate something"));
+
+        ConsoleReader reader = new AppConsoleReader(System.in);
+
+        ConsoleReaderCallback loginCallback = new LoginConsoleReaderCallback(reader, user -> {
+            reader.addCallback(new CommandManagerConsoleReaderCallback(reader, commandManager));
+        });
+
+        reader.addCallback(loginCallback);
+
+        reader.start();
     }
 }

@@ -71,7 +71,7 @@ public class TextAnalyzer {
             // If no location entity was found, return null
             return null;
         }
-    }
+    }//@translationbot übersetze mir xy in deutsch
 
     public static String extractWeatherCurrentOrForecast(String text) throws Exception {
         // Load the credentials from the config file

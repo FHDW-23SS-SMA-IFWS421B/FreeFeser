@@ -1,108 +1,94 @@
 package de.fhdw.freefeser.app.textanalyzer;
 
-import com.google.api.gax.core.FixedCredentialsProvider;
-import com.google.auth.oauth2.GoogleCredentials;
-import com.google.auth.oauth2.ServiceAccountCredentials;
-import com.google.cloud.language.v1.*;
-import com.google.cloud.language.v1.Document.Type;
+import edu.stanford.nlp.pipeline.*;
+import edu.stanford.nlp.ling.*;
 
-import java.io.FileInputStream;
-import java.util.List;
+import java.util.*;
 
 public class TextAnalyzer {
-    public static String extractBot(String text) throws Exception {
-        // Load the credentials from the config file
-        GoogleCredentials credentials = ServiceAccountCredentials.fromStream(new FileInputStream("freefeser-app/src/main/resources/credentials.json"));
+    public static String extractBot(String text) {
+        // Erstellen einer neuen Pipeline mit Annotationseigenschaften
+        Properties props = new Properties();
+        props.setProperty("annotators", "tokenize, ssplit, pos, lemma, ner");
+        StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
 
-        // Instantiates a client
-        try (LanguageServiceClient language = LanguageServiceClient.create(LanguageServiceSettings.newBuilder().setCredentialsProvider(FixedCredentialsProvider.create(credentials)).build())) {
-            // Set the text content and type (plain text)
-            Document doc = Document.newBuilder()
-                    .setContent(text)
-                    .setType(Type.PLAIN_TEXT)
-                    .build();
+        // Erstellen eines Dokuments aus dem Text
+        CoreDocument document = new CoreDocument(text);
 
-            // Detects entities in the document
-            AnalyzeEntitiesResponse response = language.analyzeEntities(doc);
-            List<Entity> entities = response.getEntitiesList();
+        // Annotieren des Dokuments
+        pipeline.annotate(document);
 
-            // Look for entities that match the bot names and return the first one found
-            String[] botNames = {"Weatherbot", "Wikibot", "TranslationBot"}; // Array of bot names
-            for (Entity entity : entities) {
-                String entityName = entity.getName();
-                for (String botName : botNames) {
-                    if (entityName.equalsIgnoreCase(botName)) {
-                        // return in lowercase for further use
-                        return botName.toLowerCase();
-                    }
+        // Entitäten aus dem Dokument extrahieren
+        List<CoreEntityMention> entities = document.entityMentions();
+
+        // Nach Bots in den Entitäten suchen und den ersten gefundenen zurückgeben
+        String[] botNames = {"Weatherbot", "Wikibot", "TranslationBot"}; // Array der Bot-Namen
+        for (CoreEntityMention entity : entities) {
+            String entityName = entity.text();
+            for (String botName : botNames) {
+                if (entityName.equalsIgnoreCase(botName)) {
+                    // Rückgabe in Kleinbuchstaben für die weitere Verwendung
+                    return botName.toLowerCase();
                 }
             }
-
-            // If no bot entity was found, return null
-            return null;
         }
+
+        // Wenn keine Bot-Entität gefunden wurde, null zurückgeben
+        return null;
     }
 
-    public static String extractLocation(String text) throws Exception {
-        // Load the credentials from the config file
-        GoogleCredentials credentials = ServiceAccountCredentials.fromStream(new FileInputStream("freefeser-app/src/main/resources/credentials.json"));
+    public static String extractLocation(String text) {
+        // Erstellen einer neuen Pipeline mit Annotationseigenschaften
+        Properties props = new Properties();
+        props.setProperty("annotators", "tokenize, ssplit, pos, lemma, ner");
+        StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
 
-        // Instantiates a client
-        try (LanguageServiceClient language = LanguageServiceClient.create(LanguageServiceSettings.newBuilder().setCredentialsProvider(FixedCredentialsProvider.create(credentials)).build())) {
-            // Set the text content and type (plain text)
-            Document doc = Document.newBuilder()
-                    .setContent(text)
-                    .setType(Type.PLAIN_TEXT)
-                    .build();
+        // Erstellen eines Dokuments aus dem Text
+        CoreDocument document = new CoreDocument(text);
 
-            // Detects entities in the document
-            AnalyzeEntitiesResponse response = language.analyzeEntities(doc);
-            List<Entity> entities = response.getEntitiesList();
+        // Annotieren des Dokuments
+        pipeline.annotate(document);
 
-            // Look for entities that are locations and return the first one found
-            for (Entity entity : entities) {
-
-                if (entity.getType() == Entity.Type.LOCATION) {
-                    // return in lowercase for further use
-                    return entity.getName().toLowerCase();
+        // Entitäten aus dem Dokument extrahieren
+        List<CoreSentence> sentences = document.sentences(); // Ändern Sie hier zu CoreSentence
+        for (CoreSentence sentence : sentences) { // Ändern Sie hier zu CoreSentence
+            for (CoreLabel token : sentence.tokens()) { // Verwenden Sie sentence.tokens() statt sentence.get(CoreAnnotations.TokensAnnotation.class)
+                String nerTag = token.get(CoreAnnotations.NamedEntityTagAnnotation.class);
+                if (nerTag.equals("LOCATION")) {
+                    // Rückgabe des Orts in Kleinbuchstaben für die weitere Verwendung
+                    return token.word().toLowerCase();
                 }
             }
-
-            // If no location entity was found, return null
-            return null;
         }
-    }//@translationbot übersetze mir xy in deutsch
 
-    public static String extractWeatherCurrentOrForecast(String text) throws Exception {
-        // Load the credentials from the config file
-        GoogleCredentials credentials = ServiceAccountCredentials.fromStream(new FileInputStream("freefeser-app/src/main/resources/credentials.json"));
-        // Instantiates a client
-        try (LanguageServiceClient language = LanguageServiceClient.create(LanguageServiceSettings.newBuilder().setCredentialsProvider(FixedCredentialsProvider.create(credentials)).build())) {
-            // Set the text content and type (plain text)
-            Document doc = Document.newBuilder()
-                    .setContent(text)
-                    .setType(Type.PLAIN_TEXT)
-                    .build();
+        // Wenn keine Ortsangabe gefunden wurde, null zurückgeben
+        return null;
+    }
 
-            // Analyze the sentiment of the document
-            AnalyzeSentimentResponse sentimentResponse = language.analyzeSentiment(doc);
-            Sentiment sentiment = sentimentResponse.getDocumentSentiment();
 
-            // Check if the sentiment is positive (for current weather) or negative (for a forecast)
-            if (sentiment.getScore() >= 0) {
-                // Check for keywords indicating current weather
-                if (text.toLowerCase().contains("heute") || text.toLowerCase().contains("jetzt")) {
-                    return "current";
-                }
-            } else {
-                // Check for keywords indicating a weather forecast
-                if (text.toLowerCase().contains("morgen") || text.toLowerCase().contains("wochenende") || text.toLowerCase().contains("nächsten tagen")) {
-                    return "forecast";
-                }
-            }
+    public static String extractWeatherCurrentOrForecast(String text) {
+        // Erstellen einer neuen Pipeline mit Annotationseigenschaften
+        Properties props = new Properties();
+        props.setProperty("annotators", "tokenize, ssplit");
+        StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
 
-            // If no keywords were found, return null
-            return null;
+        // Erstellen eines Dokuments aus dem Text
+        CoreDocument document = new CoreDocument(text);
+
+        // Annotieren des Dokuments
+        pipeline.annotate(document);
+
+        // Überprüfen, ob der Text Schlüsselwörter für das aktuelle Wetter enthält
+        if (text.toLowerCase().contains("heute") || text.toLowerCase().contains("jetzt") || text.toLowerCase().contains("aktuell")) {
+            return "current";
         }
+
+        // Überprüfen, ob der Text Schlüsselwörter für eine Wettervorhersage enthält
+        if (text.toLowerCase().contains("morgen") || text.toLowerCase().contains("wochenende") || text.toLowerCase().contains("nächsten tagen")) {
+            return "forecast";
+        }
+
+        // Wenn keine Schlüsselwörter gefunden wurden, null zurückgeben
+        return null;
     }
 }

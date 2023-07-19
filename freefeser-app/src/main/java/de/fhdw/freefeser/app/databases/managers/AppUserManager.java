@@ -1,21 +1,26 @@
 package de.fhdw.freefeser.app.databases.managers;
 
 import de.fhdw.freefeser.api.database.User;
-import de.fhdw.freefeser.api.database.UserManager;
+import de.fhdw.freefeser.api.database.UserDatabaseManager;
 
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
-public class AppUserManager implements UserManager {
+public class AppUserManager implements UserDatabaseManager {
 
     @Override
-    public CompletableFuture<User> load(UUID id) {
+    public CompletableFuture<User> getAll() {
+        return null;
+    }
+
+    @Override
+    public CompletableFuture<User> get(UUID id) {
         // SELECT Statement?
         return null;
     }
 
     @Override
-    public CompletableFuture<Void> save(User user) {
+    public CompletableFuture<Void> update(User user) {
         // UPDATE Statement?
         return null;
     }

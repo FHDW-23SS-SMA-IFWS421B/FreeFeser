@@ -5,9 +5,11 @@ import java.util.concurrent.CompletableFuture;
 
 public interface DatabaseManager<T> {
 
-    CompletableFuture<T> load(UUID id);
+    CompletableFuture<T> getAll();
 
-    CompletableFuture<Void> save(T entity);
+    CompletableFuture<T> get(UUID id);
+
+    CompletableFuture<Void> update(T entity);
 
     CompletableFuture<T> create(T entityWithoutId);
 

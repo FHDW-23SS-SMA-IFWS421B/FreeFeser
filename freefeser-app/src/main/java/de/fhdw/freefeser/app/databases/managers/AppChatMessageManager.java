@@ -1,23 +1,28 @@
 package de.fhdw.freefeser.app.databases.managers;
 
 import de.fhdw.freefeser.api.database.ChatMessage;
-import de.fhdw.freefeser.api.database.ChatMessageManager;
+import de.fhdw.freefeser.api.database.ChatMessageDatabaseManager;
 import de.fhdw.freefeser.app.databases.entities.AppChatbot;
 import de.fhdw.freefeser.app.databases.entities.AppUser;
 
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
-public class AppChatMessageManager implements ChatMessageManager<AppUser, AppChatbot> {
+public class AppChatMessageManager implements ChatMessageDatabaseManager<AppUser, AppChatbot> {
 
 
     @Override
-    public CompletableFuture<ChatMessage<AppUser, AppChatbot>> load(UUID id) {
+    public CompletableFuture<ChatMessage<AppUser, AppChatbot>> getAll() {
         return null;
     }
 
     @Override
-    public CompletableFuture<Void> save(ChatMessage<AppUser, AppChatbot> entity) {
+    public CompletableFuture<ChatMessage<AppUser, AppChatbot>> get(UUID id) {
+        return null;
+    }
+
+    @Override
+    public CompletableFuture<Void> update(ChatMessage<AppUser, AppChatbot> entity) {
         return null;
     }
 

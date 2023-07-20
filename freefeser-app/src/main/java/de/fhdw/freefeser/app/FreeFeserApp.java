@@ -10,7 +10,6 @@ import de.fhdw.freefeser.app.chatbot.translation.commands.TranslationCommand;
 import de.fhdw.freefeser.app.console.AppConsoleReader;
 import de.fhdw.freefeser.app.console.callbacks.CommandManagerConsoleReaderCallback;
 import de.fhdw.freefeser.app.console.callbacks.LoginConsoleReaderCallback;
-
 import de.fhdw.freefeser.app.databases.entities.AppChatMessage;
 import de.fhdw.freefeser.app.databases.entities.AppChatbot;
 import de.fhdw.freefeser.app.databases.entities.AppUser;
@@ -19,17 +18,19 @@ import de.fhdw.freefeser.app.databases.managers.AppUserManager;
 import de.fhdw.freefeser.app.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
-
 import de.fhdw.freefeser.app.textanalyzer.TextAnalyzer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class FreeFeserApp {
     public static void main(String[] args) throws Exception {
-        String text = "Wie ist das Wetter in Berlin?";
+        Logger logger = LoggerFactory.getLogger(FreeFeserApp.class);
+
+        /*String text = "Wie ist das Wetter in Berlin?";
         String text2 = "Wie ist das Wetter in deiner Mutter?";
         String text3 = "wikiBot";
         String text4 = "WeatherBot";
@@ -59,13 +60,15 @@ public class FreeFeserApp {
 
         reader.addCallback(loginCallback);
 
-        reader.start();
+        reader.start();*/
 
         // Save some test data to the database
         AppUserManager userManager = new AppUserManager();
         AppChatMessageManager chatMessageManager = new AppChatMessageManager();
 
-        AppUser user1 = new AppUser("user1", "password1");
+
+        // Save some test data to the database
+        /*AppUser user1 = new AppUser("user1", "password1");
         AppUser user2 = new AppUser("user2", "password2");
         userManager.create(user1);
         userManager.create(user2);
@@ -73,7 +76,7 @@ public class FreeFeserApp {
         AppChatMessage chatMessage1 = new AppChatMessage("Hello", LocalDateTime.now(), user1, null);
         AppChatMessage chatMessage2 = new AppChatMessage("Hi there", LocalDateTime.now(), user2, null);
         chatMessageManager.create(chatMessage1);
-        chatMessageManager.create(chatMessage2);
+        chatMessageManager.create(chatMessage2);*/
 
         // Test getAll() for AppUser
         CompletableFuture<List<User>> allUsersFuture = userManager.getAll();
@@ -81,10 +84,10 @@ public class FreeFeserApp {
         try {
             allUsers = allUsersFuture.get();
             for (User user : allUsers) {
-                System.out.println("User ID: " + user.getId());
-                System.out.println("Username: " + user.getUsername());
-                System.out.println("Password: " + user.getPassword());
-                System.out.println();
+                logger.info("User ID: {}", user.getId());
+                logger.info("Username: {}", user.getUsername());
+                logger.info("Password: {}", user.getPassword());
+                logger.info(""); // Blank line to separate users
             }
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
@@ -96,24 +99,25 @@ public class FreeFeserApp {
         try {
             allChatMessages = allChatMessagesFuture.get();
             for (ChatMessage<AppUser, AppChatbot> chatMessage : allChatMessages) {
-                System.out.println("ChatMessage ID: " + chatMessage.getId());
-                System.out.println("Text: " + chatMessage.getText());
-                System.out.println("Timestamp: " + chatMessage.getTimestamp());
+                logger.info("ChatMessage ID: {}", chatMessage.getId());
+                logger.info("Text: {}", chatMessage.getText());
+                logger.info("Timestamp: {}", chatMessage.getTimestamp());
 
-                // Get the associated user and print its details
+                // Get the associated user and log its details
                 AppUser user = chatMessage.getUser();
-                System.out.println("User ID: " + user.getId());
-                System.out.println("Username: " + user.getUsername());
-                System.out.println("Password: " + user.getPassword());
+                logger.info("User ID: {}", user.getId());
+                logger.info("Username: {}", user.getUsername());
+                logger.info("Password: {}", user.getPassword());
 
-                // Get the associated chatbot (if any) and print its details
+                // Get the associated chatbot (if any) and log its details
                 AppChatbot chatbot = chatMessage.getChatbot();
                 if (chatbot != null) {
-                    System.out.println("Chatbot ID: " + chatbot.getId());
-                    System.out.println("Botname: " + chatbot.getBotname());
+                    logger.info("Chatbot ID: {}", chatbot.getId());
+                    logger.info("Botname: {}", chatbot.getBotname());
+                    logger.info("Status: {}", chatbot.getStatus());
                 }
 
-                System.out.println();
+                logger.info(""); // Blank line to separate chat messages
             }
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();

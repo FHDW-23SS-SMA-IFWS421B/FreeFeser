@@ -1,0 +1,8 @@
+2023-07-20 22:04:40,899 DEBUG [ForkJoinPool.commonPool-worker-1] o.j.logging [LoggerProviders.java:152] - Logging Provider: org.jboss.logging.Slf4jLoggerProvider
+2023-07-20 22:04:40,915 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.i.i.IntegratorServiceImpl [IntegratorServiceImpl.java:45] - Adding Integrator [org.hibernate.boot.beanvalidation.BeanValidationIntegrator].
+2023-07-20 22:04:40,918 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.i.i.IntegratorServiceImpl [IntegratorServiceImpl.java:45] - Adding Integrator [org.hibernate.cache.internal.CollectionCacheInvalidator].
+2023-07-20 22:04:40,940 INFO [ForkJoinPool.commonPool-worker-1] o.h.Version [Version.java:44] - HHH000412: Hibernate ORM core version 6.2.6.Final
+2023-07-20 22:04:40,942 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.c.Environment [Environment.java:174] - HHH000206: hibernate.properties not found
+2023-07-20 22:04:40,943 INFO [ForkJoinPool.commonPool-worker-1] o.h.c.Environment [Environment.java:191] - HHH000406: Using bytecode reflection optimizer
+2023-07-20 22:04:40,974 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.b.j.i.s.LocalXmlResourceResolver [LocalXmlResourceResolver.java:86] - Checking public/system identifiers `-//Hibernate/Hibernate Configuration DTD 3.0//EN`/`http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd` as DTD references
+2023-07-20 22:04:40,978 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.b.c.i.JaxbCfgProcessor [JaxbCfgProcessor.java:115] - cfg.xml document did not define namespaces; wrapping in custom event reader to introduce namespace information

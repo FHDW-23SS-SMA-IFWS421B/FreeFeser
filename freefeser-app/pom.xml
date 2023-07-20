@@ -116,20 +116,12 @@
             <version>4.5.4</version>
         </dependency>
 
-        <!-- Stanford CoreNLP with English models -->
+        <!-- Stanford CoreNLP with models -->
         <dependency>
             <groupId>edu.stanford.nlp</groupId>
             <artifactId>stanford-corenlp</artifactId>
             <version>4.5.4</version>
-            <classifier>models-english</classifier>
-        </dependency>
-
-        <!-- Stanford CoreNLP with German models -->
-        <dependency>
-            <groupId>edu.stanford.nlp</groupId>
-            <artifactId>stanford-corenlp</artifactId>
-            <version>4.5.4</version>
-            <classifier>models-german</classifier>
+            <classifier>models</classifier>
         </dependency>
     </dependencies>
 </project>

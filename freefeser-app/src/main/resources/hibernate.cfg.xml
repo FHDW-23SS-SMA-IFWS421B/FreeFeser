@@ -11,26 +11,25 @@
         <property name="hibernate.connection.username">default</property>
         <property name="hibernate.connection.password">root12</property>
 
-        <!-- JDBC connection pool settings ... using built-in test pool -->
-        <property name="hibernate.connection.pool_size">1</property>
+        <!-- Use C3P0 as the connection pool -->
+        <property name="hibernate.connection.provider_class">org.hibernate.c3p0.internal.C3P0ConnectionProvider</property>
+        <property name="hibernate.c3p0.min_size">5</property>
+        <property name="hibernate.c3p0.max_size">20</property>
+        <property name="hibernate.c3p0.acquire_increment">1</property>
+        <property name="hibernate.c3p0.idle_test_period">300</property>
+        <property name="hibernate.c3p0.max_statements">50</property>
+        <property name="hibernate.c3p0.timeout">1800</property>
 
-        <!-- Echo the SQL to stdout -->
+        <!-- Other Hibernate configurations... -->
+        <property name="hibernate.dialect">org.hibernate.dialect.H2Dialect</property>
         <property name="hibernate.show_sql">true</property>
-
-        <!-- Set the current session context -->
+        <property name="hibernate.format_sql">true</property>
+        <property name="hibernate.use_sql_comments">true</property>
         <property name="hibernate.current_session_context_class">thread</property>
+        <!-- test purpose create-drop -> default update -->
+        <property name="hibernate.hbm2ddl.auto">create-drop</property>
 
-        <!-- Drop and re-create the database schema on startup -->
-        <property name="hibernate.hbm2ddl.auto">update</property>
-
-        <!-- dbcp connection pool configuration -->
-        <property name="hibernate.dbcp.initialSize">5</property>
-        <property name="hibernate.dbcp.maxTotal">20</property>
-        <property name="hibernate.dbcp.maxIdle">10</property>
-        <property name="hibernate.dbcp.minIdle">5</property>
-        <property name="hibernate.dbcp.maxWaitMillis">-1</property>
-
-        <!-- Mapping hibernate classes example with AppUser.java -->
+        <!-- Mapping hibernate classes -->
         <mapping class="de.fhdw.freefeser.app.databases.entities.AppChatbot"/>
         <mapping class="de.fhdw.freefeser.app.databases.entities.AppChatMessage"/>
         <mapping class="de.fhdw.freefeser.app.databases.entities.AppUser"/>

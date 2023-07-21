@@ -3,7 +3,7 @@ package de.fhdw.freefeser.app.console.callbacks;
 import de.fhdw.freefeser.api.console.ConsoleReader;
 import de.fhdw.freefeser.api.console.ConsoleReaderCallback;
 
-public abstract  class AppConsoleReaderCallback implements ConsoleReaderCallback {
+public abstract class AppConsoleReaderCallback implements ConsoleReaderCallback {
 
     private final ConsoleReader reader;
 

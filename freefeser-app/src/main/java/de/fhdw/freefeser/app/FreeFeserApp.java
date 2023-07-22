@@ -20,6 +20,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import de.fhdw.freefeser.app.textanalyzer.TextAnalyzer;
@@ -30,37 +31,27 @@ public class FreeFeserApp {
     public static void main(String[] args) throws Exception {
         Logger logger = LoggerFactory.getLogger(FreeFeserApp.class);
 
-        String text = "Wie ist das Wetter in Berlin?";
-        String text2 = "Wie ist das Wetter in deiner Mutter?";
+        String text = "Wie ist das Wetter in New York?";
+        String text2 = "Wie ist das Wetter in Bielefeld?";
         String text3 = "wikiBot";
         String text4 = "WeatherBot";
         String text5 = "Wie ist das Wetter in Berlin?";
         String text6 = "Wie wird das Wetter in Bielefeld morgen?";
 
-        String location = TextAnalyzer.extractLocation(text);
-        String location2 = TextAnalyzer.extractLocation(text2);
-        logger.info("Location 1: {}", location);
-        logger.info("");
-        logger.info("Location 2: {}", location2);
-        logger.info("");
-        logger.info("");
+        //String location = TextAnalyzer.extractLocation(text);
+        //String location2 = TextAnalyzer.extractLocation(text2);
+        //logger.info("Location 1: {}", location);
+        //logger.info("Location 2: {}", location2);
 
         String bot = TextAnalyzer.extractBot(text3);
         String bot2 = TextAnalyzer.extractBot(text4);
-        System.out.println(bot + "\n" + bot2 + "\n");
         logger.info("Bot 1: {}", bot);
-        logger.info("");
         logger.info("Bot 2: {}", bot2);
-        logger.info("");
-        logger.info("");
 
         String weather = TextAnalyzer.extractWeatherCurrentOrForecast(text5);
         String weather2 = TextAnalyzer.extractWeatherCurrentOrForecast(text6);
         logger.info("Weather 1: {}", weather);
-        logger.info("");
         logger.info("Weather 2: {}", weather2);
-        logger.info("");
-        logger.info("");
 
         /*CommandManager commandManager = new AppCommandManager();
         commandManager.registerCommand(new TranslationCommand(null, "translate", "Translate something"));
@@ -73,23 +64,22 @@ public class FreeFeserApp {
 
         reader.addCallback(loginCallback);
 
-        reader.start();
+        reader.start();*/
 
         // Save some test data to the database
-        /*AppUserManager userManager = new AppUserManager();
+        AppUserManager userManager = new AppUserManager();
         AppChatMessageManager chatMessageManager = new AppChatMessageManager();
 
-
         // Save some test data to the database
-        AppUser user1 = new AppUser("user1", "password1");
-        AppUser user2 = new AppUser("user2", "password2");
-        userManager.create(user1);
-        userManager.create(user2);
+        //AppUser user1 = new AppUser("user1", "password1");
+        //AppUser user2 = new AppUser("user2", "password2");
+        //userManager.create(user1);
+        //userManager.create(user2);
 
-        AppChatMessage chatMessage1 = new AppChatMessage("Hello", LocalDateTime.now(), user1, null);
-        AppChatMessage chatMessage2 = new AppChatMessage("Hi there", LocalDateTime.now(), user2, null);
-        chatMessageManager.create(chatMessage1);
-        chatMessageManager.create(chatMessage2);
+        //AppChatMessage chatMessage1 = new AppChatMessage("Hello", LocalDateTime.now(), user1, null);
+        //AppChatMessage chatMessage2 = new AppChatMessage("Hi there", LocalDateTime.now(), user2, null);
+        //chatMessageManager.create(chatMessage1);
+        //chatMessageManager.create(chatMessage2);
 
         // Test getAll() for AppUser
         CompletableFuture<List<User>> allUsersFuture = userManager.getAll();
@@ -134,6 +124,6 @@ public class FreeFeserApp {
             }
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
-        }*/
+        }
     }
 }

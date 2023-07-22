@@ -2,7 +2,6 @@ package de.fhdw.freefeser.app.databases.managers;
 
 import de.fhdw.freefeser.api.database.ChatMessage;
 import de.fhdw.freefeser.api.database.ChatMessageDatabaseManager;
-import de.fhdw.freefeser.api.database.User;
 import de.fhdw.freefeser.app.databases.entities.AppChatMessage;
 import de.fhdw.freefeser.app.databases.entities.AppChatbot;
 import de.fhdw.freefeser.app.databases.entities.AppUser;
@@ -25,9 +24,7 @@ public class AppChatMessageManager implements ChatMessageDatabaseManager<AppUser
 
             try (Session session = HibernateUtil.getSessionFactory().openSession()) {
                 // Define the HQL query to select all chat messages and fetch related user and chatbot entities
-                String hql = "SELECT cm FROM AppChatMessage cm " +
-                        "JOIN FETCH cm.user " +      // Fetch the related user entity
-                        "LEFT JOIN FETCH cm.chatbot"; // Fetch the related chatbot entity (assuming it's a ManyToOne relationship)
+                String hql = "FROM AppChatMessage";
 
                 // Create the query object
                 Query<AppChatMessage> query = session.createQuery(hql, AppChatMessage.class);
@@ -54,6 +51,7 @@ public class AppChatMessageManager implements ChatMessageDatabaseManager<AppUser
                 chatMessage = session.get(AppChatMessage.class, id);
             } catch (Exception e) {
                 e.printStackTrace();
+                System.out.println("Hilfe ich weis nicht wie");
             }
             return chatMessage;
         });
@@ -116,7 +114,7 @@ public class AppChatMessageManager implements ChatMessageDatabaseManager<AppUser
                     transaction.commit();
                 } else {
                     // Throw a runtime exception if the chatMessage with the specified ID is not found
-                    throw new RuntimeException("ChatMessage with ID " + id + " not found.");
+                    throw new RuntimeException();
                 }
             } catch (Exception e) {
                 e.printStackTrace();

@@ -111,7 +111,7 @@ public class AppUserManager implements UserDatabaseManager {
                     transaction.commit();
                 } else {
                     // Throw a runtime exception if the user with the specified ID is not found
-                    throw new RuntimeException("User with ID " + id + " not found.");
+                    throw new RuntimeException();
                 }
             } catch (Exception e) {
                 e.printStackTrace();

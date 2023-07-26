@@ -6,7 +6,8 @@ Table "APPCHATBOT" already exists; SQL statement:
         id uuid not null,
         active boolean not null,
         botname varchar(255),
-        primary key (id) [42101-220]
+        primary key (id)
+ [42101-220]
 2023-07-20 21:44:27 jdbc[4]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabelle "APPCHATBOT" besteht bereits
 Table "APPCHATBOT" already exists; SQL statement:
@@ -15,7 +16,8 @@ Table "APPCHATBOT" already exists; SQL statement:
         id uuid not null,
         active boolean not null,
         botname varchar(255),
-        primary key (id) [42101-220]
+        primary key (id)
+ [42101-220]
 2023-07-20 21:44:27 jdbc[5]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabelle "APPCHATBOT" besteht bereits
 Table "APPCHATBOT" already exists; SQL statement:
@@ -24,7 +26,8 @@ Table "APPCHATBOT" already exists; SQL statement:
         id uuid not null,
         active boolean not null,
         botname varchar(255),
-        primary key (id) [42101-220]
+        primary key (id)
+ [42101-220]
 2023-07-20 21:44:27 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabelle "APPCHATBOT" besteht bereits
 Table "APPCHATBOT" already exists; SQL statement:
@@ -33,7 +36,8 @@ Table "APPCHATBOT" already exists; SQL statement:
         id uuid not null,
         active boolean not null,
         botname varchar(255),
-        primary key (id) [42101-220]
+        primary key (id)
+ [42101-220]
 2023-07-20 21:44:27 jdbc[6]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabelle "APPCHATMESSAGE" besteht bereits
 Table "APPCHATMESSAGE" already exists; SQL statement:
@@ -44,7 +48,8 @@ Table "APPCHATMESSAGE" already exists; SQL statement:
         timestamp timestamp(6) not null,
         chatbot_id uuid,
         user_id uuid,
-        primary key (id) [42101-220]
+        primary key (id)
+ [42101-220]
 2023-07-20 21:44:27 jdbc[5]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabelle "APPCHATMESSAGE" besteht bereits
 Table "APPCHATMESSAGE" already exists; SQL statement:
@@ -55,7 +60,8 @@ Table "APPCHATMESSAGE" already exists; SQL statement:
         timestamp timestamp(6) not null,
         chatbot_id uuid,
         user_id uuid,
-        primary key (id) [42101-220]
+        primary key (id)
+ [42101-220]
 2023-07-20 21:44:27 jdbc[4]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabelle "APPCHATMESSAGE" besteht bereits
 Table "APPCHATMESSAGE" already exists; SQL statement:
@@ -66,7 +72,8 @@ Table "APPCHATMESSAGE" already exists; SQL statement:
         timestamp timestamp(6) not null,
         chatbot_id uuid,
         user_id uuid,
-        primary key (id) [42101-220]
+        primary key (id)
+ [42101-220]
 2023-07-20 21:44:27 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabelle "APPCHATMESSAGE" besteht bereits
 Table "APPCHATMESSAGE" already exists; SQL statement:
@@ -77,7 +84,8 @@ Table "APPCHATMESSAGE" already exists; SQL statement:
         timestamp timestamp(6) not null,
         chatbot_id uuid,
         user_id uuid,
-        primary key (id) [42101-220]
+        primary key (id)
+ [42101-220]
 2023-07-20 21:44:27 jdbc[4]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabelle "APPUSER" besteht bereits
 Table "APPUSER" already exists; SQL statement:
@@ -86,7 +94,8 @@ Table "APPUSER" already exists; SQL statement:
         id uuid not null,
         password varchar(255),
         username varchar(255),
-        primary key (id) [42101-220]
+        primary key (id)
+ [42101-220]
 2023-07-20 21:44:27 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabelle "APPUSER" besteht bereits
 Table "APPUSER" already exists; SQL statement:
@@ -95,7 +104,8 @@ Table "APPUSER" already exists; SQL statement:
         id uuid not null,
         password varchar(255),
         username varchar(255),
-        primary key (id) [42101-220]
+        primary key (id)
+ [42101-220]
 2023-07-20 21:44:27 jdbc[5]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabelle "APPUSER" besteht bereits
 Table "APPUSER" already exists; SQL statement:
@@ -104,7 +114,8 @@ Table "APPUSER" already exists; SQL statement:
         id uuid not null,
         password varchar(255),
         username varchar(255),
-        primary key (id) [42101-220]
+        primary key (id)
+ [42101-220]
 2023-07-20 21:44:27 jdbc[6]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabelle "APPUSER" besteht bereits
 Table "APPUSER" already exists; SQL statement:
@@ -113,7 +124,8 @@ Table "APPUSER" already exists; SQL statement:
         id uuid not null,
         password varchar(255),
         username varchar(255),
-        primary key (id) [42101-220]
+        primary key (id)
+ [42101-220]
 2023-07-20 21:44:27 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Bedingung "FKE0AMDQHUBL458Y3XKTLI6QAEI" besteht bereits
 Constraint "FKE0AMDQHUBL458Y3XKTLI6QAEI" already exists; SQL statement:
@@ -149,7 +161,7 @@ Constraint "FKE0AMDQHUBL458Y3XKTLI6QAEI" already exists; SQL statement:
 	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:292)
 	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:431)
 	at de.fhdw.freefeser.app.util.HibernateUtil.getSessionFactory(HibernateUtil.java:27)
-	at de.fhdw.freefeser.app.databases.managers.AppUserManager.lambda$create$3(AppUserManager.java:78)
+	at de.fhdw.freefeser.app.databases.managers.AppUserDatabaseManager.lambda$create$3(AppUserManager.java:78)
 	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1768)
 	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.exec(CompletableFuture.java:1760)
 	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:387)
@@ -235,7 +247,7 @@ Constraint "FKE0AMDQHUBL458Y3XKTLI6QAEI" already exists; SQL statement:
 	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:292)
 	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:431)
 	at de.fhdw.freefeser.app.util.HibernateUtil.getSessionFactory(HibernateUtil.java:27)
-	at de.fhdw.freefeser.app.databases.managers.AppUserManager.lambda$getAll$0(AppUserManager.java:23)
+	at de.fhdw.freefeser.app.databases.managers.AppUserDatabaseManager.lambda$getAll$0(AppUserManager.java:23)
 	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1768)
 	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.exec(CompletableFuture.java:1760)
 	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:387)
@@ -321,7 +333,7 @@ Constraint "FK9N8YJVU4BAO01O4O2HJKVMRQJ" already exists; SQL statement:
 	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:292)
 	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:431)
 	at de.fhdw.freefeser.app.util.HibernateUtil.getSessionFactory(HibernateUtil.java:27)
-	at de.fhdw.freefeser.app.databases.managers.AppUserManager.lambda$create$3(AppUserManager.java:78)
+	at de.fhdw.freefeser.app.databases.managers.AppUserDatabaseManager.lambda$create$3(AppUserManager.java:78)
 	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1768)
 	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.exec(CompletableFuture.java:1760)
 	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:387)
@@ -407,7 +419,7 @@ Constraint "FK9N8YJVU4BAO01O4O2HJKVMRQJ" already exists; SQL statement:
 	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:292)
 	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:431)
 	at de.fhdw.freefeser.app.util.HibernateUtil.getSessionFactory(HibernateUtil.java:27)
-	at de.fhdw.freefeser.app.databases.managers.AppUserManager.lambda$getAll$0(AppUserManager.java:23)
+	at de.fhdw.freefeser.app.databases.managers.AppUserDatabaseManager.lambda$getAll$0(AppUserManager.java:23)
 	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1768)
 	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.exec(CompletableFuture.java:1760)
 	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:387)

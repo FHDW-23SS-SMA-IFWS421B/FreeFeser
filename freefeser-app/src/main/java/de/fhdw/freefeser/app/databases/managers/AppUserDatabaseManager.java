@@ -13,7 +13,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
-public class AppUserManager implements UserDatabaseManager {
+public class AppUserDatabaseManager implements UserDatabaseManager {
 
     @Override
     public CompletableFuture<List<User>> getAll() {
@@ -116,6 +116,20 @@ public class AppUserManager implements UserDatabaseManager {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        });
+    }
+
+    @Override
+    public CompletableFuture<User> getByUsername(String username) {
+        return CompletableFuture.supplyAsync(() -> {
+            AppUser user = null;
+            try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+                // Use Hibernate's createQuery() method to retrieve the AppUser by username
+                user = session.createQuery("FROM AppUser u WHERE u.username = :username", AppUser.class).setParameter("username", username).uniqueResult();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return user;
         });
     }
 }

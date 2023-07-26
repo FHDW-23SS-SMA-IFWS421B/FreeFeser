@@ -1,16 +1,19 @@
 package de.fhdw.freefeser.app;
 
-import de.fhdw.freefeser.api.database.ChatMessage;
+import de.fhdw.freefeser.api.bot.command.CommandManager;
+import de.fhdw.freefeser.api.console.ConsoleReader;
+import de.fhdw.freefeser.api.console.ConsoleReaderCallback;
 import de.fhdw.freefeser.api.database.User;
-import de.fhdw.freefeser.app.databases.entities.AppChatbot;
+import de.fhdw.freefeser.api.database.UserDatabaseManager;
+import de.fhdw.freefeser.api.user.UserManager;
+import de.fhdw.freefeser.app.bot.command.AppCommandManager;
+import de.fhdw.freefeser.app.bot.translation.TranslationCommand;
+import de.fhdw.freefeser.app.console.AppConsoleReader;
+import de.fhdw.freefeser.app.console.callbacks.CommandManagerConsoleReaderCallback;
+import de.fhdw.freefeser.app.console.callbacks.LoginConsoleReaderCallback;
 import de.fhdw.freefeser.app.databases.entities.AppUser;
-import de.fhdw.freefeser.app.databases.managers.AppChatMessageManager;
-import de.fhdw.freefeser.app.databases.managers.AppUserManager;
-
-import java.util.List;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
-import de.fhdw.freefeser.app.textanalyzer.*;
+import de.fhdw.freefeser.app.databases.managers.AppUserDatabaseManager;
+import de.fhdw.freefeser.app.user.AppUserManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -40,12 +43,21 @@ public class FreeFeserApp {
         logger.info("Weather 1: {}", weather);
         logger.info("Weather 2: {}", weather2);*/
 
-        /*CommandManager commandManager = new AppCommandManager();
+        UserDatabaseManager userDatabaseManager = new AppUserDatabaseManager();
+
+        UserManager userManager = new AppUserManager(userDatabaseManager);
+
+        User user1 = new AppUser("userx", "passwordx");
+        userDatabaseManager.create(user1).thenAcceptAsync((u) -> {
+            System.out.println("CREATED");
+        });
+
+        CommandManager commandManager = new AppCommandManager();
         commandManager.registerCommand(new TranslationCommand(null, "translate", "Translate something"));
 
         ConsoleReader reader = new AppConsoleReader(System.in);
 
-        ConsoleReaderCallback loginCallback = new LoginConsoleReaderCallback(reader, user -> {
+        ConsoleReaderCallback loginCallback = new LoginConsoleReaderCallback(reader, userManager, user -> {
             reader.addCallback(new CommandManagerConsoleReaderCallback(reader, commandManager));
         });
 
@@ -54,7 +66,7 @@ public class FreeFeserApp {
         reader.start();
 
         // Save some test data to the database
-        AppUserManager userManager = new AppUserManager();
+        /*AppUserManager userManager = new AppUserManager();
         AppChatMessageManager chatMessageManager = new AppChatMessageManager();
 
         // Save some test data to the database
@@ -84,7 +96,7 @@ public class FreeFeserApp {
         }
 
         // Test getAll() for AppChatMessage
-        CompletableFuture<List<ChatMessage<AppUser, AppChatbot>>> allChatMessagesFuture = chatMessageManager.getAll();
+       /* CompletableFuture<List<ChatMessage<AppUser, AppChatbot>>> allChatMessagesFuture = chatMessageManager.getAll();
         List<ChatMessage<AppUser, AppChatbot>> allChatMessages;
         try {
             allChatMessages = allChatMessagesFuture.get();
@@ -111,9 +123,9 @@ public class FreeFeserApp {
             }
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
-        }*/
+        }
 
         AppTranslationTextAnalyzer analyzer = new AppTranslationTextAnalyzer();
-        System.out.println(analyzer.extractTargetLanguage("Übersetze ins german"));
+        System.out.println(analyzer.extractTargetLanguage("Übersetze ins german"));*/
     }
 }

@@ -1,0 +1,26 @@
+2023-07-27 00:02:44,782 DEBUG [ForkJoinPool.commonPool-worker-2] o.h.o.q.hql [StandardHqlTranslator.java:75] - HQL : FROM AppUser u WHERE u.username = :username
+2023-07-27 00:02:44,940 DEBUG [ForkJoinPool.commonPool-worker-2] o.h.q.h.i.SemanticQueryBuilder [SemanticQueryBuilder.java:1904] - Handling root path - AppUser
+2023-07-27 00:02:44,947 DEBUG [ForkJoinPool.commonPool-worker-2] o.h.q.h.i.SemanticQueryBuilder [SemanticQueryBuilder.java:1151] - Encountered implicit select clause : FROMAppUseruWHEREu.username=:username
+2023-07-27 00:02:44,957 DEBUG [ForkJoinPool.commonPool-worker-2] o.h.o.q.s.creation [AbstractSqmExpression.java:57] - Applying inferable type to SqmExpression [SqmNamedParameter(username)] : null -> BasicSqmPathSource(username : String)
+2023-07-27 00:02:44,972 DEBUG [ForkJoinPool.commonPool-worker-2] o.h.o.q.s.ast [SqmTreePrinter.java:168] - SqmStatement Tree :
+    -> [select]
+      -> [query-spec]
+        -> [select]
+          -> [selection]
+            -> [root] - `de.fhdw.freefeser.app.databases.entities.AppUser(u)`
+            <- [root] - `de.fhdw.freefeser.app.databases.entities.AppUser(u)`
+          <- [selection]
+        <- [select]
+        -> [from]
+          -> [root] - `de.fhdw.freefeser.app.databases.entities.AppUser(u)`
+          <- [root] - `de.fhdw.freefeser.app.databases.entities.AppUser(u)`
+        <- [from]
+        -> [where]
+          -> [EQUAL]
+              -> [basic-path] - `de.fhdw.freefeser.app.databases.entities.AppUser(u).username`
+              :username
+          <- [EQUAL]
+        <- [where]
+      <- [query-spec]
+    <- [select]
+

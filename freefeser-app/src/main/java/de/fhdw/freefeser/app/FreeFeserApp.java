@@ -51,7 +51,7 @@ public class FreeFeserApp {
 
         reader.addCallback(loginCallback);
 
-        reader.start();*/
+        reader.start();
 
         // Save some test data to the database
         AppUserManager userManager = new AppUserManager();
@@ -111,6 +111,9 @@ public class FreeFeserApp {
             }
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
-        }
+        }*/
+
+        AppTranslationTextAnalyzer analyzer = new AppTranslationTextAnalyzer();
+        System.out.println(analyzer.extractTargetLanguage("Übersetze ins german"));
     }
 }

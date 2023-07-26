@@ -1,0 +1,6 @@
+2023-07-26 22:09:09,399 INFO [main] e.s.n.p.StanfordCoreNLP [SLF4JHandler.java:88] - Adding annotator tokenize
+2023-07-26 22:09:09,411 INFO [main] e.s.n.p.StanfordCoreNLP [SLF4JHandler.java:88] - Adding annotator ssplit
+2023-07-26 22:09:09,414 INFO [main] e.s.n.p.StanfordCoreNLP [SLF4JHandler.java:88] - Adding annotator pos
+2023-07-26 22:09:09,821 INFO [main] e.s.n.t.m.MaxentTagger [SLF4JHandler.java:88] - Loading POS tagger from edu/stanford/nlp/models/pos-tagger/english-left3words-distsim.tagger ... done [0.4 sec].
+2023-07-26 22:09:09,821 INFO [main] e.s.n.p.StanfordCoreNLP [SLF4JHandler.java:88] - Adding annotator lemma
+2023-07-26 22:09:09,823 INFO [main] e.s.n.p.StanfordCoreNLP [SLF4JHandler.java:88] - Adding annotator ner

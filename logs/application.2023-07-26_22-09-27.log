@@ -1,0 +1,3 @@
+2023-07-26 22:09:27,652 INFO [main] e.s.n.p.TokensRegexNERAnnotator [SLF4JHandler.java:88] - ner.fine.regexner: Read 580705 unique entries out of 581864 from edu/stanford/nlp/models/kbp/english/gazetteers/regexner_caseless.tab, 0 TokensRegex patterns.
+2023-07-26 22:09:27,667 INFO [main] e.s.n.p.TokensRegexNERAnnotator [SLF4JHandler.java:88] - ner.fine.regexner: Read 4867 unique entries out of 4867 from edu/stanford/nlp/models/kbp/english/gazetteers/regexner_cased.tab, 0 TokensRegex patterns.
+2023-07-26 22:09:27,668 INFO [main] e.s.n.p.TokensRegexNERAnnotator [SLF4JHandler.java:88] - ner.fine.regexner: Read 585572 unique entries from 2 files

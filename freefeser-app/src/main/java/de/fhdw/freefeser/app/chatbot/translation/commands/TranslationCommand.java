@@ -7,6 +7,7 @@ import de.fhdw.freefeser.app.chatbot.translation.DeepLTranslationApi;
 import de.fhdw.freefeser.app.chatbot.translation.TranslationApi;
 
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 public class TranslationCommand extends AppCommand {
 
@@ -22,7 +23,10 @@ public class TranslationCommand extends AppCommand {
     @Override
     public void onExecute(CommandSender sender, String rawText, Object... args) {
         TranslationApi translationApi = new DeepLTranslationApi();//@Todo optimize
-        //translationApi.translate(rawText)
-        System.out.println(("The translation for " + rawText + " is Reckow"));
+        translationApi.translate("de", rawText).thenAcceptAsync(result -> {
+            System.out.println(("The translation from " + result.getSourceLanguage() + " into " + result.getTargetLanguage() + " is:" + result.getTranslation()));
+        });
+
+
     }
 }

@@ -6,5 +6,5 @@ import java.util.concurrent.ExecutionException;
 
 public interface TranslationApi {
 
-    CompletableFuture<HttpResponse<String>> translate(String destinationLanguage, String value) throws InterruptedException, ExecutionException;
+    CompletableFuture<TranslationResult> translate(String destinationLanguage, String value);
 }

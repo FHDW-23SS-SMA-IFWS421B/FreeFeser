@@ -1,0 +1,435 @@
+2023-07-27 00:10:20,000 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [org.hibernate.dialect.function.FormatFunction@3b8931c5] under format; prior registration was null
+2023-07-27 00:10:20,003 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [org.hibernate.dialect.function.TimestampaddFunction@17d2b32d] under timestampadd; prior registration was null
+2023-07-27 00:10:20,004 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [org.hibernate.dialect.function.TimestampdiffFunction@2b949df6] under timestampdiff; prior registration was null
+2023-07-27 00:10:20,010 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:307] - Registering alternate key : dateadd -> timestampadd
+2023-07-27 00:10:20,010 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:307] - Registering alternate key : datediff -> timestampdiff
+2023-07-27 00:10:20,010 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [org.hibernate.dialect.function.CurrentFunction@ae74950] under current_date; prior registration was null
+2023-07-27 00:10:20,011 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [org.hibernate.dialect.function.CurrentFunction@1f2f61cb] under current_time; prior registration was null
+2023-07-27 00:10:20,011 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [org.hibernate.dialect.function.CurrentFunction@47cb558] under current_timestamp; prior registration was null
+2023-07-27 00:10:20,011 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:307] - Registering alternate key : current date -> current_date
+2023-07-27 00:10:20,011 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:307] - Registering alternate key : current time -> current_time
+2023-07-27 00:10:20,011 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:307] - Registering alternate key : current timestamp -> current_timestamp
+2023-07-27 00:10:20,011 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [org.hibernate.dialect.function.CurrentFunction@198b8829] under local_date; prior registration was null
+2023-07-27 00:10:20,011 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [org.hibernate.dialect.function.CurrentFunction@2996ff81] under local_time; prior registration was null
+2023-07-27 00:10:20,011 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [org.hibernate.dialect.function.CurrentFunction@4d53e241] under local_datetime; prior registration was null
+2023-07-27 00:10:20,011 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [org.hibernate.dialect.function.CurrentFunction@2ce458c6] under offset_datetime; prior registration was null
+2023-07-27 00:10:20,011 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:307] - Registering alternate key : local date -> local_date
+2023-07-27 00:10:20,011 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:307] - Registering alternate key : local time -> local_time
+2023-07-27 00:10:20,013 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:307] - Registering alternate key : local datetime -> local_datetime
+2023-07-27 00:10:20,013 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:307] - Registering alternate key : offset datetime -> offset_datetime
+2023-07-27 00:10:20,013 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [org.hibernate.dialect.function.CurrentFunction@69eb47b3] under instant; prior registration was null
+2023-07-27 00:10:20,013 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:307] - Registering alternate key : current_instant -> instant
+2023-07-27 00:10:20,013 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [org.hibernate.dialect.function.SqlFunction@184530a7] under sql; prior registration was null
+2023-07-27 00:10:20,014 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [NamedSqmFunctionTemplate(max)] under max; prior registration was NamedSqmFunctionTemplate(max)
+2023-07-27 00:10:20,014 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [NamedSqmFunctionTemplate(min)] under min; prior registration was NamedSqmFunctionTemplate(min)
+2023-07-27 00:10:20,014 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [NamedSqmFunctionTemplate(sum)] under sum; prior registration was NamedSqmFunctionTemplate(sum)
+2023-07-27 00:10:20,014 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [NamedSqmFunctionTemplate(avg)] under avg; prior registration was NamedSqmFunctionTemplate(avg)
+2023-07-27 00:10:20,014 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [org.hibernate.dialect.function.CountFunction@11ec8440] under count; prior registration was org.hibernate.dialect.function.CountFunction@313f6ef1
+2023-07-27 00:10:20,015 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [org.hibernate.dialect.function.AvgFunction@391662e7] under avg; prior registration was NamedSqmFunctionTemplate(avg)
+2023-07-27 00:10:20,015 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [NamedSqmFunctionTemplate(pi)] under pi; prior registration was org.hibernate.query.sqm.function.PatternBasedSqmFunctionDescriptor@4a5ecdb8
+2023-07-27 00:10:20,016 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [NamedSqmFunctionTemplate(cot)] under cot; prior registration was null
+2023-07-27 00:10:20,016 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [NamedSqmFunctionTemplate(radians)] under radians; prior registration was null
+2023-07-27 00:10:20,016 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [NamedSqmFunctionTemplate(degrees)] under degrees; prior registration was null
+2023-07-27 00:10:20,017 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [NamedSqmFunctionTemplate(log10)] under log10; prior registration was null
+2023-07-27 00:10:20,017 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [org.hibernate.query.sqm.function.PatternBasedSqmFunctionDescriptor@7580aaef] under mod; prior registration was NamedSqmFunctionTemplate(mod)
+2023-07-27 00:10:20,017 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [NamedSqmFunctionTemplate(rand)] under rand; prior registration was null
+2023-07-27 00:10:20,017 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [NamedSqmFunctionTemplate(soundex)] under soundex; prior registration was null
+2023-07-27 00:10:20,018 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [NamedSqmFunctionTemplate(translate)] under translate; prior registration was null
+2023-07-27 00:10:20,018 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [NamedSqmFunctionTemplate(bitand)] under bitand; prior registration was null
+2023-07-27 00:10:20,018 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [NamedSqmFunctionTemplate(bitor)] under bitor; prior registration was null
+2023-07-27 00:10:20,018 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [NamedSqmFunctionTemplate(bitxor)] under bitxor; prior registration was null
+2023-07-27 00:10:20,019 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [NamedSqmFunctionTemplate(bit_and)] under bit_and; prior registration was null
+2023-07-27 00:10:20,019 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [NamedSqmFunctionTemplate(bit_or)] under bit_or; prior registration was null
+2023-07-27 00:10:20,019 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [NamedSqmFunctionTemplate(day)] under day; prior registration was null
+2023-07-27 00:10:20,019 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [NamedSqmFunctionTemplate(month)] under month; prior registration was null
+2023-07-27 00:10:20,019 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [NamedSqmFunctionTemplate(year)] under year; prior registration was null
+2023-07-27 00:10:20,020 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [NamedSqmFunctionTemplate(hour)] under hour; prior registration was null
+2023-07-27 00:10:20,020 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [NamedSqmFunctionTemplate(minute)] under minute; prior registration was null
+2023-07-27 00:10:20,020 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [NamedSqmFunctionTemplate(second)] under second; prior registration was null
+2023-07-27 00:10:20,020 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [NamedSqmFunctionTemplate(microsecond)] under microsecond; prior registration was null
+2023-07-27 00:10:20,020 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [NamedSqmFunctionTemplate(day_of_week)] under day_of_week; prior registration was null
+2023-07-27 00:10:20,021 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [NamedSqmFunctionTemplate(day_of_month)] under day_of_month; prior registration was null
+2023-07-27 00:10:20,021 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:307] - Registering alternate key : day -> day_of_month
+2023-07-27 00:10:20,021 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [NamedSqmFunctionTemplate(day_of_year)] under day_of_year; prior registration was null
+2023-07-27 00:10:20,021 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [NamedSqmFunctionTemplate(week)] under week; prior registration was null
+2023-07-27 00:10:20,021 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [NamedSqmFunctionTemplate(quarter)] under quarter; prior registration was null
+2023-07-27 00:10:20,022 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [NamedSqmFunctionTemplate(monthname)] under monthname; prior registration was null
+2023-07-27 00:10:20,022 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [NamedSqmFunctionTemplate(dayname)] under dayname; prior registration was null
+2023-07-27 00:10:20,022 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [NamedSqmFunctionTemplate(localtime)] under localtime; prior registration was null
+2023-07-27 00:10:20,022 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [NamedSqmFunctionTemplate(localtimestamp)] under localtimestamp; prior registration was null
+2023-07-27 00:10:20,023 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [NamedSqmFunctionTemplate(localtime)] under local_time; prior registration was org.hibernate.dialect.function.CurrentFunction@2996ff81
+2023-07-27 00:10:20,023 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [NamedSqmFunctionTemplate(localtimestamp)] under local_datetime; prior registration was org.hibernate.dialect.function.CurrentFunction@4d53e241
+2023-07-27 00:10:20,025 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [org.hibernate.dialect.function.TruncFunction@5e8966d4] under trunc; prior registration was null
+2023-07-27 00:10:20,025 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:307] - Registering alternate key : truncate -> trunc
+2023-07-27 00:10:20,025 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [org.hibernate.query.sqm.function.PatternBasedSqmFunctionDescriptor@4883085a] under date_trunc; prior registration was null
+2023-07-27 00:10:20,026 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [NamedSqmFunctionTemplate(bit_length)] under bit_length; prior registration was null
+2023-07-27 00:10:20,026 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [NamedSqmFunctionTemplate(octet_length)] under octet_length; prior registration was null
+2023-07-27 00:10:20,026 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [NamedSqmFunctionTemplate(ascii)] under ascii; prior registration was null
+2023-07-27 00:10:20,026 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [NamedSqmFunctionTemplate(octet_length)] under octet_length; prior registration was NamedSqmFunctionTemplate(octet_length)
+2023-07-27 00:10:20,026 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [NamedSqmFunctionTemplate(space)] under space; prior registration was null
+2023-07-27 00:10:20,026 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [NamedSqmFunctionTemplate(repeat)] under repeat; prior registration was null
+2023-07-27 00:10:20,026 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [NamedSqmFunctionTemplate(char)] under char; prior registration was null
+2023-07-27 00:10:20,026 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:307] - Registering alternate key : chr -> char
+2023-07-27 00:10:20,027 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [NamedSqmFunctionTemplate(instr)] under instr; prior registration was null
+2023-07-27 00:10:20,027 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [NamedSqmFunctionTemplate(substr)] under substr; prior registration was null
+2023-07-27 00:10:20,027 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [org.hibernate.query.sqm.function.PatternBasedSqmFunctionDescriptor@6fda8134] under position; prior registration was org.hibernate.dialect.function.LocatePositionEmulation@3ef9702c
+2023-07-27 00:10:20,027 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [NamedSqmFunctionTemplate(ltrim)] under ltrim; prior registration was null
+2023-07-27 00:10:20,027 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [NamedSqmFunctionTemplate(rtrim)] under rtrim; prior registration was null
+2023-07-27 00:10:20,027 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [org.hibernate.query.sqm.function.PatternBasedSqmFunctionDescriptor@3dc4586c] under concat; prior registration was NamedSqmFunctionTemplate(concat)
+2023-07-27 00:10:20,027 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [NamedSqmFunctionTemplate(curtime)] under curtime; prior registration was null
+2023-07-27 00:10:20,027 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [NamedSqmFunctionTemplate(curdate)] under curdate; prior registration was null
+2023-07-27 00:10:20,027 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [NamedSqmFunctionTemplate(now)] under now; prior registration was null
+2023-07-27 00:10:20,028 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [NamedSqmFunctionTemplate(sysdate)] under sysdate; prior registration was null
+2023-07-27 00:10:20,028 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [NamedSqmFunctionTemplate(insert)] under insert; prior registration was null
+2023-07-27 00:10:20,028 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [NamedSqmFunctionTemplate(bool_and)] under bool_and; prior registration was null
+2023-07-27 00:10:20,028 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:307] - Registering alternate key : every -> bool_and
+2023-07-27 00:10:20,028 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [NamedSqmFunctionTemplate(bool_or)] under bool_or; prior registration was null
+2023-07-27 00:10:20,028 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:307] - Registering alternate key : any -> bool_or
+2023-07-27 00:10:20,029 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [NamedSqmFunctionTemplate(median)] under median; prior registration was null
+2023-07-27 00:10:20,029 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [NamedSqmFunctionTemplate(stddev_pop)] under stddev_pop; prior registration was null
+2023-07-27 00:10:20,029 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [NamedSqmFunctionTemplate(stddev_samp)] under stddev_samp; prior registration was null
+2023-07-27 00:10:20,029 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [NamedSqmFunctionTemplate(var_pop)] under var_pop; prior registration was null
+2023-07-27 00:10:20,029 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [NamedSqmFunctionTemplate(var_samp)] under var_samp; prior registration was null
+2023-07-27 00:10:20,029 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [org.hibernate.dialect.function.FormatFunction@28ee36c6] under format; prior registration was org.hibernate.dialect.function.FormatFunction@3b8931c5
+2023-07-27 00:10:20,029 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [NamedSqmFunctionTemplate(rownum)] under rownum; prior registration was null
+2023-07-27 00:10:20,030 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [NamedSqmFunctionTemplate(row_number)] under row_number; prior registration was null
+2023-07-27 00:10:20,031 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [NamedSqmFunctionTemplate(lag)] under lag; prior registration was null
+2023-07-27 00:10:20,031 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [NamedSqmFunctionTemplate(lead)] under lead; prior registration was null
+2023-07-27 00:10:20,031 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [NamedSqmFunctionTemplate(first_value)] under first_value; prior registration was null
+2023-07-27 00:10:20,032 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [NamedSqmFunctionTemplate(last_value)] under last_value; prior registration was null
+2023-07-27 00:10:20,032 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [NamedSqmFunctionTemplate(nth_value)] under nth_value; prior registration was null
+2023-07-27 00:10:20,034 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [org.hibernate.dialect.function.InverseDistributionFunction@396a062a] under mode; prior registration was null
+2023-07-27 00:10:20,034 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [org.hibernate.dialect.function.InverseDistributionFunction@54b00e89] under percentile_cont; prior registration was null
+2023-07-27 00:10:20,034 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [org.hibernate.dialect.function.InverseDistributionFunction@60c0bb41] under percentile_disc; prior registration was null
+2023-07-27 00:10:20,035 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [org.hibernate.dialect.function.HypotheticalSetFunction@453842fb] under rank; prior registration was null
+2023-07-27 00:10:20,035 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [org.hibernate.dialect.function.HypotheticalSetFunction@73870e05] under dense_rank; prior registration was null
+2023-07-27 00:10:20,036 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [org.hibernate.dialect.function.HypotheticalSetFunction@3c850ee2] under percent_rank; prior registration was null
+2023-07-27 00:10:20,036 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [org.hibernate.dialect.function.HypotheticalSetFunction@23a5c194] under cume_dist; prior registration was null
+2023-07-27 00:10:20,037 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.f.SqmFunctionRegistry [SqmFunctionRegistry.java:90] - Registered SqmFunctionTemplate [org.hibernate.dialect.function.ListaggFunction@76f383a6] under listagg; prior registration was null
+2023-07-27 00:10:20,040 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - abs(NUMERIC arg)
+2023-07-27 00:10:20,040 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Double acos(NUMERIC arg)
+2023-07-27 00:10:20,040 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Boolean any(BOOLEAN predicate)
+2023-07-27 00:10:20,040 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Integer ascii(STRING arg)
+2023-07-27 00:10:20,040 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Double asin(NUMERIC arg)
+2023-07-27 00:10:20,040 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Double atan(NUMERIC arg)
+2023-07-27 00:10:20,041 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Double atan2(NUMERIC arg0, NUMERIC arg1)
+2023-07-27 00:10:20,041 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Double avg(NUMERIC arg)
+2023-07-27 00:10:20,041 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - bit_and(arg)
+2023-07-27 00:10:20,041 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Integer bit_length(STRING_OR_CLOB arg)
+2023-07-27 00:10:20,041 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - bit_or(arg)
+2023-07-27 00:10:20,041 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - bitand(arg0, arg1)
+2023-07-27 00:10:20,041 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - bitor(arg0, arg1)
+2023-07-27 00:10:20,041 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - bitxor(arg0, arg1)
+2023-07-27 00:10:20,041 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Boolean bool_and(BOOLEAN predicate)
+2023-07-27 00:10:20,041 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Boolean bool_or(BOOLEAN predicate)
+2023-07-27 00:10:20,041 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - cast(arg as Type)
+2023-07-27 00:10:20,041 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - ceiling(NUMERIC arg)
+2023-07-27 00:10:20,041 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Character char(INTEGER arg)
+2023-07-27 00:10:20,041 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Integer character_length(STRING_OR_CLOB arg)
+2023-07-27 00:10:20,042 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Character chr(INTEGER arg)
+2023-07-27 00:10:20,042 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - coalesce(arg0[, arg1[, ...]])
+2023-07-27 00:10:20,042 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - String collate(STRING string as COLLATION collation)
+2023-07-27 00:10:20,042 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - String concat(STRING string0[, STRING string1[, ...]])
+2023-07-27 00:10:20,042 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Double cos(NUMERIC arg)
+2023-07-27 00:10:20,042 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Double cosh(NUMERIC arg)
+2023-07-27 00:10:20,042 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Double cot(NUMERIC arg)
+2023-07-27 00:10:20,042 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Long count([distinct ]{arg|*})
+2023-07-27 00:10:20,043 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Double cume_dist([arg0[, ...]])
+2023-07-27 00:10:20,043 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Date curdate()
+2023-07-27 00:10:20,043 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Date current date
+2023-07-27 00:10:20,043 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Time current time
+2023-07-27 00:10:20,043 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Timestamp current timestamp
+2023-07-27 00:10:20,043 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Date current_date
+2023-07-27 00:10:20,043 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Instant current_instant
+2023-07-27 00:10:20,043 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Time current_time
+2023-07-27 00:10:20,043 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Timestamp current_timestamp
+2023-07-27 00:10:20,044 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Time curtime()
+2023-07-27 00:10:20,044 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - date_trunc(STRING field, TEMPORAL datetime)
+2023-07-27 00:10:20,044 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - dateadd(TEMPORAL_UNIT field, INTEGER magnitude, TEMPORAL datetime)
+2023-07-27 00:10:20,044 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - basicType@12(java.lang.Long,-5)|basicType@15(java.lang.Double,8) datediff(TEMPORAL_UNIT field, TEMPORAL start, TEMPORAL end)
+2023-07-27 00:10:20,044 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Integer day(DATE arg)
+2023-07-27 00:10:20,045 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Integer day_of_month(DATE arg)
+2023-07-27 00:10:20,045 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Integer day_of_week(DATE arg)
+2023-07-27 00:10:20,045 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Integer day_of_year(DATE arg)
+2023-07-27 00:10:20,045 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - String dayname(DATE arg)
+2023-07-27 00:10:20,045 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Double degrees(NUMERIC arg)
+2023-07-27 00:10:20,046 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Long dense_rank([arg0[, ...]])
+2023-07-27 00:10:20,046 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Boolean every(BOOLEAN predicate)
+2023-07-27 00:10:20,046 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Double exp(NUMERIC arg)
+2023-07-27 00:10:20,046 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - extract(TEMPORAL_UNIT field from TEMPORAL arg)
+2023-07-27 00:10:20,046 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - first_valueANY value
+2023-07-27 00:10:20,047 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - floor(NUMERIC arg)
+2023-07-27 00:10:20,047 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - String format(TEMPORAL datetime as STRING pattern)
+2023-07-27 00:10:20,047 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - greatest(COMPARABLE arg0, COMPARABLE arg1[, arg2[, ...]])
+2023-07-27 00:10:20,047 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Integer hour(TIME arg)
+2023-07-27 00:10:20,047 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - ifnull(arg0, arg1)
+2023-07-27 00:10:20,047 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - String insert(STRING string, INTEGER start, INTEGER length, STRING replacement)
+2023-07-27 00:10:20,048 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Instant instant
+2023-07-27 00:10:20,048 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Integer instr(STRING string, STRING pattern[, INTEGER start[, INTEGER occurrence]])
+2023-07-27 00:10:20,048 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - lagANY value[, INTEGER offset[, ANY default]]
+2023-07-27 00:10:20,048 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - last_valueANY value
+2023-07-27 00:10:20,048 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - leadANY value[, INTEGER offset[, ANY default]]
+2023-07-27 00:10:20,049 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - least(COMPARABLE arg0, COMPARABLE arg1[, arg2[, ...]])
+2023-07-27 00:10:20,049 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - String left(STRING string, INTEGER length)
+2023-07-27 00:10:20,049 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Integer length(STRING_OR_CLOB arg)
+2023-07-27 00:10:20,049 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - String listagg(STRING arg0, STRING arg1)
+2023-07-27 00:10:20,049 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Double ln(NUMERIC arg)
+2023-07-27 00:10:20,050 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - LocalDate local date
+2023-07-27 00:10:20,050 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - LocalDateTime local datetime
+2023-07-27 00:10:20,050 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - LocalTime local time
+2023-07-27 00:10:20,050 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - LocalDate local_date
+2023-07-27 00:10:20,050 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - LocalDateTime local_datetime
+2023-07-27 00:10:20,050 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - LocalTime local_time
+2023-07-27 00:10:20,050 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Time localtime
+2023-07-27 00:10:20,051 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Timestamp localtimestamp
+2023-07-27 00:10:20,051 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Integer locate(STRING pattern, STRING string[, INTEGER start])
+2023-07-27 00:10:20,051 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Double log(NUMERIC base, NUMERIC arg)
+2023-07-27 00:10:20,051 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Double log10(NUMERIC arg)
+2023-07-27 00:10:20,051 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - String lower(STRING string)
+2023-07-27 00:10:20,051 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - String lpad(STRING string, INTEGER length[, STRING padding])
+2023-07-27 00:10:20,051 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - String ltrim(STRING string)
+2023-07-27 00:10:20,052 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - max(COMPARABLE arg)
+2023-07-27 00:10:20,052 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Double median(NUMERIC arg)
+2023-07-27 00:10:20,052 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Integer microsecond(TIME arg)
+2023-07-27 00:10:20,052 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - min(COMPARABLE arg)
+2023-07-27 00:10:20,052 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Integer minute(TIME arg)
+2023-07-27 00:10:20,052 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Integer mod(INTEGER arg0, INTEGER arg1)
+2023-07-27 00:10:20,052 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - mode()
+2023-07-27 00:10:20,052 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Integer month(DATE arg)
+2023-07-27 00:10:20,052 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - String monthname(DATE arg)
+2023-07-27 00:10:20,054 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Timestamp now()
+2023-07-27 00:10:20,054 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - nth_valueANY value, INTEGER nth
+2023-07-27 00:10:20,054 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - nullif(arg0, arg1)
+2023-07-27 00:10:20,054 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Integer octet_length(STRING_OR_CLOB arg)
+2023-07-27 00:10:20,054 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - OffsetDateTime offset datetime
+2023-07-27 00:10:20,054 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - OffsetDateTime offset_datetime
+2023-07-27 00:10:20,054 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - String overlay(STRING string placing STRING replacement from INTEGER start[ for INTEGER length])
+2023-07-27 00:10:20,055 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - String pad(STRING string with INTEGER length {leading|trailing}[ STRING character])
+2023-07-27 00:10:20,055 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Double percent_rank([arg0[, ...]])
+2023-07-27 00:10:20,055 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - percentile_cont(NUMERIC arg)
+2023-07-27 00:10:20,055 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - percentile_disc(NUMERIC arg)
+2023-07-27 00:10:20,055 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Double pi
+2023-07-27 00:10:20,055 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Integer position(STRING pattern in STRING string)
+2023-07-27 00:10:20,055 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Double power(NUMERIC arg0, NUMERIC arg1)
+2023-07-27 00:10:20,055 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Integer quarter(DATE arg)
+2023-07-27 00:10:20,056 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Double radians(NUMERIC arg)
+2023-07-27 00:10:20,056 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Double rand([INTEGER seed])
+2023-07-27 00:10:20,056 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Long rank([arg0[, ...]])
+2023-07-27 00:10:20,056 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - String repeat(STRING string, INTEGER times)
+2023-07-27 00:10:20,056 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - String replace(STRING string, STRING pattern, STRING replacement)
+2023-07-27 00:10:20,056 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - String right(STRING string, INTEGER length)
+2023-07-27 00:10:20,056 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - round(NUMERIC number[, INTEGER places])
+2023-07-27 00:10:20,056 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Long row_number()
+2023-07-27 00:10:20,056 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Long rownum()
+2023-07-27 00:10:20,056 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - String rpad(STRING string, INTEGER length[, STRING padding])
+2023-07-27 00:10:20,056 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - String rtrim(STRING string)
+2023-07-27 00:10:20,056 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Integer second(TIME arg)
+2023-07-27 00:10:20,056 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Integer sign(NUMERIC arg)
+2023-07-27 00:10:20,057 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Double sin(NUMERIC arg)
+2023-07-27 00:10:20,057 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Double sinh(NUMERIC arg)
+2023-07-27 00:10:20,057 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - String soundex(arg)
+2023-07-27 00:10:20,057 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - String space(INTEGER arg)
+2023-07-27 00:10:20,057 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Object sql
+2023-07-27 00:10:20,057 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Double sqrt(NUMERIC arg)
+2023-07-27 00:10:20,057 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Double stddev_pop(NUMERIC arg)
+2023-07-27 00:10:20,057 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Double stddev_samp(NUMERIC arg)
+2023-07-27 00:10:20,058 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - String str(arg)
+2023-07-27 00:10:20,058 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - String substr(STRING string, INTEGER start[, INTEGER length])
+2023-07-27 00:10:20,058 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - String substring(STRING string{ from|,} INTEGER start[{ for|,} INTEGER length])
+2023-07-27 00:10:20,058 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - sum(arg)
+2023-07-27 00:10:20,058 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Timestamp sysdate
+2023-07-27 00:10:20,058 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Double tan(NUMERIC arg)
+2023-07-27 00:10:20,058 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Double tanh(NUMERIC arg)
+2023-07-27 00:10:20,058 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - timestampadd(TEMPORAL_UNIT field, INTEGER magnitude, TEMPORAL datetime)
+2023-07-27 00:10:20,059 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - basicType@12(java.lang.Long,-5)|basicType@15(java.lang.Double,8) timestampdiff(TEMPORAL_UNIT field, TEMPORAL start, TEMPORAL end)
+2023-07-27 00:10:20,059 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - String translate(STRING arg0, STRING arg1, STRING arg2)
+2023-07-27 00:10:20,059 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - String trim([[{leading|trailing|both} ][STRING arg0 ]from] STRING arg1)
+2023-07-27 00:10:20,059 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - trunc( ... )
+2023-07-27 00:10:20,059 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - truncate( ... )
+2023-07-27 00:10:20,059 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - String upper(STRING string)
+2023-07-27 00:10:20,059 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Double var_pop(NUMERIC arg)
+2023-07-27 00:10:20,059 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Double var_samp(NUMERIC arg)
+2023-07-27 00:10:20,060 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Integer week(DATE arg)
+2023-07-27 00:10:20,060 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.HQL_FUNCTIONS [QueryEngine.java:105] - Integer year(DATE arg)
+2023-07-27 00:10:20,068 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.o.q.p.cache [QueryInterpretationCacheStandardImpl.java:48] - Starting QueryPlanCache(2048)
+2023-07-27 00:10:20,272 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.b.i.ClassLoaderAccessImpl [ClassLoaderAccessImpl.java:60] - Not known whether passed class name [de.fhdw.freefeser.app.databases.entities.AppChatbot] is safe
+2023-07-27 00:10:20,273 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.b.i.ClassLoaderAccessImpl [ClassLoaderAccessImpl.java:62] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : de.fhdw.freefeser.app.databases.entities.AppChatbot
+2023-07-27 00:10:20,507 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.b.i.b.BytecodeProviderImpl [BytecodeProviderImpl.java:235] - HHH000513: Unable to create the ReflectionOptimizer for [de.fhdw.freefeser.app.databases.entities.AppChatbot]
+org.hibernate.bytecode.internal.bytebuddy.PrivateAccessorException: private accessor [active]
+	at org.hibernate.bytecode.internal.bytebuddy.BytecodeProviderImpl.findAccessors(BytecodeProviderImpl.java:1238)
+	at org.hibernate.bytecode.internal.bytebuddy.BytecodeProviderImpl.getReflectionOptimizer(BytecodeProviderImpl.java:232)
+	at org.hibernate.metamodel.internal.EntityRepresentationStrategyPojoStandard.resolveReflectionOptimizer(EntityRepresentationStrategyPojoStandard.java:293)
+	at org.hibernate.metamodel.internal.EntityRepresentationStrategyPojoStandard.<init>(EntityRepresentationStrategyPojoStandard.java:161)
+	at org.hibernate.metamodel.internal.ManagedTypeRepresentationResolverStandard.resolveStrategy(ManagedTypeRepresentationResolverStandard.java:62)
+	at org.hibernate.persister.entity.AbstractEntityPersister.<init>(AbstractEntityPersister.java:508)
+	at org.hibernate.persister.entity.SingleTableEntityPersister.<init>(SingleTableEntityPersister.java:140)
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:67)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:484)
+	at org.hibernate.persister.internal.PersisterFactoryImpl.createEntityPersister(PersisterFactoryImpl.java:92)
+	at org.hibernate.persister.internal.PersisterFactoryImpl.createEntityPersister(PersisterFactoryImpl.java:75)
+	at org.hibernate.metamodel.model.domain.internal.MappingMetamodelImpl.processBootEntities(MappingMetamodelImpl.java:247)
+	at org.hibernate.metamodel.model.domain.internal.MappingMetamodelImpl.finishInitialization(MappingMetamodelImpl.java:185)
+	at org.hibernate.internal.SessionFactoryImpl.initializeMappingModel(SessionFactoryImpl.java:320)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:270)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:431)
+	at de.fhdw.freefeser.app.util.HibernateUtil.getSessionFactory(HibernateUtil.java:27)
+	at de.fhdw.freefeser.app.databases.managers.AppUserDatabaseManager.lambda$create$3(AppUserDatabaseManager.java:78)
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run$$$capture(CompletableFuture.java:1768)
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java)
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.exec(CompletableFuture.java:1760)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec$$$capture(ForkJoinTask.java:387)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1312)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188)
+2023-07-27 00:10:20,539 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.b.i.ClassLoaderAccessImpl [ClassLoaderAccessImpl.java:60] - Not known whether passed class name [de.fhdw.freefeser.app.databases.entities.AppChatMessage] is safe
+2023-07-27 00:10:20,540 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.b.i.ClassLoaderAccessImpl [ClassLoaderAccessImpl.java:62] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : de.fhdw.freefeser.app.databases.entities.AppChatMessage
+2023-07-27 00:10:20,569 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.b.i.b.BytecodeProviderImpl [BytecodeProviderImpl.java:235] - HHH000513: Unable to create the ReflectionOptimizer for [de.fhdw.freefeser.app.databases.entities.AppChatMessage]
+org.hibernate.bytecode.internal.bytebuddy.PrivateAccessorException: private accessor [chatbot]
+	at org.hibernate.bytecode.internal.bytebuddy.BytecodeProviderImpl.findAccessors(BytecodeProviderImpl.java:1238)
+	at org.hibernate.bytecode.internal.bytebuddy.BytecodeProviderImpl.getReflectionOptimizer(BytecodeProviderImpl.java:232)
+	at org.hibernate.metamodel.internal.EntityRepresentationStrategyPojoStandard.resolveReflectionOptimizer(EntityRepresentationStrategyPojoStandard.java:293)
+	at org.hibernate.metamodel.internal.EntityRepresentationStrategyPojoStandard.<init>(EntityRepresentationStrategyPojoStandard.java:161)
+	at org.hibernate.metamodel.internal.ManagedTypeRepresentationResolverStandard.resolveStrategy(ManagedTypeRepresentationResolverStandard.java:62)
+	at org.hibernate.persister.entity.AbstractEntityPersister.<init>(AbstractEntityPersister.java:508)
+	at org.hibernate.persister.entity.SingleTableEntityPersister.<init>(SingleTableEntityPersister.java:140)
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:67)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:484)
+	at org.hibernate.persister.internal.PersisterFactoryImpl.createEntityPersister(PersisterFactoryImpl.java:92)
+	at org.hibernate.persister.internal.PersisterFactoryImpl.createEntityPersister(PersisterFactoryImpl.java:75)
+	at org.hibernate.metamodel.model.domain.internal.MappingMetamodelImpl.processBootEntities(MappingMetamodelImpl.java:247)
+	at org.hibernate.metamodel.model.domain.internal.MappingMetamodelImpl.finishInitialization(MappingMetamodelImpl.java:185)
+	at org.hibernate.internal.SessionFactoryImpl.initializeMappingModel(SessionFactoryImpl.java:320)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:270)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:431)
+	at de.fhdw.freefeser.app.util.HibernateUtil.getSessionFactory(HibernateUtil.java:27)
+	at de.fhdw.freefeser.app.databases.managers.AppUserDatabaseManager.lambda$create$3(AppUserDatabaseManager.java:78)
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run$$$capture(CompletableFuture.java:1768)
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java)
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.exec(CompletableFuture.java:1760)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec$$$capture(ForkJoinTask.java:387)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1312)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188)
+2023-07-27 00:10:20,572 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.b.i.ClassLoaderAccessImpl [ClassLoaderAccessImpl.java:60] - Not known whether passed class name [de.fhdw.freefeser.app.databases.entities.AppUser] is safe
+2023-07-27 00:10:20,572 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.b.i.ClassLoaderAccessImpl [ClassLoaderAccessImpl.java:62] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : de.fhdw.freefeser.app.databases.entities.AppUser
+2023-07-27 00:10:20,593 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.b.i.b.BytecodeProviderImpl [BytecodeProviderImpl.java:235] - HHH000513: Unable to create the ReflectionOptimizer for [de.fhdw.freefeser.app.databases.entities.AppUser]
+org.hibernate.bytecode.internal.bytebuddy.PrivateAccessorException: private accessor [password]
+	at org.hibernate.bytecode.internal.bytebuddy.BytecodeProviderImpl.findAccessors(BytecodeProviderImpl.java:1238)
+	at org.hibernate.bytecode.internal.bytebuddy.BytecodeProviderImpl.getReflectionOptimizer(BytecodeProviderImpl.java:232)
+	at org.hibernate.metamodel.internal.EntityRepresentationStrategyPojoStandard.resolveReflectionOptimizer(EntityRepresentationStrategyPojoStandard.java:293)
+	at org.hibernate.metamodel.internal.EntityRepresentationStrategyPojoStandard.<init>(EntityRepresentationStrategyPojoStandard.java:161)
+	at org.hibernate.metamodel.internal.ManagedTypeRepresentationResolverStandard.resolveStrategy(ManagedTypeRepresentationResolverStandard.java:62)
+	at org.hibernate.persister.entity.AbstractEntityPersister.<init>(AbstractEntityPersister.java:508)
+	at org.hibernate.persister.entity.SingleTableEntityPersister.<init>(SingleTableEntityPersister.java:140)
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:67)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:484)
+	at org.hibernate.persister.internal.PersisterFactoryImpl.createEntityPersister(PersisterFactoryImpl.java:92)
+	at org.hibernate.persister.internal.PersisterFactoryImpl.createEntityPersister(PersisterFactoryImpl.java:75)
+	at org.hibernate.metamodel.model.domain.internal.MappingMetamodelImpl.processBootEntities(MappingMetamodelImpl.java:247)
+	at org.hibernate.metamodel.model.domain.internal.MappingMetamodelImpl.finishInitialization(MappingMetamodelImpl.java:185)
+	at org.hibernate.internal.SessionFactoryImpl.initializeMappingModel(SessionFactoryImpl.java:320)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:270)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:431)
+	at de.fhdw.freefeser.app.util.HibernateUtil.getSessionFactory(HibernateUtil.java:27)
+	at de.fhdw.freefeser.app.databases.managers.AppUserDatabaseManager.lambda$create$3(AppUserDatabaseManager.java:78)
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run$$$capture(CompletableFuture.java:1768)
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java)
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.exec(CompletableFuture.java:1760)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec$$$capture(ForkJoinTask.java:387)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1312)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188)
+2023-07-27 00:10:20,630 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.o.m.m.creation [MappingModelCreationProcess.java:93] - Starting post-init callbacks
+2023-07-27 00:10:20,630 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.o.m.m.creation [MappingModelCreationProcess.java:243] - Starting PostInitCallbackEntry : Entity(de.fhdw.freefeser.app.databases.entities.AppChatbot) `staticFetchableList` generator
+2023-07-27 00:10:20,631 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.o.m.m.creation [MappingModelCreationProcess.java:243] - Starting PostInitCallbackEntry : To-one key - NavigableRole[de.fhdw.freefeser.app.databases.entities.AppChatMessage.chatbot]
+2023-07-27 00:10:20,636 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.o.m.m.creation [MappingModelCreationProcess.java:243] - Starting PostInitCallbackEntry : To-one key - NavigableRole[de.fhdw.freefeser.app.databases.entities.AppChatMessage.user]
+2023-07-27 00:10:20,637 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.o.m.m.creation [MappingModelCreationProcess.java:243] - Starting PostInitCallbackEntry : Entity(de.fhdw.freefeser.app.databases.entities.AppChatMessage) `staticFetchableList` generator
+2023-07-27 00:10:20,637 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.o.m.m.creation [MappingModelCreationProcess.java:243] - Starting PostInitCallbackEntry : Entity(de.fhdw.freefeser.app.databases.entities.AppUser) `staticFetchableList` generator
+2023-07-27 00:10:20,711 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.p.e.AbstractEntityPersister [AbstractEntityPersister.java:2880] - Static SQL for entity: de.fhdw.freefeser.app.databases.entities.AppChatbot
+2023-07-27 00:10:20,711 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.p.e.AbstractEntityPersister [AbstractEntityPersister.java:2885] -  Version select: /* get version de.fhdw.freefeser.app.databases.entities.AppChatbot */ select id from AppChatbot where id=?
+2023-07-27 00:10:20,711 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.p.e.AbstractEntityPersister [AbstractEntityPersister.java:2891] -  Insert (0): /* insert for de.fhdw.freefeser.app.databases.entities.AppChatbot */insert into AppChatbot (active,botname,id) values (?,?,?)
+2023-07-27 00:10:20,713 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.p.e.AbstractEntityPersister [AbstractEntityPersister.java:2898] -  Update (0): /* update for de.fhdw.freefeser.app.databases.entities.AppChatbot */update AppChatbot set active=?,botname=? where id=?
+2023-07-27 00:10:20,713 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.p.e.AbstractEntityPersister [AbstractEntityPersister.java:2904] -  Delete (0): /* delete for de.fhdw.freefeser.app.databases.entities.AppChatbot */delete from AppChatbot where id=?
+2023-07-27 00:10:20,743 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.o.s.a.create [SqlAliasBaseImpl.java:34] - Created new SQL alias : a1_0
+2023-07-27 00:10:20,751 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.o.s.a.create [SimpleFromClauseAccessImpl.java:98] - Registration of TableGroup [StandardTableGroup(de.fhdw.freefeser.app.databases.entities.AppChatbot)] with identifierForTableGroup [de.fhdw.freefeser.app.databases.entities.AppChatbot] for NavigablePath [de.fhdw.freefeser.app.databases.entities.AppChatbot] 
+2023-07-27 00:10:20,795 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.o.r.g.AST [DomainResultGraphPrinter.java:70] - DomainResult Graph:
+ \-EntityResultImpl [de.fhdw.freefeser.app.databases.entities.AppChatbot]
+ |  +-BasicFetch [de.fhdw.freefeser.app.databases.entities.AppChatbot.active]
+ |  \-BasicFetch [de.fhdw.freefeser.app.databases.entities.AppChatbot.botname]
+
+2023-07-27 00:10:20,803 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.o.s.a.tree [SqlTreePrinter.java:46] - SQL AST Tree:
+    SelectStatement {
+      FromClause {
+        StandardTableGroup (a1 : de.fhdw.freefeser.app.databases.entities.AppChatbot) {
+          primaryTableReference : AppChatbot as a1_0
+        }
+      }
+    }
+
+2023-07-27 00:10:20,831 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.p.e.AbstractEntityPersister [AbstractEntityPersister.java:2880] - Static SQL for entity: de.fhdw.freefeser.app.databases.entities.AppChatMessage
+2023-07-27 00:10:20,831 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.p.e.AbstractEntityPersister [AbstractEntityPersister.java:2885] -  Version select: /* get version de.fhdw.freefeser.app.databases.entities.AppChatMessage */ select id from AppChatMessage where id=?
+2023-07-27 00:10:20,831 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.p.e.AbstractEntityPersister [AbstractEntityPersister.java:2891] -  Insert (0): /* insert for de.fhdw.freefeser.app.databases.entities.AppChatMessage */insert into AppChatMessage (chatbot_id,text,timestamp,user_id,id) values (?,?,?,?,?)
+2023-07-27 00:10:20,831 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.p.e.AbstractEntityPersister [AbstractEntityPersister.java:2898] -  Update (0): /* update for de.fhdw.freefeser.app.databases.entities.AppChatMessage */update AppChatMessage set chatbot_id=?,text=?,timestamp=?,user_id=? where id=?
+2023-07-27 00:10:20,832 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.p.e.AbstractEntityPersister [AbstractEntityPersister.java:2904] -  Delete (0): /* delete for de.fhdw.freefeser.app.databases.entities.AppChatMessage */delete from AppChatMessage where id=?
+2023-07-27 00:10:20,832 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.o.s.a.create [SqlAliasBaseImpl.java:34] - Created new SQL alias : a1_0
+2023-07-27 00:10:20,832 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.o.s.a.create [SimpleFromClauseAccessImpl.java:98] - Registration of TableGroup [StandardTableGroup(de.fhdw.freefeser.app.databases.entities.AppChatMessage)] with identifierForTableGroup [de.fhdw.freefeser.app.databases.entities.AppChatMessage] for NavigablePath [de.fhdw.freefeser.app.databases.entities.AppChatMessage] 
+2023-07-27 00:10:20,838 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.o.s.a.create [SimpleFromClauseAccessImpl.java:98] - Registration of TableGroup [org.hibernate.sql.ast.tree.from.LazyTableGroup@4d559d31] with identifierForTableGroup [de.fhdw.freefeser.app.databases.entities.AppChatMessage.chatbot] for NavigablePath [de.fhdw.freefeser.app.databases.entities.AppChatMessage.chatbot] 
+2023-07-27 00:10:20,841 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.o.s.a.create [SimpleFromClauseAccessImpl.java:98] - Registration of TableGroup [org.hibernate.sql.ast.tree.from.LazyTableGroup@7cc8ced0] with identifierForTableGroup [de.fhdw.freefeser.app.databases.entities.AppChatMessage.user] for NavigablePath [de.fhdw.freefeser.app.databases.entities.AppChatMessage.user] 
+2023-07-27 00:10:20,841 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.o.r.g.AST [DomainResultGraphPrinter.java:70] - DomainResult Graph:
+ \-EntityResultImpl [de.fhdw.freefeser.app.databases.entities.AppChatMessage]
+ |  +-EntityDelayedFetchImpl [de.fhdw.freefeser.app.databases.entities.AppChatMessage.chatbot]
+ |  +-BasicFetch [de.fhdw.freefeser.app.databases.entities.AppChatMessage.text]
+ |  +-BasicFetch [de.fhdw.freefeser.app.databases.entities.AppChatMessage.timestamp]
+ |  \-EntityDelayedFetchImpl [de.fhdw.freefeser.app.databases.entities.AppChatMessage.user]
+
+2023-07-27 00:10:20,843 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.o.s.a.tree [SqlTreePrinter.java:46] - SQL AST Tree:
+    SelectStatement {
+      FromClause {
+        StandardTableGroup (a1 : de.fhdw.freefeser.app.databases.entities.AppChatMessage) {
+          primaryTableReference : AppChatMessage as a1_0
+          TableGroupJoins {
+            left  join LazyTableGroup (c1 : de.fhdw.freefeser.app.databases.entities.AppChatMessage.chatbot) {
+            }
+            left  join LazyTableGroup (u1 : de.fhdw.freefeser.app.databases.entities.AppChatMessage.user) {
+            }
+          }
+        }
+      }
+    }
+
+2023-07-27 00:10:20,844 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.p.e.AbstractEntityPersister [AbstractEntityPersister.java:2880] - Static SQL for entity: de.fhdw.freefeser.app.databases.entities.AppUser
+2023-07-27 00:10:20,844 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.p.e.AbstractEntityPersister [AbstractEntityPersister.java:2885] -  Version select: /* get version de.fhdw.freefeser.app.databases.entities.AppUser */ select id from AppUser where id=?
+2023-07-27 00:10:20,844 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.p.e.AbstractEntityPersister [AbstractEntityPersister.java:2891] -  Insert (0): /* insert for de.fhdw.freefeser.app.databases.entities.AppUser */insert into AppUser (password,username,id) values (?,?,?)
+2023-07-27 00:10:20,844 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.p.e.AbstractEntityPersister [AbstractEntityPersister.java:2898] -  Update (0): /* update for de.fhdw.freefeser.app.databases.entities.AppUser */update AppUser set password=?,username=? where id=?
+2023-07-27 00:10:20,844 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.p.e.AbstractEntityPersister [AbstractEntityPersister.java:2904] -  Delete (0): /* delete for de.fhdw.freefeser.app.databases.entities.AppUser */delete from AppUser where id=?
+2023-07-27 00:10:20,845 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.o.s.a.create [SqlAliasBaseImpl.java:34] - Created new SQL alias : a1_0
+2023-07-27 00:10:20,845 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.o.s.a.create [SimpleFromClauseAccessImpl.java:98] - Registration of TableGroup [StandardTableGroup(de.fhdw.freefeser.app.databases.entities.AppUser)] with identifierForTableGroup [de.fhdw.freefeser.app.databases.entities.AppUser] for NavigablePath [de.fhdw.freefeser.app.databases.entities.AppUser] 
+2023-07-27 00:10:20,845 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.o.r.g.AST [DomainResultGraphPrinter.java:70] - DomainResult Graph:
+ \-EntityResultImpl [de.fhdw.freefeser.app.databases.entities.AppUser]
+ |  +-BasicFetch [de.fhdw.freefeser.app.databases.entities.AppUser.password]
+ |  \-BasicFetch [de.fhdw.freefeser.app.databases.entities.AppUser.username]
+
+2023-07-27 00:10:20,846 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.o.s.a.tree [SqlTreePrinter.java:46] - SQL AST Tree:
+    SelectStatement {
+      FromClause {
+        StandardTableGroup (a1 : de.fhdw.freefeser.app.databases.entities.AppUser) {
+          primaryTableReference : AppUser as a1_0
+        }
+      }
+    }
+
+2023-07-27 00:10:20,891 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.s.i.SessionFactoryServiceRegistryImpl [SessionFactoryServiceRegistryImpl.java:91] - EventListenerRegistry access via ServiceRegistry is deprecated.  Use `sessionFactory.getEventEngine().getListenerRegistry()` instead
+2023-07-27 00:10:20,893 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.e.i.EntityCopyObserverFactoryInitiator [EntityCopyObserverFactoryInitiator.java:39] - Configured EntityCopyObserver strategy: disallow
+2023-07-27 00:10:20,908 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.t.s.TypeConfiguration$Scope [TypeConfiguration.java:203] - Scoping TypeConfiguration [org.hibernate.type.spi.TypeConfiguration@7e6fea4e] to SessionFactoryImplementor [org.hibernate.internal.SessionFactoryImpl@1a9b2d9]
+2023-07-27 00:10:20,909 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.n.NamedObjectRepository [NamedObjectRepositoryImpl.java:234] - Checking 0 named HQL queries
+2023-07-27 00:10:20,910 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.n.NamedObjectRepository [NamedObjectRepositoryImpl.java:251] - Checking 0 named SQL queries
+2023-07-27 00:10:20,947 INFO [ForkJoinPool.commonPool-worker-1] o.h.o.c.access [DdlTransactionIsolatorNonJtaImpl.java:52] - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@6ec83775] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.

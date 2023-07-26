@@ -1,0 +1,29 @@
+2023-07-27 00:10:21,023 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.m.Table [StandardTableMigrator.java:101] - No alter strings for table : AppChatbot
+2023-07-27 00:10:21,028 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.SQL [SqlStatementLogger.java:133] - 
+    alter table if exists AppChatMessage 
+       alter column timestamp set data type timestamp(6)
+2023-07-27 00:10:21,037 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.m.Table [StandardTableMigrator.java:101] - No alter strings for table : AppUser
+2023-07-27 00:10:21,058 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.i.SessionFactoryRegistry [SessionFactoryRegistry.java:52] - Initializing SessionFactoryRegistry : org.hibernate.internal.SessionFactoryRegistry@6c0e2c94
+2023-07-27 00:10:21,063 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.i.SessionFactoryRegistry [SessionFactoryRegistry.java:74] - Registering SessionFactory: c23331b0-d21d-47e9-99a7-6eaaa12bf4c4 (<unnamed>)
+2023-07-27 00:10:21,064 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.i.SessionFactoryRegistry [SessionFactoryRegistry.java:81] - Not binding SessionFactory to JNDI, no JNDI name configured
+2023-07-27 00:10:21,064 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.i.SessionFactoryImpl [SessionFactoryImpl.java:311] - Instantiated SessionFactory
+2023-07-27 00:10:21,123 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.s.i.StatisticsInitiator [StatisticsInitiator.java:88] - Statistics initialized [enabled=false]
+2023-07-27 00:10:21,128 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.e.t.i.TransactionImpl [TransactionImpl.java:53] - On TransactionImpl creation, JpaCompliance#isJpaTransactionComplianceEnabled == false
+2023-07-27 00:10:21,128 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.e.t.i.TransactionImpl [TransactionImpl.java:81] - begin
+2023-07-27 00:10:21,137 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.e.i.AbstractSaveEventListener [AbstractSaveEventListener.java:130] - Generated identifier: e3349bd9-76dd-41e9-a4ba-ada5152d2b9a, using strategy: org.hibernate.id.UUIDGenerator
+2023-07-27 00:10:21,158 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.e.t.i.TransactionImpl [TransactionImpl.java:98] - committing
+2023-07-27 00:10:21,159 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.e.i.AbstractFlushingEventListener [AbstractFlushingEventListener.java:136] - Processing flush-time cascades
+2023-07-27 00:10:21,160 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.e.i.AbstractFlushingEventListener [AbstractFlushingEventListener.java:179] - Dirty checking collections
+2023-07-27 00:10:21,171 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.e.i.AbstractFlushingEventListener [AbstractFlushingEventListener.java:110] - Flushed: 1 insertions, 0 updates, 0 deletions to 1 objects
+2023-07-27 00:10:21,171 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.e.i.AbstractFlushingEventListener [AbstractFlushingEventListener.java:117] - Flushed: 0 (re)creations, 0 updates, 0 removals to 0 collections
+2023-07-27 00:10:21,173 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.i.u.EntityPrinter [EntityPrinter.java:111] - Listing entities:
+2023-07-27 00:10:21,174 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.i.u.EntityPrinter [EntityPrinter.java:118] - de.fhdw.freefeser.app.databases.entities.AppUser{password=1234, id=e3349bd9-76dd-41e9-a4ba-ada5152d2b9a, username=philipp}
+2023-07-27 00:10:21,198 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.SQL [SqlStatementLogger.java:133] - 
+    /* insert for
+        de.fhdw.freefeser.app.databases.entities.AppUser */insert 
+    into
+        AppUser (password,username,id) 
+    values
+        (?,?,?)
+2023-07-27 00:10:21,231 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.r.j.i.LogicalConnectionManagedImpl [LogicalConnectionManagedImpl.java:179] - Initiating JDBC connection release from afterTransaction
+2023-07-27 00:10:21,233 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.r.j.i.LogicalConnectionManagedImpl [LogicalConnectionManagedImpl.java:179] - Initiating JDBC connection release from afterTransaction

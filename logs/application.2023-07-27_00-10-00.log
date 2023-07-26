@@ -1,0 +1,76 @@
+2023-07-27 00:10:00,431 DEBUG [ForkJoinPool.commonPool-worker-2] o.h.o.q.hql [StandardHqlTranslator.java:75] - HQL : FROM AppUser u WHERE u.username = :username
+2023-07-27 00:10:00,632 DEBUG [ForkJoinPool.commonPool-worker-2] o.h.q.h.i.SemanticQueryBuilder [SemanticQueryBuilder.java:1904] - Handling root path - AppUser
+2023-07-27 00:10:00,643 DEBUG [ForkJoinPool.commonPool-worker-2] o.h.q.h.i.SemanticQueryBuilder [SemanticQueryBuilder.java:1151] - Encountered implicit select clause : FROMAppUseruWHEREu.username=:username
+2023-07-27 00:10:00,660 DEBUG [ForkJoinPool.commonPool-worker-2] o.h.o.q.s.creation [AbstractSqmExpression.java:57] - Applying inferable type to SqmExpression [SqmNamedParameter(username)] : null -> BasicSqmPathSource(username : String)
+2023-07-27 00:10:00,683 DEBUG [ForkJoinPool.commonPool-worker-2] o.h.o.q.s.ast [SqmTreePrinter.java:168] - SqmStatement Tree :
+    -> [select]
+      -> [query-spec]
+        -> [select]
+          -> [selection]
+            -> [root] - `de.fhdw.freefeser.app.databases.entities.AppUser(u)`
+            <- [root] - `de.fhdw.freefeser.app.databases.entities.AppUser(u)`
+          <- [selection]
+        <- [select]
+        -> [from]
+          -> [root] - `de.fhdw.freefeser.app.databases.entities.AppUser(u)`
+          <- [root] - `de.fhdw.freefeser.app.databases.entities.AppUser(u)`
+        <- [from]
+        -> [where]
+          -> [EQUAL]
+              -> [basic-path] - `de.fhdw.freefeser.app.databases.entities.AppUser(u).username`
+              :username
+          <- [EQUAL]
+        <- [where]
+      <- [query-spec]
+    <- [select]
+
+2023-07-27 00:10:00,758 DEBUG [ForkJoinPool.commonPool-worker-2] o.h.o.s.a.create [SqlAliasBaseImpl.java:34] - Created new SQL alias : a1_0
+2023-07-27 00:10:00,759 DEBUG [ForkJoinPool.commonPool-worker-2] o.h.o.s.a.create [SimpleFromClauseAccessImpl.java:98] - Registration of TableGroup [StandardTableGroup(de.fhdw.freefeser.app.databases.entities.AppUser(u))] with identifierForTableGroup [de.fhdw.freefeser.app.databases.entities.AppUser] for NavigablePath [de.fhdw.freefeser.app.databases.entities.AppUser] 
+2023-07-27 00:10:00,769 DEBUG [ForkJoinPool.commonPool-worker-2] o.h.q.s.s.BaseSqmToSqlAstConverter [BaseSqmToSqlAstConverter.java:5718] - Determining mapping-model type for SqmParameter : SqmNamedParameter(username)
+2023-07-27 00:10:00,770 DEBUG [ForkJoinPool.commonPool-worker-2] o.h.q.s.s.BaseSqmToSqlAstConverter [BaseSqmToSqlAstConverter.java:5608] - Determining mapping-model type for SqmPath : SqmBasicValuedSimplePath(de.fhdw.freefeser.app.databases.entities.AppUser(u).username) 
+2023-07-27 00:10:00,778 DEBUG [ForkJoinPool.commonPool-worker-2] o.h.o.r.g.AST [DomainResultGraphPrinter.java:70] - DomainResult Graph:
+ \-EntityResultImpl [de.fhdw.freefeser.app.databases.entities.AppUser(u)]
+ |  +-BasicFetch [de.fhdw.freefeser.app.databases.entities.AppUser(u).password]
+ |  \-BasicFetch [de.fhdw.freefeser.app.databases.entities.AppUser(u).username]
+
+2023-07-27 00:10:00,779 DEBUG [ForkJoinPool.commonPool-worker-2] o.h.o.s.a.tree [SqlTreePrinter.java:46] - SQL AST Tree:
+    SelectStatement {
+      FromClause {
+        StandardTableGroup (a1 : de.fhdw.freefeser.app.databases.entities.AppUser(u)) {
+          primaryTableReference : AppUser as a1_0
+        }
+      }
+    }
+
+2023-07-27 00:10:00,797 DEBUG [ForkJoinPool.commonPool-worker-2] o.h.o.s.exec [JdbcSelectExecutorStandardImpl.java:455] - Skipping reading Query result cache data: cache-enabled = false, cache-mode = NORMAL
+2023-07-27 00:10:00,811 DEBUG [ForkJoinPool.commonPool-worker-2] o.h.o.results [ResultsHelper.java:148] - Initializer list
+2023-07-27 00:10:00,811 DEBUG [ForkJoinPool.commonPool-worker-2] o.h.o.results [ResultsHelper.java:150] -     de.fhdw.freefeser.app.databases.entities.AppUser(u) -> EntityResultInitializer(de.fhdw.freefeser.app.databases.entities.AppUser(u))@928377609 (SingleTableEntityPersister(de.fhdw.freefeser.app.databases.entities.AppUser))
+2023-07-27 00:10:00,816 DEBUG [ForkJoinPool.commonPool-worker-2] o.h.SQL [SqlStatementLogger.java:133] - 
+    /* 
+FROM
+    AppUser u 
+WHERE
+    u.username = :username */ select
+        a1_0.id,
+        a1_0.password,
+        a1_0.username 
+    from
+        AppUser a1_0 
+    where
+        a1_0.username=?
+2023-07-27 00:10:00,821 DEBUG [ForkJoinPool.commonPool-worker-2] o.h.o.results [BasicResultAssembler.java:62] - Extracted JDBC value [0] - [27ec437f-841e-4a93-80d9-8c662ccf7a9c]
+2023-07-27 00:10:00,821 DEBUG [ForkJoinPool.commonPool-worker-2] o.h.o.r.l.entity [AbstractEntityInitializer.java:299] - (EntityResultInitializer) Hydrated EntityKey (de.fhdw.freefeser.app.databases.entities.AppUser(u)): 27ec437f-841e-4a93-80d9-8c662ccf7a9c
+2023-07-27 00:10:00,824 DEBUG [ForkJoinPool.commonPool-worker-2] o.h.o.r.l.entity [AbstractEntityInitializer.java:678] - (EntityResultInitializer) Created new entity instance [de.fhdw.freefeser.app.databases.entities.AppUser(u)#27ec437f-841e-4a93-80d9-8c662ccf7a9c] : 1887785573
+2023-07-27 00:10:00,825 DEBUG [ForkJoinPool.commonPool-worker-2] o.h.o.results [BasicResultAssembler.java:62] - Extracted JDBC value [1] - [passwordx]
+2023-07-27 00:10:00,825 DEBUG [ForkJoinPool.commonPool-worker-2] o.h.o.results [BasicResultAssembler.java:62] - Extracted JDBC value [2] - [userx]
+2023-07-27 00:10:00,826 DEBUG [ForkJoinPool.commonPool-worker-2] o.h.o.r.l.entity [AbstractEntityInitializer.java:878] - (EntityResultInitializer) Done materializing entityInstance : de.fhdw.freefeser.app.databases.entities.AppUser(u)#27ec437f-841e-4a93-80d9-8c662ccf7a9c
+2023-07-27 00:10:00,827 DEBUG [ForkJoinPool.commonPool-worker-2] o.h.o.r.loading [StandardRowReader.java:93] - Calling top-level assembler (0 / 1) : org.hibernate.sql.results.graph.entity.internal.EntityAssembler@1926ec53
+2023-07-27 00:10:00,828 DEBUG [ForkJoinPool.commonPool-worker-2] o.h.o.results [BasicResultAssembler.java:62] - Extracted JDBC value [0] - [c3a933e5-9423-46f7-9e83-a15fa1d87cff]
+2023-07-27 00:10:00,828 DEBUG [ForkJoinPool.commonPool-worker-2] o.h.o.r.l.entity [AbstractEntityInitializer.java:299] - (EntityResultInitializer) Hydrated EntityKey (de.fhdw.freefeser.app.databases.entities.AppUser(u)): c3a933e5-9423-46f7-9e83-a15fa1d87cff
+2023-07-27 00:10:00,828 DEBUG [ForkJoinPool.commonPool-worker-2] o.h.o.r.l.entity [AbstractEntityInitializer.java:678] - (EntityResultInitializer) Created new entity instance [de.fhdw.freefeser.app.databases.entities.AppUser(u)#c3a933e5-9423-46f7-9e83-a15fa1d87cff] : 282976233
+2023-07-27 00:10:00,829 DEBUG [ForkJoinPool.commonPool-worker-2] o.h.o.results [BasicResultAssembler.java:62] - Extracted JDBC value [1] - [passwordx]
+2023-07-27 00:10:00,829 DEBUG [ForkJoinPool.commonPool-worker-2] o.h.o.results [BasicResultAssembler.java:62] - Extracted JDBC value [2] - [userx]
+2023-07-27 00:10:00,829 DEBUG [ForkJoinPool.commonPool-worker-2] o.h.o.r.l.entity [AbstractEntityInitializer.java:878] - (EntityResultInitializer) Done materializing entityInstance : de.fhdw.freefeser.app.databases.entities.AppUser(u)#c3a933e5-9423-46f7-9e83-a15fa1d87cff
+2023-07-27 00:10:00,829 DEBUG [ForkJoinPool.commonPool-worker-2] o.h.o.r.loading [StandardRowReader.java:93] - Calling top-level assembler (0 / 1) : org.hibernate.sql.results.graph.entity.internal.EntityAssembler@1926ec53
+2023-07-27 00:10:00,831 DEBUG [ForkJoinPool.commonPool-worker-2] o.h.r.j.i.LogicalConnectionManagedImpl [LogicalConnectionManagedImpl.java:179] - Initiating JDBC connection release from afterTransaction
+2023-07-27 00:10:00,832 DEBUG [ForkJoinPool.commonPool-worker-2] o.h.r.j.i.LogicalConnectionManagedImpl [LogicalConnectionManagedImpl.java:179] - Initiating JDBC connection release from afterTransaction

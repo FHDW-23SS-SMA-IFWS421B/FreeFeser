@@ -7,7 +7,7 @@ import de.fhdw.freefeser.api.database.User;
 import de.fhdw.freefeser.api.database.UserDatabaseManager;
 import de.fhdw.freefeser.api.user.UserManager;
 import de.fhdw.freefeser.app.bot.command.AppCommandManager;
-import de.fhdw.freefeser.app.bot.translation.TranslationCommand;
+import de.fhdw.freefeser.app.chatbot.translation.commands.TranslationCommand;
 import de.fhdw.freefeser.app.console.AppConsoleReader;
 import de.fhdw.freefeser.app.console.callbacks.CommandManagerConsoleReaderCallback;
 import de.fhdw.freefeser.app.console.callbacks.LoginConsoleReaderCallback;
@@ -47,10 +47,10 @@ public class FreeFeserApp {
 
         UserManager userManager = new AppUserManager(userDatabaseManager);
 
-        User user1 = new AppUser("userx", "passwordx");
-        userDatabaseManager.create(user1).thenAcceptAsync((u) -> {
-            System.out.println("CREATED");
-        });
+        User user1 = new AppUser("philipp", "1234");
+        //userDatabaseManager.create(user1).thenAcceptAsync((u) -> {
+          //  System.out.println("CREATED");
+        //});
 
         CommandManager commandManager = new AppCommandManager();
         commandManager.registerCommand(new TranslationCommand(null, "translate", "Translate something"));

@@ -1,29 +1,16 @@
 package de.fhdw.freefeser.app;
 
-import de.fhdw.freefeser.api.bot.command.CommandManager;
-import de.fhdw.freefeser.api.console.ConsoleReader;
-import de.fhdw.freefeser.api.console.ConsoleReaderCallback;
 import de.fhdw.freefeser.api.database.ChatMessage;
 import de.fhdw.freefeser.api.database.User;
-import de.fhdw.freefeser.app.bot.command.AppCommandManager;
-import de.fhdw.freefeser.app.chatbot.translation.commands.TranslationCommand;
-import de.fhdw.freefeser.app.console.AppConsoleReader;
-import de.fhdw.freefeser.app.console.callbacks.CommandManagerConsoleReaderCallback;
-import de.fhdw.freefeser.app.console.callbacks.LoginConsoleReaderCallback;
-import de.fhdw.freefeser.app.databases.entities.AppChatMessage;
 import de.fhdw.freefeser.app.databases.entities.AppChatbot;
 import de.fhdw.freefeser.app.databases.entities.AppUser;
 import de.fhdw.freefeser.app.databases.managers.AppChatMessageManager;
 import de.fhdw.freefeser.app.databases.managers.AppUserManager;
-import de.fhdw.freefeser.app.util.HibernateUtil;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-import java.time.LocalDateTime;
+
 import java.util.List;
-import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
-import de.fhdw.freefeser.app.textanalyzer.TextAnalyzer;
+import de.fhdw.freefeser.app.textanalyzer.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,27 +18,27 @@ public class FreeFeserApp {
     public static void main(String[] args) throws Exception {
         Logger logger = LoggerFactory.getLogger(FreeFeserApp.class);
 
-        String text = "Wie ist das Wetter in New York?";
+        /*String text = "Wie ist das Wetter in New York?";
         String text2 = "Wie ist das Wetter in Bielefeld?";
         String text3 = "wikiBot";
         String text4 = "WeatherBot";
         String text5 = "Wie ist das Wetter in Berlin?";
         String text6 = "Wie wird das Wetter in Bielefeld morgen?";
 
-        //String location = TextAnalyzer.extractLocation(text);
-        //String location2 = TextAnalyzer.extractLocation(text2);
-        //logger.info("Location 1: {}", location);
-        //logger.info("Location 2: {}", location2);
+        String location = WeatherTextAnalyzer.extractLocation(text);
+        String location2 = WeatherTextAnalyzer.extractLocation(text2);
+        logger.info("Location 1: {}", location);
+        logger.info("Location 2: {}", location2);
 
-        String bot = TextAnalyzer.extractBot(text3);
-        String bot2 = TextAnalyzer.extractBot(text4);
+        String bot = AppTextAnalyzer.extractBot(text3);
+        String bot2 = AppTextAnalyzer.extractBot(text4);
         logger.info("Bot 1: {}", bot);
         logger.info("Bot 2: {}", bot2);
 
-        String weather = TextAnalyzer.extractWeatherCurrentOrForecast(text5);
-        String weather2 = TextAnalyzer.extractWeatherCurrentOrForecast(text6);
+        String weather = WeatherTextAnalyzer.extractWeatherCurrentOrForecast(text5);
+        String weather2 = WeatherTextAnalyzer.extractWeatherCurrentOrForecast(text6);
         logger.info("Weather 1: {}", weather);
-        logger.info("Weather 2: {}", weather2);
+        logger.info("Weather 2: {}", weather2);*/
 
         /*CommandManager commandManager = new AppCommandManager();
         commandManager.registerCommand(new TranslationCommand(null, "translate", "Translate something"));

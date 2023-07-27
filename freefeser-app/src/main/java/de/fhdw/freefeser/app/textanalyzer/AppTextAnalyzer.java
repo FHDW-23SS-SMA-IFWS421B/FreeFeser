@@ -22,7 +22,8 @@ public class AppTextAnalyzer implements TextAnalyzer {
         return analysisResults;
     }
 
-    public static String extractBot(String text) {
+    @Override
+    public String extractBot(String text) {
         // Create a new pipeline with annotation properties
         Properties props = new Properties();
         props.setProperty("annotators", "tokenize, ssplit, pos");

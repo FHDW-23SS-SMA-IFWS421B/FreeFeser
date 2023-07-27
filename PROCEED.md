@@ -43,7 +43,7 @@
    - Test the system with various scenarios and edge cases to ensure its robustness.
   
 ## ToDo's
-1. Username muss unique  FLO
+1. ~~Username muss unique~~  FLO
 2. Console anpassen ohne Debugs etc PHIL
 3. abstrakter ConsolePrinter PHIL
 4. bessere Messages PHIL

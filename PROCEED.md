@@ -37,6 +37,16 @@
    - Utilize Hibernate's persistence capabilities to save chat messages in the database.
    - Define appropriate mappings and relationships between entities to store the chat history.
    - Consider implementing a mechanism to limit the number of chat messages retrieved per user to a maximum of 100.
+  
+## ToDo's
+1. Username muss unique sein
+2. Console anpassen ohne Debugs etc
+3. abstrakter ConsolePrinter
+4. bessere Messages
+5. GSON und HTTP Client abstrahieren
+6. TextAnalyzer ausbauen und Albo erklären wie geht diese
+7. Command stuff weiter ausbauen
+8. Bots implementieren
 
 8. Test the system:
    - Write unit tests to verify the functionality of different components, including user authentication, chat message storage, and bot responses.

@@ -1,79 +1,11 @@
-2023-07-27 00:33:00,049 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.m.Table [StandardTableMigrator.java:101] - No alter strings for table : AppChatbot
-2023-07-27 00:33:00,055 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.SQL [SqlStatementLogger.java:133] - 
-    alter table if exists AppChatMessage 
-       alter column timestamp set data type timestamp(6)
-2023-07-27 00:33:00,061 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.m.Table [StandardTableMigrator.java:101] - No alter strings for table : AppUser
-2023-07-27 00:33:00,090 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.i.SessionFactoryRegistry [SessionFactoryRegistry.java:52] - Initializing SessionFactoryRegistry : org.hibernate.internal.SessionFactoryRegistry@64bdd89
-2023-07-27 00:33:00,095 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.i.SessionFactoryRegistry [SessionFactoryRegistry.java:74] - Registering SessionFactory: 0cb24ed2-4ce9-4b32-94c8-790784990696 (<unnamed>)
-2023-07-27 00:33:00,095 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.i.SessionFactoryRegistry [SessionFactoryRegistry.java:81] - Not binding SessionFactory to JNDI, no JNDI name configured
-2023-07-27 00:33:00,096 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.i.SessionFactoryImpl [SessionFactoryImpl.java:311] - Instantiated SessionFactory
-2023-07-27 00:33:00,172 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.s.i.StatisticsInitiator [StatisticsInitiator.java:88] - Statistics initialized [enabled=false]
-2023-07-27 00:33:00,183 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.o.q.hql [StandardHqlTranslator.java:75] - HQL : FROM AppUser u WHERE u.username = :username
-2023-07-27 00:33:00,441 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.h.i.SemanticQueryBuilder [SemanticQueryBuilder.java:1904] - Handling root path - AppUser
-2023-07-27 00:33:00,450 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.h.i.SemanticQueryBuilder [SemanticQueryBuilder.java:1151] - Encountered implicit select clause : FROMAppUseruWHEREu.username=:username
-2023-07-27 00:33:00,461 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.o.q.s.creation [AbstractSqmExpression.java:57] - Applying inferable type to SqmExpression [SqmNamedParameter(username)] : null -> BasicSqmPathSource(username : String)
-2023-07-27 00:33:00,477 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.o.q.s.ast [SqmTreePrinter.java:168] - SqmStatement Tree :
-    -> [select]
-      -> [query-spec]
-        -> [select]
-          -> [selection]
-            -> [root] - `de.fhdw.freefeser.app.databases.entities.AppUser(u)`
-            <- [root] - `de.fhdw.freefeser.app.databases.entities.AppUser(u)`
-          <- [selection]
-        <- [select]
-        -> [from]
-          -> [root] - `de.fhdw.freefeser.app.databases.entities.AppUser(u)`
-          <- [root] - `de.fhdw.freefeser.app.databases.entities.AppUser(u)`
-        <- [from]
-        -> [where]
-          -> [EQUAL]
-              -> [basic-path] - `de.fhdw.freefeser.app.databases.entities.AppUser(u).username`
-              :username
-          <- [EQUAL]
-        <- [where]
-      <- [query-spec]
-    <- [select]
-
-2023-07-27 00:33:00,571 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.o.s.a.create [SqlAliasBaseImpl.java:34] - Created new SQL alias : a1_0
-2023-07-27 00:33:00,572 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.o.s.a.create [SimpleFromClauseAccessImpl.java:98] - Registration of TableGroup [StandardTableGroup(de.fhdw.freefeser.app.databases.entities.AppUser(u))] with identifierForTableGroup [de.fhdw.freefeser.app.databases.entities.AppUser] for NavigablePath [de.fhdw.freefeser.app.databases.entities.AppUser] 
-2023-07-27 00:33:00,582 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.s.BaseSqmToSqlAstConverter [BaseSqmToSqlAstConverter.java:5718] - Determining mapping-model type for SqmParameter : SqmNamedParameter(username)
-2023-07-27 00:33:00,583 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.q.s.s.BaseSqmToSqlAstConverter [BaseSqmToSqlAstConverter.java:5608] - Determining mapping-model type for SqmPath : SqmBasicValuedSimplePath(de.fhdw.freefeser.app.databases.entities.AppUser(u).username) 
-2023-07-27 00:33:00,593 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.o.r.g.AST [DomainResultGraphPrinter.java:70] - DomainResult Graph:
- \-EntityResultImpl [de.fhdw.freefeser.app.databases.entities.AppUser(u)]
- |  +-BasicFetch [de.fhdw.freefeser.app.databases.entities.AppUser(u).password]
- |  \-BasicFetch [de.fhdw.freefeser.app.databases.entities.AppUser(u).username]
-
-2023-07-27 00:33:00,593 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.o.s.a.tree [SqlTreePrinter.java:46] - SQL AST Tree:
-    SelectStatement {
-      FromClause {
-        StandardTableGroup (a1 : de.fhdw.freefeser.app.databases.entities.AppUser(u)) {
-          primaryTableReference : AppUser as a1_0
-        }
-      }
-    }
-
-2023-07-27 00:33:00,607 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.o.s.exec [JdbcSelectExecutorStandardImpl.java:455] - Skipping reading Query result cache data: cache-enabled = false, cache-mode = NORMAL
-2023-07-27 00:33:00,620 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.o.results [ResultsHelper.java:148] - Initializer list
-2023-07-27 00:33:00,621 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.o.results [ResultsHelper.java:150] -     de.fhdw.freefeser.app.databases.entities.AppUser(u) -> EntityResultInitializer(de.fhdw.freefeser.app.databases.entities.AppUser(u))@2146714708 (SingleTableEntityPersister(de.fhdw.freefeser.app.databases.entities.AppUser))
-2023-07-27 00:33:00,626 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.SQL [SqlStatementLogger.java:133] - 
-    /* 
-FROM
-    AppUser u 
-WHERE
-    u.username = :username */ select
-        a1_0.id,
-        a1_0.password,
-        a1_0.username 
-    from
-        AppUser a1_0 
-    where
-        a1_0.username=?
-2023-07-27 00:33:00,638 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.o.results [BasicResultAssembler.java:62] - Extracted JDBC value [0] - [e3349bd9-76dd-41e9-a4ba-ada5152d2b9a]
-2023-07-27 00:33:00,639 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.o.r.l.entity [AbstractEntityInitializer.java:299] - (EntityResultInitializer) Hydrated EntityKey (de.fhdw.freefeser.app.databases.entities.AppUser(u)): e3349bd9-76dd-41e9-a4ba-ada5152d2b9a
-2023-07-27 00:33:00,641 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.o.r.l.entity [AbstractEntityInitializer.java:678] - (EntityResultInitializer) Created new entity instance [de.fhdw.freefeser.app.databases.entities.AppUser(u)#e3349bd9-76dd-41e9-a4ba-ada5152d2b9a] : 515040603
-2023-07-27 00:33:00,642 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.o.results [BasicResultAssembler.java:62] - Extracted JDBC value [1] - [1234]
-2023-07-27 00:33:00,642 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.o.results [BasicResultAssembler.java:62] - Extracted JDBC value [2] - [philipp]
-2023-07-27 00:33:00,649 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.o.r.l.entity [AbstractEntityInitializer.java:878] - (EntityResultInitializer) Done materializing entityInstance : de.fhdw.freefeser.app.databases.entities.AppUser(u)#e3349bd9-76dd-41e9-a4ba-ada5152d2b9a
-2023-07-27 00:33:00,651 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.o.r.loading [StandardRowReader.java:93] - Calling top-level assembler (0 / 1) : org.hibernate.sql.results.graph.entity.internal.EntityAssembler@644b3a49
-2023-07-27 00:33:00,661 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.r.j.i.LogicalConnectionManagedImpl [LogicalConnectionManagedImpl.java:179] - Initiating JDBC connection release from afterTransaction
-2023-07-27 00:33:00,663 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.r.j.i.LogicalConnectionManagedImpl [LogicalConnectionManagedImpl.java:179] - Initiating JDBC connection release from afterTransaction
+2023-07-27 11:23:09,060 DEBUG [C3P0PooledConnectionPoolManager[identityToken->1hgf02xax15scu3p58pz02|1b9ea74d]-AdminTaskTimer] c.m.v.r.BasicResourcePool [Slf4jMLog.java:204] - Refurbishing idle resources - Thu Jul 27 11:23:09 CEST 2023 [com.mchange.v2.resourcepool.BasicResourcePool@411224c9]
+2023-07-27 11:23:09,072 DEBUG [C3P0PooledConnectionPoolManager[identityToken->1hgf02xax15scu3p58pz02|1b9ea74d]-HelperThread-#2] c.m.v.c.i.C3P0PooledConnectionPool [Slf4jMLog.java:204] - Testing PooledConnection [com.mchange.v2.c3p0.impl.NewPooledConnection@43e7778d] on IDLE CHECK.
+2023-07-27 11:23:09,072 DEBUG [C3P0PooledConnectionPoolManager[identityToken->1hgf02xax15scu3p58pz02|1b9ea74d]-HelperThread-#0] c.m.v.c.i.C3P0PooledConnectionPool [Slf4jMLog.java:204] - Testing PooledConnection [com.mchange.v2.c3p0.impl.NewPooledConnection@267c61ad] on IDLE CHECK.
+2023-07-27 11:23:09,072 DEBUG [C3P0PooledConnectionPoolManager[identityToken->1hgf02xax15scu3p58pz02|1b9ea74d]-HelperThread-#1] c.m.v.c.i.C3P0PooledConnectionPool [Slf4jMLog.java:204] - Testing PooledConnection [com.mchange.v2.c3p0.impl.NewPooledConnection@12de3aff] on IDLE CHECK.
+2023-07-27 11:23:09,079 DEBUG [C3P0PooledConnectionPoolManager[identityToken->1hgf02xax15scu3p58pz02|1b9ea74d]-HelperThread-#0] c.m.v.c.i.C3P0PooledConnectionPool [Slf4jMLog.java:204] - Test of PooledConnection [com.mchange.v2.c3p0.impl.NewPooledConnection@267c61ad] on IDLE CHECK has SUCCEEDED.
+2023-07-27 11:23:09,080 DEBUG [C3P0PooledConnectionPoolManager[identityToken->1hgf02xax15scu3p58pz02|1b9ea74d]-HelperThread-#1] c.m.v.c.i.C3P0PooledConnectionPool [Slf4jMLog.java:204] - Test of PooledConnection [com.mchange.v2.c3p0.impl.NewPooledConnection@12de3aff] on IDLE CHECK has SUCCEEDED.
+2023-07-27 11:23:09,080 DEBUG [C3P0PooledConnectionPoolManager[identityToken->1hgf02xax15scu3p58pz02|1b9ea74d]-HelperThread-#0] c.m.v.c.i.C3P0PooledConnectionPool [Slf4jMLog.java:204] - Testing PooledConnection [com.mchange.v2.c3p0.impl.NewPooledConnection@647ad7ac] on IDLE CHECK.
+2023-07-27 11:23:09,080 DEBUG [C3P0PooledConnectionPoolManager[identityToken->1hgf02xax15scu3p58pz02|1b9ea74d]-HelperThread-#1] c.m.v.c.i.C3P0PooledConnectionPool [Slf4jMLog.java:204] - Testing PooledConnection [com.mchange.v2.c3p0.impl.NewPooledConnection@7577bba2] on IDLE CHECK.
+2023-07-27 11:23:09,080 DEBUG [C3P0PooledConnectionPoolManager[identityToken->1hgf02xax15scu3p58pz02|1b9ea74d]-HelperThread-#0] c.m.v.c.i.C3P0PooledConnectionPool [Slf4jMLog.java:204] - Test of PooledConnection [com.mchange.v2.c3p0.impl.NewPooledConnection@647ad7ac] on IDLE CHECK has SUCCEEDED.
+2023-07-27 11:23:09,074 DEBUG [C3P0PooledConnectionPoolManager[identityToken->1hgf02xax15scu3p58pz02|1b9ea74d]-HelperThread-#2] c.m.v.c.i.C3P0PooledConnectionPool [Slf4jMLog.java:204] - Test of PooledConnection [com.mchange.v2.c3p0.impl.NewPooledConnection@43e7778d] on IDLE CHECK has SUCCEEDED.
+2023-07-27 11:23:09,080 DEBUG [C3P0PooledConnectionPoolManager[identityToken->1hgf02xax15scu3p58pz02|1b9ea74d]-HelperThread-#1] c.m.v.c.i.C3P0PooledConnectionPool [Slf4jMLog.java:204] - Test of PooledConnection [com.mchange.v2.c3p0.impl.NewPooledConnection@7577bba2] on IDLE CHECK has SUCCEEDED.

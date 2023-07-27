@@ -1,2 +1,0 @@
-2023-07-27 00:11:51,006 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.r.j.i.LogicalConnectionManagedImpl [LogicalConnectionManagedImpl.java:179] - Initiating JDBC connection release from afterTransaction
-2023-07-27 00:11:51,011 DEBUG [ForkJoinPool.commonPool-worker-1] o.h.r.j.i.LogicalConnectionManagedImpl [LogicalConnectionManagedImpl.java:179] - Initiating JDBC connection release from afterTransaction

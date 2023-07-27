@@ -1,5 +1,0 @@
-2023-07-26 22:09:26,062 INFO [main] e.s.n.i.AbstractSequenceClassifier [SLF4JHandler.java:88] - Loading classifier from edu/stanford/nlp/models/ner/english.conll.4class.distsim.crf.ser.gz ... done [0.3 sec].
-2023-07-26 22:09:26,066 INFO [main] e.s.n.t.JollyDayHolidays [SLF4JHandler.java:88] - Initializing JollyDayHoliday for SUTime from classpath edu/stanford/nlp/models/sutime/jollyday/Holidays_sutime.xml as sutime.binder.1.
-2023-07-26 22:09:26,207 INFO [main] e.s.n.t.TimeExpressionExtractorImpl [SLF4JHandler.java:88] - Using following SUTime rules: edu/stanford/nlp/models/sutime/defs.sutime.txt,edu/stanford/nlp/models/sutime/english.sutime.txt,edu/stanford/nlp/models/sutime/english.holidays.sutime.txt
-2023-07-26 22:09:26,523 DEBUG [main] e.s.n.l.t.CoreMapExpressionExtractor [SLF4JHandler.java:84] - Ignoring inactive rule: null
-2023-07-26 22:09:26,524 DEBUG [main] e.s.n.l.t.CoreMapExpressionExtractor [SLF4JHandler.java:84] - Ignoring inactive rule: temporal-composite-8:ranges

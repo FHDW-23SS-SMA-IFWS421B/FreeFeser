@@ -4,5 +4,12 @@ import java.util.concurrent.CompletableFuture;
 
 public interface UserManager {
 
-    CompletableFuture<Boolean> login(String username, String password);
+    /**
+     * If no user logged in, null will be returned
+     * @return logged in user or null
+     */
+    User getLoggedInUser();
+
+    CompletableFuture<User> login(String username, String password);
+
 }

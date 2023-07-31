@@ -1,7 +1,7 @@
-package de.fhdw.freefeser.api.console;
+package de.fhdw.freefeser.api.console.reader;
 
-import de.fhdw.freefeser.api.console.exceptions.ConsoleReaderAlreadyNotRunningException;
-import de.fhdw.freefeser.api.console.exceptions.ConsoleReaderAlreadyRunningException;
+import de.fhdw.freefeser.api.console.reader.exceptions.ConsoleReaderAlreadyNotRunningException;
+import de.fhdw.freefeser.api.console.reader.exceptions.ConsoleReaderAlreadyRunningException;
 
 import java.io.InputStream;
 import java.util.Collection;

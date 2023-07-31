@@ -13,6 +13,11 @@ public class AppWikiTextAnalyzer implements WikiTextAnalyzer {
     }
 
     @Override
+    public String extractBot(String text) {
+        return null;
+    }
+
+    @Override
     public String extractSearchTerm(String text) {
         return null;
     }

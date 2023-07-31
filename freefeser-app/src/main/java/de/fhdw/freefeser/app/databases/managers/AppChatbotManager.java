@@ -2,12 +2,20 @@ package de.fhdw.freefeser.app.databases.managers;
 
 import de.fhdw.freefeser.api.bot.Chatbot;
 import de.fhdw.freefeser.api.bot.ChatbotManager;
+import de.fhdw.freefeser.api.user.User;
 import de.fhdw.freefeser.app.databases.entities.AppChatbot;
 import de.fhdw.freefeser.app.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import java.util.Collection;
+
 public class AppChatbotManager implements ChatbotManager {
+
+    @Override
+    public Collection<Chatbot> getBots() {
+        return null;
+    }
 
     @Override
     public boolean registerBot(Chatbot chatbot) {
@@ -64,5 +72,10 @@ public class AppChatbotManager implements ChatbotManager {
             e.printStackTrace();
         }
         return false;
+    }
+
+    @Override
+    public Chatbot executeCommand(User sender, String text) {
+        return null;
     }
 }

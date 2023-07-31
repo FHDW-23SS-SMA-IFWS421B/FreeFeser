@@ -2,7 +2,7 @@ package de.fhdw.freefeser.api.database;
 
 import java.util.UUID;
 
-public interface Chatbot {
+public interface ChatbotEntity {
 
     UUID getId();
 

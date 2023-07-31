@@ -1,7 +1,6 @@
 package de.fhdw.freefeser.api.bot;
 
-
-import de.fhdw.freefeser.api.bot.command.CommandManager;
+import de.fhdw.freefeser.api.user.User;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -11,5 +10,9 @@ public interface Chatbot {
 
     CompletableFuture<Boolean> isEnabled();
 
-    CommandManager getCommandManager();
+    void setEnabled(boolean enabled);
+
+    void onExecute(User sender, String rawText);
+
+    void sendMessageOnBehalf(String message);
 }

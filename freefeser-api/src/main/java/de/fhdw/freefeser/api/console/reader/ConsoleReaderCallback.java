@@ -1,4 +1,4 @@
-package de.fhdw.freefeser.api.console;
+package de.fhdw.freefeser.api.console.reader;
 
 public interface ConsoleReaderCallback {
 

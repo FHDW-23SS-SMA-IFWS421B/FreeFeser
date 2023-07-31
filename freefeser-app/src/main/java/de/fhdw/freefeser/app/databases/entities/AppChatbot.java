@@ -1,6 +1,6 @@
 package de.fhdw.freefeser.app.databases.entities;
 
-import de.fhdw.freefeser.api.database.Chatbot;
+import de.fhdw.freefeser.api.database.ChatbotEntity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -9,7 +9,7 @@ import jakarta.persistence.Id;
 import java.util.UUID;
 
 @Entity
-public class AppChatbot implements Chatbot {
+public class AppChatbot implements ChatbotEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

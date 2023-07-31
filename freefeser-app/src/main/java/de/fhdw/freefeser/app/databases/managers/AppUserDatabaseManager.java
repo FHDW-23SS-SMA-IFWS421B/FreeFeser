@@ -1,7 +1,7 @@
 package de.fhdw.freefeser.app.databases.managers;
 
-import de.fhdw.freefeser.api.database.User;
-import de.fhdw.freefeser.api.database.UserDatabaseManager;
+import de.fhdw.freefeser.api.database.UserEntity;
+import de.fhdw.freefeser.api.database.UserEntityDatabaseManager;
 import de.fhdw.freefeser.app.databases.entities.AppUser;
 import de.fhdw.freefeser.app.util.HibernateUtil;
 
@@ -13,12 +13,12 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
-public class AppUserDatabaseManager implements UserDatabaseManager {
+public class AppUserDatabaseManager implements UserEntityDatabaseManager {
 
     @Override
-    public CompletableFuture<List<User>> getAll() {
+    public CompletableFuture<List<UserEntity>> getAll() {
         return CompletableFuture.supplyAsync(() -> {
-            List<User> userList = new ArrayList<>();
+            List<UserEntity> userList = new ArrayList<>();
 
             try (Session session = HibernateUtil.getSessionFactory().openSession()) {
                 // Define the HQL query to select all users
@@ -41,7 +41,7 @@ public class AppUserDatabaseManager implements UserDatabaseManager {
     }
 
     @Override
-    public CompletableFuture<User> get(UUID id) {
+    public CompletableFuture<UserEntity> get(UUID id) {
         return CompletableFuture.supplyAsync(() -> {
             AppUser user = null;
             try (Session session = HibernateUtil.getSessionFactory().openSession()) {
@@ -55,7 +55,7 @@ public class AppUserDatabaseManager implements UserDatabaseManager {
     }
 
     @Override
-    public CompletableFuture<Void> update(User user) {
+    public CompletableFuture<Void> update(UserEntity user) {
         return CompletableFuture.runAsync(() -> {
             try (Session session = HibernateUtil.getSessionFactory().openSession()) {
                 // Begin a new database transaction
@@ -73,7 +73,7 @@ public class AppUserDatabaseManager implements UserDatabaseManager {
     }
 
     @Override
-    public CompletableFuture<User> create(User entityWithoutId) {
+    public CompletableFuture<UserEntity> create(UserEntity entityWithoutId) {
         return CompletableFuture.supplyAsync(() -> {
             try (Session session = HibernateUtil.getSessionFactory().openSession()) {
                 // Begin a new database transaction
@@ -120,7 +120,7 @@ public class AppUserDatabaseManager implements UserDatabaseManager {
     }
 
     @Override
-    public CompletableFuture<User> getByUsername(String username) {
+    public CompletableFuture<UserEntity> getByUsername(String username) {
         return CompletableFuture.supplyAsync(() -> {
             AppUser user = null;
             try (Session session = HibernateUtil.getSessionFactory().openSession()) {

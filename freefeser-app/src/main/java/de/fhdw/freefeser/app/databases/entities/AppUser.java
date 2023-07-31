@@ -1,12 +1,12 @@
 package de.fhdw.freefeser.app.databases.entities;
 
-import de.fhdw.freefeser.api.database.User;
+import de.fhdw.freefeser.api.database.UserEntity;
 import jakarta.persistence.*;
 
 import java.util.UUID;
 
 @Entity
-public class AppUser implements User {
+public class AppUser implements UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

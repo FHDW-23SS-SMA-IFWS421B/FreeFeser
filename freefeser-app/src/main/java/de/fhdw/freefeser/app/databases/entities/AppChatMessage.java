@@ -1,13 +1,13 @@
 package de.fhdw.freefeser.app.databases.entities;
 
-import de.fhdw.freefeser.api.database.ChatMessage;
+import de.fhdw.freefeser.api.database.ChatMessageEntity;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
-public class AppChatMessage implements ChatMessage<AppUser, AppChatbot> {
+public class AppChatMessage implements ChatMessageEntity<AppUser, AppChatbot> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

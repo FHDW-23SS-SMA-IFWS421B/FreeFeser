@@ -3,7 +3,7 @@ package de.fhdw.freefeser.api.database;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-public interface ChatMessage<U extends User, C extends Chatbot> {
+public interface ChatMessageEntity<U extends UserEntity, C extends ChatbotEntity> {
 
     UUID getId();
 

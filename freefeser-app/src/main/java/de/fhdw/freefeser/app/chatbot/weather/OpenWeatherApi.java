@@ -29,7 +29,6 @@ public class OpenWeatherApi implements WeatherApi {
         CompletableFuture<HttpResponse<String>> futureResponse = httpClient.sendAsync(httpRequest, HttpResponse.BodyHandlers.ofString());
 
         return futureResponse.thenApply(response -> {
-            System.out.println(response.body());
             return (WeatherResult) response;
         });
     }
@@ -50,7 +49,6 @@ public class OpenWeatherApi implements WeatherApi {
         CompletableFuture<HttpResponse<String>> futureResponse = httpClient.sendAsync(httpRequest, HttpResponse.BodyHandlers.ofString());
 
         return futureResponse.thenApply(response -> {
-            System.out.println(response.body());
             return (List<WeatherResult>) response;
         });
     }

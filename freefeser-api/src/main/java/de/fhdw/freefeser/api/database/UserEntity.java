@@ -2,7 +2,7 @@ package de.fhdw.freefeser.api.database;
 
 import java.util.UUID;
 
-public interface User {
+public interface UserEntity {
 
     UUID getId();
 

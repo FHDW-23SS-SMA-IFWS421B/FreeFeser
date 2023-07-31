@@ -1,7 +1,7 @@
 package de.fhdw.freefeser.app.databases.managers;
 
-import de.fhdw.freefeser.api.database.ChatMessage;
-import de.fhdw.freefeser.api.database.ChatMessageDatabaseManager;
+import de.fhdw.freefeser.api.database.ChatMessageEntity;
+import de.fhdw.freefeser.api.database.ChatMessageEntityDatabaseManager;
 import de.fhdw.freefeser.app.databases.entities.AppChatMessage;
 import de.fhdw.freefeser.app.databases.entities.AppChatbot;
 import de.fhdw.freefeser.app.databases.entities.AppUser;
@@ -15,12 +15,12 @@ import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
-public class AppChatMessageManager implements ChatMessageDatabaseManager<AppUser, AppChatbot> {
+public class AppChatMessageManager implements ChatMessageEntityDatabaseManager<AppUser, AppChatbot> {
 
     @Override
-    public CompletableFuture<List<ChatMessage<AppUser, AppChatbot>>> getAll() {
+    public CompletableFuture<List<ChatMessageEntity<AppUser, AppChatbot>>> getAll() {
         return CompletableFuture.supplyAsync(() -> {
-            List<ChatMessage<AppUser, AppChatbot>> chatMessageList = new ArrayList<>();
+            List<ChatMessageEntity<AppUser, AppChatbot>> chatMessageList = new ArrayList<>();
 
             try (Session session = HibernateUtil.getSessionFactory().openSession()) {
                 // Define the HQL query to select all chat messages and fetch related user and chatbot entities
@@ -43,7 +43,7 @@ public class AppChatMessageManager implements ChatMessageDatabaseManager<AppUser
     }
 
     @Override
-    public CompletableFuture<ChatMessage<AppUser, AppChatbot>> get(UUID id) {
+    public CompletableFuture<ChatMessageEntity<AppUser, AppChatbot>> get(UUID id) {
         return CompletableFuture.supplyAsync(() -> {
             AppChatMessage chatMessage = null;
             try (Session session = HibernateUtil.getSessionFactory().openSession()) {
@@ -51,14 +51,13 @@ public class AppChatMessageManager implements ChatMessageDatabaseManager<AppUser
                 chatMessage = session.get(AppChatMessage.class, id);
             } catch (Exception e) {
                 e.printStackTrace();
-                System.out.println("Hilfe ich weis nicht wie");
             }
             return chatMessage;
         });
     }
 
     @Override
-    public CompletableFuture<Void> update(ChatMessage<AppUser, AppChatbot> chatMessage) {
+    public CompletableFuture<Void> update(ChatMessageEntity<AppUser, AppChatbot> chatMessage) {
         return CompletableFuture.runAsync(() -> {
             try (Session session = HibernateUtil.getSessionFactory().openSession()) {
                 // Begin a new database transaction
@@ -76,7 +75,7 @@ public class AppChatMessageManager implements ChatMessageDatabaseManager<AppUser
     }
 
     @Override
-    public CompletableFuture<ChatMessage<AppUser, AppChatbot>> create(ChatMessage<AppUser, AppChatbot> entityWithoutId) {
+    public CompletableFuture<ChatMessageEntity<AppUser, AppChatbot>> create(ChatMessageEntity<AppUser, AppChatbot> entityWithoutId) {
         return CompletableFuture.supplyAsync(() -> {
             try (Session session = HibernateUtil.getSessionFactory().openSession()) {
                 // Begin a new database transaction

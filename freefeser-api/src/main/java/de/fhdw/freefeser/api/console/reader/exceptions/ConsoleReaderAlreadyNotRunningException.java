@@ -1,4 +1,4 @@
-package de.fhdw.freefeser.api.console.exceptions;
+package de.fhdw.freefeser.api.console.reader.exceptions;
 
 public class ConsoleReaderAlreadyNotRunningException extends ConsoleReaderException {
 

@@ -20,6 +20,11 @@ public class AppWeatherTextAnalyzer implements WeatherTextAnalyzer {
     }
 
     @Override
+    public String extractBot(String text) {
+        return null;
+    }
+
+    @Override
     public String extractLocation(String text) {
         // Create a new pipeline with annotation properties for the detected language
         Properties props = new Properties();

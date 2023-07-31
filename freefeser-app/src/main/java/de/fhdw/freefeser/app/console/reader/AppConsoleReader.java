@@ -1,9 +1,9 @@
-package de.fhdw.freefeser.app.console;
+package de.fhdw.freefeser.app.console.reader;
 
-import de.fhdw.freefeser.api.console.ConsoleReader;
-import de.fhdw.freefeser.api.console.ConsoleReaderCallback;
-import de.fhdw.freefeser.api.console.exceptions.ConsoleReaderAlreadyNotRunningException;
-import de.fhdw.freefeser.api.console.exceptions.ConsoleReaderAlreadyRunningException;
+import de.fhdw.freefeser.api.console.reader.ConsoleReader;
+import de.fhdw.freefeser.api.console.reader.ConsoleReaderCallback;
+import de.fhdw.freefeser.api.console.reader.exceptions.ConsoleReaderAlreadyNotRunningException;
+import de.fhdw.freefeser.api.console.reader.exceptions.ConsoleReaderAlreadyRunningException;
 
 import java.io.Console;
 import java.io.InputStream;
@@ -40,7 +40,6 @@ public class AppConsoleReader implements ConsoleReader {
         if(this.isRunning) {
             throw new ConsoleReaderAlreadyRunningException();
         }
-        Console console = System.console();
 
         this.isRunning = true;
         while (this.isRunning) {

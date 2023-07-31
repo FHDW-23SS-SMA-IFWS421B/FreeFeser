@@ -1,7 +1,7 @@
-package de.fhdw.freefeser.app.console.callbacks;
+package de.fhdw.freefeser.app.console.reader.callbacks;
 
-import de.fhdw.freefeser.api.console.ConsoleReader;
-import de.fhdw.freefeser.api.console.ConsoleReaderCallback;
+import de.fhdw.freefeser.api.console.reader.ConsoleReader;
+import de.fhdw.freefeser.api.console.reader.ConsoleReaderCallback;
 
 public abstract class AppConsoleReaderCallback implements ConsoleReaderCallback {
 

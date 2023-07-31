@@ -1,4 +1,4 @@
-package de.fhdw.freefeser.api.console.exceptions;
+package de.fhdw.freefeser.api.console.reader.exceptions;
 
 public class ConsoleReaderException extends Exception {
     public ConsoleReaderException(String message) {

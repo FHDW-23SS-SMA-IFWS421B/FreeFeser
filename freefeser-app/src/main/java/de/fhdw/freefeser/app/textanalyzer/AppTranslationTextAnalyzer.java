@@ -18,6 +18,11 @@ public class AppTranslationTextAnalyzer implements TranslationTextAnalyzer {
     }
 
     @Override
+    public String extractBot(String text) {
+        return null;
+    }
+
+    @Override
     public String extractTextToTranslate(String text) {
         return null;
     }

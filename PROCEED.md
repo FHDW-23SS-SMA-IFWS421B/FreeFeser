@@ -45,9 +45,11 @@
 ## ToDo's
 1. ~~Username muss unique~~  FLO
 2. Console anpassen ohne Debugs etc PHIL
-3. abstrakter ConsolePrinter PHIL
+3. ~~abstrakter ConsolePrinter PHIL~~
 4. bessere Messages PHIL
-5. GSON und HTTP Client abstrahieren PHIL
-6. TextAnalyzer ausbauen und Albo erklären wie geht diese FLO
-7. Command stuff weiter ausbauen PHIL
+5. GSON und HTTP Client abstrahieren FLO
+6. TextAnalyzer ausbauen und Albo erklären wie geht diese, in chatbotmanager+translationcommand anwenden FLO
+7. ~~Command stuff weiter ausbauen PHIL~~
 8. Bots implementieren
+9. Active command PHIL
+10. Config PHIL

@@ -32,6 +32,9 @@ public class FreeFeserApp {
         Chatbot translationBot = new TranslationAppChatbot(printer);
         chatbotManager.registerBot(translationBot);
 
+        //Chatot
+        //Register //@Todo ask for impl for new bot
+
         reader.start();
     }
 }

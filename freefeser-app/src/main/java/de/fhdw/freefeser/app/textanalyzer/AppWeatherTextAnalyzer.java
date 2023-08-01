@@ -1,13 +1,14 @@
 package de.fhdw.freefeser.app.textanalyzer;
 
 import de.fhdw.freefeser.api.textanalyzer.WeatherTextAnalyzer;
-import edu.stanford.nlp.pipeline.*;
-import edu.stanford.nlp.ling.*;
-import edu.stanford.nlp.ling.CoreAnnotations.*;
+import edu.stanford.nlp.ling.CoreAnnotations;
+import edu.stanford.nlp.pipeline.Annotation;
+import edu.stanford.nlp.pipeline.StanfordCoreNLP;
+import edu.stanford.nlp.util.CoreMap;
 
 import java.util.*;
 
-public class AppWeatherTextAnalyzer implements WeatherTextAnalyzer {
+public class AppWeatherTextAnalyzer extends AppTextAnalyzer implements WeatherTextAnalyzer {
 
     @Override
     public HashMap<String, String> analyze(String text) {
@@ -20,52 +21,35 @@ public class AppWeatherTextAnalyzer implements WeatherTextAnalyzer {
     }
 
     @Override
-    public String extractBot(String text) {
-        return null;
-    }
-
-    @Override
     public String extractLocation(String text) {
-        // Create a new pipeline with annotation properties for the detected language
+        // Set up Stanford NLP pipeline with the German NER annotator enabled.
         Properties props = new Properties();
-        props.setProperty("annotators", "tokenize, ssplit, pos, lemma, ner");
-
+        props.setProperty("annotators", "tokenize,ssplit,pos,lemma,ner");
+        props.setProperty("ner.model", "edu/stanford/nlp/models/ner/german.distsim.crf.ser.gz");
+        props.setProperty("ner.applyFineGrained", "false");
         StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
 
-        // Create a document from the text
-        CoreDocument document = new CoreDocument(text);
+        // Create an annotation object with the input text.
+        Annotation document = new Annotation(text);
 
-        // Annotate the document
+        // Process the text through the pipeline to annotate named entities.
         pipeline.annotate(document);
 
-        // Extract entities from the document
-        List<CoreEntityMention> entities = document.entityMentions();
+        // Extract the named entities tagged as locations.
+        List<CoreMap> sentences = document.get(CoreAnnotations.SentencesAnnotation.class);
+        String location = null;
 
-        // Look for recognized location entities and return the first one found
-        for (CoreEntityMention entity : entities) {
-            String nerTag = entity.entityType();
-            if (nerTag.equals("LOCATION")) {
-                // Return the location in lowercase for further use
-                return entity.text().toLowerCase();
-            }
-        }
-
-        // If no location entity is found, try using POS tagging
-        List<CoreSentence> sentences = document.sentences();
-        for (CoreSentence sentence : sentences) {
-            for (CoreLabel token : sentence.tokens()) {
-                String word = token.word().toLowerCase();
-                String posTag = token.get(PartOfSpeechAnnotation.class);
-                // Check if the token is a proper noun (NNP) or common noun (NN) and not a one-character word
-                if ((posTag.equals("NNP") || posTag.equals("NN")) && word.length() > 1) {
-                    // Return the location in lowercase for further use
-                    return word;
+        for (CoreMap sentence : sentences) {
+            for (CoreMap token : sentence.get(CoreAnnotations.TokensAnnotation.class)) {
+                String ner = token.get(CoreAnnotations.NamedEntityTagAnnotation.class);
+                if ("LOCATION".equals(ner)) { // "LOCATION" indicates a location entity in the German model
+                    location = token.get(CoreAnnotations.TextAnnotation.class);
+                    break; // Stop searching after finding the first location
                 }
             }
         }
 
-        // If still no location is found, return null
-        return null;
+        return location;
     }
 
     @Override

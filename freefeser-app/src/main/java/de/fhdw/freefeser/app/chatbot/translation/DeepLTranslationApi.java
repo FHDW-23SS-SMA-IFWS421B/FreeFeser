@@ -3,7 +3,6 @@ package de.fhdw.freefeser.app.chatbot.translation;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
-import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URLEncoder;
 import java.net.http.HttpClient;

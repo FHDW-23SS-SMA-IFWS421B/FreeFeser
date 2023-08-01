@@ -2,18 +2,29 @@ package de.fhdw.freefeser.app.chatbot;
 
 import de.fhdw.freefeser.api.bot.Chatbot;
 import de.fhdw.freefeser.api.bot.ChatbotManager;
+import de.fhdw.freefeser.api.console.printer.ConsolePrinter;
 import de.fhdw.freefeser.api.user.User;
-import de.fhdw.freefeser.api.user.UserManager;
+import de.fhdw.freefeser.app.textanalyzer.AppTranslationTextAnalyzer;
+import de.fhdw.freefeser.app.chatbot.translation.TranslationAppChatbot;
+import de.fhdw.freefeser.app.chatbot.weather.WeatherAppChatbot;
+import de.fhdw.freefeser.app.chatbot.wiki.WikiAppChatbot;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 
 public class AppChatbotManager implements ChatbotManager {
 
     private final Collection<Chatbot> bots;
+    private final TranslationAppChatbot translationAppChatbot;
+    private final WeatherAppChatbot weatherAppChatbot;
+    private final WikiAppChatbot wikiAppChatbot;
 
-    public AppChatbotManager() {
+    public AppChatbotManager(ConsolePrinter printer) {
         this.bots = new ArrayList<>();
+        this.translationAppChatbot = new TranslationAppChatbot(printer);
+        this.weatherAppChatbot = new WeatherAppChatbot(printer);
+        this.wikiAppChatbot = new WikiAppChatbot(printer);
     }
 
 
@@ -49,19 +60,38 @@ public class AppChatbotManager implements ChatbotManager {
         return extractedBot;
     }
 
-    private Chatbot extractBot(String firstPart) {
-        if(!firstPart.startsWith("@")) {
+    public Chatbot extractBot(String firstPart) {
+        if (!firstPart.startsWith("@")) {
             return null;
         }
 
         String botName = firstPart.substring(1);
 
-        for (Chatbot bot : bots) {
-            if(bot.getName().equalsIgnoreCase(botName)) {
-                return bot;
-            }
+        // take one textanalyzer instance that inherits the abstract class to call the extractBot()
+        AppTranslationTextAnalyzer textAnalyzer = new AppTranslationTextAnalyzer();
+        HashMap<String, String> selectedBot = textAnalyzer.analyze(botName);
+
+        String bot = selectedBot.get("Bot");
+        if (bot == null) {
+            return null;
         }
 
-        return null;
+        Chatbot selectedChatbot;
+        switch (bot) {
+            case "translationbot":
+                selectedChatbot = translationAppChatbot;
+                break;
+            case "weatherbot":
+                selectedChatbot = weatherAppChatbot;
+                break;
+            case "wikibot":
+                selectedChatbot = wikiAppChatbot;
+                break;
+            default:
+                return null; // Invalid bot selected
+        }
+
+        registerBot(selectedChatbot); // Register the selected chatbot
+        return selectedChatbot;
     }
 }

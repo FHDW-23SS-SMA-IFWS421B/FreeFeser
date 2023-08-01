@@ -19,7 +19,7 @@
     </appender>
 
     <!-- Loggers -->
-    <root level="DEBUG">
+    <root level="OFF">
         <appender-ref ref="CONSOLE" />
         <appender-ref ref="FILE" />
     </root>

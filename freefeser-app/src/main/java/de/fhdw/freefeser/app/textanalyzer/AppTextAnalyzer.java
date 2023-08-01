@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Properties;
 
-public class AppTextAnalyzer implements TextAnalyzer {
+public abstract class AppTextAnalyzer implements TextAnalyzer {
 
     @Override
     public HashMap<String, String> analyze(String text) {

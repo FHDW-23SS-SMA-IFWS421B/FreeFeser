@@ -69,29 +69,25 @@ public class AppChatbotManager implements ChatbotManager {
 
         // take one textanalyzer instance that inherits the abstract class to call the extractBot()
         AppTranslationTextAnalyzer textAnalyzer = new AppTranslationTextAnalyzer();
-        HashMap<String, String> selectedBot = textAnalyzer.analyze(botName);
+        HashMap<String, String> extractedBot = textAnalyzer.analyze(botName);
 
-        String bot = selectedBot.get("Bot");
-        if (bot == null) {
+        String selectedBot = extractedBot.get("Bot");
+        if (selectedBot == null) {
             return null;
         }
 
-        Chatbot selectedChatbot;
-        switch (bot) {
-            case "translationbot":
-                selectedChatbot = translationAppChatbot;
-                break;
-            case "weatherbot":
-                selectedChatbot = weatherAppChatbot;
-                break;
-            case "wikibot":
-                selectedChatbot = wikiAppChatbot;
-                break;
-            default:
-                return null; // Invalid bot selected
+        for (Chatbot bot : bots) {
+            if (bot.getName().equalsIgnoreCase(selectedBot)) {
+                if (bot instanceof TranslationAppChatbot) {
+                    return translationAppChatbot;
+                } else if (bot instanceof WeatherAppChatbot) {
+                    return weatherAppChatbot;
+                } else if (bot instanceof WikiAppChatbot) {
+                    return wikiAppChatbot;
+                }
+            }
         }
 
-        registerBot(selectedChatbot); // Register the selected chatbot
-        return selectedChatbot;
+        return null;
     }
 }

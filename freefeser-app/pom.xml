@@ -119,8 +119,15 @@
         <!-- Stanford CoreNLP models -->
         <dependency>
             <groupId>edu.stanford.nlp</groupId>
-            <artifactId>stanford-corenlp-models-german</artifactId>
+            <artifactId>stanford-corenlp</artifactId>
             <version>4.5.4</version>
+            <classifier>models</classifier>
+        </dependency>
+        <dependency>
+            <groupId>edu.stanford.nlp</groupId>
+            <artifactId>stanford-corenlp</artifactId>
+            <version>4.5.4</version>
+            <classifier>models-german</classifier>
         </dependency>
     </dependencies>
 </project>

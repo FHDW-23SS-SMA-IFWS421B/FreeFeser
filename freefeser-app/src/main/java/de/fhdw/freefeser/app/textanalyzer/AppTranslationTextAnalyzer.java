@@ -1,60 +1,57 @@
 package de.fhdw.freefeser.app.textanalyzer;
 
 import de.fhdw.freefeser.api.textanalyzer.TranslationTextAnalyzer;
-import edu.stanford.nlp.pipeline.*;
-import edu.stanford.nlp.ling.*;
-import edu.stanford.nlp.ling.CoreAnnotations.*;
 
 import java.util.HashMap;
-import java.util.List;
-import java.util.Properties;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-public class AppTranslationTextAnalyzer implements TranslationTextAnalyzer {
+public class AppTranslationTextAnalyzer extends AppTextAnalyzer implements TranslationTextAnalyzer {
 
     @Override
     public HashMap<String, String> analyze(String text) {
         HashMap<String, String> analysisResults = new HashMap<>();
+
+        analysisResults.put("TranslationText", extractTextToTranslate(text));
+        analysisResults.put("TargetLanguage", extractTargetLanguage(text));
+
         return analysisResults;
     }
 
     @Override
-    public String extractBot(String text) {
-        return null;
-    }
-
-    @Override
     public String extractTextToTranslate(String text) {
+        // Regular expression pattern to extract the text to translate.
+        // Assumes the format "Übersetze {direction} {targetLanguage}: {textToTranslate}".
+        // Example: "Übersetze ins DE: Ich love ducks."
+        //          "Übersetze auf ENG: Hallo"
+        String pattern = "Übersetze (ins|auf) (\\w+):\\s(.*)";
+        java.util.regex.Pattern regexPattern = java.util.regex.Pattern.compile(pattern);
+        java.util.regex.Matcher matcher = regexPattern.matcher(text);
+
+        if (matcher.find()) {
+            return matcher.group(3);
+        }
+
+        // Return null if the text to translate cannot be extracted.
         return null;
     }
 
 
     @Override
     public String extractTargetLanguage(String text) {
-        // Create a new pipeline with annotation properties for the detected language
-        Properties props = new Properties();
-        props.setProperty("annotators", "tokenize, ssplit, pos, lemma, ner");
+        // Regular expression pattern to extract the target language code.
+        // Assumes the format "Übersetze {direction} {targetLanguage}: ".
+        // Example: "Übersetze ins DE: Ich love ducks."
+        //          "Übersetze auf ENG: Hallo"
+        String pattern = "Übersetze (ins|auf) (\\w+):";
+        Pattern regexPattern = Pattern.compile(pattern);
+        Matcher matcher = regexPattern.matcher(text);
 
-        StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
-
-        // Create a document from the text
-        CoreDocument document = new CoreDocument(text);
-
-        // Annotate the document
-        pipeline.annotate(document);
-
-        // Extract entities from the document
-        List<CoreEntityMention> entities = document.entityMentions();
-
-        // Look for recognized language entities and return the first one found
-        for (CoreEntityMention entity : entities) {
-            String nerTag = entity.entityType();
-            if (nerTag.equals("LANGUAGE")) {
-                // Return the detected language in lowercase for further use
-                return entity.text().toLowerCase();
-            }
+        if (matcher.find()) {
+            return matcher.group(2);
         }
 
-        // If no language entity is found, return null
+        // Return null if the target language code cannot be extracted.
         return null;
     }
 }

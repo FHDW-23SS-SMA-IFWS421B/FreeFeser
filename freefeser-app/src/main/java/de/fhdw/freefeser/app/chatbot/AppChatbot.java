@@ -34,6 +34,6 @@ public abstract class AppChatbot implements Chatbot {
     @Override
     public void sendMessageOnBehalf(String message) {
         //@Todo formatter
-        printer.println("["+getName()+"] "+message);
+        printer.println("["+getName()+"] "+ message);
     }
 }

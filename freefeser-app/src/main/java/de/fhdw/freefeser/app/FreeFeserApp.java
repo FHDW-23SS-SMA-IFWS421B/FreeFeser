@@ -6,6 +6,8 @@ import de.fhdw.freefeser.api.console.printer.ConsolePrinter;
 import de.fhdw.freefeser.api.console.reader.ConsoleReader;
 import de.fhdw.freefeser.api.database.UserEntityDatabaseManager;
 import de.fhdw.freefeser.api.user.UserManager;
+import de.fhdw.freefeser.api.util.HttpClientWrapper;
+import de.fhdw.freefeser.api.util.JsonParser;
 import de.fhdw.freefeser.app.chatbot.AppChatbotManager;
 import de.fhdw.freefeser.app.chatbot.translation.TranslationAppChatbot;
 import de.fhdw.freefeser.app.chatbot.weather.WeatherAppChatbot;
@@ -16,24 +18,24 @@ import de.fhdw.freefeser.app.console.reader.callbacks.ChatbotManagerConsoleReade
 import de.fhdw.freefeser.app.console.reader.callbacks.LoginConsoleReaderCallback;
 import de.fhdw.freefeser.app.databases.managers.AppUserDatabaseManager;
 import de.fhdw.freefeser.app.user.AppUserManager;
-
-import java.util.HashMap;
+import de.fhdw.freefeser.app.util.GsonJsonParser;
+import de.fhdw.freefeser.app.util.JavaHttpClientWrapper;
 
 public class FreeFeserApp {
     public static void main(String[] args) throws Exception {
         ConsolePrinter printer = new AppConsolePrinter();
         ConsoleReader reader = new AppConsoleReader(System.in);
+        JsonParser jsonParser = new GsonJsonParser();
+        HttpClientWrapper httpClientWrapper = new JavaHttpClientWrapper();
 
-        ChatbotManager chatbotManager = new AppChatbotManager(printer);
+        ChatbotManager chatbotManager = new AppChatbotManager(printer, jsonParser, httpClientWrapper);
 
         UserEntityDatabaseManager userEntityDatabaseManager = new AppUserDatabaseManager();
 
-        UserManager userManager = new AppUserManager(userEntityDatabaseManager, printer, reader, userManagerInstance -> {
-            reader.addCallback(new ChatbotManagerConsoleReaderCallback(reader, chatbotManager, userManagerInstance));
-        });
+        UserManager userManager = new AppUserManager(userEntityDatabaseManager, printer, reader, userManagerInstance -> reader.addCallback(new ChatbotManagerConsoleReaderCallback(reader, chatbotManager, userManagerInstance)));
         reader.addCallback(new LoginConsoleReaderCallback(reader, printer, userManager));
 
-        Chatbot translationBot = new TranslationAppChatbot(printer);
+        Chatbot translationBot = new TranslationAppChatbot(printer, jsonParser, httpClientWrapper);
         Chatbot weatherBot = new WeatherAppChatbot(printer);
         Chatbot wikiBot = new WikiAppChatbot(printer);
         chatbotManager.registerBot(translationBot);

@@ -3,6 +3,8 @@ package de.fhdw.freefeser.app.chatbot;
 import de.fhdw.freefeser.api.bot.Chatbot;
 import de.fhdw.freefeser.api.bot.ChatbotManager;
 import de.fhdw.freefeser.api.console.printer.ConsolePrinter;
+import de.fhdw.freefeser.api.util.HttpClientWrapper;
+import de.fhdw.freefeser.api.util.JsonParser;
 import de.fhdw.freefeser.api.user.User;
 import de.fhdw.freefeser.app.textanalyzer.AppTranslationTextAnalyzer;
 import de.fhdw.freefeser.app.chatbot.translation.TranslationAppChatbot;
@@ -20,9 +22,9 @@ public class AppChatbotManager implements ChatbotManager {
     private final WeatherAppChatbot weatherAppChatbot;
     private final WikiAppChatbot wikiAppChatbot;
 
-    public AppChatbotManager(ConsolePrinter printer) {
+    public AppChatbotManager(ConsolePrinter printer, JsonParser jsonParser, HttpClientWrapper httpClientWrapper) {
         this.bots = new ArrayList<>();
-        this.translationAppChatbot = new TranslationAppChatbot(printer);
+        this.translationAppChatbot = new TranslationAppChatbot(printer, jsonParser, httpClientWrapper);
         this.weatherAppChatbot = new WeatherAppChatbot(printer);
         this.wikiAppChatbot = new WikiAppChatbot(printer);
     }

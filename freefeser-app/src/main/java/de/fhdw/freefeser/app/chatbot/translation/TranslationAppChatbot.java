@@ -3,6 +3,8 @@ package de.fhdw.freefeser.app.chatbot.translation;
 import de.fhdw.freefeser.api.console.printer.ConsolePrinter;
 import de.fhdw.freefeser.api.textanalyzer.TranslationTextAnalyzer;
 import de.fhdw.freefeser.api.user.User;
+import de.fhdw.freefeser.api.util.HttpClientWrapper;
+import de.fhdw.freefeser.api.util.JsonParser;
 import de.fhdw.freefeser.app.chatbot.AppChatbot;
 import de.fhdw.freefeser.app.textanalyzer.AppTranslationTextAnalyzer;
 
@@ -13,9 +15,9 @@ public class TranslationAppChatbot extends AppChatbot {
     private final TranslationApi translationApi;
     private final TranslationTextAnalyzer translationTextAnalyzer;
 
-    public TranslationAppChatbot(ConsolePrinter printer) {
+    public TranslationAppChatbot(ConsolePrinter printer, JsonParser jsonParser, HttpClientWrapper httpClientWrapper) {
         super(printer, "translationbot");
-        this.translationApi = new DeepLTranslationApi();
+        this.translationApi = new DeepLTranslationApi(jsonParser, httpClientWrapper);
         this.translationTextAnalyzer = new AppTranslationTextAnalyzer();
     }
 
@@ -25,6 +27,8 @@ public class TranslationAppChatbot extends AppChatbot {
         String targetLanguage = analysisResult.get("TargetLanguage");
         String translationText = analysisResult.get("TranslationText");
 
-        translationApi.translate(targetLanguage.toLowerCase(), translationText).thenAccept(result -> sendMessageOnBehalf("Die Übersetzung ist: " + result.getTranslation()));
+        translationApi.translate(targetLanguage.toLowerCase(), translationText)
+                .thenAccept(result -> sendMessageOnBehalf(
+                        "Die Übersetzung ist: " + result.getTranslation()));
     }
 }

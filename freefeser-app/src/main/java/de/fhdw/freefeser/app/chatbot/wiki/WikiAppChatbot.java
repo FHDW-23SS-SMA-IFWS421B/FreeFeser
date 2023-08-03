@@ -7,7 +7,6 @@ import de.fhdw.freefeser.app.chatbot.AppChatbot;
 import de.fhdw.freefeser.app.textanalyzer.AppWikiTextAnalyzer;
 
 import java.util.HashMap;
-import java.util.concurrent.ExecutionException;
 
 public class WikiAppChatbot extends AppChatbot {
 
@@ -25,11 +24,6 @@ public class WikiAppChatbot extends AppChatbot {
         HashMap<String, String> analysisResult = wikiTextAnalyzer.analyze(rawText);
         String keyword = analysisResult.get("SearchTerm");
 
-        // should we try catch here?
-        try {
-            wikiApi.search(keyword);
-        } catch (InterruptedException | ExecutionException e) {
-            throw new RuntimeException(e);
-        }
+        wikiApi.search(keyword).thenAccept(result -> sendMessageOnBehalf("Folgende Informationen habe ich zu " + keyword));
     }
 }

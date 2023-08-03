@@ -73,6 +73,6 @@ public class AppWikiTextAnalyzer extends AppTextAnalyzer implements WikiTextAnal
         }
 
         // Combine all search terms into a single string and return.
-        return String.join(", ", searchTerms);
+        return String.join("_", searchTerms);
     }
 }

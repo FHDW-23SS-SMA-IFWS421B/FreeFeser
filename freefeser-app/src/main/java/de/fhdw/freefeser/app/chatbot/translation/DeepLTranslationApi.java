@@ -4,7 +4,7 @@ import com.google.gson.JsonObject;
 import de.fhdw.freefeser.api.util.HttpClientWrapper;
 import de.fhdw.freefeser.api.util.JsonParser;
 import de.fhdw.freefeser.api.util.YamlParser;
-import de.fhdw.freefeser.api.util.ApiCredentials;
+import de.fhdw.freefeser.app.util.Credentials;
 import de.fhdw.freefeser.app.util.YamlApiCredentials;
 
 import java.net.URI;
@@ -25,8 +25,8 @@ public class DeepLTranslationApi implements TranslationApi {
         this.httpClientWrapper = httpClientWrapper;
 
         // Create and configure the YamlApiCredentials instance
-        ApiCredentials apiCredentials = new YamlApiCredentials(yamlParser, filePath);
-        apiKey = apiCredentials.getApiKey();
+        YamlApiCredentials yamlApiCredentials = new YamlApiCredentials(yamlParser, filePath, Credentials::getDeeplApiKey);
+        apiKey = yamlApiCredentials.getApiKey();
     }
 
     @Override

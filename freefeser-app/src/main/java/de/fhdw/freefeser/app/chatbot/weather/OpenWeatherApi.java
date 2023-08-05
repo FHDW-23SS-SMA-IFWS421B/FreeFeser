@@ -1,6 +1,9 @@
 package de.fhdw.freefeser.app.chatbot.weather;
 
 import com.google.gson.Gson;
+import de.fhdw.freefeser.api.util.YamlParser;
+import de.fhdw.freefeser.app.util.Credentials;
+import de.fhdw.freefeser.app.util.YamlApiCredentials;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -11,11 +14,17 @@ import java.util.concurrent.CompletableFuture;
 
 public class OpenWeatherApi implements WeatherApi {
     private final Gson gson = new Gson();
+    private final String apiKey;
+
+    public OpenWeatherApi(YamlParser yamlParser, String filePath) {
+        // Create and configure the YamlApiCredentials instance
+        YamlApiCredentials yamlApiCredentials = new YamlApiCredentials(yamlParser, filePath, Credentials::getWeatherApiKey);
+        apiKey = yamlApiCredentials.getApiKey();
+    }
 
     @Override
     public CompletableFuture<WeatherResult> getCurrentWeather(String location) {
         String endpoint = "https://api.openweathermap.org/data/2.5/weather";
-        String apiKey = "35ff219a2bddf423ebdca8a86cee38dd";
         String params = "?q=" + location + "&appid=" + apiKey;
         String url = endpoint + params;
 
@@ -33,6 +42,7 @@ public class OpenWeatherApi implements WeatherApi {
         // The implementation for forecast weather is similar to getCurrentWeather.
         // However, OpenWeatherMap API returns a single WeatherResult for forecast, not a list.
         // For simplicity, we'll return a CompletableFuture with a list containing a single WeatherResult.
+        // TODO: research how to get weather forecast in openweather 2.5
         return getCurrentWeather(location).thenApply(List::of);
     }
 }

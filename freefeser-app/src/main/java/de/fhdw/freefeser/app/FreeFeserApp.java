@@ -8,6 +8,7 @@ import de.fhdw.freefeser.api.database.UserEntityDatabaseManager;
 import de.fhdw.freefeser.api.user.UserManager;
 import de.fhdw.freefeser.api.util.HttpClientWrapper;
 import de.fhdw.freefeser.api.util.JsonParser;
+import de.fhdw.freefeser.api.util.YamlParser;
 import de.fhdw.freefeser.app.chatbot.AppChatbotManager;
 import de.fhdw.freefeser.app.chatbot.translation.TranslationAppChatbot;
 import de.fhdw.freefeser.app.chatbot.weather.WeatherAppChatbot;
@@ -20,30 +21,34 @@ import de.fhdw.freefeser.app.databases.managers.AppUserDatabaseManager;
 import de.fhdw.freefeser.app.user.AppUserManager;
 import de.fhdw.freefeser.app.util.GsonJsonParser;
 import de.fhdw.freefeser.app.util.JavaHttpClientWrapper;
+import de.fhdw.freefeser.app.util.SnakeYamlParser;
 
 public class FreeFeserApp {
     public static void main(String[] args) throws Exception {
+        String filePath = "./credentials.yaml";
         ConsolePrinter printer = new AppConsolePrinter();
         ConsoleReader reader = new AppConsoleReader(System.in);
         JsonParser jsonParser = new GsonJsonParser();
+        YamlParser yamlParser = new SnakeYamlParser();
         HttpClientWrapper httpClientWrapper = new JavaHttpClientWrapper();
 
-        ChatbotManager chatbotManager = new AppChatbotManager(printer, jsonParser, httpClientWrapper);
+        ChatbotManager chatbotManager = new AppChatbotManager(printer, jsonParser, httpClientWrapper, yamlParser, filePath);
 
         UserEntityDatabaseManager userEntityDatabaseManager = new AppUserDatabaseManager();
 
         UserManager userManager = new AppUserManager(userEntityDatabaseManager, printer, reader, userManagerInstance -> reader.addCallback(new ChatbotManagerConsoleReaderCallback(reader, chatbotManager, userManagerInstance)));
         reader.addCallback(new LoginConsoleReaderCallback(reader, printer, userManager));
 
-        Chatbot translationBot = new TranslationAppChatbot(printer, jsonParser, httpClientWrapper);
+        Chatbot translationBot = new TranslationAppChatbot(printer, jsonParser, httpClientWrapper, yamlParser, filePath);
         Chatbot weatherBot = new WeatherAppChatbot(printer);
         Chatbot wikiBot = new WikiAppChatbot(printer);
         chatbotManager.registerBot(translationBot);
         chatbotManager.registerBot(weatherBot);
         chatbotManager.registerBot(wikiBot);
 
-        //Chatot
-        //Register //@Todo ask for impl for new bot
+        // in der Main Auswechseln der GUI oder Bots etc ermöglichen
+        // Chatbot
+        // Register //@Todo ask for impl for new bot
 
         reader.start();
     }

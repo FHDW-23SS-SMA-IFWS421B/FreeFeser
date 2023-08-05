@@ -3,6 +3,9 @@ package de.fhdw.freefeser.app.chatbot.translation;
 import com.google.gson.JsonObject;
 import de.fhdw.freefeser.api.util.HttpClientWrapper;
 import de.fhdw.freefeser.api.util.JsonParser;
+import de.fhdw.freefeser.api.util.YamlParser;
+import de.fhdw.freefeser.api.util.ApiCredentials;
+import de.fhdw.freefeser.app.util.YamlApiCredentials;
 
 import java.net.URI;
 import java.net.URLEncoder;
@@ -13,21 +16,24 @@ import java.util.concurrent.CompletableFuture;
 
 public class DeepLTranslationApi implements TranslationApi {
 
-
     private final JsonParser jsonParser;
     private final HttpClientWrapper httpClientWrapper;
+    private final String apiKey;
 
-    public DeepLTranslationApi(JsonParser jsonParser, HttpClientWrapper httpClientWrapper) {
+    public DeepLTranslationApi(JsonParser jsonParser, HttpClientWrapper httpClientWrapper, YamlParser yamlParser, String filePath) {
         this.jsonParser = jsonParser;
         this.httpClientWrapper = httpClientWrapper;
+
+        // Create and configure the YamlApiCredentials instance
+        ApiCredentials apiCredentials = new YamlApiCredentials(yamlParser, filePath);
+        apiKey = apiCredentials.getApiKey();
     }
 
     @Override
     public CompletableFuture<TranslationResult> translate(String targetLanguage, String value) {
         String endpoint = "https://api-free.deepl.com/v2/translate";
-        String apiKey = "3f881fa8-df8f-647c-9658-5cdf3e8f85ac:fx";
-        String params = "auth_key=" + apiKey + "&text=" + URLEncoder.encode(value, StandardCharsets.UTF_8) + "&target_lang=" + targetLanguage;
 
+        String params = "auth_key=" + apiKey + "&text=" + URLEncoder.encode(value, StandardCharsets.UTF_8) + "&target_lang=" + targetLanguage;
         String url = endpoint + "?" + params;
 
         HttpRequest httpRequest = HttpRequest

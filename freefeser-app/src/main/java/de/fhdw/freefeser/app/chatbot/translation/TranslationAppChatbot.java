@@ -5,6 +5,7 @@ import de.fhdw.freefeser.api.textanalyzer.TranslationTextAnalyzer;
 import de.fhdw.freefeser.api.user.User;
 import de.fhdw.freefeser.api.util.HttpClientWrapper;
 import de.fhdw.freefeser.api.util.JsonParser;
+import de.fhdw.freefeser.api.util.YamlParser;
 import de.fhdw.freefeser.app.chatbot.AppChatbot;
 import de.fhdw.freefeser.app.textanalyzer.AppTranslationTextAnalyzer;
 
@@ -15,9 +16,9 @@ public class TranslationAppChatbot extends AppChatbot {
     private final TranslationApi translationApi;
     private final TranslationTextAnalyzer translationTextAnalyzer;
 
-    public TranslationAppChatbot(ConsolePrinter printer, JsonParser jsonParser, HttpClientWrapper httpClientWrapper) {
+    public TranslationAppChatbot(ConsolePrinter printer, JsonParser jsonParser, HttpClientWrapper httpClientWrapper, YamlParser yamlParser, String filePath) {
         super(printer, "translationbot");
-        this.translationApi = new DeepLTranslationApi(jsonParser, httpClientWrapper);
+        this.translationApi = new DeepLTranslationApi(jsonParser, httpClientWrapper, yamlParser, filePath);
         this.translationTextAnalyzer = new AppTranslationTextAnalyzer();
     }
 

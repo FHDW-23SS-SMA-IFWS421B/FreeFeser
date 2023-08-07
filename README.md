@@ -1,111 +1,98 @@
 # FreeFeser
 
-### Layout
+# Einführung
 
-Generated using [DbSchema](https://dbschema.com)
+Ein kurzer Überblick über die Ziele der Software und deren Funktionsumfang.
 
-![img](images/Layout.svg)
+## Übersicht / Struktur der Dokumentation
 
-## Tables
+Übersicht über die Struktur der Dokumentation mit Verweisen auf andere Bereiche und Dokumente.
 
-1. [AvailableBot](#availablebot) 2. [BotMessage](#table-botmessage)
-   3. [Chatbot](#table-chatbot) 4. [ChatMessage](#table-chatmessage)
-   5. [User](#table-user)
+## Systemdokumentation
 
-### AvailableBot
+Eine Beschreibung der internen Arbeitsweise der Software, einschließlich der Schnittstellen und APIs Beschreibung der Code-Architektur und -Struktur
 
-|             |          |         |
-|-------------|----------|---------|
-| * &#128273; | id       | serial  |
-| * &#11016;  | bot\_id  | integer |
-| * &#11016;  | user\_id | integer |
-| *           | enabled  | boolean |
+### Allgemeines
 
-##### Indexes
+* Beschreibung der wichtigsten Qualitätsanforderungen an die Software, einschließlich Leistung, Sicherheit, Verfügbarkeit, Wartbarkeit und Skalierbarkeit.
+* Beschreibung der wichtigsten funktionalen und nicht funktionalen Anforderungen an die Software.
+* Beschreibung der wichtigsten Randbedingungen für die Entwicklung und Implementierung der Software.
+* Beschreibung der wichtigsten Architekturentscheidungen, die getroffen wurden.
+* Beschreibung der wichtigsten Komponenten der Softwarearchitektur.
+* Beschreibung der wichtigsten Schnittstellen der Software.
+* Beschreibung der wichtigsten Abhängigkeiten der Software.
 
-|           |                  |       |
-|-----------|------------------|-------|
-| &#128273; | pk\_availablebot | ON id |
+### Kontextabgrenzung
 
-##### Foreign Keys
+* Beschreibung des Systems, an dem gearbeitet wird, im Kontext von externen Kommunikationspartnern (Nachbarsystemen und Benutzern).
+* Beschreibung der externen Schnittstellen des Systems aus Sicht des Geschäfts (immer) und aus Sicht der Technologie (optional).
 
-|  |    |                                                |
-|--|----|------------------------------------------------|
-|  | fk | ( bot\_id ) ref [Chatbot](#table-chatbot) (id) |
-|  | fk | ( user\_id ) ref [User](#table-user) (id)      |
+### Lösungsstrategie
 
-### Table BotMessage
+* Beschreibung der grundlegenden Entscheidungen und Lösungsansätze, die Entwurf und Implementierung des Systems prägen.
+* Beschreibung der wichtigsten Technologieentscheidungen, die getroffen wurden.
+* Beschreibung der wichtigsten organisatorischen Entscheidungen, die getroffen wurden.
 
-|             |              |           |
-|-------------|--------------|-----------|
-| * &#128273; | id           | serial    |
-| * &#11016;  | sender\_id   | integer   |
-| * &#11016;  | receiver\_id | integer   |
-| *           | message      | text      |
-| *           | timestamp    | timestamp |
+### Bausteinsicht
 
-##### Indexes
+* Beschreibung der statischen Struktur des Systems.
+* Beschreibung der Hierarchie der „White-Boxes“ (die wiederum kleinere Black-Boxes enthalten), bis zu einem angemessenen Detaillierungsgrad.
 
-|           |                |       |
-|-----------|----------------|-------|
-| &#128273; | pk\_botmessage | ON id |
+### Laufzeitsichten
 
-##### Foreign Keys
+* Beschreibung des Verhaltens der Bausteine in Form von dynamischen Szenarien, die die wichtigsten Prozesse oder Features abdecken, Interaktionen an kritischen externen Schnittstellen oder „interessante“ interne Abläufe und kritische Ausnahme- oder Fehlerfälle.
 
-|  |    |                                                   |
-|--|----|---------------------------------------------------|
-|  | fk | ( sender\_id ) ref [Chatbot](#table-chatbot) (id) |
-|  | fk | ( receiver\_id ) ref [User](#table-user) (id)     |
+### Infrastruktursicht
 
-### Table ChatMessage
+* Beschreibung der technischen Infrastruktur mit Prozessoren, Systemtopologie und der Abbildung der Softwarebausteine auf diese Infrastruktur.
 
-|             |              |           |
-|-------------|--------------|-----------|
-| * &#128273; | id           | serial    |
-| * &#11016;  | sender\_id   | integer   |
-| * &#11016;  | receiver\_id | integer   |
-| *           | message      | text      |
-| *           | timestamp    | timestamp |
+### Querschnittliche Konzepte
 
-##### Indexes
+* Beschreibung der übergeordneten, allgemeinen Prinzipien und Lösungsansätze, die in vielen Teilen der Architektur einheitlich verwendet werden.
+* Beschreibung der Konzepte, die sich oft auf mehrere Bausteine beziehen.
+* Beschreibung der Regeln zur Nutzung bestimmter Technologiestacks.
 
-|           |                 |       |
-|-----------|-----------------|-------|
-| &#128273; | pk\_chatmessage | ON id |
+### Schnittstellen
 
-##### Foreign Keys
+* Beschreibung der Schnittstellen, über die das System mit anderen Systemen kommuniziert.
+* Beschreibung der Definition und Beschreibung dieser Schnittstellen.
 
-|  |    |                                               |
-|--|----|-----------------------------------------------|
-|  | fk | ( sender\_id ) ref [User](#table-user) (id)   |
-|  | fk | ( receiver\_id ) ref [User](#table-user) (id) |
+### Risiken und technische Schulden
 
-### Table Chatbot
+* Beschreibung der bekannten Risiken und angehäuften technischen Schulden.
+* Beschreibung der potenziellen Probleme, die im und um das System lauern.
+* Beschreibung der Schwächen, die sich die Entwicklungsteams beklagen.
 
-|                       |         |             |
-|-----------------------|---------|-------------|
-| * &#128273;  &#11019; | id      | serial      |
-| * &#128269;           | name    | varchar(50) |
-| *                     | enabled | boolean     |
+### Erweiterungen
 
-##### Indexes
+* Anweisungen zum Erstellen von Erweiterungen oder zur Anpassung der Software.
+* Beschreibung des neuen Chatbots.
 
-|           |                    |         |
-|-----------|--------------------|---------|
-| &#128273; | pk\_chatbot        | ON id   |
-| &#128269; | unq\_chatbot\_name | ON name |
+### Fehlerbehebung
 
-### Table User
+* Eine Liste der häufigsten Fehler, die während der Verwendung der Software auftreten können, und wie man sie behebt.
 
-|                       |          |              |
-|-----------------------|----------|--------------|
-| * &#128273;  &#11019; | id       | serial       |
-| * &#128269;           | username | varchar(50)  |
-| *                     | password | varchar(255) |
+### Installationsanleitung
 
-##### Indexes
+* Eine Schritt-für-Schritt-Anleitung zur Installation der Software.
+* Beschreibung der Anforderungen an die Systemumgebung.
+* Beschreibung der Voraussetzungen für die Installation.
 
-|           |                     |             |
-|-----------|---------------------|-------------|
-| &#128273; | pk\_user            | ON id       |
-| &#128269; | unq\_user\_username | ON username |
+### Konfiguration
+
+* Beschreibung der Konfigurationsoptionen der Software.
+* Beschreibung der Auswirkungen der Konfiguration auf die Funktionalität.
+
+## Bot-Dokumentation (Erweiterungen)
+
+Jeder Chatbot soll eine eigene, kleine Dokumentation über den Aufbau/Struktur des Chatbot-Systems darstellen.
+
+Jede Chatbot-Dokumentation folgt dabei einer kleinen Systemdokumentation mit folgenden Punkten:
+
+* Kontextabgrenzung
+* Lösungsstrategie
+* Bausteinsicht
+* Laufzeitsicht
+* Schnittstellen
+
+Je nach Ansatz sind noch weitere Punkte wichtig.

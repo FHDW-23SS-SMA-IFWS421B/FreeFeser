@@ -32,7 +32,7 @@ Fachlichter Kontext
 Festlegung aller Kommunikationsbeziehungen (Nutzer, IT-Systeme, …) mit Erklärung der fachlichen Ein- und Ausgabedaten oder Schnittstellen. Zusätzlich (bei Bedarf) fachliche Datenformate oder Protokolle der Kommunikation mit den Nachbarsystemen.
 
 Motivation
-Alle Beteiligten müssen verstehen, welche fachlichen Informationen mit der Umwelt ausgetauscht werdenw.
+Alle Beteiligten müssen verstehen, welche fachlichen Informationen mit der Umwelt ausgetauscht werden.
 
 Form
 Alle Diagrammarten, die das System als Blackbox darstellen und die fachlichen Schnittstellen zu den Nachbarsystemen beschreiben. Alternativ oder ergänzend können Sie eine Tabelle verwenden. Der Titel gibt den Namen Ihres Systems wieder; die drei Spalten sind: Kommunikationsbeziehung, Eingabe, Ausgabe.
@@ -157,3 +157,7 @@ Je nach Ansatz sind noch weitere Punkte wichtig.
 ### WeatherBot
 
 ### WikiBot
+
+## weitere Schritte
+1. OpenWeather-API für Forecast implementieren/einbinden
+2. Unit-/Integration-Tests schreiben

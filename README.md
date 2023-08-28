@@ -163,9 +163,44 @@ Als Erweiterung ist hier ein neuer Chatbot zu sehen.
 Eine Liste der häufigsten Fehler, die während der Verwendung der Software auftreten können, und wie man sie behebt.
 
 ### Installationsanleitung
-Eine Schritt-für-Schritt-Anleitung zur Installation der Software
-Anforderungen an die Systemumgebung
-Voraussetzungen für die Installation
+Folgen Sie diesen Schritten, um unsere Software auf Ihrem System zu installieren und auszuführen.
+
+1. **Repository klonen**  
+   Öffnen Sie Ihr Terminal und führen Sie den folgenden Befehl aus, um das GitHub-Repository zu klonen:
+
+    ```
+    git clone https://github.com/FHDW-23SS-SMA-IFWS421B/FreeFeser.git
+    ```
+
+2. **Maven-Abhängigkeiten installieren**  
+   a. Navigieren Sie in das geklonte Verzeichnis:
+    ```
+    cd FreeFeser
+    ```  
+   b. Führen Sie den folgenden Befehl aus, um die Maven-Abhängigkeiten zu installieren:  
+    ```
+    mvn install
+    ``` 
+
+3. **Java-JAR ausführen**  
+   a. Navigieren Sie zum `target`-Verzeichnis:  
+    ```
+    cd target
+    ```
+
+   b. Führen Sie die Java-JAR-Datei aus:  
+    ```
+    java -jar freefeser-app-1.0-SNAPSHOT.jar
+    ```
+   
+4. **Verwendung einer IDE**  
+   a. Öffnen Sie Ihre bevorzugte Java-IDE.  
+   b. Importieren Sie das geklonte Verzeichnis als Projekt.  
+   c. Finden Sie die `Main`-Klasse und führen Sie sie in der IDE aus.
+
+Bitte beachten Sie, dass eine detaillierte [Java/Maven-Installationsanleitung](documentation/JAVA.md) im Repository vorhanden ist. Diese enthält spezifische Anweisungen für die Java- sowie Maven-Installation.
+
+**Hinweis:** Stellen Sie sicher, dass Sie eine gültige Java-Version auf Ihrem System haben, um die Software erfolgreich auszuführen.
 
 ### Konfiguration
 Eine Beschreibung der Konfigurationsoptionen der Software

@@ -69,6 +69,7 @@ Das System verwendet HTTP, um Anfragen an die externen APIs zu senden und Antwor
 - Datenbankverbindung:
 Das System nutzt Hibernate, um auf die eingebettete H2-Datenbank zuzugreifen. Dies ermöglicht das Speichern und Abrufen von Chatverläufen und Nutzerinformationen.
 
+#### Visualisierung
 Das zugehörige Diagramm:
 
 ![Kontextdiagramm](documentation/context_diagram.svg)

@@ -33,7 +33,7 @@ Bevor Sie beginnen, stellen Sie sicher, dass Sie über Administratorrechte (unte
 
 #### Installation unter Windows
 1. **Besuchen Sie die offizielle Java-Website**:  
-Gehen Sie zu [java.com](https://www.java.com) in Ihrem Webbrowser.
+Besuchen Sie die [Java-Website](https://www.java.com) in Ihrem Webbrowser.
 
 2. **Laden Sie das Java-Installationsprogramm herunter**:  
    Auf der Java-Website wird Ihnen ein Download-Button angezeigt. Klicken Sie darauf, um das Java-Installationsprogramm herunterzuladen.

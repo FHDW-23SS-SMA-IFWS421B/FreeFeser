@@ -19,32 +19,61 @@ Unser Chatbot-Basissystem entstand aus der Begeisterung für Chatbots und der Vi
 Die Kernfunktionen unseres Chatbot-Basissystems umfassen die Unterstützung der Laufzeitumgebung für Chatbots, die einfache Integration neuer Chatbots und die reibungslose Kommunikation mit externen Systemen über die Chatbot-Schnittstellen.
 
 ### Kontextabgrenzung
-Grenzt das System, an dem Sie arbeiten, von externen Kommunikationspartnern (Nachbarsystemen und Benutzern) ab. Zeigt die externen Schnittstellen aus Sicht des Business (immer) und aus Sicht der Technologie (optional)
+Die Kontextabgrenzung definiert die Schnittstellen und Kommunikationspartner im Rahmen des Chatbotsystems. Dies umfasst sowohl die Interaktionen mit externen Systemen als auch die Benutzerschnittstellen.
 
-Motivation
-Die fachlichen und technischen Schnittstellen zur Kommunikation gehören zu den kritischsten Aspekten eines Systems. Stellen Sie sicher, dass Sie diese komplett verstanden haben.
+#### Fachlicher Kontext
+Der fachliche Kontext des Chatbotsystems umfasst die Interaktionen zwischen dem Nutzer, den externen APIs und der internen Datenbank.
 
-Form
-Verschiedene Optionen:
-Diverse Kontextdiagramme
-Listen von Kommunikationsbeziehungen mit deren Schnittstellen
-Fachlichter Kontext
-Festlegung aller Kommunikationsbeziehungen (Nutzer, IT-Systeme, …) mit Erklärung der fachlichen Ein- und Ausgabedaten oder Schnittstellen. Zusätzlich (bei Bedarf) fachliche Datenformate oder Protokolle der Kommunikation mit den Nachbarsystemen.
+**Externe Kommunikationspartner**  
 
-Motivation
-Alle Beteiligten müssen verstehen, welche fachlichen Informationen mit der Umwelt ausgetauscht werden.
+Die externen Kommunikationspartner des Systems sind:
 
-Form
-Alle Diagrammarten, die das System als Blackbox darstellen und die fachlichen Schnittstellen zu den Nachbarsystemen beschreiben. Alternativ oder ergänzend können Sie eine Tabelle verwenden. Der Titel gibt den Namen Ihres Systems wieder; die drei Spalten sind: Kommunikationsbeziehung, Eingabe, Ausgabe.
+- REST-APIs (Deepl, Wikipedia, Openweather):
+Das System interagiert mit verschiedenen externen APIs, um auf Benutzeranfragen zu reagieren. Es sendet Anfragen an die APIs und verarbeitet die empfangenen Antworten, um die gewünschten Informationen bereitzustellen.
 
-Technischer Kontext
-Technische Schnittstellen (Kanäle, Übertragungsmedien) zwischen dem System und seiner Umwelt. Zusätzlich eine Erklärung (mapping), welche fachlichen Ein- und Ausgaben über welche technischen Kanäle fließen.
+- Datenbank (H2 embedded DB):
+Die Datenbank speichert den Chatverlauf und Nutzerinformationen. Das System verwendet Hibernate, um die Kommunikation zwischen der Anwendung und der Datenbank zu verwalten.
 
-Motivation
-Viele Stakeholder treffen Architekturentscheidungen auf Basis der technischen Schnittstellen des Systems zu seinem Kontext. Insbesondere bei der Entwicklung von Infrastruktur oder Hardware sind diese technischen Schnittstellen durchaus entscheidend.
+- Endnutzer: 
+Die Schnittstelle zwischen dem System und dem Endnutzer ist das Terminal. Der Nutzer gibt Anfragen über das Terminal ein, und das System sendet die entsprechenden Anfragen an die APIs.
 
-Form
-Beispielsweise UML Deployment-Diagramme mit den Kanälen zu Nachbarsystemen, begleitet von einer Tabelle, die Kanäle auf Ein-/Ausgaben abbildet.
+**Fachliche Schnittstellen**  
+
+Die fachlichen Schnittstellen bestehen aus:
+
+- Nutzereingabe: 
+Die Nutzereingabe erfolgt über das Terminal. Der Nutzer gibt Anfragen in Textform ein.
+
+- Systemausgabe:
+Das System gibt Antworten und Informationen in Textform über das Terminal aus.
+
+- HTTP-Anfragen und -Antworten:
+Das System sendet HTTP-Anfragen an die externen APIs und empfängt HTTP-Antworten, die verarbeitet werden, um die gewünschten Informationen zu extrahieren.
+
+- Datenbankzugriff:
+Das System verwendet Hibernate, um auf die H2-Datenbank zuzugreifen. Es speichert Chatnachrichten und Nutzerdaten in der Datenbank.
+
+#### Technischer Kontext
+Der technische Kontext des Systems beschreibt die technischen Schnittstellen und Kanäle zwischen den Komponenten.
+
+**Technische Schnittstellen**  
+
+Die technischen Schnittstellen umfassen:
+
+- Terminal:
+Das Terminal dient als Schnittstelle zwischen dem Endnutzer und dem System. Es ermöglicht die Eingabe von Anfragen und die Anzeige von Antworten.
+
+- HTTP-Verbindungen:
+Das System verwendet HTTP, um Anfragen an die externen APIs zu senden und Antworten zu empfangen. Dies erfolgt über die entsprechenden Endpunkte der APIs.
+
+- Datenbankverbindung:
+Das System nutzt Hibernate, um auf die eingebettete H2-Datenbank zuzugreifen. Dies ermöglicht das Speichern und Abrufen von Chatverläufen und Nutzerinformationen.
+
+Das zugehörige Diagramm:
+![Kontextdiagramm](documentation/context_diagram.svg)
+
+#### Zusammenfassung
+Die Kontextabgrenzung des Chatbotsystems zeigt die wesentlichen Schnittstellen und Kommunikationspartner auf fachlicher und technischer Ebene. Sie legt die Grundlage für das Verständnis der Interaktionen und bildet die Grundlage für die weiterführende Entwicklung und Integration.
 
 ### Lösungsstrategie
 Kurzer Überblick über die grundlegenden Entscheidungen und Lösungsansätze, die Entwurf und Implementierung des Systems prägen. Hierzu gehören:

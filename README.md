@@ -31,7 +31,7 @@ Die externen Kommunikationspartner des Systems sind:
 - REST-APIs (Deepl, Wikipedia, Openweather):
 Das System interagiert mit verschiedenen externen APIs, um auf Benutzeranfragen zu reagieren. Es sendet Anfragen an die APIs und verarbeitet die empfangenen Antworten, um die gewünschten Informationen bereitzustellen.
 
-- Datenbank (H2 embedded DB):
+- Datenbank:
 Die Datenbank speichert den Chatverlauf und Nutzerinformationen. Das System verwendet Hibernate, um die Kommunikation zwischen der Anwendung und der Datenbank zu verwalten.
 
 - Endnutzer: 
@@ -70,7 +70,7 @@ Das System verwendet HTTP, um Anfragen an die externen APIs zu senden und Antwor
 Das System nutzt Hibernate, um auf die eingebettete H2-Datenbank zuzugreifen. Dies ermöglicht das Speichern und Abrufen von Chatverläufen und Nutzerinformationen.
 
 #### Visualisierung
-Das zugehörige Diagramm:
+Das zugehörige Kontextdiagramm:
 
 ![Kontextdiagramm](documentation/context_diagram.svg)
 

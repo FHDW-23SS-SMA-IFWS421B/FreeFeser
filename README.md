@@ -4,6 +4,33 @@
 * Marvin Bendix Kühne
 * Florian Reckow
 
+## Inhaltsverzeichnis
+- [Systemdokumentation](#systemdokumentation)
+   - [Einleitung](#einleitung)
+      - [Zweck der Dokumentation](#zweck-der-dokumentation)
+      - [Kontext des Chatbot-Basissystems](#kontext-des-chatbot-basissystems)
+   - [Kontextabgrenzung](#kontextabgrenzung)
+      - [Fachlicher Kontext](#fachlicher-kontext)
+      - [Technischer Kontext](#technischer-kontext)
+      - [Visualisierung](#visualisierung)
+      - [Zusammenfassung](#zusammenfassung)
+   - [Lösungsstrategie](#lösungsstrategie)
+   - [Bausteinsicht](#bausteinsicht)
+   - [Laufzeitsichten](#laufzeitsichten)
+   - [Infrastruktursicht](#infrastruktursicht)
+   - [Querschnittliche Konzepte](#querschnittliche-konzepte)
+   - [Schnittstellen](#schnittstellen)
+   - [Risiken und technische Schulden](#risiken-und-technische-schulden)
+   - [Erweiterungen](#erweiterungen)
+   - [Fehlerbehebung](#fehlerbehebung)
+   - [Installationsanleitung](#installationsanleitung)
+   - [Konfiguration](#konfiguration)
+- [Bot-Dokumentation (Erweiterungen)](#bot-dokumentation-erweiterungen)
+   - [TranslationBot](#translationbot)
+   - [WeatherBot](#weatherbot)
+   - [WikiBot](#wikibot)
+- [weitere Schritte](#weitere-schritte)
+
 ## Systemdokumentation
 Es folgt eine Beschreibung der internen Arbeitsweise der Software, einschließlich der Schnittstellen und APIs Beschreibung der Code-Architektur und -Struktur.
 

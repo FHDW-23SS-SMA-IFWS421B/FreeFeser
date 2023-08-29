@@ -2,10 +2,7 @@ package de.fhdw.freefeser.app.console.reader.callbacks;
 
 import de.fhdw.freefeser.api.console.printer.ConsolePrinter;
 import de.fhdw.freefeser.api.console.reader.ConsoleReader;
-import de.fhdw.freefeser.api.user.User;
 import de.fhdw.freefeser.api.user.UserManager;
-
-import java.util.concurrent.CompletableFuture;
 
 public class LoginConsoleReaderCallback extends AppConsoleReaderCallback {
 
@@ -20,7 +17,7 @@ public class LoginConsoleReaderCallback extends AppConsoleReaderCallback {
         this.userManager = userManager;
         this.printer = printer;
 
-        this.printer.println("Möchten sie einen neuen Benutzer erstellen? (Ja/Nein)");
+        this.printer.println("[system] Möchten Sie einen neuen Benutzer erstellen? (Ja/Nein)");
     }
 
     @Override
@@ -28,38 +25,39 @@ public class LoginConsoleReaderCallback extends AppConsoleReaderCallback {
         if(register == null) {
             if(input.equalsIgnoreCase("ja")) {
                 this.register = true;
-                this.printer.println("Bitte geben sie den Benutzernamen für den neuen Benutzer ein:");
+                this.printer.println("[system] Bitte geben Sie den Benutzernamen für den neuen Benutzer ein:");
             } else if(input.equalsIgnoreCase("nein")) {
                 this.register = false;
-                this.printer.println("Bitte geben sie den Benutzernamen ein:");
+                this.printer.println("[system] Bitte geben Sie den Benutzernamen ein:");
             } else {
-                this.printer.println("Falsche Eingabe. Verwende Ja/Nein.");
+                this.printer.println("[system] Falsche Eingabe. Verwenden Sie Ja/Nein.");
             }
         } else if(user == null) {
             user = input;
             if(register) {
-                this.printer.println("Bitte geben sie das gewünschte Passwort für ihren neuen Benutzer ein:");
+                this.printer.println("[system] Bitte geben Sie das gewünschte Passwort für ihren neuen Benutzer ein:");
             } else {
-                this.printer.println("Bitte geben sie das korrekte Passwort für ihren Benutzer ein:");
+                this.printer.println("[system] Bitte geben Sie das korrekte Passwort für ihren Benutzer ein:");
             }
         } else {
             if(this.register) {
                 this.userManager.register(this.user, input).thenAcceptAsync(user -> {
                    if(user == null) {
-                       this.printer.println("A user with the username" + this.user + " already exist.");
+                       this.printer.println("[system] A user with the username" + this.user + " already exist.");
                        this.user = null;
                    } else {
-                       this.printer.println("Der Benutzer wurde erfolgreich erstellt.");
+                       this.printer.println("[system] Der Benutzer wurde erfolgreich erstellt.");
                        this.unregister();
                    }
                 });
             } else {
                 this.userManager.login(this.user, input).thenAcceptAsync(user -> {
                     if(user != null) {
-                        this.printer.println("Login erfolgreich.");
+                        this.printer.println("[system] Login erfolgreich.");
                         this.unregister();
                     } else {
-                        this.printer.println("Falsches Passwort.");
+                        this.printer.println("[system] Falsches Passwort.");
+                        this.printer.println("[system] Bitte geben Sie das korrekte Passwort für ihren Benutzer ein:");
                     }
                 });
             }

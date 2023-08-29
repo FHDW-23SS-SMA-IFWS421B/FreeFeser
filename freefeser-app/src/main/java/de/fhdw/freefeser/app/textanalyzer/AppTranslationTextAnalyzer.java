@@ -14,6 +14,7 @@ public class AppTranslationTextAnalyzer extends AppTextAnalyzer implements Trans
 
         analysisResults.put("TranslationText", extractTextToTranslate(text));
         analysisResults.put("TargetLanguage", extractTargetLanguage(text));
+        analysisResults.put("Bot", extractBot(text));
 
         return analysisResults;
     }

@@ -16,6 +16,7 @@ public class AppWeatherTextAnalyzer extends AppTextAnalyzer implements WeatherTe
 
         analysisResults.put("Location", extractLocation(text));
         analysisResults.put("WeatherType", extractWeatherCurrentOrForecast(text));
+        analysisResults.put("Bot", extractBot(text));
 
         return analysisResults;
     }

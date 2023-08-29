@@ -14,15 +14,6 @@ import java.util.Properties;
 public abstract class AppTextAnalyzer implements TextAnalyzer {
 
     @Override
-    public HashMap<String, String> analyze(String text) {
-        HashMap<String, String> analysisResults = new HashMap<>();
-
-        analysisResults.put("Bot", extractBot(text));
-
-        return analysisResults;
-    }
-
-    @Override
     public String extractBot(String text) {
         // Create a new pipeline with annotation properties
         Properties props = new Properties();

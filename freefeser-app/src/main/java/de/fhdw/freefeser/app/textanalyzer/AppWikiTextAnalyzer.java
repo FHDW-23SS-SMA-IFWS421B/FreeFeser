@@ -15,6 +15,7 @@ public class AppWikiTextAnalyzer extends AppTextAnalyzer implements WikiTextAnal
     public HashMap<String, String> analyze(String text) {
         HashMap<String, String> analysisResults = new HashMap<>();
         analysisResults.put("SearchTerm", extractSearchTerm(text));
+        analysisResults.put("Bot", extractBot(text));
         return analysisResults;
     }
 

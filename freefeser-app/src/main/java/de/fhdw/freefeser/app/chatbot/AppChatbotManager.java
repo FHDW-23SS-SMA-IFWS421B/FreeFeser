@@ -58,7 +58,7 @@ public class AppChatbotManager implements ChatbotManager {
             return null;
         }
 
-        extractedBot.onExecute(sender, commandCheckTextRaw[1]);
+        extractedBot.onExecute(sender, text.substring(1));
 
         return extractedBot;
     }

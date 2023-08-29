@@ -1,17 +1,16 @@
 package de.fhdw.freefeser.app.util;
 
-import de.fhdw.freefeser.api.util.HttpClientWrapper;
+import de.fhdw.freefeser.api.util.HttpWrapper;
 
-import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.concurrent.CompletableFuture;
 
-public class JavaHttpClientWrapper implements HttpClientWrapper {
-    private final HttpClient httpClient;
+public class JavaHttpWrapper implements HttpWrapper {
+    private final java.net.http.HttpClient httpClient;
 
-    public JavaHttpClientWrapper() {
-        this.httpClient = HttpClient.newBuilder().build();
+    public JavaHttpWrapper() {
+        this.httpClient = java.net.http.HttpClient.newBuilder().build();
     }
 
     @Override

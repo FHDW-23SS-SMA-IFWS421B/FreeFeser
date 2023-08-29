@@ -4,6 +4,6 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.concurrent.CompletableFuture;
 
-public interface HttpClientWrapper {
+public interface HttpWrapper {
     CompletableFuture<HttpResponse<String>> sendAsync(HttpRequest request, HttpResponse.BodyHandler<String> responseBodyHandler);
 }

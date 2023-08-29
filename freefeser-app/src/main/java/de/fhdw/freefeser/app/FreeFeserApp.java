@@ -17,6 +17,7 @@ import de.fhdw.freefeser.app.console.printer.AppConsolePrinter;
 import de.fhdw.freefeser.app.console.reader.AppConsoleReader;
 import de.fhdw.freefeser.app.console.reader.callbacks.ChatbotManagerConsoleReaderCallback;
 import de.fhdw.freefeser.app.console.reader.callbacks.LoginConsoleReaderCallback;
+import de.fhdw.freefeser.app.databases.entities.AppUser;
 import de.fhdw.freefeser.app.databases.managers.AppUserDatabaseManager;
 import de.fhdw.freefeser.app.user.AppUserManager;
 import de.fhdw.freefeser.app.util.GsonJsonParser;

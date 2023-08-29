@@ -1,11 +1,10 @@
 package de.fhdw.freefeser.app.chatbot.translation;
 
 import com.google.gson.JsonObject;
-import de.fhdw.freefeser.api.util.HttpClientWrapper;
+import de.fhdw.freefeser.api.util.HttpWrapper;
 import de.fhdw.freefeser.api.util.JsonParser;
 import de.fhdw.freefeser.api.util.YamlParser;
 import de.fhdw.freefeser.app.util.Credentials;
-import de.fhdw.freefeser.app.util.SnakeYamlParser;
 import de.fhdw.freefeser.app.util.YamlApiCredentials;
 
 import java.net.URI;
@@ -18,12 +17,12 @@ import java.util.concurrent.CompletableFuture;
 public class DeepLTranslationApi implements TranslationApi {
 
     private final JsonParser jsonParser;
-    private final HttpClientWrapper httpClientWrapper;
+    private final HttpWrapper httpWrapper;
     private final String apiKey;
 
-    public DeepLTranslationApi(JsonParser jsonParser, HttpClientWrapper httpClientWrapper, YamlParser yamlParser, String filePath) {
+    public DeepLTranslationApi(JsonParser jsonParser, HttpWrapper httpWrapper, YamlParser yamlParser, String filePath) {
         this.jsonParser = jsonParser;
-        this.httpClientWrapper = httpClientWrapper;
+        this.httpWrapper = httpWrapper;
 
         // Create and configure the YamlApiCredentials instance
         YamlApiCredentials yamlApiCredentials = new YamlApiCredentials(yamlParser, filePath, Credentials::getDeeplApiKey);
@@ -43,7 +42,7 @@ public class DeepLTranslationApi implements TranslationApi {
                 .GET()
                 .build();
 
-        CompletableFuture<HttpResponse<String>> futureResponse = httpClientWrapper.sendAsync(httpRequest, HttpResponse.BodyHandlers.ofString());
+        CompletableFuture<HttpResponse<String>> futureResponse = httpWrapper.sendAsync(httpRequest, HttpResponse.BodyHandlers.ofString());
 
         return futureResponse.thenApply(response -> {
             JsonObject rawResult = jsonParser.fromJson(response.body(), JsonObject.class);

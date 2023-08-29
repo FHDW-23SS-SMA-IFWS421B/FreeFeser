@@ -2,7 +2,7 @@
 
 ## ToDo's
 1. ~~Username muss unique~~  FLO
-2. Console anpassen ohne Debugs etc PHIL
+2. [X] Console anpassen ohne Debugs etc PHIL
 3. ~~abstrakter ConsolePrinter PHIL~~
 4. bessere Messages PHIL
 5. ~~GSON und HTTP Client abstrahieren FLO~~
@@ -15,3 +15,4 @@
 9. Active command MARVIN
 10. list bots command MARVIN
 11. quit command PHIL
+12. [X] register PHIL

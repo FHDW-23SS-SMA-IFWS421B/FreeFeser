@@ -23,8 +23,13 @@ import de.fhdw.freefeser.app.util.GsonJsonParser;
 import de.fhdw.freefeser.app.util.JavaHttpWrapper;
 import de.fhdw.freefeser.app.util.SnakeYamlParser;
 
+import java.util.logging.Level;
+
 public class FreeFeserApp {
     public static void main(String[] args) throws Exception {
+        //java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.OFF);
+
+
         String filePath = "config/credentials.yaml";
         ConsolePrinter printer = new AppConsolePrinter();
         ConsoleReader reader = new AppConsoleReader(System.in);

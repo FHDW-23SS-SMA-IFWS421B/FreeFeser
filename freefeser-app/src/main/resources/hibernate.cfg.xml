@@ -30,8 +30,8 @@
         <property name="hibernate.hbm2ddl.auto">update</property>
 
         <!-- Mapping hibernate classes -->
-        <mapping class="de.fhdw.freefeser.app.databases.entities.AppChatbot"/>
-        <mapping class="de.fhdw.freefeser.app.databases.entities.AppChatMessage"/>
-        <mapping class="de.fhdw.freefeser.app.databases.entities.AppUser"/>
+        <mapping class="de.fhdw.freefeser.app.databases.entities.AppChatbotEntity"/>
+        <mapping class="de.fhdw.freefeser.app.databases.entities.AppChatMessageEntity"/>
+        <mapping class="de.fhdw.freefeser.app.databases.entities.AppUserEntity"/>
     </session-factory>
 </hibernate-configuration>

@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 import java.util.UUID;
 
 @Entity
-public class AppUser implements UserEntity {
+public class AppUserEntity implements UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -17,11 +17,11 @@ public class AppUser implements UserEntity {
 
     private String password;
 
-    public AppUser() {
+    public AppUserEntity() {
 
     }
 
-    public AppUser(String username, String password) {
+    public AppUserEntity(String username, String password) {
         this.username = username;
         this.password = password;
     }

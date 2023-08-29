@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
-public class AppChatMessage implements ChatMessageEntity<AppUser, AppChatbot> {
+public class AppChatMessageEntity implements ChatMessageEntity<AppUserEntity, AppChatbotEntity> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -21,16 +21,16 @@ public class AppChatMessage implements ChatMessageEntity<AppUser, AppChatbot> {
     private LocalDateTime timestamp;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private AppUser user;
+    private AppUserEntity user;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private AppChatbot chatbot;
+    private AppChatbotEntity chatbot;
 
-    public AppChatMessage() {
+    public AppChatMessageEntity() {
 
     }
 
-    public AppChatMessage(String text, LocalDateTime timestamp, AppUser user, AppChatbot chatbot) {
+    public AppChatMessageEntity(String text, LocalDateTime timestamp, AppUserEntity user, AppChatbotEntity chatbot) {
         this.text = text;
         this.timestamp = timestamp;
         this.user = user;
@@ -61,19 +61,19 @@ public class AppChatMessage implements ChatMessageEntity<AppUser, AppChatbot> {
         this.timestamp = timestamp;
     }
 
-    public AppUser getUser() {
+    public AppUserEntity getUser() {
         return user;
     }
 
-    public void setUser(AppUser user) {
+    public void setUser(AppUserEntity user) {
         this.user = user;
     }
 
-    public AppChatbot getChatbot() {
+    public AppChatbotEntity getChatbot() {
         return chatbot;
     }
 
-    public void setChatbot(AppChatbot chatbot) {
+    public void setChatbot(AppChatbotEntity chatbot) {
         this.chatbot = chatbot;
     }
 }

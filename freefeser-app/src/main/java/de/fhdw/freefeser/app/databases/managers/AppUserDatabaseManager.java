@@ -2,7 +2,7 @@ package de.fhdw.freefeser.app.databases.managers;
 
 import de.fhdw.freefeser.api.database.UserEntity;
 import de.fhdw.freefeser.api.database.UserEntityDatabaseManager;
-import de.fhdw.freefeser.app.databases.entities.AppUser;
+import de.fhdw.freefeser.app.databases.entities.AppUserEntity;
 import de.fhdw.freefeser.app.util.HibernateUtil;
 
 import java.util.ArrayList;
@@ -22,13 +22,13 @@ public class AppUserDatabaseManager implements UserEntityDatabaseManager {
 
             try (Session session = HibernateUtil.getSessionFactory().openSession()) {
                 // Define the HQL query to select all users
-                String hql = "FROM AppUser";
+                String hql = "FROM AppUserEntity";
 
                 // Create the query object
-                Query<AppUser> query = session.createQuery(hql, AppUser.class);
+                Query<AppUserEntity> query = session.createQuery(hql, AppUserEntity.class);
 
                 // Execute the query and get the result list
-                List<AppUser> resultList = query.getResultList();
+                List<AppUserEntity> resultList = query.getResultList();
 
                 // Process the result list and add to the final userList
                 userList.addAll(resultList);
@@ -43,10 +43,10 @@ public class AppUserDatabaseManager implements UserEntityDatabaseManager {
     @Override
     public CompletableFuture<UserEntity> get(UUID id) {
         return CompletableFuture.supplyAsync(() -> {
-            AppUser user = null;
+            AppUserEntity user = null;
             try (Session session = HibernateUtil.getSessionFactory().openSession()) {
                 // Use Hibernate's get() method to retrieve the AppUser by ID
-                user = session.get(AppUser.class, id);
+                user = session.get(AppUserEntity.class, id);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -103,10 +103,10 @@ public class AppUserDatabaseManager implements UserEntityDatabaseManager {
                 Transaction transaction = session.beginTransaction();
 
                 // Retrieve the user entity from the database by its ID
-                AppUser appUser = session.get(AppUser.class, id);
-                if (appUser != null) {
+                AppUserEntity appUserEntity = session.get(AppUserEntity.class, id);
+                if (appUserEntity != null) {
                     // Remove the user entity from the session and database
-                    session.remove(appUser);
+                    session.remove(appUserEntity);
                     // Commit the transaction to persist the changes
                     transaction.commit();
                 } else {
@@ -122,10 +122,10 @@ public class AppUserDatabaseManager implements UserEntityDatabaseManager {
     @Override
     public CompletableFuture<UserEntity> getByUsername(String username) {
         return CompletableFuture.supplyAsync(() -> {
-            AppUser user = null;
+            AppUserEntity user = null;
             try (Session session = HibernateUtil.getSessionFactory().openSession()) {
                 // Use Hibernate's createQuery() method to retrieve the AppUser by username
-                user = session.createQuery("FROM AppUser u WHERE u.username = :username", AppUser.class).setParameter("username", username).uniqueResult();
+                user = session.createQuery("FROM AppUserEntity u WHERE u.username = :username", AppUserEntity.class).setParameter("username", username).uniqueResult();
             } catch (Exception e) {
                 e.printStackTrace();
             }

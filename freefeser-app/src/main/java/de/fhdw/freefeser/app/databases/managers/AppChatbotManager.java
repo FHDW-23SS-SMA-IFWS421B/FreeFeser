@@ -3,7 +3,7 @@ package de.fhdw.freefeser.app.databases.managers;
 import de.fhdw.freefeser.api.bot.Chatbot;
 import de.fhdw.freefeser.api.bot.ChatbotManager;
 import de.fhdw.freefeser.api.user.User;
-import de.fhdw.freefeser.app.databases.entities.AppChatbot;
+import de.fhdw.freefeser.app.databases.entities.AppChatbotEntity;
 import de.fhdw.freefeser.app.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -24,16 +24,16 @@ public class AppChatbotManager implements ChatbotManager {
             Transaction transaction = session.beginTransaction();
 
             // Cast the chatbot to AppChatbot
-            AppChatbot appChatbot = (AppChatbot) chatbot;
+            AppChatbotEntity appChatbotEntity = (AppChatbotEntity) chatbot;
 
             // Retrieve the chatbot entity from the database by its ID
-            appChatbot = session.get(AppChatbot.class, appChatbot.getId());
+            appChatbotEntity = session.get(AppChatbotEntity.class, appChatbotEntity.getId());
 
             // Update the active status to true
-            appChatbot.setStatus(true);
+            appChatbotEntity.setStatus(true);
 
             // Save the updated entity back to the database
-            session.merge(appChatbot);
+            session.merge(appChatbotEntity);
 
             // Commit the transaction to persist the changes
             transaction.commit();
@@ -54,16 +54,16 @@ public class AppChatbotManager implements ChatbotManager {
             Transaction transaction = session.beginTransaction();
 
             // Cast the chatbot to AppChatbot
-            AppChatbot appChatbot = (AppChatbot) chatbot;
+            AppChatbotEntity appChatbotEntity = (AppChatbotEntity) chatbot;
 
             // Retrieve the chatbot entity from the database by its ID
-            appChatbot = session.get(AppChatbot.class, appChatbot.getId());
+            appChatbotEntity = session.get(AppChatbotEntity.class, appChatbotEntity.getId());
 
             // Update the active status to false
-            appChatbot.setStatus(false);
+            appChatbotEntity.setStatus(false);
 
             // Save the updated entity
-            session.merge(appChatbot);
+            session.merge(appChatbotEntity);
 
             transaction.commit();
 

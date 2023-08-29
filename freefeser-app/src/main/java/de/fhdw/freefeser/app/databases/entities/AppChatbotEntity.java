@@ -9,7 +9,7 @@ import jakarta.persistence.Id;
 import java.util.UUID;
 
 @Entity
-public class AppChatbot implements ChatbotEntity {
+public class AppChatbotEntity implements ChatbotEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -19,11 +19,11 @@ public class AppChatbot implements ChatbotEntity {
 
     private boolean active;
 
-    public AppChatbot() {
+    public AppChatbotEntity() {
 
     }
 
-    public AppChatbot(String botname, boolean active) {
+    public AppChatbotEntity(String botname, boolean active) {
         this.botname = botname;
         this.active = active;
     }

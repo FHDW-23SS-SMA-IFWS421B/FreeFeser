@@ -187,7 +187,8 @@ Anweisungen zum Erstellen von Erweiterungen oder zur Anpassung der Software
 Als Erweiterung ist hier ein neuer Chatbot zu sehen.
 
 ### Fehlerbehebung
-Eine Liste der häufigsten Fehler, die während der Verwendung der Software auftreten können, und wie man sie behebt.
+1. **Bot gibt nicht die richtige Response**   
+   Es kann sein, dass ein Bot Ihnen eventuell nicht die richtige Antwort ausgibt. Prüfen Sie in dem Fall die Rechtschreibung und achten Sie darauf Satzanfänge und Nomen groß zu schreiben.
 
 ### Installationsanleitung
 Folgen Sie diesen Schritten, um unsere Software auf Ihrem System zu installieren und auszuführen.

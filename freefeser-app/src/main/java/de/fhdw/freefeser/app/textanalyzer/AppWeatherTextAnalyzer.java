@@ -43,7 +43,7 @@ public class AppWeatherTextAnalyzer extends AppTextAnalyzer implements WeatherTe
         for (CoreMap sentence : sentences) {
             for (CoreMap token : sentence.get(CoreAnnotations.TokensAnnotation.class)) {
                 String ner = token.get(CoreAnnotations.NamedEntityTagAnnotation.class);
-                if ("LOCATION".equals(ner)) { // "LOCATION" indicates a location entity in the German model
+                if ("LOCATION".equalsIgnoreCase(ner)) { // "LOCATION" indicates a location entity in the German model
                     location = token.get(CoreAnnotations.TextAnnotation.class);
                     break; // Stop searching after finding the first location
                 }
@@ -55,6 +55,8 @@ public class AppWeatherTextAnalyzer extends AppTextAnalyzer implements WeatherTe
 
     @Override
     public String extractWeatherCurrentOrForecast(String text) {
+        text = text.toLowerCase();
+
         // Check if the text contains keywords for current weather
         if (text.toLowerCase().contains("ist") || text.toLowerCase().contains("heute") || text.toLowerCase().contains("jetzt") || text.toLowerCase().contains("aktuell")) {
             return "current";

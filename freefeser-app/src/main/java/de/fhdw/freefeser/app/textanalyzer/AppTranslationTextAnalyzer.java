@@ -22,11 +22,8 @@ public class AppTranslationTextAnalyzer extends AppTextAnalyzer implements Trans
     @Override
     public String extractTextToTranslate(String text) {
         // Regular expression pattern to extract the text to translate.
-        // Assumes the format "Übersetze {direction} {targetLanguage}: {textToTranslate}".
-        // Example: "Übersetze ins DE: Ich love ducks."
-        //          "Übersetze auf ENG: Hallo"
-        String pattern = "Übersetze (ins|auf) (\\w+):\\s(.*)";
-        java.util.regex.Pattern regexPattern = java.util.regex.Pattern.compile(pattern);
+        String pattern = "Übersetze (ins|auf) (\\w+):\\s*(.*)";
+        java.util.regex.Pattern regexPattern = java.util.regex.Pattern.compile(pattern, Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE);
         java.util.regex.Matcher matcher = regexPattern.matcher(text);
 
         if (matcher.find()) {
@@ -37,15 +34,11 @@ public class AppTranslationTextAnalyzer extends AppTextAnalyzer implements Trans
         return null;
     }
 
-
     @Override
     public String extractTargetLanguage(String text) {
         // Regular expression pattern to extract the target language code.
-        // Assumes the format "Übersetze {direction} {targetLanguage}: ".
-        // Example: "Übersetze ins DE: Ich love ducks."
-        //          "Übersetze auf ENG: Hallo"
         String pattern = "Übersetze (ins|auf) (\\w+):";
-        Pattern regexPattern = Pattern.compile(pattern);
+        Pattern regexPattern = Pattern.compile(pattern, Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE);
         Matcher matcher = regexPattern.matcher(text);
 
         if (matcher.find()) {

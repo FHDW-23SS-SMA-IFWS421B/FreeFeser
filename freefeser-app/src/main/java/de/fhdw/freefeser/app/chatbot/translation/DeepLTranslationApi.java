@@ -5,6 +5,7 @@ import de.fhdw.freefeser.api.util.HttpClientWrapper;
 import de.fhdw.freefeser.api.util.JsonParser;
 import de.fhdw.freefeser.api.util.YamlParser;
 import de.fhdw.freefeser.app.util.Credentials;
+import de.fhdw.freefeser.app.util.SnakeYamlParser;
 import de.fhdw.freefeser.app.util.YamlApiCredentials;
 
 import java.net.URI;

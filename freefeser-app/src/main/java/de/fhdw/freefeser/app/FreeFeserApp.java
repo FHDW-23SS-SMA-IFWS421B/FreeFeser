@@ -25,7 +25,7 @@ import de.fhdw.freefeser.app.util.SnakeYamlParser;
 
 public class FreeFeserApp {
     public static void main(String[] args) throws Exception {
-        String filePath = "./credentials.yaml";
+        String filePath = "config/credentials.yaml";
         ConsolePrinter printer = new AppConsolePrinter();
         ConsoleReader reader = new AppConsoleReader(System.in);
         JsonParser jsonParser = new GsonJsonParser();

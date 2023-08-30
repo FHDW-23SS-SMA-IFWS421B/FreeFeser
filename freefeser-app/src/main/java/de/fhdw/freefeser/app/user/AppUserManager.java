@@ -11,7 +11,7 @@ import de.fhdw.freefeser.api.user.UserManager;
 import de.fhdw.freefeser.app.console.reader.callbacks.ChatbotManagerConsoleReaderCallback;
 import de.fhdw.freefeser.app.databases.entities.AppChatbotEntity;
 import de.fhdw.freefeser.app.databases.entities.AppUserEntity;
-import de.fhdw.freefeser.app.databases.managers.AppChatMessageManager;
+import de.fhdw.freefeser.app.databases.managers.AppChatMessageDatabaseManager;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -19,15 +19,15 @@ public class AppUserManager implements UserManager {
 
     private final UserEntityDatabaseManager userDatabaseManager;
     private final ChatbotManager chatbotManager;
-    private final AppChatMessageManager chatMessageManager;
+    private final AppChatMessageDatabaseManager chatMessageDatabaseManager;
     private final ConsolePrinter printer;
     private final ConsoleReader reader;
     private User loggedInUser;
 
-    public AppUserManager(UserEntityDatabaseManager userDatabaseManager, ChatbotManager chatbotManager, AppChatMessageManager chatMessageManager, ConsolePrinter printer, ConsoleReader reader) {
+    public AppUserManager(UserEntityDatabaseManager userDatabaseManager, ChatbotManager chatbotManager, AppChatMessageDatabaseManager chatMessageDatabaseManager, ConsolePrinter printer, ConsoleReader reader) {
         this.userDatabaseManager = userDatabaseManager;
         this.chatbotManager = chatbotManager;
-        this.chatMessageManager = chatMessageManager;
+        this.chatMessageDatabaseManager = chatMessageDatabaseManager;
         this.printer = printer;
         this.reader = reader;
     }
@@ -77,8 +77,8 @@ public class AppUserManager implements UserManager {
     }
 
     private void onLogin(User user) {
-        this.reader.addCallback(new ChatbotManagerConsoleReaderCallback(reader, this.chatbotManager, this, chatMessageManager));
-        this.chatMessageManager.getAll().thenAccept(messages -> {
+        this.reader.addCallback(new ChatbotManagerConsoleReaderCallback(reader, this.chatbotManager, this, chatMessageDatabaseManager));
+        this.chatMessageDatabaseManager.getAll().thenAccept(messages -> {
             for (ChatMessageEntity<AppUserEntity, AppChatbotEntity> message : messages) {
                 if(message.getChatbot() == null) {
                     printer.println("["+user.getEntity().getUsername()+"] " + message.getText());

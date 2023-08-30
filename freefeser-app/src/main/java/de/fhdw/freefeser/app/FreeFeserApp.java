@@ -17,7 +17,7 @@ import de.fhdw.freefeser.app.chatbot.wiki.WikiAppChatbot;
 import de.fhdw.freefeser.app.console.printer.AppConsolePrinter;
 import de.fhdw.freefeser.app.console.reader.AppConsoleReader;
 import de.fhdw.freefeser.app.console.reader.callbacks.LoginConsoleReaderCallback;
-import de.fhdw.freefeser.app.databases.managers.AppChatMessageManager;
+import de.fhdw.freefeser.app.databases.managers.AppChatMessageDatabaseManager;
 import de.fhdw.freefeser.app.databases.managers.AppChatbotDatabaseManager;
 import de.fhdw.freefeser.app.databases.managers.AppUserDatabaseManager;
 import de.fhdw.freefeser.app.user.AppUserManager;
@@ -38,14 +38,14 @@ public class FreeFeserApp {
         ChatbotManager chatbotManager = new AppChatbotManager(chatbotEntityDatabaseManager);
 
         UserEntityDatabaseManager userEntityDatabaseManager = new AppUserDatabaseManager();
-        AppChatMessageManager chatMessageManager = new AppChatMessageManager();
+        AppChatMessageDatabaseManager chatMessageDatabaseManager = new AppChatMessageDatabaseManager();
 
-        UserManager userManager = new AppUserManager(userEntityDatabaseManager, chatbotManager, chatMessageManager, printer, reader);
+        UserManager userManager = new AppUserManager(userEntityDatabaseManager, chatbotManager, chatMessageDatabaseManager, printer, reader);
         reader.addCallback(new LoginConsoleReaderCallback(reader, printer, userManager));
 
-        Chatbot translationBot = new TranslationAppChatbot(printer, "translationbot", userManager, chatMessageManager, jsonParser, httpWrapper, yamlParser, filePath, chatbotEntityDatabaseManager);
-        Chatbot weatherBot = new WeatherAppChatbot(printer, "weatherbot", userManager, chatMessageManager, chatbotEntityDatabaseManager);
-        Chatbot wikiBot = new WikiAppChatbot(printer, "wikibot", userManager, chatMessageManager, chatbotEntityDatabaseManager);
+        Chatbot translationBot = new TranslationAppChatbot(printer, "translationbot", userManager, chatMessageDatabaseManager, jsonParser, httpWrapper, yamlParser, filePath, chatbotEntityDatabaseManager);
+        Chatbot weatherBot = new WeatherAppChatbot(printer, "weatherbot", userManager, chatMessageDatabaseManager, chatbotEntityDatabaseManager);
+        Chatbot wikiBot = new WikiAppChatbot(printer, "wikibot", userManager, chatMessageDatabaseManager, chatbotEntityDatabaseManager);
         chatbotManager.registerBot(translationBot);
         chatbotManager.registerBot(weatherBot);
         chatbotManager.registerBot(wikiBot);

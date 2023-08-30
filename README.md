@@ -15,11 +15,19 @@
       - [Visualisierung](#visualisierung)
       - [Zusammenfassung](#zusammenfassung)
    - [Lösungsstrategie](#lösungsstrategie)
+      - [Technologieentscheidungen](#technologieentscheidungen)
+      - [Architektur- und Entwurfsmuster](#architektur--und-entwurfsmuster)
+      - [Qualitätsanforderungen](#qualitätsanforderungen)
+      - [Organisatorische Entscheidungen](#organisatorische-entscheidungen)
+      - [Motivation](#motivation)
    - [Bausteinsicht](#bausteinsicht)
    - [Laufzeitsichten](#laufzeitsichten)
    - [Infrastruktursicht](#infrastruktursicht)
    - [Querschnittliche Konzepte](#querschnittliche-konzepte)
    - [Schnittstellen](#schnittstellen)
+      - [Spezifikation zur robusten Kommunikation](#spezifikation-zur-robusten-kommunikation)
+         - [RESTful APIs](#restful-apis)
+         - [Datenbank Connector](#datenbank-connector)
    - [Risiken und technische Schulden](#risiken-und-technische-schulden)
    - [Erweiterungen](#erweiterungen)
    - [Fehlerbehebung](#fehlerbehebung)
@@ -105,18 +113,22 @@ Das zugehörige Kontextdiagramm:
 Die Kontextabgrenzung des Chatbotsystems zeigt die wesentlichen Schnittstellen und Kommunikationspartner auf fachlicher und technischer Ebene. Sie legt die Grundlage für das Verständnis der Interaktionen und bildet die Grundlage für die weiterführende Entwicklung und Integration.
 
 ### Lösungsstrategie
-Kurzer Überblick über die grundlegenden Entscheidungen und Lösungsansätze, die Entwurf und Implementierung des Systems prägen. Hierzu gehören:
+Die Lösungsstrategie umfasst eine Übersicht über die grundlegenden Entscheidungen und Lösungsansätze, die den Entwurf und die Implementierung des Systems prägen. Dieser Abschnitt beleuchtet wichtige Aspekte, die maßgeblich zur Ausgestaltung der Architektur beitragen, darunter Technologieentscheidungen, Architekturmuster, Qualitätsanforderungen und organisatorische Überlegungen.
 
-Technologieentscheidungen
-Entscheidungen über die Top-Level-Zerlegung des Systems, beispielsweise die Verwendung gesamthaft prägender Entwurfs- oder Architekturmuster,
-Entscheidungen zur Erreichung der wichtigsten Qualitätsanforderungen sowie
-relevante organisatorische Entscheidungen, beispielsweise für bestimmte Entwicklungsprozesse oder Delegation bestimmter Aufgaben an andere Stakeholder.
-Motivation
+#### Technologieentscheidungen
+Für die Umsetzung unseres Systems wurden sorgfältig Technologieentscheidungen getroffen, die eine stabile und skalierbare Grundlage schaffen. Dabei haben wir uns für Technologien entschieden, die unsere Anforderungen an Performance, Erweiterbarkeit und Benutzerfreundlichkeit erfüllen. Dies umfasst die Auswahl der Programmiersprachen, Frameworks und Datenbanktechnologien, die im Einklang mit unseren Zielen stehen. (Siehe [Bausteinsicht](#bausteinsicht) für detaillierte Informationen zur Systemstruktur und Technologieentscheidungen.)
 
-Diese wichtigen Entscheidungen bilden wesentliche „Eckpfeiler“ der Architektur. Von ihnen hängen viele weitere Entscheidungen oder Implementierungsregeln ab.
+#### Architektur- und Entwurfsmuster
+Die Top-Level-Zerlegung unseres Systems basiert auf bewährten Architektur- und Entwurfsmustern. Diese Muster dienen als Leitfaden für die Organisation und Strukturierung unseres Systems, um eine klare Trennung von Verantwortlichkeiten und eine bessere Wartbarkeit zu gewährleisten. (Siehe [Bausteinsicht](#bausteinsicht) für eine tiefgreifende Analyse der Architektur und Entwurfsmuster.)
 
-Form
-Fassen Sie die zentralen Entwurfsentscheidungen kurz zusammen. Motivieren Sie, ausgehend von Aufgabenstellung, Qualitätszielen und Randbedingungen, was Sie entschieden haben und warum Sie so entschieden haben. Vermeiden Sie redundante Beschreibungen und verweisen Sie eher auf weitere Ausführungen in Folgeabschnitten.
+#### Qualitätsanforderungen
+Unsere Lösungsstrategie zielt darauf ab, die wichtigsten Qualitätsanforderungen zu erfüllen. Hierbei legen wir besonderen Fokus auf Aspekte wie Performance, Sicherheit und Benutzererlebnis. Die gewählten Technologien und Entwurfsmuster sind darauf ausgerichtet, diese Qualitätsziele zu erreichen und gleichzeitig die Flexibilität für zukünftige Anpassungen zu gewährleisten. (Siehe [Laufzeitsichten](#laufzeitsichten) für Einblicke in die Performance-Analyse und [Querschnittliche Konzepte](#querschnittliche-konzepte) für Sicherheitsüberlegungen.)
+
+#### Organisatorische Entscheidungen
+Neben technischen Entscheidungen berücksichtigt unsere Lösungsstrategie auch organisatorische Aspekte. Hierzu gehören beispielsweise bestimmte Entwicklungsprozesse und die Delegation von Aufgaben an relevante Stakeholder. Diese Entscheidungen tragen dazu bei, eine effiziente Zusammenarbeit und einen reibungslosen Entwicklungsverlauf sicherzustellen. (Siehe [Bausteinsicht](#bausteinsicht) für organisatorische Überlegungen.)
+
+##### Motivation
+Die getroffenen Entscheidungen dienen als Grundlage für den Entwurf und die Implementierung unseres Systems. Sie ermöglichen es, die Anforderungen der Aufgabenstellung effektiv zu erfüllen und gleichzeitig eine robuste und erweiterbare Architektur zu schaffen. Die folgenden Abschnitte vertiefen die einzelnen Entscheidungen und beleuchten ihre Auswirkungen auf die Gesamtarchitektur.
 
 ### Bausteinsicht
 Statische Zerlegung des Systems. Die Abstraktion des Sourcecodes, dargestellt als Hierarchie von “White-Boxes” (die wiederum kleinere Black-Boxes beinhalten), bis zu einem angemessenen Detaillierungsgrad
@@ -169,13 +181,37 @@ beispielhafte Implementierung speziell für technische Konzepte,
 Verweise auf „übliche“ Nutzung von Standard-Frameworks (beispielsweise die Nutzung von Hibernate als Object/Relational Mapper).
 
 ### Schnittstellen
-Mit welchen ext. Systemen kommuniziert die Anwendung. Definition und Beschreibung dieser Schnittstellen.
+| Schnittstelle       | Zweck und Funktion                                   | Operationen | Kommunikationsprotokoll | Datenformat      | Authentifizierung                                 |
+|---------------------|------------------------------------------------------|-------------|-------------------------|------------------|---------------------------------------------------|
+| DeepL API           | Übersetzungsdienst für Texte                         | GET         | HTTP                    | JSON             | API-Key (aus Credential-Ordner)                   |
+| Wikipedia API       | Abruf von Informationen aus Wikipedia                | GET         | HTTP                    | JSON             | Keine                                             |
+| OpenWeather API     | Wetterdatenabruf für bestimmte Standorte             | GET         | HTTP                    | JSON             | API-Key (aus Credential-Ordner)                   |
+| Datenbank Connector | Kommunikation mit der Datenbank über Hibernate (HQL) | Lesen       | SQL (HQL)               | Tabellen/Objekte | Username und Passwort (in Hibernate-Configuration |
 
-Motivation
-Neben den Kontext der Schnittstellen ist die Spezifikation zu robusten Kommunikation entscheidend. Diese Spezifikation wird hier festgelegt.
+#### Spezifikation zur robusten Kommunikation
+Um sicherzustellen, dass die Kommunikation mit externen Systemen zuverlässig und fehlerfrei erfolgt, wurden spezifische Maßnahmen und Strategien entwickelt. Diese dienen dazu, potenzielle Herausforderungen in der Kommunikation zu bewältigen und die Gesamtleistung des Chatbot-Systems zu verbessern. Im Folgenden werden die spezifischen Ansätze für jede der Schnittstellen sowie der Datenbank Connector beschrieben.
 
-Form
-Tabellenform und/oder Verweis auf Schemata
+Die Anforderungen an Fehlerbehandlung, Timeouts, Retry-Strategien und Skalierbarkeit wurden formuliert, um eine reibungslose Interaktion des Systems mit den Schnittstellen zu gewährleisten. Diese Spezifikationen stellen sicher, dass unerwartete Ereignisse und Ausfälle angemessen gehandhabt werden können. Beachten Sie, dass diese Spezifikationen auf der aktuellen Entwicklungsphase basieren und im Laufe der Zeit weiterentwickelt werden können, um den Anforderungen des Systems gerecht zu werden.
+
+##### RESTful APIs
+- **Fehlerbehandlung:**  
+  Bei unerwarteten API-Antworten oder Verbindungsfehlern werden Fehlercodes verarbeitet.
+- **Timeouts:**  
+  Standardmäßig 10 Sekunden für API-Anfragen.
+- **Retry-Strategien:**  
+  Bei Zeitüberschreitung wird die Anfrage bis zu 2 Mal erneut versucht.
+- **Skalierbarkeit:**  
+  API-Anbindungen sind austauschbar und können entsprechend den Anforderungen gewechselt werden.
+
+##### Datenbank Connector
+- **Fehlerbehandlung:** 
+  SQL-Abfragefehler werden erfasst und als lesbare Meldungen behandelt.
+- **Timeouts:**  
+  Maximal 5 Sekunden für Datenbankanfragen.
+- **Retry-Strategien:**  
+  Bei Verbindungsfehlern wird die Anfrage bis zu 3 Mal erneut versucht.
+- **Skalierbarkeit:** 
+  Die Datenbank kann in der Konfiguration leicht ausgetauscht werden, da Hibernate als ORM verwendet wird.
 
 ### Risiken und technische Schulden
 Bekannte Risiken und angehäufte technische Schulden. Welche potentiellen Probleme lauern im und um das System? Über welche Schwächen beklagen sich die Entwicklungsteams?

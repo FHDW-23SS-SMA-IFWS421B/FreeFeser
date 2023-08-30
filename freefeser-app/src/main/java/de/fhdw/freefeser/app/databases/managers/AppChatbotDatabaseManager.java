@@ -120,12 +120,12 @@ public class AppChatbotDatabaseManager implements ChatbotEntityDatabaseManager {
     }
 
     @Override
-    public CompletableFuture<ChatbotEntity> getByName(String botName) {
+    public CompletableFuture<ChatbotEntity> getByName(String botname) {
         return CompletableFuture.supplyAsync(() -> {
             AppChatbotEntity bot = null;
             try (Session session = HibernateUtil.getSessionFactory().openSession()) {
                 // Use Hibernate's createQuery() method to retrieve the Chatbot by botname
-                bot = session.createQuery("FROM AppChatbotEntity b WHERE b.botname = :botName", AppChatbotEntity.class).setParameter("name", botName).uniqueResult();
+                bot = session.createQuery("FROM AppChatbotEntity b WHERE b.botname = :botname", AppChatbotEntity.class).setParameter("botname", botname).uniqueResult();
             } catch (Exception e) {
                 e.printStackTrace();
             }

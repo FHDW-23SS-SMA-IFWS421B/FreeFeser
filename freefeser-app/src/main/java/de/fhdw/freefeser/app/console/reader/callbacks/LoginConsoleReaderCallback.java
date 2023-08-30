@@ -47,6 +47,7 @@ public class LoginConsoleReaderCallback extends AppConsoleReaderCallback {
                        this.user = null;
                    } else {
                        this.printer.println("[system] Der Benutzer wurde erfolgreich erstellt.");
+                       this.printer.println("[system] Herzlich Willkommen im Chatbot-System! Geben Sie einen Befehl/Frage ein:");
                        this.unregister();
                    }
                 });
@@ -54,6 +55,7 @@ public class LoginConsoleReaderCallback extends AppConsoleReaderCallback {
                 this.userManager.login(this.user, input).thenAcceptAsync(user -> {
                     if(user != null) {
                         this.printer.println("[system] Login erfolgreich.");
+                        this.printer.println("[system] Herzlich Willkommen im Chatbot-System! Geben Sie einen Befehl/Frage ein:");
                         this.unregister();
                     } else {
                         this.printer.println("[system] Falsches Passwort.");

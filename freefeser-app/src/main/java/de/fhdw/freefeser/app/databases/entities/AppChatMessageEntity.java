@@ -1,6 +1,8 @@
 package de.fhdw.freefeser.app.databases.entities;
 
 import de.fhdw.freefeser.api.database.ChatMessageEntity;
+import de.fhdw.freefeser.api.database.ChatbotEntity;
+import de.fhdw.freefeser.api.database.UserEntity;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -30,11 +32,13 @@ public class AppChatMessageEntity implements ChatMessageEntity<AppUserEntity, Ap
 
     }
 
-    public AppChatMessageEntity(String text, LocalDateTime timestamp, AppUserEntity user, AppChatbotEntity chatbot) {
+    public AppChatMessageEntity(String text, LocalDateTime timestamp, UserEntity user, ChatbotEntity chatbot) {
+        if(!(user instanceof AppUserEntity)) throw new IllegalArgumentException("Error while creating AppChatMessageEntity. User is not an AppUserEntity.");
+        if(chatbot != null && !(chatbot instanceof AppChatbotEntity)) throw new IllegalArgumentException("Error while creating AppChatbotEntity. ChatbotEntity is not an AppChatbotEntity.");
         this.text = text;
         this.timestamp = timestamp;
-        this.user = user;
-        this.chatbot = chatbot;
+        this.user = (AppUserEntity) user;
+        this.chatbot = (AppChatbotEntity) chatbot;
     }
 
     public UUID getId() {

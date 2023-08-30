@@ -3,6 +3,7 @@ package de.fhdw.freefeser.app.databases.managers;
 import de.fhdw.freefeser.api.database.ChatbotEntity;
 import de.fhdw.freefeser.api.database.ChatbotEntityDatabaseManager;
 import de.fhdw.freefeser.app.databases.entities.AppChatbotEntity;
+import de.fhdw.freefeser.app.databases.entities.AppUserEntity;
 import de.fhdw.freefeser.app.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -116,6 +117,20 @@ public class AppChatbotDatabaseManager implements ChatbotEntityDatabaseManager {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        });
+    }
+
+    @Override
+    public CompletableFuture<ChatbotEntity> getByName(String name) {
+        return CompletableFuture.supplyAsync(() -> {
+            AppChatbotEntity bot = null;
+            try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+                // Use Hibernate's createQuery() method to retrieve the AppUser by username
+                bot = session.createQuery("FROM AppChatbotEntity b WHERE b.botname = :name", AppChatbotEntity.class).setParameter("name", name).uniqueResult();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return bot;
         });
     }
 }

@@ -3,28 +3,31 @@ package de.fhdw.freefeser.app.user;
 import de.fhdw.freefeser.api.bot.ChatbotManager;
 import de.fhdw.freefeser.api.console.printer.ConsolePrinter;
 import de.fhdw.freefeser.api.console.reader.ConsoleReader;
+import de.fhdw.freefeser.api.database.ChatMessageEntity;
 import de.fhdw.freefeser.api.database.UserEntity;
 import de.fhdw.freefeser.api.database.UserEntityDatabaseManager;
 import de.fhdw.freefeser.api.user.User;
 import de.fhdw.freefeser.api.user.UserManager;
 import de.fhdw.freefeser.app.console.reader.callbacks.ChatbotManagerConsoleReaderCallback;
+import de.fhdw.freefeser.app.databases.entities.AppChatbotEntity;
 import de.fhdw.freefeser.app.databases.entities.AppUserEntity;
+import de.fhdw.freefeser.app.databases.managers.AppChatMessageManager;
 
 import java.util.concurrent.CompletableFuture;
-import java.util.function.Consumer;
 
 public class AppUserManager implements UserManager {
 
     private final UserEntityDatabaseManager userDatabaseManager;
+    private final ChatbotManager chatbotManager;
+    private final AppChatMessageManager chatMessageManager;
     private final ConsolePrinter printer;
     private final ConsoleReader reader;
-    private final Consumer<UserManager> onLogin;
-
     private User loggedInUser;
 
-    public AppUserManager(UserEntityDatabaseManager userDatabaseManager, ConsolePrinter printer, ConsoleReader reader, Consumer<UserManager> onLogin) {
+    public AppUserManager(UserEntityDatabaseManager userDatabaseManager, ChatbotManager chatbotManager, AppChatMessageManager chatMessageManager, ConsolePrinter printer, ConsoleReader reader) {
         this.userDatabaseManager = userDatabaseManager;
-        this.onLogin = onLogin;
+        this.chatbotManager = chatbotManager;
+        this.chatMessageManager = chatMessageManager;
         this.printer = printer;
         this.reader = reader;
     }
@@ -44,7 +47,7 @@ public class AppUserManager implements UserManager {
             } else {
                 User newUser = new AppUser(user, this.printer);
                 this.loggedInUser = newUser;
-                this.onLogin.accept(this);
+                onLogin(newUser);
                 future.complete(newUser);
             }
         });
@@ -62,7 +65,7 @@ public class AppUserManager implements UserManager {
                 this.userDatabaseManager.create(entity).thenAcceptAsync(createdEntity -> {
                     User newUser = new AppUser(createdEntity, printer);
                     this.loggedInUser = newUser;
-                    this.onLogin.accept(this);
+                    onLogin(newUser);
                     future.complete(newUser);
                 });
             } else {
@@ -71,5 +74,19 @@ public class AppUserManager implements UserManager {
         });
 
         return future;
+    }
+
+    private void onLogin(User user) {
+        this.reader.addCallback(new ChatbotManagerConsoleReaderCallback(reader, this.chatbotManager, this, chatMessageManager));
+        this.chatMessageManager.getAll().thenAccept(messages -> {
+            for (ChatMessageEntity<AppUserEntity, AppChatbotEntity> message : messages) {
+                if(message.getChatbot() == null) {
+                    printer.println("["+user.getEntity().getUsername()+"] " + message.getText());
+                } else {
+                    System.out.println(message.getChatbot());
+                    printer.println("["+message.getChatbot().getBotname()+"] " + message.getText());
+                }
+            }
+        });
     }
 }

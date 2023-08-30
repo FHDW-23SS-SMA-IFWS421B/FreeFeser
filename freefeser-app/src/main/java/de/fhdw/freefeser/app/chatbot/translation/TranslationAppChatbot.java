@@ -1,12 +1,16 @@
 package de.fhdw.freefeser.app.chatbot.translation;
 
 import de.fhdw.freefeser.api.console.printer.ConsolePrinter;
+import de.fhdw.freefeser.api.database.ChatbotEntity;
+import de.fhdw.freefeser.api.database.ChatbotEntityDatabaseManager;
 import de.fhdw.freefeser.api.textanalyzer.TranslationTextAnalyzer;
 import de.fhdw.freefeser.api.user.User;
+import de.fhdw.freefeser.api.user.UserManager;
 import de.fhdw.freefeser.api.util.HttpWrapper;
 import de.fhdw.freefeser.api.util.JsonParser;
 import de.fhdw.freefeser.api.util.YamlParser;
 import de.fhdw.freefeser.app.chatbot.AppChatbot;
+import de.fhdw.freefeser.app.databases.managers.AppChatMessageManager;
 import de.fhdw.freefeser.app.textanalyzer.AppTranslationTextAnalyzer;
 
 import java.util.HashMap;
@@ -16,8 +20,8 @@ public class TranslationAppChatbot extends AppChatbot {
     private final TranslationApi translationApi;
     private final TranslationTextAnalyzer translationTextAnalyzer;
 
-    public TranslationAppChatbot(ConsolePrinter printer, JsonParser jsonParser, HttpWrapper httpWrapper, YamlParser yamlParser, String filePath) {
-        super(printer, "translationbot");
+    public TranslationAppChatbot(ConsolePrinter printer, String name, UserManager userManager, AppChatMessageManager chatMessageManager, JsonParser jsonParser, HttpWrapper httpWrapper, YamlParser yamlParser, String filePath, ChatbotEntityDatabaseManager databaseManager) {
+        super(printer, name, userManager, chatMessageManager, databaseManager);
         this.translationApi = new DeepLTranslationApi(jsonParser, httpWrapper, yamlParser, filePath);
         this.translationTextAnalyzer = new AppTranslationTextAnalyzer();
     }

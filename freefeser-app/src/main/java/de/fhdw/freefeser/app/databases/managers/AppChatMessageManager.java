@@ -23,11 +23,14 @@ public class AppChatMessageManager implements ChatMessageEntityDatabaseManager<A
             List<ChatMessageEntity<AppUserEntity, AppChatbotEntity>> chatMessageList = new ArrayList<>();
 
             try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-                // Define the HQL query to select all chat messages and fetch related user and chatbot entities
-                String hql = "FROM AppChatMessageEntity";
+                // Define the HQL query to select the top 100 chat messages, fetch related user and chatbot entities, and order by timestamp
+                String hql = "SELECT cm FROM AppChatMessageEntity cm ORDER BY cm.timestamp ASC";
 
                 // Create the query object
                 Query<AppChatMessageEntity> query = session.createQuery(hql, AppChatMessageEntity.class);
+
+                // Set the maximum number of results to 100
+                query.setMaxResults(100);
 
                 // Execute the query and get the result list
                 List<AppChatMessageEntity> resultList = query.getResultList();

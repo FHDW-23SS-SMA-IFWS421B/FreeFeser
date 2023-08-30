@@ -9,9 +9,9 @@ public interface ChatbotManager {
 
     Collection<Chatbot> getBots();
 
-    boolean registerBot(Chatbot chatbot);
+    void registerBot(Chatbot chatbot);
 
-    boolean unregisterBot(Chatbot chatbot);
+    void unregisterBot(Chatbot chatbot);
 
     Chatbot executeCommand(User sender, String text);
 }

@@ -4,6 +4,7 @@ import de.fhdw.freefeser.api.bot.Chatbot;
 import de.fhdw.freefeser.api.bot.ChatbotManager;
 import de.fhdw.freefeser.api.console.printer.ConsolePrinter;
 import de.fhdw.freefeser.api.console.reader.ConsoleReader;
+import de.fhdw.freefeser.api.database.ChatbotEntityDatabaseManager;
 import de.fhdw.freefeser.api.database.UserEntityDatabaseManager;
 import de.fhdw.freefeser.api.user.UserManager;
 import de.fhdw.freefeser.api.util.HttpWrapper;
@@ -15,15 +16,14 @@ import de.fhdw.freefeser.app.chatbot.weather.WeatherAppChatbot;
 import de.fhdw.freefeser.app.chatbot.wiki.WikiAppChatbot;
 import de.fhdw.freefeser.app.console.printer.AppConsolePrinter;
 import de.fhdw.freefeser.app.console.reader.AppConsoleReader;
-import de.fhdw.freefeser.app.console.reader.callbacks.ChatbotManagerConsoleReaderCallback;
 import de.fhdw.freefeser.app.console.reader.callbacks.LoginConsoleReaderCallback;
+import de.fhdw.freefeser.app.databases.managers.AppChatMessageManager;
+import de.fhdw.freefeser.app.databases.managers.AppChatbotDatabaseManager;
 import de.fhdw.freefeser.app.databases.managers.AppUserDatabaseManager;
 import de.fhdw.freefeser.app.user.AppUserManager;
 import de.fhdw.freefeser.app.util.GsonJsonParser;
 import de.fhdw.freefeser.app.util.JavaHttpWrapper;
 import de.fhdw.freefeser.app.util.SnakeYamlParser;
-
-import java.util.logging.Level;
 
 public class FreeFeserApp {
     public static void main(String[] args) throws Exception {
@@ -34,16 +34,18 @@ public class FreeFeserApp {
         YamlParser yamlParser = new SnakeYamlParser();
         HttpWrapper httpWrapper = new JavaHttpWrapper();
 
-        ChatbotManager chatbotManager = new AppChatbotManager(printer, jsonParser, httpWrapper, yamlParser, filePath);
+        ChatbotEntityDatabaseManager chatbotEntityDatabaseManager = new AppChatbotDatabaseManager();
+        ChatbotManager chatbotManager = new AppChatbotManager(chatbotEntityDatabaseManager);
 
         UserEntityDatabaseManager userEntityDatabaseManager = new AppUserDatabaseManager();
+        AppChatMessageManager chatMessageManager = new AppChatMessageManager();
 
-        UserManager userManager = new AppUserManager(userEntityDatabaseManager, printer, reader, userManagerInstance -> reader.addCallback(new ChatbotManagerConsoleReaderCallback(reader, chatbotManager, userManagerInstance)));
+        UserManager userManager = new AppUserManager(userEntityDatabaseManager, chatbotManager, chatMessageManager, printer, reader);
         reader.addCallback(new LoginConsoleReaderCallback(reader, printer, userManager));
 
-        Chatbot translationBot = new TranslationAppChatbot(printer, jsonParser, httpWrapper, yamlParser, filePath);
-        Chatbot weatherBot = new WeatherAppChatbot(printer);
-        Chatbot wikiBot = new WikiAppChatbot(printer);
+        Chatbot translationBot = new TranslationAppChatbot(printer, "translationbot", userManager, chatMessageManager, jsonParser, httpWrapper, yamlParser, filePath, chatbotEntityDatabaseManager);
+        Chatbot weatherBot = new WeatherAppChatbot(printer, "weatherbot", userManager, chatMessageManager, chatbotEntityDatabaseManager);
+        Chatbot wikiBot = new WikiAppChatbot(printer, "wikibot", userManager, chatMessageManager, chatbotEntityDatabaseManager);
         chatbotManager.registerBot(translationBot);
         chatbotManager.registerBot(weatherBot);
         chatbotManager.registerBot(wikiBot);

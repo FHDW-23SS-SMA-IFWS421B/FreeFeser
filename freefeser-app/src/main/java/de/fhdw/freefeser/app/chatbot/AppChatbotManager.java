@@ -2,15 +2,11 @@ package de.fhdw.freefeser.app.chatbot;
 
 import de.fhdw.freefeser.api.bot.Chatbot;
 import de.fhdw.freefeser.api.bot.ChatbotManager;
-import de.fhdw.freefeser.api.console.printer.ConsolePrinter;
-import de.fhdw.freefeser.api.util.HttpWrapper;
-import de.fhdw.freefeser.api.util.JsonParser;
+import de.fhdw.freefeser.api.database.ChatbotEntity;
+import de.fhdw.freefeser.api.database.ChatbotEntityDatabaseManager;
 import de.fhdw.freefeser.api.user.User;
-import de.fhdw.freefeser.api.util.YamlParser;
+import de.fhdw.freefeser.app.databases.entities.AppChatbotEntity;
 import de.fhdw.freefeser.app.textanalyzer.AppTranslationTextAnalyzer;
-import de.fhdw.freefeser.app.chatbot.translation.TranslationAppChatbot;
-import de.fhdw.freefeser.app.chatbot.weather.WeatherAppChatbot;
-import de.fhdw.freefeser.app.chatbot.wiki.WikiAppChatbot;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -19,17 +15,12 @@ import java.util.HashMap;
 public class AppChatbotManager implements ChatbotManager {
 
     private final Collection<Chatbot> bots;
-    private final TranslationAppChatbot translationAppChatbot;
-    private final WeatherAppChatbot weatherAppChatbot;
-    private final WikiAppChatbot wikiAppChatbot;
+    private final ChatbotEntityDatabaseManager databaseManager;
 
-    public AppChatbotManager(ConsolePrinter printer, JsonParser jsonParser, HttpWrapper httpWrapper, YamlParser yamlParser, String filePath) {
+    public AppChatbotManager(ChatbotEntityDatabaseManager databaseManager) {
+        this.databaseManager = databaseManager;
         this.bots = new ArrayList<>();
-        this.translationAppChatbot = new TranslationAppChatbot(printer, jsonParser, httpWrapper, yamlParser, filePath);
-        this.weatherAppChatbot = new WeatherAppChatbot(printer);
-        this.wikiAppChatbot = new WikiAppChatbot(printer);
     }
-
 
     @Override
     public Collection<Chatbot> getBots() {
@@ -37,13 +28,19 @@ public class AppChatbotManager implements ChatbotManager {
     }
 
     @Override
-    public boolean registerBot(Chatbot chatbot) {
-        return this.bots.add(chatbot);
+    public void registerBot(Chatbot chatbot) {
+        this.databaseManager.getByName(chatbot.getName()).thenAccept(bot -> {
+            if(bot == null) {
+                ChatbotEntity entity = new AppChatbotEntity(chatbot.getName(), true);
+                this.databaseManager.create(entity);
+            }
+            this.bots.add(chatbot);
+        });
     }
 
     @Override
-    public boolean unregisterBot(Chatbot chatbot) {
-        return this.bots.remove(chatbot);
+    public void unregisterBot(Chatbot chatbot) {
+        this.bots.remove(chatbot);
     }
 
     @Override
@@ -81,13 +78,7 @@ public class AppChatbotManager implements ChatbotManager {
 
         for (Chatbot bot : bots) {
             if (bot.getName().equalsIgnoreCase(selectedBot)) {
-                if (bot instanceof TranslationAppChatbot) {
-                    return translationAppChatbot;
-                } else if (bot instanceof WeatherAppChatbot) {
-                    return weatherAppChatbot;
-                } else if (bot instanceof WikiAppChatbot) {
-                    return wikiAppChatbot;
-                }
+                return bot;
             }
         }
 

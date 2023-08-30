@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
-public class AppChatMessageManager implements ChatMessageEntityDatabaseManager<AppUserEntity, AppChatbotEntity> {
+public class AppChatMessageDatabaseManager implements ChatMessageEntityDatabaseManager<AppUserEntity, AppChatbotEntity> {
 
     @Override
     public CompletableFuture<List<ChatMessageEntity<AppUserEntity, AppChatbotEntity>>> getAll() {

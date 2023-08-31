@@ -43,7 +43,7 @@ public class LoginConsoleReaderCallback extends AppConsoleReaderCallback {
             if(this.register) {
                 this.userManager.register(this.user, input).thenAcceptAsync(user -> {
                    if(user == null) {
-                       this.printer.println("[system] A user with the username" + this.user + " already exist.");
+                       this.printer.println("[system] A user with the username " + this.user + " already exist.");
                        this.user = null;
                    } else {
                        this.printer.println("[system] Der Benutzer wurde erfolgreich erstellt.");

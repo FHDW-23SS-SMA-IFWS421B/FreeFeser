@@ -291,5 +291,5 @@ Je nach Ansatz sind noch weitere Punkte wichtig.
 ### WikiBot
 
 ## weitere Schritte
-1. OpenWeather-API für Forecast implementieren/einbinden
+1. NLP-Modelle selbst anlernen, da sie noch auf korrekte Groß- und Kleinschreibung der Entitäten angewiesen sind (vor allem bei Orten)
 2. Unit-/Integration-Tests schreiben

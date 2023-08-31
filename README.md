@@ -140,6 +140,9 @@ Form
 Die Bausteinsicht ist eine hierarchische Sammlung von Blackboxen und Whiteboxen und deren Beschreibungen.
 
 ### Laufzeitsichten
+
+![Datenbank-Schema](documentation/BPMN.svg)
+
 Das Verhalten der Bausteine in Form von dynamischen Szenarien, die die wichtigsten Prozesse oder Features abdecken, Interaktionen an kritischen externen Schnittstellen oder “interessante” interne Abläufe und kritische Ausnahme- oder Fehlerfälle.
 
 Motivation

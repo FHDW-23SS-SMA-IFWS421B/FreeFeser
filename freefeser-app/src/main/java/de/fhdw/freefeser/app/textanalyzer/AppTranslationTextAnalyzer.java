@@ -22,7 +22,7 @@ public class AppTranslationTextAnalyzer extends AppTextAnalyzer implements Trans
     @Override
     public String extractTextToTranslate(String text) {
         // Regular expression pattern to extract the text to translate.
-        String pattern = "Übersetze (ins|auf) (\\w+):\\s*(.*)";
+        String pattern = "übersetze (in|ins|auf) (\\w+):\\s*(.*)";
         java.util.regex.Pattern regexPattern = java.util.regex.Pattern.compile(pattern, Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE);
         java.util.regex.Matcher matcher = regexPattern.matcher(text);
 
@@ -37,7 +37,7 @@ public class AppTranslationTextAnalyzer extends AppTextAnalyzer implements Trans
     @Override
     public String extractTargetLanguage(String text) {
         // Regular expression pattern to extract the target language code.
-        String pattern = "Übersetze (ins|auf) (\\w+):";
+        String pattern = "übersetze (in|ins|auf) (\\w+):";
         Pattern regexPattern = Pattern.compile(pattern, Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE);
         Matcher matcher = regexPattern.matcher(text);
 

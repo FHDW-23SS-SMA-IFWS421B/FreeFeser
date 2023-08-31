@@ -55,7 +55,7 @@ public class AppWikiTextAnalyzer extends AppTextAnalyzer implements WikiTextAnal
             for (CoreMap sentenceWithEntity : sentencesWithEntities) {
                 for (CoreMap token : sentenceWithEntity.get(CoreAnnotations.TokensAnnotation.class)) {
                     String ner = token.get(CoreAnnotations.NamedEntityTagAnnotation.class);
-                    if ("PERSON".equals(ner) || "LOCATION".equals(ner)) { // Include "PERSON" and "LOCATION" named entities
+                    if ("PERSON".equalsIgnoreCase(ner) || "LOCATION".equalsIgnoreCase(ner)) { // Include "PERSON" and "LOCATION" named entities
                         searchTerms.add(token.get(CoreAnnotations.TextAnnotation.class));
                     }
                 }

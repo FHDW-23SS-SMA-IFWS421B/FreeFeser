@@ -15,6 +15,7 @@ import java.util.concurrent.CompletableFuture;
 public class OpenWeatherApi implements WeatherApi {
     private final Gson gson = new Gson();
     private final String apiKey;
+    protected String endpoint = "https://api.openweathermap.org/data/2.5/weather";
 
     public OpenWeatherApi(YamlParser yamlParser, String filePath) {
         // Create and configure the YamlApiCredentials instance
@@ -24,8 +25,7 @@ public class OpenWeatherApi implements WeatherApi {
 
     @Override
     public CompletableFuture<WeatherResult> getCurrentWeather(String location) {
-        String endpoint = "https://api.openweathermap.org/data/2.5/weather";
-        String params = "?q=" + location + "&appid=" + apiKey;
+        String params = "weather?q=" + location + "&appid=" + apiKey;
         String url = endpoint + params;
 
         HttpClient httpClient = HttpClient.newBuilder().build();
@@ -39,10 +39,11 @@ public class OpenWeatherApi implements WeatherApi {
 
     @Override
     public CompletableFuture<List<WeatherResult>> getForecastWeather(String location) {
-        // The implementation for forecast weather is similar to getCurrentWeather.
-        // However, OpenWeatherMap API returns a single WeatherResult for forecast, not a list.
-        // For simplicity, we'll return a CompletableFuture with a list containing a single WeatherResult.
-        // TODO: research how to get weather forecast in openweather 2.5
+        // TODO: pls finish the implementation of forecast and adjust the return statement etc.
+        // URL for forecast:
+        String params = "forecast?q=" + location + "&appid=" + apiKey + "&units=metric";
+        String url = endpoint + params;
+
         return getCurrentWeather(location).thenApply(List::of);
     }
 }

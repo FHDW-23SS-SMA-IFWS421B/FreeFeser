@@ -25,9 +25,13 @@ import de.fhdw.freefeser.app.util.GsonJsonParser;
 import de.fhdw.freefeser.app.util.JavaHttpWrapper;
 import de.fhdw.freefeser.app.util.SnakeYamlParser;
 
+import java.io.InputStream;
+
 public class FreeFeserApp {
     public static void main(String[] args) throws Exception {
-        String filePath = "config/credentials.yaml";
+        String filePath = "./credentials.yaml";
+        InputStream inputStream = loadConfig(filePath);
+
         ConsolePrinter printer = new AppConsolePrinter();
         ConsoleReader reader = new AppConsoleReader(System.in);
         JsonParser jsonParser = new GsonJsonParser();
@@ -43,7 +47,7 @@ public class FreeFeserApp {
         UserManager userManager = new AppUserManager(userEntityDatabaseManager, chatbotManager, chatMessageDatabaseManager, printer, reader);
         reader.addCallback(new LoginConsoleReaderCallback(reader, printer, userManager));
 
-        Chatbot translationBot = new TranslationAppChatbot(printer, "translationbot", userManager, chatMessageDatabaseManager, jsonParser, httpWrapper, yamlParser, filePath, chatbotEntityDatabaseManager);
+        Chatbot translationBot = new TranslationAppChatbot(printer, "translationbot", userManager, chatMessageDatabaseManager, jsonParser, httpWrapper, yamlParser, inputStream, chatbotEntityDatabaseManager);
         Chatbot weatherBot = new WeatherAppChatbot(printer, "weatherbot", userManager, chatMessageDatabaseManager, chatbotEntityDatabaseManager);
         Chatbot wikiBot = new WikiAppChatbot(printer, "wikibot", userManager, chatMessageDatabaseManager, chatbotEntityDatabaseManager);
         chatbotManager.registerBot(translationBot);
@@ -55,5 +59,11 @@ public class FreeFeserApp {
         // Register //@Todo ask for impl for new bot
 
         reader.start();
+    }
+
+    private static InputStream loadConfig(String resourcePath) {
+        ClassLoader classLoader = FreeFeserApp.class.getClassLoader();
+
+        return classLoader.getResourceAsStream(resourcePath);
     }
 }

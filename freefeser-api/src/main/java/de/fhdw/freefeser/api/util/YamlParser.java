@@ -1,7 +1,9 @@
 package de.fhdw.freefeser.api.util;
 
+import java.io.InputStream;
+
 public interface YamlParser {
 
-    <T> T load(String yamlContent, Class<T> type);
+    <T> T load(InputStream inputStream, Class<T> type);
 }
 

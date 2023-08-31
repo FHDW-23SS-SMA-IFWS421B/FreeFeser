@@ -7,6 +7,7 @@ import de.fhdw.freefeser.api.util.YamlParser;
 import de.fhdw.freefeser.app.util.Credentials;
 import de.fhdw.freefeser.app.util.YamlApiCredentials;
 
+import java.io.InputStream;
 import java.net.URI;
 import java.net.URLEncoder;
 import java.net.http.HttpRequest;
@@ -20,12 +21,12 @@ public class DeepLTranslationApi implements TranslationApi {
     private final HttpWrapper httpWrapper;
     private final String apiKey;
 
-    public DeepLTranslationApi(JsonParser jsonParser, HttpWrapper httpWrapper, YamlParser yamlParser, String filePath) {
+    public DeepLTranslationApi(JsonParser jsonParser, HttpWrapper httpWrapper, YamlParser yamlParser, InputStream inputStream) {
         this.jsonParser = jsonParser;
         this.httpWrapper = httpWrapper;
 
         // Create and configure the YamlApiCredentials instance
-        YamlApiCredentials yamlApiCredentials = new YamlApiCredentials(yamlParser, filePath, Credentials::getDeeplApiKey);
+        YamlApiCredentials yamlApiCredentials = new YamlApiCredentials(yamlParser, inputStream, Credentials::getDeeplApiKey);
         apiKey = yamlApiCredentials.getApiKey();
     }
 

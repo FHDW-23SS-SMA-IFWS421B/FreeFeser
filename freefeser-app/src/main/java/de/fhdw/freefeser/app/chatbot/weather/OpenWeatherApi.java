@@ -5,6 +5,7 @@ import de.fhdw.freefeser.api.util.YamlParser;
 import de.fhdw.freefeser.app.util.Credentials;
 import de.fhdw.freefeser.app.util.YamlApiCredentials;
 
+import java.io.InputStream;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -17,9 +18,9 @@ public class OpenWeatherApi implements WeatherApi {
     private final String apiKey;
     protected String endpoint = "https://api.openweathermap.org/data/2.5/weather";
 
-    public OpenWeatherApi(YamlParser yamlParser, String filePath) {
+    public OpenWeatherApi(YamlParser yamlParser, InputStream inputStream) {
         // Create and configure the YamlApiCredentials instance
-        YamlApiCredentials yamlApiCredentials = new YamlApiCredentials(yamlParser, filePath, Credentials::getWeatherApiKey);
+        YamlApiCredentials yamlApiCredentials = new YamlApiCredentials(yamlParser, inputStream, Credentials::getWeatherApiKey);
         apiKey = yamlApiCredentials.getApiKey();
     }
 

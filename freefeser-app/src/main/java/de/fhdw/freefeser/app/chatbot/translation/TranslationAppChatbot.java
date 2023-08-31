@@ -12,6 +12,7 @@ import de.fhdw.freefeser.app.chatbot.AppChatbot;
 import de.fhdw.freefeser.app.databases.managers.AppChatMessageDatabaseManager;
 import de.fhdw.freefeser.app.textanalyzer.AppTranslationTextAnalyzer;
 
+import java.io.InputStream;
 import java.util.HashMap;
 
 public class TranslationAppChatbot extends AppChatbot {
@@ -19,9 +20,9 @@ public class TranslationAppChatbot extends AppChatbot {
     private final TranslationApi translationApi;
     private final TranslationTextAnalyzer translationTextAnalyzer;
 
-    public TranslationAppChatbot(ConsolePrinter printer, String name, UserManager userManager, AppChatMessageDatabaseManager chatMessageDatabaseManager, JsonParser jsonParser, HttpWrapper httpWrapper, YamlParser yamlParser, String filePath, ChatbotEntityDatabaseManager databaseManager) {
+    public TranslationAppChatbot(ConsolePrinter printer, String name, UserManager userManager, AppChatMessageDatabaseManager chatMessageDatabaseManager, JsonParser jsonParser, HttpWrapper httpWrapper, YamlParser yamlParser, InputStream inputStream, ChatbotEntityDatabaseManager databaseManager) {
         super(printer, name, userManager, chatMessageDatabaseManager, databaseManager);
-        this.translationApi = new DeepLTranslationApi(jsonParser, httpWrapper, yamlParser, filePath);
+        this.translationApi = new DeepLTranslationApi(jsonParser, httpWrapper, yamlParser, inputStream);
         this.translationTextAnalyzer = new AppTranslationTextAnalyzer();
     }
 

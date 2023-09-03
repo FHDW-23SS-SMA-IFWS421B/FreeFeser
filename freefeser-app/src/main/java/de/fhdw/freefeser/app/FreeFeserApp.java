@@ -22,6 +22,7 @@ import de.fhdw.freefeser.app.databases.managers.AppChatbotDatabaseManager;
 import de.fhdw.freefeser.app.databases.managers.AppUserDatabaseManager;
 import de.fhdw.freefeser.app.user.AppUserManager;
 import de.fhdw.freefeser.app.util.GsonJsonParser;
+import de.fhdw.freefeser.app.util.HibernateUtil;
 import de.fhdw.freefeser.app.util.JavaHttpWrapper;
 import de.fhdw.freefeser.app.util.SnakeYamlParser;
 
@@ -31,28 +32,35 @@ public class FreeFeserApp {
     public static void main(String[] args) throws Exception {
         String filePath = "./credentials.yaml";
         InputStream inputStream = loadConfig(filePath);
+        HibernateUtil hibernateUtil = new HibernateUtil();
 
-        ConsolePrinter printer = new AppConsolePrinter();
-        ConsoleReader reader = new AppConsoleReader(System.in);
+        AppConsolePrinter printer = new AppConsolePrinter();
+        AppConsoleReader reader = new AppConsoleReader(System.in);
         JsonParser jsonParser = new GsonJsonParser();
         YamlParser yamlParser = new SnakeYamlParser();
         HttpWrapper httpWrapper = new JavaHttpWrapper();
 
-        ChatbotEntityDatabaseManager chatbotEntityDatabaseManager = new AppChatbotDatabaseManager();
-        ChatbotManager chatbotManager = new AppChatbotManager(chatbotEntityDatabaseManager);
+        ChatbotEntityDatabaseManager chatbotEntityDatabaseManager = new AppChatbotDatabaseManager(hibernateUtil);
+        ChatbotManager chatbotManager = new AppChatbotManager(chatbotEntityDatabaseManager, printer);
 
-        UserEntityDatabaseManager userEntityDatabaseManager = new AppUserDatabaseManager();
-        AppChatMessageDatabaseManager chatMessageDatabaseManager = new AppChatMessageDatabaseManager();
+        UserEntityDatabaseManager userEntityDatabaseManager = new AppUserDatabaseManager(hibernateUtil);
+        AppChatMessageDatabaseManager chatMessageDatabaseManager = new AppChatMessageDatabaseManager(hibernateUtil);
+        printer.setChatMessageDatabaseManager(chatMessageDatabaseManager);
 
         UserManager userManager = new AppUserManager(userEntityDatabaseManager, chatbotManager, chatMessageDatabaseManager, printer, reader);
+        printer.setUserManager(userManager);
         reader.addCallback(new LoginConsoleReaderCallback(reader, printer, userManager));
 
         Chatbot translationBot = new TranslationAppChatbot(printer, "translationbot", userManager, chatMessageDatabaseManager, jsonParser, httpWrapper, yamlParser, inputStream, chatbotEntityDatabaseManager);
         Chatbot weatherBot = new WeatherAppChatbot(printer, "weatherbot", userManager, chatMessageDatabaseManager, chatbotEntityDatabaseManager);
         Chatbot wikiBot = new WikiAppChatbot(printer, "wikibot", userManager, chatMessageDatabaseManager, chatbotEntityDatabaseManager);
-        chatbotManager.registerBot(translationBot);
-        chatbotManager.registerBot(weatherBot);
-        chatbotManager.registerBot(wikiBot);
+        chatbotManager.registerBot(translationBot).thenAccept(complete1 -> {
+            chatbotManager.registerBot(weatherBot).thenAccept(complete2 -> {
+                chatbotManager.registerBot(wikiBot);
+            });
+        });
+
+
 
         // in der Main Auswechseln der GUI oder Bots etc ermöglichen
         // Chatbot

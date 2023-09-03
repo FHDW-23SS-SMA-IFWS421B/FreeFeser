@@ -22,23 +22,18 @@ public class AppChatMessageEntity implements ChatMessageEntity<AppUserEntity, Ap
     @Column(name = "timestamp", nullable = false)
     private LocalDateTime timestamp;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private AppUserEntity user;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    private AppChatbotEntity chatbot;
 
     public AppChatMessageEntity() {
 
     }
 
-    public AppChatMessageEntity(String text, LocalDateTime timestamp, UserEntity user, ChatbotEntity chatbot) {
+    public AppChatMessageEntity(String text, LocalDateTime timestamp, UserEntity user) {
         if(!(user instanceof AppUserEntity)) throw new IllegalArgumentException("Error while creating AppChatMessageEntity. User is not an AppUserEntity.");
-        if(chatbot != null && !(chatbot instanceof AppChatbotEntity)) throw new IllegalArgumentException("Error while creating AppChatbotEntity. ChatbotEntity is not an AppChatbotEntity.");
         this.text = text;
         this.timestamp = timestamp;
         this.user = (AppUserEntity) user;
-        this.chatbot = (AppChatbotEntity) chatbot;
     }
 
     public UUID getId() {
@@ -71,13 +66,5 @@ public class AppChatMessageEntity implements ChatMessageEntity<AppUserEntity, Ap
 
     public void setUser(AppUserEntity user) {
         this.user = user;
-    }
-
-    public AppChatbotEntity getChatbot() {
-        return chatbot;
-    }
-
-    public void setChatbot(AppChatbotEntity chatbot) {
-        this.chatbot = chatbot;
     }
 }

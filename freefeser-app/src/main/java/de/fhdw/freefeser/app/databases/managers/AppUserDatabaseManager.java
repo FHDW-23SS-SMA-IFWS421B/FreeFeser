@@ -15,12 +15,18 @@ import org.hibernate.query.Query;
 
 public class AppUserDatabaseManager implements UserEntityDatabaseManager {
 
+    private final HibernateUtil hibernateUtil;
+
+    public AppUserDatabaseManager(HibernateUtil hibernateUtil) {
+        this.hibernateUtil = hibernateUtil;
+    }
+
     @Override
     public CompletableFuture<List<UserEntity>> getAll() {
         return CompletableFuture.supplyAsync(() -> {
             List<UserEntity> userList = new ArrayList<>();
 
-            try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            try (Session session = this.hibernateUtil.getSessionFactory().openSession()) {
                 // Define the HQL query to select all users
                 String hql = "FROM AppUserEntity";
 
@@ -44,7 +50,7 @@ public class AppUserDatabaseManager implements UserEntityDatabaseManager {
     public CompletableFuture<UserEntity> get(UUID id) {
         return CompletableFuture.supplyAsync(() -> {
             AppUserEntity user = null;
-            try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            try (Session session = this.hibernateUtil.getSessionFactory().openSession()) {
                 // Use Hibernate's get() method to retrieve the AppUser by ID
                 user = session.get(AppUserEntity.class, id);
             } catch (Exception e) {
@@ -57,7 +63,7 @@ public class AppUserDatabaseManager implements UserEntityDatabaseManager {
     @Override
     public CompletableFuture<Void> update(UserEntity user) {
         return CompletableFuture.runAsync(() -> {
-            try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            try (Session session = this.hibernateUtil.getSessionFactory().openSession()) {
                 // Begin a new database transaction
                 Transaction transaction = session.beginTransaction();
 
@@ -75,7 +81,7 @@ public class AppUserDatabaseManager implements UserEntityDatabaseManager {
     @Override
     public CompletableFuture<UserEntity> create(UserEntity entityWithoutId) {
         return CompletableFuture.supplyAsync(() -> {
-            try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            try (Session session = this.hibernateUtil.getSessionFactory().openSession()) {
                 // Begin a new database transaction
                 Transaction transaction = session.beginTransaction();
 
@@ -98,7 +104,7 @@ public class AppUserDatabaseManager implements UserEntityDatabaseManager {
     @Override
     public CompletableFuture<Void> delete(UUID id) {
         return CompletableFuture.runAsync(() -> {
-            try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            try (Session session = this.hibernateUtil.getSessionFactory().openSession()) {
                 // Begin a new database transaction
                 Transaction transaction = session.beginTransaction();
 
@@ -123,7 +129,7 @@ public class AppUserDatabaseManager implements UserEntityDatabaseManager {
     public CompletableFuture<UserEntity> getByUsername(String username) {
         return CompletableFuture.supplyAsync(() -> {
             AppUserEntity user = null;
-            try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            try (Session session = this.hibernateUtil.getSessionFactory().openSession()) {
                 // Use Hibernate's createQuery() method to retrieve the AppUser by username
                 user = session.createQuery("FROM AppUserEntity u WHERE u.username = :username", AppUserEntity.class).setParameter("username", username).uniqueResult();
             } catch (Exception e) {

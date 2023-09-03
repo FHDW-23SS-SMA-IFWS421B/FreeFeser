@@ -17,12 +17,18 @@ import java.util.concurrent.CompletableFuture;
 
 public class AppChatMessageDatabaseManager implements ChatMessageEntityDatabaseManager<AppUserEntity, AppChatbotEntity> {
 
+    private final HibernateUtil hibernateUtil;
+
+    public AppChatMessageDatabaseManager(HibernateUtil hibernateUtil) {
+        this.hibernateUtil = hibernateUtil;
+    }
+
     @Override
     public CompletableFuture<List<ChatMessageEntity<AppUserEntity, AppChatbotEntity>>> getAll() {
         return CompletableFuture.supplyAsync(() -> {
             List<ChatMessageEntity<AppUserEntity, AppChatbotEntity>> chatMessageList = new ArrayList<>();
 
-            try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            try (Session session = this.hibernateUtil.getSessionFactory().openSession()) {
                 // Define the HQL query to select the top 100 chat messages, fetch related user and chatbot entities, and order by timestamp
                 String hql = "SELECT cm FROM AppChatMessageEntity cm ORDER BY cm.timestamp ASC";
 
@@ -49,7 +55,7 @@ public class AppChatMessageDatabaseManager implements ChatMessageEntityDatabaseM
     public CompletableFuture<ChatMessageEntity<AppUserEntity, AppChatbotEntity>> get(UUID id) {
         return CompletableFuture.supplyAsync(() -> {
             AppChatMessageEntity chatMessage = null;
-            try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            try (Session session = this.hibernateUtil.getSessionFactory().openSession()) {
                 // Use Hibernate's get() method to retrieve the AppChatMessage by ID
                 chatMessage = session.get(AppChatMessageEntity.class, id);
             } catch (Exception e) {
@@ -62,7 +68,7 @@ public class AppChatMessageDatabaseManager implements ChatMessageEntityDatabaseM
     @Override
     public CompletableFuture<Void> update(ChatMessageEntity<AppUserEntity, AppChatbotEntity> chatMessage) {
         return CompletableFuture.runAsync(() -> {
-            try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            try (Session session = this.hibernateUtil.getSessionFactory().openSession()) {
                 // Begin a new database transaction
                 Transaction transaction = session.beginTransaction();
 
@@ -80,7 +86,7 @@ public class AppChatMessageDatabaseManager implements ChatMessageEntityDatabaseM
     @Override
     public CompletableFuture<ChatMessageEntity<AppUserEntity, AppChatbotEntity>> create(ChatMessageEntity<AppUserEntity, AppChatbotEntity> entityWithoutId) {
         return CompletableFuture.supplyAsync(() -> {
-            try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            try (Session session = this.hibernateUtil.getSessionFactory().openSession()) {
                 // Begin a new database transaction
                 Transaction transaction = session.beginTransaction();
 
@@ -103,7 +109,7 @@ public class AppChatMessageDatabaseManager implements ChatMessageEntityDatabaseM
     @Override
     public CompletableFuture<Void> delete(UUID id) {
         return CompletableFuture.runAsync(() -> {
-            try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            try (Session session = this.hibernateUtil.getSessionFactory().openSession()) {
                 // Begin a new database transaction
                 Transaction transaction = session.beginTransaction();
 

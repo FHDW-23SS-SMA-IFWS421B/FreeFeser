@@ -80,13 +80,9 @@ public class AppUserManager implements UserManager {
         this.reader.addCallback(new ChatbotManagerConsoleReaderCallback(reader, this.chatbotManager, this, chatMessageDatabaseManager));
         this.chatMessageDatabaseManager.getAll().thenAccept(messages -> {
             for (ChatMessageEntity<AppUserEntity, AppChatbotEntity> message : messages) {
-                if(message.getChatbot() == null) {
-                    printer.println("["+user.getEntity().getUsername()+"] " + message.getText());
-                } else {
-                    System.out.println(message.getChatbot());
-                    printer.println("["+message.getChatbot().getBotname()+"] " + message.getText());
-                }
+                this.printer.println(message.getText(), false);
             }
+            this.printer.println("====================");
         });
     }
 }

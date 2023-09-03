@@ -9,7 +9,7 @@ public interface ChatbotManager {
 
     Collection<Chatbot> getBots();
 
-    void registerBot(Chatbot chatbot);
+    CompletableFuture<Void> registerBot(Chatbot chatbot);
 
     void unregisterBot(Chatbot chatbot);
 

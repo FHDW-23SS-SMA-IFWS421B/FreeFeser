@@ -28,7 +28,6 @@ public class MediaWikiApi implements WikiApi {
         CompletableFuture<HttpResponse<String>> futureResponse = httpClient.sendAsync(httpRequest, HttpResponse.BodyHandlers.ofString());
 
         return futureResponse.thenApply((HttpResponse<String> response) -> {
-            System.out.println(response.body());
             return gson.fromJson(response.body(), WikiResult[].class);
         }).exceptionally((Throwable throwable) -> {
             // Handle any exceptions that occurred during the API call

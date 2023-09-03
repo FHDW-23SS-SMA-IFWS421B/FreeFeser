@@ -20,8 +20,4 @@ public interface ChatMessageEntity<U extends UserEntity, C extends ChatbotEntity
     U getUser();
 
     void setUser(U user);
-
-    C getChatbot();
-
-    void setChatbot(C chatbot);
 }

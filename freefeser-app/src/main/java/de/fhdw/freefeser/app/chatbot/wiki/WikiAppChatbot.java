@@ -24,9 +24,15 @@ public class WikiAppChatbot extends AppChatbot {
 
     @Override
     public void onExecute(User sender, String rawText) {
-        HashMap<String, String> analysisResult = wikiTextAnalyzer.analyze(rawText);
-        String keyword = analysisResult.get("SearchTerm");
+        try {
+            HashMap<String, String> analysisResult = wikiTextAnalyzer.analyze(rawText);
+            String keyword = analysisResult.get("SearchTerm");
 
-        wikiApi.search(keyword).thenAccept(result -> sendMessageOnBehalf("Folgende Informationen habe ich zu " + keyword));
+            wikiApi.search(keyword).thenAccept(result -> {
+                sendMessageOnBehalf("Folgende Informationen habe ich zu " + keyword);
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

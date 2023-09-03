@@ -1,11 +1,11 @@
 package de.fhdw.freefeser.app.console.reader;
 
+import de.fhdw.freefeser.api.console.printer.ConsolePrinter;
 import de.fhdw.freefeser.api.console.reader.ConsoleReader;
 import de.fhdw.freefeser.api.console.reader.ConsoleReaderCallback;
 import de.fhdw.freefeser.api.console.reader.exceptions.ConsoleReaderAlreadyNotRunningException;
 import de.fhdw.freefeser.api.console.reader.exceptions.ConsoleReaderAlreadyRunningException;
 
-import java.io.Console;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;

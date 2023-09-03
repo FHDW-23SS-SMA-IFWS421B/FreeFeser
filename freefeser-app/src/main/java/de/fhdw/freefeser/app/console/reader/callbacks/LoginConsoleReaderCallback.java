@@ -46,7 +46,7 @@ public class LoginConsoleReaderCallback extends AppConsoleReaderCallback {
                        this.printer.println("[system] A user with the username " + this.user + " already exist.");
                        this.user = null;
                    } else {
-                       this.printer.println("[system] Der Benutzer wurde erfolgreich erstellt.");
+                       this.printer.println("[system] Der Benutzer wurde erfolgreich erstellt.", false);
                        this.printer.println("[system] Herzlich Willkommen im Chatbot-System! Geben Sie einen Befehl/Frage ein:");
                        this.unregister();
                    }
@@ -54,11 +54,11 @@ public class LoginConsoleReaderCallback extends AppConsoleReaderCallback {
             } else {
                 this.userManager.login(this.user, input).thenAcceptAsync(user -> {
                     if(user != null) {
-                        this.printer.println("[system] Login erfolgreich.");
-                        this.printer.println("[system] Herzlich Willkommen im Chatbot-System! Geben Sie einen Befehl/Frage ein:");
+                        this.printer.println("[system] Login erfolgreich.", false);
+                        this.printer.println("[system] Herzlich Willkommen im Chatbot-System! Geben Sie einen Befehl/Frage ein:", false);
                         this.unregister();
                     } else {
-                        this.printer.println("[system] Falsches Passwort.");
+                        this.printer.println("[system] Falsches Passwort.", false);
                         this.printer.println("[system] Bitte geben Sie das korrekte Passwort für ihren Benutzer ein:");
                     }
                 });

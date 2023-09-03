@@ -14,5 +14,7 @@ public interface Chatbot {
 
     void onExecute(User sender, String rawText);
 
+    void sendMessageOnBehalf(String message, boolean askForInput);
+
     void sendMessageOnBehalf(String message);
 }

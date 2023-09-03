@@ -15,12 +15,18 @@ import java.util.concurrent.CompletableFuture;
 
 public class AppChatbotDatabaseManager implements ChatbotEntityDatabaseManager {
 
+    private final HibernateUtil hibernateUtil;
+
+    public AppChatbotDatabaseManager(HibernateUtil hibernateUtil) {
+        this.hibernateUtil = hibernateUtil;
+    }
+
     @Override
     public CompletableFuture<List<ChatbotEntity>> getAll() {
         return CompletableFuture.supplyAsync(() -> {
             List<ChatbotEntity> chatbotList = new ArrayList<>();
 
-            try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            try (Session session = this.hibernateUtil.getSessionFactory().openSession()) {
                 // Define the HQL query to select all chatbots
                 String hql = "FROM AppChatbotEntity";
 
@@ -44,7 +50,7 @@ public class AppChatbotDatabaseManager implements ChatbotEntityDatabaseManager {
     public CompletableFuture<ChatbotEntity> get(UUID id) {
         return CompletableFuture.supplyAsync(() -> {
             AppChatbotEntity appChatbot = null;
-            try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            try (Session session = this.hibernateUtil.getSessionFactory().openSession()) {
                 // Use Hibernate's get() method to retrieve the AppChatbot by ID
                 appChatbot = session.get(AppChatbotEntity.class, id);
             } catch (Exception e) {
@@ -57,7 +63,7 @@ public class AppChatbotDatabaseManager implements ChatbotEntityDatabaseManager {
     @Override
     public CompletableFuture<Void> update(ChatbotEntity chatbot) {
         return CompletableFuture.runAsync(() -> {
-            try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            try (Session session = this.hibernateUtil.getSessionFactory().openSession()) {
                 // Begin a new database transaction
                 Transaction transaction = session.beginTransaction();
 
@@ -75,7 +81,7 @@ public class AppChatbotDatabaseManager implements ChatbotEntityDatabaseManager {
     @Override
     public CompletableFuture<ChatbotEntity> create(ChatbotEntity entityWithoutId) {
         return CompletableFuture.supplyAsync(() -> {
-            try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            try (Session session = this.hibernateUtil.getSessionFactory().openSession()) {
                 // Begin a new database transaction
                 Transaction transaction = session.beginTransaction();
 
@@ -98,7 +104,7 @@ public class AppChatbotDatabaseManager implements ChatbotEntityDatabaseManager {
     @Override
     public CompletableFuture<Void> delete(UUID id) {
         return CompletableFuture.runAsync(() -> {
-            try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            try (Session session = this.hibernateUtil.getSessionFactory().openSession()) {
                 // Begin a new database transaction
                 Transaction transaction = session.beginTransaction();
 
@@ -123,7 +129,7 @@ public class AppChatbotDatabaseManager implements ChatbotEntityDatabaseManager {
     public CompletableFuture<ChatbotEntity> getByName(String botname) {
         return CompletableFuture.supplyAsync(() -> {
             AppChatbotEntity bot = null;
-            try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            try (Session session = this.hibernateUtil.getSessionFactory().openSession()) {
                 // Use Hibernate's createQuery() method to retrieve the Chatbot by botname
                 bot = session.createQuery("FROM AppChatbotEntity b WHERE b.botname = :botname", AppChatbotEntity.class).setParameter("botname", botname).uniqueResult();
             } catch (Exception e) {

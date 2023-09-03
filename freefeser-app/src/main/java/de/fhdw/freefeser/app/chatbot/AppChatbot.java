@@ -3,6 +3,7 @@ package de.fhdw.freefeser.app.chatbot;
 import de.fhdw.freefeser.api.bot.Chatbot;
 import de.fhdw.freefeser.api.console.printer.ConsolePrinter;
 import de.fhdw.freefeser.api.database.ChatbotEntityDatabaseManager;
+import de.fhdw.freefeser.api.user.User;
 import de.fhdw.freefeser.api.user.UserManager;
 import de.fhdw.freefeser.app.databases.entities.AppChatMessageEntity;
 import de.fhdw.freefeser.app.databases.managers.AppChatMessageDatabaseManager;
@@ -44,11 +45,17 @@ public abstract class AppChatbot implements Chatbot {
 
     @Override
     public void sendMessageOnBehalf(String message) {
-        String formattedMessage = "["+getName()+"] "+ message;
+        sendMessageOnBehalf(message, true);
+    }
 
-        this.databaseManager.getByName(this.name).thenAccept(bot -> {
-            AppChatMessageEntity chatMessageEntity = new AppChatMessageEntity(formattedMessage, LocalDateTime.now(), this.userManager.getLoggedInUser().getEntity(), bot);
-            this.chatMessageDatabaseManager.create(chatMessageEntity).thenAccept(createdMessage -> printer.println(formattedMessage));
-        });
+    @Override
+    public void sendMessageOnBehalf(String message, boolean askForInput) {
+        String formattedMessage = "["+getName()+"] "+ message;
+        printer.println(formattedMessage);
+        if(askForInput) {
+            User loggedInUser = this.userManager.getLoggedInUser();
+            String userName = loggedInUser == null ? "user" : loggedInUser.getEntity().getUsername();
+            this.printer.print("["+userName+"] ");
+        }
     }
 }

@@ -21,7 +21,9 @@
     <!-- Loggers -->
     <root level="OFF">
         <appender-ref ref="CONSOLE" />
+        <appender-ref ref="FILE" />
     </root>
 
+    <logger name="org.hibernate" level="OFF"/>
 
 </configuration>

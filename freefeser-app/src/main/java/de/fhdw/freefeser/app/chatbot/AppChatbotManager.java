@@ -90,13 +90,15 @@ public class AppChatbotManager implements ChatbotManager {
         }
 
         String botName = firstPart.substring(1);
+        String selectedBot;
 
-        // take one textanalyzer instance that inherits the abstract class to call the extractBot()
-        AppTranslationTextAnalyzer textAnalyzer = new AppTranslationTextAnalyzer();
-        HashMap<String, String> extractedBot = textAnalyzer.analyze(botName);
-
-        String selectedBot = extractedBot.get("Bot");
-        if (selectedBot == null) {
+        if(botName.equalsIgnoreCase("translationbot")) {
+            selectedBot = "translationbot";
+        } else if (botName.equalsIgnoreCase("weatherbot")) {
+            selectedBot = "weatherbot";
+        } else if (botName.equalsIgnoreCase("wikibot")) {
+            selectedBot = "wikibot";
+        } else {
             return null;
         }
 

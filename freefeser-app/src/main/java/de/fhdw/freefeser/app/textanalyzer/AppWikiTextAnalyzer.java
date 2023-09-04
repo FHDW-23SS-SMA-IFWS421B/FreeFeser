@@ -9,13 +9,13 @@ import edu.stanford.nlp.util.CoreMap;
 
 import java.util.*;
 
-public class AppWikiTextAnalyzer extends AppTextAnalyzer implements WikiTextAnalyzer {
+public class AppWikiTextAnalyzer implements WikiTextAnalyzer {
 
     @Override
     public HashMap<String, String> analyze(String text) {
         HashMap<String, String> analysisResults = new HashMap<>();
         analysisResults.put("SearchTerm", extractSearchTerm(text));
-        analysisResults.put("Bot", extractBot(text));
+
         return analysisResults;
     }
 

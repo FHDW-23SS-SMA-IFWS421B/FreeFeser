@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class AppTranslationTextAnalyzer extends AppTextAnalyzer implements TranslationTextAnalyzer {
+public class AppTranslationTextAnalyzer implements TranslationTextAnalyzer {
 
     @Override
     public HashMap<String, String> analyze(String text) {
@@ -14,7 +14,6 @@ public class AppTranslationTextAnalyzer extends AppTextAnalyzer implements Trans
 
         analysisResults.put("TranslationText", extractTextToTranslate(text));
         analysisResults.put("TargetLanguage", extractTargetLanguage(text));
-        analysisResults.put("Bot", extractBot(text));
 
         return analysisResults;
     }

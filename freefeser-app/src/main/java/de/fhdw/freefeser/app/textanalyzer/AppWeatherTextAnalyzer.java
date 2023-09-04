@@ -8,7 +8,7 @@ import edu.stanford.nlp.util.CoreMap;
 
 import java.util.*;
 
-public class AppWeatherTextAnalyzer extends AppTextAnalyzer implements WeatherTextAnalyzer {
+public class AppWeatherTextAnalyzer implements WeatherTextAnalyzer {
 
     @Override
     public HashMap<String, String> analyze(String text) {
@@ -16,7 +16,6 @@ public class AppWeatherTextAnalyzer extends AppTextAnalyzer implements WeatherTe
 
         analysisResults.put("Location", extractLocation(text));
         analysisResults.put("WeatherType", extractWeatherCurrentOrForecast(text));
-        analysisResults.put("Bot", extractBot(text));
 
         return analysisResults;
     }

@@ -1,8 +1,7 @@
 package de.fhdw.freefeser.app.util;
 
-import de.fhdw.freefeser.api.util.JsonParser;
-
 import com.google.gson.Gson;
+import de.fhdw.freefeser.api.util.JsonParser;
 
 public class GsonJsonParser implements JsonParser {
 

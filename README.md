@@ -410,5 +410,5 @@ Der Wikibot gibt in der Regel eine kurze und prägnante Zusammenfassung der wich
 
 
 ## weitere Schritte
-1. NLP-Modelle selbst anlernen, da sie noch auf korrekte Groß- und Kleinschreibung der Entitäten angewiesen sind (vor allem bei Orten)
+1. Fehlerbehandlung verbessern
 2. Unit-/Integration-Tests schreiben

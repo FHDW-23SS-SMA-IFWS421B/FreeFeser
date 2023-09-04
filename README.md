@@ -231,6 +231,41 @@ Als Erweiterung ist hier ein neuer Chatbot zu sehen.
 1. **Bot gibt nicht die richtige Response**   
    Es kann sein, dass ein Bot Ihnen eventuell nicht die richtige Antwort ausgibt. Prüfen Sie in dem Fall die Rechtschreibung und achten Sie darauf Satzanfänge und Nomen groß zu schreiben.
 
+#### Aktivieren der Logs
+Gehen Sie in `logback.xml` und ändern Sie den Code, um Fehlermeldungen in der Konsole zu erhalten.
+```xml
+<configuration>
+
+    <!-- Appenders -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>./logs/application.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- The log files will be created based on the current date and time -->
+            <fileNamePattern>./logs/application.%d{yyyy-MM-dd_HH-mm-ss}.log</fileNamePattern>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%date %level [%thread] %logger{10} [%file:%line] - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Loggers -->
+    <!-- <root level="OFF">
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="FILE" />
+    </root>
+
+    <logger name="org.hibernate" level="OFF"/> -->
+
+</configuration>
+
+```
+
 ### Installationsanleitung
 Folgen Sie diesen Schritten, um unsere Software auf Ihrem System zu installieren und auszuführen.
 

@@ -19,10 +19,7 @@ import de.fhdw.freefeser.app.databases.managers.AppChatMessageDatabaseManager;
 import de.fhdw.freefeser.app.databases.managers.AppChatbotDatabaseManager;
 import de.fhdw.freefeser.app.databases.managers.AppUserDatabaseManager;
 import de.fhdw.freefeser.app.user.AppUserManager;
-import de.fhdw.freefeser.app.util.GsonJsonParser;
-import de.fhdw.freefeser.app.util.HibernateUtil;
-import de.fhdw.freefeser.app.util.JavaHttpWrapper;
-import de.fhdw.freefeser.app.util.SnakeYamlParser;
+import de.fhdw.freefeser.app.util.*;
 
 import java.io.InputStream;
 
@@ -49,12 +46,12 @@ public class FreeFeserApp {
         printer.setUserManager(userManager);
         reader.addCallback(new LoginConsoleReaderCallback(reader, printer, userManager));
 
-        Chatbot translationBot = new TranslationAppChatbot(printer, "translationbot", userManager, chatMessageDatabaseManager, jsonParser, httpWrapper, yamlParser, inputStream, chatbotEntityDatabaseManager);
-        Chatbot weatherBot = new WeatherAppChatbot(printer, "weatherbot", userManager, chatMessageDatabaseManager, chatbotEntityDatabaseManager);
+        Credentials credentials = yamlParser.load(inputStream, Credentials.class);
+
+        Chatbot translationBot = new TranslationAppChatbot(printer, "translationbot", userManager, chatMessageDatabaseManager, jsonParser, httpWrapper, credentials, chatbotEntityDatabaseManager);
+        Chatbot weatherBot = new WeatherAppChatbot(jsonParser, httpWrapper, credentials, printer, "weatherbot", userManager, chatMessageDatabaseManager, chatbotEntityDatabaseManager);
         Chatbot wikiBot = new WikiAppChatbot(jsonParser, httpWrapper, printer, "wikibot", userManager, chatMessageDatabaseManager, chatbotEntityDatabaseManager);
-        chatbotManager.registerBot(translationBot).thenAccept(complete1 -> chatbotManager.registerBot(weatherBot).thenAccept(complete2 -> {
-            chatbotManager.registerBot(wikiBot);
-        }));
+        chatbotManager.registerBot(translationBot).thenAccept(complete1 -> chatbotManager.registerBot(weatherBot).thenAccept(complete2 -> chatbotManager.registerBot(wikiBot)));
 
         // in der Main Auswechseln der GUI oder Bots etc ermöglichen
         // Chatbot

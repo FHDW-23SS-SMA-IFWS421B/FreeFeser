@@ -2,11 +2,9 @@ package de.fhdw.freefeser.app.chatbot.weather;
 
 import de.fhdw.freefeser.api.util.HttpWrapper;
 import de.fhdw.freefeser.api.util.JsonParser;
-import de.fhdw.freefeser.api.util.YamlParser;
 import de.fhdw.freefeser.app.util.Credentials;
 import de.fhdw.freefeser.app.util.YamlApiCredentials;
 
-import java.io.InputStream;
 import java.net.URI;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
@@ -22,14 +20,14 @@ public class OpenWeatherApi implements WeatherApi {
     private final JsonParser jsonParser;
     private final HttpWrapper httpWrapper;
     private final String apiKey;
-    protected String endpoint = "https://api.openweathermap.org/data/2.5/weather";
+    protected String endpoint = "https://api.openweathermap.org/data/2.5/";
 
-    public OpenWeatherApi(JsonParser jsonParser, HttpWrapper httpWrapper, YamlParser yamlParser, InputStream inputStream) {
+    public OpenWeatherApi(JsonParser jsonParser, HttpWrapper httpWrapper, Credentials credentials) {
         this.jsonParser = jsonParser;
         this.httpWrapper = httpWrapper;
 
         // Create and configure the YamlApiCredentials instance
-        YamlApiCredentials yamlApiCredentials = new YamlApiCredentials(yamlParser, inputStream, Credentials::getWeatherApiKey);
+        YamlApiCredentials yamlApiCredentials = new YamlApiCredentials(credentials, Credentials::getWeatherApiKey);
         apiKey = yamlApiCredentials.getApiKey();
     }
 
@@ -48,11 +46,14 @@ public class OpenWeatherApi implements WeatherApi {
 
         return futureResponse.thenApply(response -> {
             JsonObject rawResult = jsonParser.fromJson(response.body(), JsonObject.class);
-            JsonObject weather = rawResult.getAsJsonObject("weather");
+            JsonArray weatherList = rawResult.getAsJsonArray("weather");
+            if(weatherList.isEmpty())
+                return null;
+            JsonObject weather = weatherList.get(0).getAsJsonObject();
             JsonObject main = rawResult.getAsJsonObject("main");
             JsonObject wind = rawResult.getAsJsonObject("wind");
 
-            String date = String.valueOf(rawResult.get("dt"));
+            String date = "Aktuell";
             String weatherCondition = String.valueOf(weather.get("description"));
             String temperature = String.valueOf(main.get("temp"));
             String windspeed = String.valueOf(wind.get("speed"));
@@ -82,7 +83,12 @@ public class OpenWeatherApi implements WeatherApi {
 
             List<WeatherResult> weatherResults = new ArrayList<>();
 
+            int days = 0;
+            String lastDate = null;
             for (JsonElement element : forecastList) {
+                if(days == 3) {
+                    break;
+                }
                 JsonObject forecastData = element.getAsJsonObject();
                 JsonObject main = forecastData.getAsJsonObject("main");
                 JsonObject weather = forecastData.getAsJsonArray("weather").get(0).getAsJsonObject();
@@ -93,15 +99,23 @@ public class OpenWeatherApi implements WeatherApi {
                 // extract only the date
                 String date = dateWithTime.split(" ")[0];
 
+                if(!dateWithTime.contains("12:00:00")) {
+                    continue;
+                }
+
                 String weatherCondition = weather.get("description").getAsString();
                 String temperature = main.get("temp").getAsString();
                 String windspeed = wind.get("speed").getAsString();
                 String humidity = main.get("humidity").getAsString();
 
-                WeatherResult weatherResult = new AppWeatherResult(date, weatherCondition, temperature, windspeed, humidity);
+                WeatherResult weatherResult = new AppWeatherResult(dateWithTime, weatherCondition, temperature, windspeed, humidity);
                 weatherResults.add(weatherResult);
-            }
 
+                if(!date.equals(lastDate)) {
+                    days++;
+                }
+                lastDate = date;
+            }
             return weatherResults;
         }).exceptionally(throwable -> {
             throw new RuntimeException(throwable);

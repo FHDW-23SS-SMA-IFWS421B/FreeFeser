@@ -1,8 +1,8 @@
 package de.fhdw.freefeser.app.util;
 
 import de.fhdw.freefeser.api.util.YamlParser;
-
 import org.yaml.snakeyaml.Yaml;
+
 import java.io.InputStream;
 
 public class SnakeYamlParser implements YamlParser {

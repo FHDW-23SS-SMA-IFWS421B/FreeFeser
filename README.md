@@ -339,7 +339,7 @@ Der Nutzer kann jeden einzelnen Bot aktivieren, indem er den entsprechenden Befe
 
 Falls der Nutzer einen Bot vorübergehend nicht verwenden möchte, kann er diesen deaktivieren. Ein deaktivierter Bot kann nicht mehr durch einfaches Ansprechen mit `@botname` aktiviert werden. Stattdessen muss der Nutzer den Bot manuell wieder aktivieren.
 
-###### Durchführung
+##### Durchführung
 
 - Um einen deaktivierten Bot zu aktivieren, kann der Nutzer den Befehl `@activate botname` ausführen. Dadurch wird der ausgewählte Bot sofort aktiviert und einsatzbereit.
 - Um einen aktiven Bot zu deaktivieren, kann der Nutzer den Befehl `@deactivate botname` verwenden. Durch diese Aktion wird der Bot vorübergehend deaktiviert und kann nicht mehr durch Erwähnung aktiviert werden.

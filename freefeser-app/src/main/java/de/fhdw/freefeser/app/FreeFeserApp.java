@@ -52,9 +52,7 @@ public class FreeFeserApp {
         Chatbot translationBot = new TranslationAppChatbot(printer, "translationbot", userManager, chatMessageDatabaseManager, jsonParser, httpWrapper, yamlParser, inputStream, chatbotEntityDatabaseManager);
         Chatbot weatherBot = new WeatherAppChatbot(printer, "weatherbot", userManager, chatMessageDatabaseManager, chatbotEntityDatabaseManager);
         Chatbot wikiBot = new WikiAppChatbot(jsonParser, httpWrapper, printer, "wikibot", userManager, chatMessageDatabaseManager, chatbotEntityDatabaseManager);
-        chatbotManager.registerBot(translationBot).thenAccept(complete1 -> chatbotManager.registerBot(weatherBot).thenAccept(complete2 -> {
-            chatbotManager.registerBot(wikiBot);
-        }));
+        chatbotManager.registerBot(translationBot).thenAccept(complete1 -> chatbotManager.registerBot(weatherBot).thenAccept(complete2 -> chatbotManager.registerBot(wikiBot)));
 
         // in der Main Auswechseln der GUI oder Bots etc ermöglichen
         // Chatbot

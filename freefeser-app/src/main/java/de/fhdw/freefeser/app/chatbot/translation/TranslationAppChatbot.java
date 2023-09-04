@@ -28,12 +28,16 @@ public class TranslationAppChatbot extends AppChatbot {
 
     @Override
     public void onExecute(User sender, String rawText) {
-        HashMap<String, String> analysisResult = translationTextAnalyzer.analyze(rawText);
-        String targetLanguage = analysisResult.get("TargetLanguage");
-        String translationText = analysisResult.get("TranslationText");
+        try {
+            HashMap<String, String> analysisResult = translationTextAnalyzer.analyze(rawText);
+            String targetLanguage = analysisResult.get("TargetLanguage");
+            String translationText = analysisResult.get("TranslationText");
 
-        translationApi.translate(targetLanguage.toLowerCase(), translationText)
-                .thenAccept(result -> sendMessageOnBehalf(
-                        "Die Übersetzung ist: " + result.getTranslation()));
+            translationApi.translate(targetLanguage.toLowerCase(), translationText)
+                    .thenAccept(result -> sendMessageOnBehalf(
+                            "Die Übersetzung ist: " + result.getTranslation()));
+        } catch (Exception e) {
+            sendErrorMessage();
+        }
     }
 }

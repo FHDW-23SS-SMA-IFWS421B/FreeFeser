@@ -2,8 +2,6 @@ package de.fhdw.freefeser.app;
 
 import de.fhdw.freefeser.api.bot.Chatbot;
 import de.fhdw.freefeser.api.bot.ChatbotManager;
-import de.fhdw.freefeser.api.console.printer.ConsolePrinter;
-import de.fhdw.freefeser.api.console.reader.ConsoleReader;
 import de.fhdw.freefeser.api.database.ChatbotEntityDatabaseManager;
 import de.fhdw.freefeser.api.database.UserEntityDatabaseManager;
 import de.fhdw.freefeser.api.user.UserManager;
@@ -53,14 +51,10 @@ public class FreeFeserApp {
 
         Chatbot translationBot = new TranslationAppChatbot(printer, "translationbot", userManager, chatMessageDatabaseManager, jsonParser, httpWrapper, yamlParser, inputStream, chatbotEntityDatabaseManager);
         Chatbot weatherBot = new WeatherAppChatbot(printer, "weatherbot", userManager, chatMessageDatabaseManager, chatbotEntityDatabaseManager);
-        Chatbot wikiBot = new WikiAppChatbot(printer, "wikibot", userManager, chatMessageDatabaseManager, chatbotEntityDatabaseManager);
-        chatbotManager.registerBot(translationBot).thenAccept(complete1 -> {
-            chatbotManager.registerBot(weatherBot).thenAccept(complete2 -> {
-                chatbotManager.registerBot(wikiBot);
-            });
-        });
-
-
+        Chatbot wikiBot = new WikiAppChatbot(jsonParser, httpWrapper, printer, "wikibot", userManager, chatMessageDatabaseManager, chatbotEntityDatabaseManager);
+        chatbotManager.registerBot(translationBot).thenAccept(complete1 -> chatbotManager.registerBot(weatherBot).thenAccept(complete2 -> {
+            chatbotManager.registerBot(wikiBot);
+        }));
 
         // in der Main Auswechseln der GUI oder Bots etc ermöglichen
         // Chatbot

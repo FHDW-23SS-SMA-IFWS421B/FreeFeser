@@ -52,7 +52,9 @@ public class DeepLTranslationApi implements TranslationApi {
             String sourceLanguage = firstTranslation.get("detected_source_language").getAsString();
             String translation = firstTranslation.get("text").getAsString();
 
-            return new AppTranslationResult(sourceLanguage, targetLanguage, translation, value);
+            return (TranslationResult) new AppTranslationResult(sourceLanguage, targetLanguage, translation, value);
+        }).exceptionally(throwable -> {
+            throw new RuntimeException(throwable);
         });
     }
 }

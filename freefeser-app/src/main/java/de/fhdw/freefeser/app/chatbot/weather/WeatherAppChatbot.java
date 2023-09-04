@@ -15,6 +15,10 @@ public class WeatherAppChatbot extends AppChatbot {
 
     @Override
     public void onExecute(User sender, String rawText) {
-
+        try {
+            String a = null;
+        } catch (Exception e) {
+            sendErrorMessage();
+        }
     }
 }

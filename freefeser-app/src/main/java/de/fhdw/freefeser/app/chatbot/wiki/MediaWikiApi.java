@@ -22,7 +22,7 @@ public class MediaWikiApi implements WikiApi {
     }
 
     @Override
-    public CompletableFuture<WikiResult[]> search(String keyword) {
+    public CompletableFuture<AppWikiResult[]> search(String keyword) {
         String endpoint = "https://de.wikipedia.org/w/rest.php/v1/search/";
         String params = "page?q=" + keyword + "&limit=5";
         String url = endpoint + params;
@@ -38,16 +38,21 @@ public class MediaWikiApi implements WikiApi {
         return futureResponse.thenApply((HttpResponse<String> response) -> {
             JsonArray wikiResults = jsonParser.fromJson(response.body(), JsonObject.class).getAsJsonArray("pages");
 
-            List<WikiResult> results = new ArrayList<>();
+            List<AppWikiResult> results = new ArrayList<>();
 
             for (JsonElement jsonElement : wikiResults) {
                 JsonObject jsonObject = jsonElement.getAsJsonObject();
-                String title = jsonObject.get("title").getAsString();
-                String description = jsonObject.get("description").getAsString();
+
+                JsonElement titleElement = jsonObject.get("title");
+                String title = (!titleElement.isJsonNull()) ? titleElement.getAsString() : "keine Angabe";
+
+                JsonElement descriptionElement = jsonObject.get("description");
+                String description = (!descriptionElement.isJsonNull()) ? descriptionElement.getAsString() : "keine Angabe";
+
                 results.add(new AppWikiResult(title, description));
             }
 
-            return results.toArray(results.toArray(new WikiResult[0]));
+            return results.toArray(new AppWikiResult[0]);
         }).exceptionally(throwable -> {
             throw new RuntimeException(throwable);
         });

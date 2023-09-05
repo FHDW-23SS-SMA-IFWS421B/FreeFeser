@@ -143,20 +143,60 @@ Die Bausteinsicht ist eine hierarchische Sammlung von Blackboxen und Whiteboxen 
 
 ![BPMN Diagramm](documentation/BPMN.svg)
 
-Das Verhalten der Bausteine in Form von dynamischen Szenarien, die die wichtigsten Prozesse oder Features abdecken, Interaktionen an kritischen externen Schnittstellen oder “interessante” interne Abläufe und kritische Ausnahme- oder Fehlerfälle.
+#### Einleitung
 
-Motivation
-Sie sollten verstehen, wie (Instanzen von) Bausteine(n) Ihres Systems ihre jeweiligen Aufgaben erfüllen und zur Laufzeit miteinander kommunizieren. Nutzen Sie diese Szenarien in der Dokumentation hauptsächlich für eine verständlichere Kommunikation mit denjenigen Stakeholdern, die die statischen Modelle (z.B. Bausteinsicht, Verteilungssicht) weniger verständlich finden.
+Das vorliegende Business Process Model and Notation (BPMN) beschreibt den Ablauf der Benutzerinteraktionen mit der Software, die drei spezialisierte Chatbots integriert. Diese Chatbots rufen Informationen von Wikipedia, Openweather und DeepL über APIs ab.
 
-Form
-Für die Beschreibung von Szenarien gibt es zahlreiche Ausdrucksmöglichkeiten. Nutzen Sie beispielsweise:
+---
 
-Nummerierte Schrittfolgen oder Aufzählungen in Umgangssprache
-Aktivitäts- oder Flussdiagramme
-Sequenzdiagramme
-BPMN (Geschäftsprozessmodell und -notation) oder EPKs (Ereignis-Prozessketten)
-Zustandsautomaten
-…
+#### Benutzerauthentifizierung
+
+##### Anwendungsstart
+
+1. **Start der Anwendung**: Der Prozess beginnt, wenn der Nutzer die Softwareanwendung startet.
+  
+2. **Account-Prüfung**: Die Software fragt den Nutzer, ob er bereits einen Account besitzt. Der Nutzer hat die Möglichkeit, zwischen 'Ja' und 'Nein' zu wählen.
+
+    - **Bestehender Nutzer**: 
+        - Der Nutzer wird aufgefordert, seinen Benutzernamen einzugeben.
+        - Anschließend wird das Passwort abgefragt.
+        - Bei erfolgreicher Authentifizierung wird der Nutzer in das System eingeloggt.
+    
+    - **Neuer Nutzer**:
+        - Der Nutzer wird aufgefordert, einen Wunsch-Benutzernamen einzugeben.
+        - Die Software prüft die Verfügbarkeit des Benutzernamens.
+        - Bei Nichtverfügbarkeit wird der Nutzer gebeten, einen anderen Benutzernamen zu wählen.
+        - Ist der Benutzername verfügbar, wird der Nutzer aufgefordert, ein Passwort zu setzen.
+        - Die Anmeldedaten werden gespeichert, und der Nutzer wird automatisch eingeloggt.
+
+---
+
+#### Hauptmenü
+
+##### Eingabeaufforderung
+
+Nach dem erfolgreichen Login wartet die Software auf die Eingabe des Nutzers. Der Nutzer hat sieben verschiedene Optionen zur Verfügung:
+
+   - **Chatbot-Aktivierung**: Durch Eingabe des Befehls `@botname` kann der Nutzer einen der verfügbaren Chatbots aktivieren. Das Ergebnis der Bot-Interaktion wird dem Nutzer präsentiert, und die Software kehrt zum Warte-Status zurück.
+   
+   - **Bot-Übersicht**: Mit dem Befehl `list Bots` kann sich der Nutzer eine Liste aller verfügbaren Chatbots anzeigen lassen.
+   
+   - **Bot-Verwaltung/Konfiguration**: Mit den Befehlen `deactivate @botname` und `activate @botname` kann der Nutzer nicht benötigte Bots deaktivieren bzw. wieder aktivierte Bots aktivieren. Eine Bestätigungsnachricht wird im Anschluss angezeigt.
+   
+   - **Beenden**: Durch den Befehl `quit` kann der Nutzer die Anwendung jederzeit beenden.
+
+---
+
+#### Zusatzinformationen
+
+Weitere Einzelheiten zu den spezifischen Bots und zusätzliche Konfigurationsoptionen sind in den Abschnitten [Konfiguration](#konfiguration) und [Bot-Dokumentation (Erweiterungen)](#bot-dokumentation-erweiterungen) ausführlich beschrieben.
+
+#### Kritische Schnittstellen
+
+Die Funktionalität der Software ist stark von den APIs von DeepL, Wikipedia und Openweather abhängig. Sollten diese Schnittstellen bei den Drittanbietern ausfallen oder nicht ordnungsgemäß funktionieren, kann die Software dem Nutzer keine korrekten Informationen liefern. Es ist daher von großer Bedeutung, die Verfügbarkeit und Zuverlässigkeit dieser APIs im Auge zu behalten.
+
+Aus Gründen der Übersichtlichkeit und Fokussierung wurden diese kritischen Schnittstellen nicht im BPMN-Diagramm dargestellt.
+
 
 ### Infrastruktursicht
 Technische Infrastruktur mit Prozessoren, Systemtopologie, und die Abbildung der Software-Bausteine auf diese Infrastruktur.
@@ -354,16 +394,28 @@ Die Aktivierungs- und Deaktivierungsfunktion für Bots erlaubt dem Nutzer eine i
 
 
 ## Bot-Dokumentation (Erweiterungen)
-Je Bot soll eine eigene, kleine Dokumentation über den Aufbau/Struktur des Bot-Systems dargestellt werden.
+In diesem Kapitel steht die detaillierte Dokumentation der einzelnen Chatbots im Fokus. Jeder der integrierten Bots – TranslationBot, WeatherBot und WikiBot – wird separat behandelt. Ziel ist es, ein tiefgehendes Verständnis für die Funktionsweise, Einsatzmöglichkeiten und technischen Besonderheiten jedes Bots zu vermitteln.
 
-Jede Bot-Dokumentation folgt dabei einer kleinen Systemdokumentation mit folgenden Punkten:
+Jede Bot-Dokumentation folgt einer spezifischen Struktur und beleuchtet für jeden Bot die folgenden Themen:
 
-Kontextabgrenzung
-Lösungsstrategie
-Bausteinsicht
-Laufzeitsicht
-Schnittstellen
-Je nach Ansatz sind noch weitere Punkte wichtig.
+#### Zweck und Funktionalität
+Hier wird erläutert, welche Aufgaben der Bot erfüllt und welche Funktionen er bietet.
+
+#### Funktionsweise
+In diesem Abschnitt wird dargelegt, wie der Bot technisch arbeitet, um die genannten Funktionen zu erfüllen.
+
+#### Schlüsselmerkmale
+Dieser Teil beschreibt die Hauptfunktionen, die den Bot einzigartig machen.
+
+#### Schnittstellen
+Dieser Abschnitt gibt Aufschluss über die externen APIs, die jeder Bot nutzt, um seine jeweiligen Funktionen bereitzustellen.
+
+#### Beispielanfragen
+Hier werden typische Nutzeranfragen präsentiert, die den Bot aktivieren oder eine bestimmte Funktion auslösen.
+
+#### Antwortformat
+Dieser Abschnitt klärt, in welcher Form der Bot normalerweise auf Anfragen reagiert.
+
 
 ### TranslationBot
 #### Zweck und Funktionalität
@@ -380,6 +432,9 @@ Der Übersetzerbot nutzt leistungsstarke natürliche Sprachverarbeitungstechnike
 - **Variation der Anfragen**: Nutzer können verschiedene Formulierungen verwenden, um Texte zur Übersetzung anzugeben, ohne an eine feste Syntax gebunden zu sein.
 - **Natürliche Sprachverarbeitung**: Durch den Einsatz von NLP-Techniken kann der Bot die Absichten der Benutzer besser erfassen und angemessen reagieren.
 - **Spezielle Bibliothek**: Die Implementierung einer speziellen Bibliothek zur Verbesserung der Sprachverständlichkeit ermöglicht es dem Bot, eine Vielzahl von Nutzeranfragen zu verarbeiten.
+
+#### Schnittstellen
+Der TranslationBot nutzt die DeepL-API, um die Übersetzungsfunktionen bereitzustellen. Durch diese Schnittstelle wird der Text, der übersetzt werden soll, an DeepL übertragen und die übersetzten Ergebnisse zurück an den Bot gesendet.
 
 #### Beispielanfragen
 
@@ -407,6 +462,9 @@ Der Wetterbot verwendet fortschrittliche natürliche Sprachverarbeitungstechnike
 - **Natürliche Sprachverarbeitung**: Durch den Einsatz von NLP-Techniken kann der Bot die Absichten der Benutzer besser verstehen und angemessen darauf reagieren.
 - **Spezielle Bibliothek**: Die Implementierung einer speziellen Bibliothek zur Verbesserung der Sprachverständlichkeit ermöglicht es dem Bot, mehr Vielfalt in den Nutzeranfragen zu erfassen.
 
+#### Schnittstellen
+Der WeatherBot verwendet die OpenWeather-API, um Wetterdaten in Echtzeit abzurufen. Diese API ermöglicht dem Bot, aktuelle Wetterinformationen für nahezu jeden Ort auf der Welt zu beziehen.
+
 #### Beispielanfragen
 
 - `@weatherbot Wie ist das Wetter in New York?`
@@ -432,6 +490,9 @@ Der Wikibot verwendet fortschrittliche natürliche Sprachverarbeitungstechniken,
 - **Variation der Anfragen**: Nutzer können unterschiedliche Satzstrukturen und Formulierungen verwenden, um Informationen abzurufen, ohne an eine bestimmte Syntax gebunden zu sein.
 - **Natürliche Sprachverarbeitung**: Durch den Einsatz von NLP-Techniken kann der Bot die Absichten der Benutzer besser erfassen und angemessen reagieren.
 - **Spezielle Bibliothek**: Die Implementierung einer speziellen Bibliothek zur Verbesserung der Sprachverständlichkeit ermöglicht es dem Bot, eine breite Vielfalt von Nutzeranfragen zu verstehen.
+
+#### Schnittstellen
+Der WikiBot nutzt die Wikipedia-API, um auf die Datenbank von Wikipedia zuzugreifen und relevante Informationen für den Benutzer abzurufen. Diese Schnittstelle ermöglicht eine schnelle und zuverlässige Datenextraktion aus Wikipedia-Artikeln.
 
 #### Beispielanfragen
 

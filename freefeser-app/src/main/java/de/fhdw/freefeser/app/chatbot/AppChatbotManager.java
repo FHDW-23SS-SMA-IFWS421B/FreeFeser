@@ -56,10 +56,10 @@ public class AppChatbotManager implements ChatbotManager {
     }
 
     @Override
-    public Chatbot executeCommand(User sender, String text) {
+    public void executeCommand(User sender, String text) {
         if(text.equalsIgnoreCase("!help") || text.equalsIgnoreCase("help")) {
             sendHelpMessage();
-            return null;
+            return;
         }
 
         if(text.equalsIgnoreCase("!quit") || text.equalsIgnoreCase("quit")) {
@@ -67,21 +67,48 @@ public class AppChatbotManager implements ChatbotManager {
             System.exit(0);
         }
 
+        if(text.equalsIgnoreCase("list bots") || text.equalsIgnoreCase("!list bots")) {
+            handleListBots();
+            return;
+        }
+
         String[] commandCheckTextRaw = text.split(" ", 2);
         if(commandCheckTextRaw.length != 2) {
             sendShortHelpMessage();
-            return null;
+            return;
         }
 
         Chatbot extractedBot = extractBot(commandCheckTextRaw[0]);
         if(extractedBot == null) {
             sendShortHelpMessage();
-            return null;
+            return;
         }
 
-        extractedBot.onExecute(sender, text.substring(1));
+        String processedMessage = text.substring(1);
 
-        return extractedBot;
+        extractedBot.isEnabled().thenAccept(enabled -> {
+            boolean statusChanged = handleCommandEnable(extractedBot, processedMessage);
+            if(statusChanged) {
+                return;
+            } else if(!enabled) {
+                extractedBot.sendMessageOnBehalf("Dieser Bot ist aktuell deaktiviert. Bitte verwende '@" + extractedBot.getName() + " activate', um ihn zu aktivieren.");
+            } else {
+                extractedBot.onExecute(sender, processedMessage);
+            }
+        });
+    }
+
+    private boolean handleCommandEnable(Chatbot chatbot,String text) {
+        if(text.equalsIgnoreCase(chatbot.getName()+" activate")) {
+            chatbot.setEnabled(true);
+            chatbot.sendMessageOnBehalf("Der Bot wurde aktiviert.");
+            return true;
+        } else if(text.equalsIgnoreCase(chatbot.getName() + " deactivate")) {
+            chatbot.setEnabled(false);
+            chatbot.sendMessageOnBehalf("Der Bot wurde deaktiviert.");
+            return true;
+        }
+        return false;
     }
 
     private Chatbot extractBot(String firstPart) {
@@ -127,8 +154,27 @@ public class AppChatbotManager implements ChatbotManager {
                 "[system] !help                 Zeigt diese Hilfe-Nachricht an\n" +
                 "[system] !activate <botname>   Aktiviert einen Bot\n" +
                 "[system] !deactivate <botname> Deaktiviert einen Bot\n" +
-                "[system] !list                 Listet alle Bots und deren Zustand auf\n" +
+                "[system] !list bots            Listet alle Bots und deren Zustand auf\n" +
                 "[system] !quit                 Beendet das Programm\n";
         this.printer.println(helpMessage);
+    }
+
+    private void handleListBots() {
+        Collection<CompletableFuture<Void>> futures = new ArrayList<>();
+
+        StringBuilder message = new StringBuilder();
+        message.append("[system] Liste der Bots:");
+        for (Chatbot bot : this.bots) {
+            CompletableFuture<Void> future = new CompletableFuture<>();
+            futures.add(future);
+            bot.isEnabled().thenAccept(enabled -> {
+                String status = enabled ? "aktiviert" : "verfügbar";
+                message.append("\n- " + bot.getName() + " (" + status + ")");
+                future.complete(null);
+            });
+        }
+        CompletableFuture.allOf(futures.toArray(new CompletableFuture[0])).thenRun(() -> {
+            this.printer.println(message.toString());
+        });
     }
 }

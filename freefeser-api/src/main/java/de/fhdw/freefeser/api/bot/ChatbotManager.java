@@ -13,5 +13,5 @@ public interface ChatbotManager {
 
     void unregisterBot(Chatbot chatbot);
 
-    Chatbot executeCommand(User sender, String text);
+    void executeCommand(User sender, String text);
 }

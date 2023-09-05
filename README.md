@@ -178,6 +178,8 @@ Nach dem erfolgreichen Login wartet die Software auf die Eingabe des Nutzers. De
    - **Bot-Übersicht**: Mit dem Befehl `!list Bots` kann sich der Nutzer eine Liste aller verfügbaren Chatbots anzeigen lassen.
    
    - **Bot-Verwaltung/Konfiguration**: Mit den Befehlen `@botname deactivate` und `@botname activate` kann der Nutzer nicht benötigte Bots deaktivieren bzw. wieder aktivierte Bots aktivieren. Eine Bestätigungsnachricht wird im Anschluss angezeigt.
+
+   - **Command Übersicht"**: Mit dem Befehl `!help` kann sich der Nutzer sich alle möglichen Befehle anzeigen lassen.
    
    - **Beenden**: Durch den Befehl `!quit` kann der Nutzer die Anwendung jederzeit beenden.
 
@@ -344,49 +346,41 @@ Bitte beachten Sie, dass eine detaillierte [Java/Maven-Installationsanleitung](d
 Das Chatbotprogramm bietet neben der Interaktion mit den Bots verschiedene Konfigurationsmöglichkeiten, die sowohl die Personalisierung für den Nutzer als auch die Bedienung der Software erleichtern.
 
 #### Nutzerverwaltung
-
 Vor dem Start des Programms wird der Nutzer aufgefordert, sich entweder mit einem bestehenden Nutzeraccount einzuloggen oder einen neuen Nutzer anzulegen.
 
 ##### 1. Bestehender Nutzer
-
 Der Nutzer wählt die Option aus, dass er bereits über einen Account verfügt. Anschließend gibt er seinen Nutzernamen sowie sein Passwort ein. Sind die eingegebenen Daten korrekt, wird der Nutzer erfolgreich eingeloggt und erhält Zugriff auf die Chatbots. Falls das eingegebene Passwort nicht korrekt ist, wird der Nutzer aufgefordert, das Passwort erneut einzugeben, bis die korrekten Daten eingegeben wurden.
 
 ##### 2. Neuer Nutzer
-
 Wählt der Nutzer die Option, dass er noch keinen Account besitzt, wird er dazu aufgefordert, einen neuen Nutzernamen zu vergeben. Sollte dieser Nutzername bereits vergeben sein, wird der Nutzer gebeten, einen anderen Nutzernamen einzugeben. Anschließend wird der Nutzer aufgefordert, ein Passwort für seinen neuen Account festzulegen. Nach erfolgreicher Passwortvergabe erfolgt automatisch der Login mit dem neu erstellten Benutzeraccount.
 
 #### Bots Auflisten
-
 Um dem Nutzer eine Übersicht über die verfügbaren Bots zu verschaffen, kann er den Befehl `!list Bots` ausführen. Dadurch erhält der Nutzer eine klare Übersicht über die drei verfügbaren Bots, die er anschließend auswählen und nutzen kann.
 
 #### Aktivieren und Deaktivieren von Bots
-
 Im Konfigurationsbereich des Chatbotprogramms hat der Nutzer die Möglichkeit, die einzelnen Bots nach Bedarf zu aktivieren oder zu deaktivieren.
 
 ##### Bot Aktivieren
-
 Der Nutzer kann jeden einzelnen Bot aktivieren, indem er den entsprechenden Befehl ausführt. Nach der Aktivierung ist der Bot sofort einsatzbereit und kann durch die Erwähnung mit `@botname` angesprochen werden.
 
 ##### Bot Deaktivieren
-
 Falls der Nutzer einen Bot vorübergehend nicht verwenden möchte, kann er diesen deaktivieren. Ein deaktivierter Bot kann nicht mehr durch einfaches Ansprechen mit `@botname` aktiviert werden. Stattdessen muss der Nutzer den Bot manuell wieder aktivieren.
 
 ##### Durchführung
-
 - Um einen deaktivierten Bot zu aktivieren, kann der Nutzer den Befehl `@botname activate` ausführen. Dadurch wird der ausgewählte Bot sofort aktiviert und einsatzbereit.
 - Um einen aktiven Bot zu deaktivieren, kann der Nutzer den Befehl `@botname deactivate` verwenden. Durch diese Aktion wird der Bot vorübergehend deaktiviert und kann nicht mehr durch Erwähnung aktiviert werden.
 
 #### Software beenden
 Möchte der Nutzer das Programm beenden, kann er dies mit dem Befehl `!quit`. Das Programm wird dann direkt nach Eingabe des Befehls beendet.
 
-##### Vorteile
+#### Hilfestellung für Nutzer
+Der `!help` Befehl gibt den Nutzern eine Übersicht über alle verfügbaren Bots und Systembefehle. Bei Eingabe des Befehls erscheint eine Nachricht, die sowohl die Befehle für die speziellen Funktionen der einzelnen Bots als auch die Systembefehle auflistet. Er ist unkompliziert und kann zu jeder Zeit verwendet werden, um einen vollständigen Überblick über die Funktionsweise des Chatbot-Systems zu erhalten.
 
+##### Vorteile
 Die Möglichkeit, Bots nach Bedarf zu aktivieren oder zu deaktivieren, bietet dem Nutzer eine erhöhte Flexibilität und Kontrolle über die Nutzung des Chatbotprogramms. Dies ermöglicht es dem Nutzer, die verfügbaren Ressourcen effizient zu verwalten und die Bots entsprechend den individuellen Anforderungen zu nutzen.
 
 #### Zusammenfassung
-
 Die Aktivierungs- und Deaktivierungsfunktion für Bots erlaubt dem Nutzer eine individuelle Anpassung der verfügbaren Bots. Ein deaktivierter Bot kann nicht durch einfache Erwähnung angesprochen werden, sondern muss vom Nutzer aktiviert werden. Diese Funktion fördert eine maßgeschneiderte und effiziente Nutzung der Chatbotsoftware.
-
 
 ## Bot-Dokumentation (Erweiterungen)
 In diesem Kapitel steht die detaillierte Dokumentation der einzelnen Chatbots im Fokus. Jeder der integrierten Bots – TranslationBot, WeatherBot und WikiBot – wird separat behandelt. Ziel ist es, ein tiefgehendes Verständnis für die Funktionsweise, Einsatzmöglichkeiten und technischen Besonderheiten jedes Bots zu vermitteln.

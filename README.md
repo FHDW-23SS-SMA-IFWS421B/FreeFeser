@@ -179,7 +179,7 @@ Nach dem erfolgreichen Login wartet die Software auf die Eingabe des Nutzers. De
    
    - **Bot-Verwaltung/Konfiguration**: Mit den Befehlen `@botname deactivate` und `@botname activate` kann der Nutzer nicht benötigte Bots deaktivieren bzw. wieder aktivierte Bots aktivieren. Eine Bestätigungsnachricht wird im Anschluss angezeigt.
 
-   - **Command Übersicht"**: Mit dem Befehl `!help` kann sich der Nutzer sich alle möglichen Befehle anzeigen lassen.
+   - **Command Übersicht**: Mit dem Befehl `!help` kann sich der Nutzer sich alle möglichen Befehle anzeigen lassen.
    
    - **Beenden**: Durch den Befehl `!quit` kann der Nutzer die Anwendung jederzeit beenden.
 
@@ -226,7 +226,7 @@ Verweise auf „übliche“ Nutzung von Standard-Frameworks (beispielsweise die 
 | DeepL API           | Übersetzungsdienst für Texte                         | GET         | HTTP                    | JSON             | API-Key (aus Credential-Ordner)                   |
 | Wikipedia API       | Abruf von Informationen aus Wikipedia                | GET         | HTTP                    | JSON             | Keine                                             |
 | OpenWeather API     | Wetterdatenabruf für bestimmte Standorte             | GET         | HTTP                    | JSON             | API-Key (aus Credential-Ordner)                   |
-| Datenbank Connector | Kommunikation mit der Datenbank über Hibernate (HQL) | Lesen       | SQL (HQL)               | Tabellen/Objekte | Username und Passwort (in Hibernate-Configuration |
+| Datenbank Connector | Kommunikation mit der Datenbank über Hibernate (HQL) | Lesen       | SQL (HQL)               | Tabellen/Objekte | Username und Passwort (in Hibernate-Configuration) |
 
 #### Spezifikation zur robusten Kommunikation
 Um sicherzustellen, dass die Kommunikation mit externen Systemen zuverlässig und fehlerfrei erfolgt, wurden spezifische Maßnahmen und Strategien entwickelt. Diese dienen dazu, potenzielle Herausforderungen in der Kommunikation zu bewältigen und die Gesamtleistung des Chatbot-Systems zu verbessern. Im Folgenden werden die spezifischen Ansätze für jede der Schnittstellen sowie der Datenbank Connector beschrieben.
@@ -494,3 +494,633 @@ Der Wikibot gibt in der Regel eine kurze und prägnante Zusammenfassung der wich
 ## weitere Schritte
 1. Fehlerbehandlung verbessern
 2. Unit-/Integration-Tests schreiben
+
+
+
+
+
+
+
+
+```
+@startuml
+' Bot Classes
+interface Chatbot {
+  +getName(): String
+  +isEnabled(): CompletableFuture<Boolean>
+  +setEnabled(enabled: boolean): void
+  +onExecute(sender: User, rawText: String): void
+  +sendMessageOnBehalf(message: String, askForInput: boolean): void
+  +sendMessageOnBehalf(message: String): void
+}
+' Managers and Registry
+interface ChatbotManager {
+  +getBots(): Collection<Chatbot>
+  +registerBot(chatbot: Chatbot): CompletableFuture<Void>
+  +unregisterBot(chatbot: Chatbot): void
+  +executeCommand(sender: User, text: String): void
+}
+' Console Management
+interface ConsolePrinter {
+  +println(value: String): void
+  +println(value: String, askForInput: boolean): void
+  +print(value: String): void
+}
+' Console Reader Exceptions
+class ConsoleReaderAlreadyNotRunningException {
+  +ConsoleReaderAlreadyNotRunningException()
+  +ConsoleReaderAlreadyNotRunningException(cause: Throwable)
+}
+class ConsoleReaderAlreadyRunningException {
+  +ConsoleReaderAlreadyRunningException()
+  +ConsoleReaderAlreadyRunningException(cause: Throwable)
+}
+class ConsoleReaderException {
+  +ConsoleReaderException(message: String)
+  +ConsoleReaderException(message: String, cause: Throwable)
+}
+' Console Reader
+interface ConsoleReader {
+  +getInput(): InputStream
+  +start(): void
+  +stop(): void
+  +isRunning(): boolean
+  +getCallbacks(): Collection<ConsoleReaderCallback>
+  +addCallback(callback: ConsoleReaderCallback): void
+  +removeCallback(callback: ConsoleReaderCallback): boolean
+}
+' Console Reader
+interface ConsoleReaderCallback {
+  +onInputReceived(input: String): void
+  +unregister(): boolean
+}
+' Database
+interface ChatbotEntity {
+  +getId(): UUID
+  +setId(Id: UUID): void
+  +getBotname(): String
+  +setBotname(botname: String): void
+  +getStatus(): boolean
+  +setStatus(active: boolean): void
+}
+' Database
+interface ChatbotEntityDatabaseManager {
+  +getByName(name: String): CompletableFuture<ChatbotEntity>
+}
+' Database
+interface ChatMessageEntity<U, C> {
+  +getId(): UUID
+  +setId(id: UUID): void
+  +getText(): String
+  +setText(text: String): void
+  +getTimestamp(): LocalDateTime
+  +setTimestamp(timemestamp: LocalDateTime): void
+  +getUser(): U
+  +setUser(user: U): void
+}
+' Database
+interface ChatMessageEntityDatabaseManager<U, C> {
+  +getAll(username: String): CompletableFuture<List<ChatMessageEntity<U, C>>>
+}
+' Database
+interface DatabaseManager<T> {
+  +getAll(): CompletableFuture<List<T>>
+  +get(id: UUID): CompletableFuture<T>
+  +update(entity: T): CompletableFuture<Void>
+  +create(entityWithoutId: T): CompletableFuture<T>
+  +delete(id: UUID): CompletableFuture<Void>
+}
+' Database
+interface UserEntity {
+  +getId(): UUID
+  +setId(id: UUID): void
+  +getUsername(): String
+  +setUsername(username: String): void
+  +getPassword(): String
+  +setPassword(password: String): void
+}
+' Database
+interface UserEntityDatabaseManager {
+  +getByUsername(username: String): CompletableFuture<UserEntity>
+}
+' Text Analyzer
+interface TextAnalyzer {
+  +analyze(text: String): HashMap<String, String>
+}
+' Text Analyzer
+interface TranslationTextAnalyzer {
+  +extractTextToTranslate(text: String): String
+  +extractTargetLanguage(text: String): String
+}
+' Text Analyzer
+interface WeatherTextAnalyzer {
+  +extractLocation(text: String): String
+  +extractWeatherCurrentOrForecast(text: String): String
+}
+' Text Analyzer
+interface WikiTextAnalyzer {
+  +extractSearchTerm(text: String): String
+}
+' User Management
+interface User {
+  +sendMessage(message: String): void
+  +getEntity(): UserEntity
+}
+' User Management
+interface UserManager {
+  +getLoggedInUser(): User
+  +login(username: String, password: String): CompletableFuture<User>
+  +register(username: String, password: String): CompletableFuture<User>
+}
+' API Utility Classes
+interface ApiCredentials {
+  +getApiKey(): String
+}
+' API Utility Classes
+interface HttpWrapper {
+  +sendAsync(request: HttpRequest, responseBodyHandler: HttpResponse.BodyHandler<String>): CompletableFuture<HttpResponse<String>>
+}
+' API Utility Classes
+interface JsonParser {
+  +fromJson(json: String, type: Class<T>): T
+}
+' API Utility Classes
+interface YamlParser {
+  +load(inputStream: InputStream, type: Class<T>): T
+}
+class AppTranslationChatbot {
+  -translationApi: TranslationApi
+  -translationTextAnalyzer: TranslationTextAnalyzer
+  +AppTranslationChatbot(printer: ConsolePrinter, name: String, userManager: UserManager, chatMessageDatabaseManager: AppChatMessageDatabaseManager, jsonParser: JsonParser, httpWrapper: HttpWrapper, credentials: Credentials, databaseManager: ChatbotEntityDatabaseManager)
+  +onExecute(sender: User, rawText: String): void
+}
+class AppTranslationResult {
+  -sourceLanguage: String
+  -targetLanguage: String
+  -translation: String
+  -text: String
+  +AppTranslationResult(sourceLanguage: String, targetLanguage: String, translation: String, text: String)
+  +getSourceLanguage(): String
+  +getTargetLanguage(): String
+  +getText(): String
+  +getTranslation(): String
+}
+class DeepLTranslationApi {
+  -jsonParser: JsonParser
+  -httpWrapper: HttpWrapper
+  -apiKey: String
+  +DeepLTranslationApi(jsonParser: JsonParser, httpWrapper: HttpWrapper, credentials: Credentials)
+  +translate(targetLanguage: String, value: String): CompletableFuture<TranslationResult>
+}
+interface TranslationApi {
+  +translate(destinationLanguage: String, value: String): CompletableFuture<TranslationResult>
+}
+interface TranslationResult {
+  +getSourceLanguage(): String
+  +getTargetLanguage(): String
+  +getText(): String
+  +getTranslation(): String
+}
+class AppWeatherChatbot {
+  -weatherApi: WeatherApi
+  -weatherTextAnalyzer: WeatherTextAnalyzer
+  +AppWeatherChatbot(jsonParser: JsonParser, httpWrapper: HttpWrapper, credentials: Credentials, printer: ConsolePrinter, name: String, userManager: UserManager, chatMessageDatabaseManager: AppChatMessageDatabaseManager, databaseManager: ChatbotEntityDatabaseManager)
+  +onExecute(sender: User, rawText: String): void
+}
+class AppWeatherResult {
+  -date: String
+  -weatherCondition: String
+  -temperature: String
+  -humidity: String
+  -windspeed: String
+  +AppWeatherResult(date: String, weatherCondition: String, temperature: String, windspeed: String, humidity: String)
+  +getDate(): String
+  +getWeatherCondition(): String
+  +getTemperature(): String
+  +getWindspeed(): String
+  +getHumidity(): String
+}
+class OpenWeatherApi {
+  -jsonParser: JsonParser
+  -httpWrapper: HttpWrapper
+  -apiKey: String
+  -endpoint: String
+  +OpenWeatherApi(jsonParser: JsonParser, httpWrapper: HttpWrapper, credentials: Credentials)
+  +getCurrentWeather(location: String): CompletableFuture<WeatherResult>
+  +getForecastWeather(location: String): CompletableFuture<List<WeatherResult>>
+}
+interface WeatherApi {
+  +getCurrentWeather(location: String): CompletableFuture<WeatherResult>
+  +getForecastWeather(location: String): CompletableFuture<List<WeatherResult>>
+}
+interface WeatherResult {
+  +getDate(): String
+  +getWeatherCondition(): String
+  +getTemperature(): String
+  +getWindspeed(): String
+  +getHumidity(): String
+}
+' AppWikiChatbot Class
+class AppWikiChatbot {
+  -wikiApi: WikiApi
+  -wikiTextAnalyzer: WikiTextAnalyzer
+  +onExecute(sender: User, rawText: String): void
+  +transformKeyword(keyword: String): String
+}
+
+' AppWikiResult Interface
+interface WikiResult {
+  +getTitle(): String
+  +getDescription(): String
+}
+
+' AppWikiResult Class
+class AppWikiResult {
+  -title: String
+  -description: String
+  +AppWikiResult(title: String, description: String)
+  +getTitle(): String
+  +getDescription(): String
+}
+' WikiApi Interface
+interface WikiApi {
+  +search(query: String): CompletableFuture<AppWikiResult[]>
+}
+' WikipediaWikiApi Class
+class WikipediaWikiApi {
+  +WikipediaWikiApi(jsonParser: JsonParser, httpWrapper: HttpWrapper)
+  +search(keyword: String): CompletableFuture<AppWikiResult[]>
+}
+' WikiResult Interface
+interface WikiResult {
+  +getTitle(): String
+  +getDescription(): String
+}
+class AppChatbot {
+  -printer: ConsolePrinter
+  -name: String
+  -userManager: UserManager
+  -chatMessageDatabaseManager: AppChatMessageDatabaseManager
+  -databaseManager: ChatbotEntityDatabaseManager
+  +AppChatbot(printer: ConsolePrinter, name: String, userManager: UserManager, chatMessageDatabaseManager: AppChatMessageDatabaseManager, databaseManager: ChatbotEntityDatabaseManager)
+  +sendErrorMessage(): void
+  +getName(): String
+  +isEnabled(): CompletableFuture<Boolean>
+  +setEnabled(enabled: boolean): void
+  +sendMessageOnBehalf(message: String): void
+  +sendMessageOnBehalf(message: String, askForInput: boolean): void
+  -load(): CompletableFuture<ChatbotEntity>
+}
+class AppChatbotManager {
+  -bots: Collection<Chatbot>
+  -databaseManager: ChatbotEntityDatabaseManager
+  -printer: ConsolePrinter
+  +AppChatbotManager(databaseManager: ChatbotEntityDatabaseManager, printer: ConsolePrinter)
+  +getBots(): Collection<Chatbot>
+  +registerBot(chatbot: Chatbot): CompletableFuture<Void>
+  +unregisterBot(chatbot: Chatbot): void
+  +executeCommand(sender: User, text: String): void
+  -handleCommandEnable(chatbot: Chatbot, text: String): boolean
+  -extractBot(firstPart: String): Chatbot
+  -sendShortHelpMessage(): void
+  -sendHelpMessage(): void
+  -handleListBots(): void
+}
+class AppChatbot {
+  -printer: ConsolePrinter
+  -name: String
+  -userManager: UserManager
+  -chatMessageDatabaseManager: AppChatMessageDatabaseManager
+  -databaseManager: ChatbotEntityDatabaseManager
+  +AppChatbot(printer: ConsolePrinter, name: String, userManager: UserManager, chatMessageDatabaseManager: AppChatMessageDatabaseManager, databaseManager: ChatbotEntityDatabaseManager)
+  +sendErrorMessage(): void
+  +getName(): String
+  +isEnabled(): CompletableFuture<Boolean>
+  +setEnabled(enabled: boolean): void
+  +sendMessageOnBehalf(message: String): void
+  +sendMessageOnBehalf(message: String, askForInput: boolean): void
+  -load(): CompletableFuture<ChatbotEntity>
+}
+class AppChatbotManager {
+  -bots: Collection<Chatbot>
+  -databaseManager: ChatbotEntityDatabaseManager
+  -printer: ConsolePrinter
+  +AppChatbotManager(databaseManager: ChatbotEntityDatabaseManager, printer: ConsolePrinter)
+  +getBots(): Collection<Chatbot>
+  +registerBot(chatbot: Chatbot): CompletableFuture<Void>
+  +unregisterBot(chatbot: Chatbot): void
+  +executeCommand(sender: User, text: String): void
+  -handleCommandEnable(chatbot: Chatbot, text: String): boolean
+  -extractBot(firstPart: String): Chatbot
+  -sendShortHelpMessage(): void
+  -sendHelpMessage(): void
+  -handleListBots(): void
+}
+class AppChatbotManager {
+  -bots: Collection<Chatbot>
+  -databaseManager: ChatbotEntityDatabaseManager
+  -printer: ConsolePrinter
+  +AppChatbotManager(databaseManager: ChatbotEntityDatabaseManager, printer: ConsolePrinter)
+  +getBots(): Collection<Chatbot>
+  +registerBot(chatbot: Chatbot): CompletableFuture<Void>
+  +unregisterBot(chatbot: Chatbot): void
+  +executeCommand(sender: User, text: String): void
+  -handleCommandEnable(chatbot: Chatbot, text: String): boolean
+  -extractBot(firstPart: String): Chatbot
+  -sendShortHelpMessage(): void
+  -sendHelpMessage(): void
+  -handleListBots(): void
+}
+class AppConsoleReaderCallback {
+  -reader: ConsoleReader
+  +AppConsoleReaderCallback(reader: ConsoleReader)
+  +unregister(): boolean
+}
+class ChatbotManagerConsoleReaderCallback {
+  -chatbotManager: ChatbotManager
+  -userManager: UserManager
+  -chatMessageManager: AppChatMessageDatabaseManager
+  +ChatbotManagerConsoleReaderCallback(reader: ConsoleReader, chatbotManager: ChatbotManager, userManager: UserManager, chatMessageManager: AppChatMessageDatabaseManager)
+  +onInputReceived(input: String): void
+}
+class LoginConsoleReaderCallback {
+  -register: Boolean
+  -user: String
+  -userManager: UserManager
+  -printer: ConsolePrinter
+  +LoginConsoleReaderCallback(reader: ConsoleReader, printer: ConsolePrinter, userManager: UserManager)
+  +onInputReceived(input: String): void
+}
+class AppConsoleReader {
+  -input: InputStream
+  -isRunning: boolean
+  -scanner: Scanner
+  -callbacks: Collection<ConsoleReaderCallback>
+  +AppConsoleReader(input: InputStream, callbacks: Collection<ConsoleReaderCallback>)
+  +AppConsoleReader(input: InputStream)
+  +getInput(): InputStream
+  +start(): void
+  +stop(): void
+  +isRunning(): boolean
+  +getCallbacks(): Collection<ConsoleReaderCallback>
+  +addCallback(callback: ConsoleReaderCallback): void
+  +removeCallback(callback: ConsoleReaderCallback): boolean
+}
+class AppChatbotEntity {
+  -id: UUID
+  -botname: String
+  -active: boolean
+  +AppChatbotEntity()
+  +AppChatbotEntity(botname: String, active: boolean)
+  +getId(): UUID
+  +setId(id: UUID): void
+  +getBotname(): String
+  +setBotname(botname: String): void
+  +getStatus(): boolean
+  +setStatus(active: boolean): void
+}
+class AppChatMessageEntity {
+  -id: UUID
+  -text: String
+  -timestamp: LocalDateTime
+  -user: AppUserEntity
+  +AppChatMessageEntity()
+  +AppChatMessageEntity(text: String, timestamp: LocalDateTime, user: UserEntity)
+  +getId(): UUID
+  +setId(id: UUID): void
+  +getText(): String
+  +setText(text: String): void
+  +getTimestamp(): LocalDateTime
+  +setTimestamp(timestamp: LocalDateTime): void
+  +getUser(): AppUserEntity
+  +setUser(user: AppUserEntity): void
+}
+class AppUserEntity {
+  -id: UUID
+  -username: String
+  -password: String
+  +AppUserEntity()
+  +AppUserEntity(username: String, password: String)
+  +getId(): UUID
+  +setId(id: UUID): void
+  +getUsername(): String
+  +setUsername(username: String): void
+  +getPassword(): String
+  +setPassword(password: String): void
+}
+class AppChatbotDatabaseManager {
+  -hibernateUtil: HibernateUtil
+  +AppChatbotDatabaseManager(hibernateUtil: HibernateUtil)
+  +getAll(): CompletableFuture<List<ChatbotEntity>>
+  +get(id: UUID): CompletableFuture<ChatbotEntity>
+  +update(chatbot: ChatbotEntity): CompletableFuture<Void>
+  +create(entityWithoutId: ChatbotEntity): CompletableFuture<ChatbotEntity>
+  +delete(id: UUID): CompletableFuture<Void>
+  +getByName(botname: String): CompletableFuture<ChatbotEntity>
+}
+class AppChatMessageDatabaseManager {
+  -hibernateUtil: HibernateUtil
+  +AppChatMessageDatabaseManager(hibernateUtil: HibernateUtil)
+  +getAll(): CompletableFuture<List<ChatMessageEntity<AppUserEntity, AppChatbotEntity>>>
+  +get(id: UUID): CompletableFuture<ChatMessageEntity<AppUserEntity, AppChatbotEntity>>
+  +update(chatMessage: ChatMessageEntity<AppUserEntity, AppChatbotEntity>): CompletableFuture<Void>
+  +create(entityWithoutId: ChatMessageEntity<AppUserEntity, AppChatbotEntity>): CompletableFuture<ChatMessageEntity<AppUserEntity, AppChatbotEntity>>
+  +delete(id: UUID): CompletableFuture<Void>
+  +getAll(username: String): CompletableFuture<List<ChatMessageEntity<AppUserEntity, AppChatbotEntity>>>
+}
+class AppUserDatabaseManager {
+  -hibernateUtil: HibernateUtil
+  +AppUserDatabaseManager(hibernateUtil: HibernateUtil)
+  +getAll(): CompletableFuture<List<UserEntity>>
+  +get(id: UUID): CompletableFuture<UserEntity>
+  +update(user: UserEntity): CompletableFuture<Void>
+  +create(entityWithoutId: UserEntity): CompletableFuture<UserEntity>
+  +delete(id: UUID): CompletableFuture<Void>
+  +getByUsername(username: String): CompletableFuture<UserEntity>
+}
+class AppTranslationTextAnalyzer {
+  +analyze(text: String): HashMap<String, String>
+  +extractTextToTranslate(text: String): String
+  +extractTargetLanguage(text: String): String
+}
+class AppWeatherTextAnalyzer {
+  +analyze(text: String): HashMap<String, String>
+  +extractLocation(text: String): String
+  +extractWeatherCurrentOrForecast(text: String): String
+}
+class AppWikiTextAnalyzer {
+  +analyze(text: String): HashMap<String, String>
+  +extractSearchTerm(text: String): String
+}
+class AppUser {
+  - entity: UserEntity
+  - printer: ConsolePrinter
+  + AppUser(entity: UserEntity, printer: ConsolePrinter)
+  + sendMessage(message: String): void
+  + getEntity(): UserEntity
+}
+class AppUserManager {
+  - userDatabaseManager: UserEntityDatabaseManager
+  - chatbotManager: ChatbotManager
+  - chatMessageDatabaseManager: AppChatMessageDatabaseManager
+  - printer: ConsolePrinter
+  - reader: ConsoleReader
+  - loggedInUser: User
+  + AppUserManager(userDatabaseManager: UserEntityDatabaseManager, chatbotManager: ChatbotManager, chatMessageDatabaseManager: AppChatMessageDatabaseManager, printer: ConsolePrinter, reader: ConsoleReader)
+  + getLoggedInUser(): User
+  + login(username: String, password: String): CompletableFuture<User>
+  + register(username: String, password: String): CompletableFuture<User>
+  - onLogin(user: User, register: boolean): CompletableFuture<Void>
+  - isBotMessage(message: String): boolean
+}
+class Credentials {
+  - deeplApiKey: String
+  - weatherApiKey: String
+  + Credentials()
+  + getDeeplApiKey(): String
+  + getWeatherApiKey(): String
+}
+class GsonJsonParser {
+  - gson: Gson
+  + GsonJsonParser()
+  + fromJson(json: String, type: Class<T>): T
+}
+class HibernateUtil {
+  - registry: StandardServiceRegistry
+  - sessionFactory: SessionFactory
+  + getSessionFactory(): SessionFactory
+  + static shutdown()
+}
+class JavaHttpWrapper {
+  - httpClient: java.net.http.HttpClient
+  + JavaHttpWrapper()
+  + sendAsync(request: HttpRequest, responseBodyHandler: HttpResponse.BodyHandler<String>): CompletableFuture<HttpResponse<String>>
+}
+class SnakeYamlParser {
+  - yaml: Yaml
+  + SnakeYamlParser()
+  + load(inputStream: InputStream, type: Class<T>): T
+}
+class Utils {
+  + isNotUserMessage(chatbotManager: ChatbotManager, text: String): boolean
+  + isSystemMessage(text: String): boolean
+  + isHistoryMessage(text: String): boolean
+  + isBotMessage(chatbotManager: ChatbotManager, text: String): boolean
+}
+class YamlApiCredentials {
+  - credentials: Credentials
+  - apiKeyExtractor: Function<Credentials, String>
+  + YamlApiCredentials(credentials: Credentials, apiKeyExtractor: Function<Credentials, String>)
+  + getApiKey(): String
+}
+class FreeFeserApp {
+  + main(args: String[]): void
+  + loadConfig(resourcePath: String): InputStream
+}
+
+AppWikiChatbot ..> AppChatbot
+AppWikiChatbot ..> WikiApi
+AppWikiChatbot ..> WikiTextAnalyzer
+ChatbotManager ..> Chatbot
+ConsoleReaderAlreadyRunningException --|> ConsoleReaderException
+ConsoleReaderAlreadyNotRunningException --|> ConsoleReaderException
+ConsoleReader ..> ConsoleReaderAlreadyRunningException
+ConsoleReader ..> ConsoleReaderAlreadyNotRunningException
+ConsoleReader ..> ConsoleReaderCallback
+ChatbotEntityDatabaseManager ..|> DatabaseManager
+ChatbotEntityDatabaseManager ..> ChatbotEntity
+ChatbotEntityDatabaseManager ..|> DatabaseManager
+ChatMessageEntityDatabaseManager ..|> DatabaseManager
+UserEntityDatabaseManager ..|> DatabaseManager
+UserEntityDatabaseManager ..> UserEntity
+TranslationTextAnalyzer ..|> TextAnalyzer
+WeatherTextAnalyzer ..|> TextAnalyzer
+WikiTextAnalyzer ..|> TextAnalyzer
+User <-- UserEntity
+AppTranslationChatbot --|> AppChatbot
+DeepLTranslationApi ..> JsonParser
+DeepLTranslationApi ..> HttpWrapper
+DeepLTranslationApi ..> YamlApiCredentials
+DeepLTranslationApi --|> TranslationApi
+AppWeatherChatbot --|> AppChatbot
+OpenWeatherApi --|> WeatherApi
+AppWikiResult ..|> WikiResult
+WikiApi <|.. WikipediaWikiApi
+AppWikiResult <|.. WikiResult
+AppChatbot ..> ConsolePrinter
+AppChatbot --> UserManager
+AppChatbot --> AppChatMessageDatabaseManager
+AppChatbot --> ChatbotEntityDatabaseManager
+AppChatbotManager ..> Chatbot
+AppChatbotManager --> ChatbotEntityDatabaseManager
+AppChatbotManager --> ConsolePrinter
+AppChatbot ..> Chatbot
+AppChatbot --> ConsolePrinter
+AppChatbot --> UserManager
+AppChatbot --> AppChatMessageDatabaseManager
+AppChatbot --> ChatbotEntityDatabaseManager
+AppChatbotManager ..> ChatbotManager
+AppChatbotManager --> Collection
+AppChatbotManager --> ChatbotEntityDatabaseManager
+AppChatbotManager --> ConsolePrinter
+AppChatbotManager ..> ChatbotManager
+AppChatbotManager --> Collection
+AppChatbotManager --> ChatbotEntityDatabaseManager
+AppChatbotManager --> ConsolePrinter
+AppConsoleReaderCallback ..> ConsoleReaderCallback
+AppConsoleReaderCallback --> ConsoleReader
+ChatbotManagerConsoleReaderCallback --> AppConsoleReaderCallback
+ChatbotManagerConsoleReaderCallback ..> ChatbotManager
+ChatbotManagerConsoleReaderCallback ..> UserManager
+ChatbotManagerConsoleReaderCallback ..> AppChatMessageDatabaseManager
+LoginConsoleReaderCallback --> AppConsoleReaderCallback
+LoginConsoleReaderCallback ..> UserManager
+LoginConsoleReaderCallback ..> ConsolePrinter
+AppConsoleReader --> InputStream
+AppConsoleReader --> ConsoleReaderCallback
+AppConsoleReader ..> Scanner
+AppConsoleReader "1" --> "0..*" ConsoleReaderCallback
+AppChatbotEntity --> UUID
+AppChatMessageEntity --> UUID
+AppChatMessageEntity --> LocalDateTime
+AppChatMessageEntity --> AppUserEntity
+AppUserEntity --> UUID
+AppChatbotDatabaseManager --> HibernateUtil
+AppChatbotDatabaseManager --> CompletableFuture
+AppChatMessageDatabaseManager --> HibernateUtil
+AppChatMessageDatabaseManager --> CompletableFuture
+AppUserDatabaseManager --> HibernateUtil
+AppUserDatabaseManager --> CompletableFuture
+AppTranslationTextAnalyzer --> HashMap
+AppWeatherTextAnalyzer --> HashMap
+AppWikiTextAnalyzer --> HashMap
+AppUser --> UserEntity
+AppUser --> ConsolePrinter
+AppUserManager --> UserEntityDatabaseManager
+AppUserManager --> ChatbotManager
+AppUserManager --> AppChatMessageDatabaseManager
+AppUserManager --> ConsolePrinter
+AppUserManager --> ConsoleReader
+AppUserManager --> User
+AppUserManager --> CompletableFuture
+GsonJsonParser ..|> JsonParser
+HibernateUtil ..> StandardServiceRegistry
+HibernateUtil ..|> SessionFactory
+JavaHttpWrapper ..> java.net.http.HttpClient
+SnakeYamlParser ..> org.yaml.snakeyaml.Yaml
+Utils ..> de.fhdw.freefeser.api.bot.ChatbotManager
+YamlApiCredentials ..> de.fhdw.freefeser.app.util.Credentials
+YamlApiCredentials ..> java.util.function.Function
+FreeFeserApp --> de.fhdw.freefeser.app.console.printer.AppConsolePrinter
+FreeFeserApp --> de.fhdw.freefeser.app.console.reader.AppConsoleReader
+FreeFeserApp --> de.fhdw.freefeser.app.util.JsonParser
+FreeFeserApp --> de.fhdw.freefeser.app.util.YamlParser
+FreeFeserApp --> de.fhdw.freefeser.app.util.HttpWrapper
+FreeFeserApp --> de.fhdw.freefeser.app.chatbot.AppChatbotManager
+FreeFeserApp --> de.fhdw.freefeser.app.user.AppUserManager
+FreeFeserApp --> de.fhdw.freefeser.app.util.Credentials
+FreeFeserApp --> de.fhdw.freefeser.app.chatbot.translation.AppTranslationChatbot
+FreeFeserApp --> de.fhdw.freefeser.app.chatbot.weather.AppWeatherChatbot
+FreeFeserApp --> de.fhdw.freefeser.app.chatbot.wiki.AppWikiChatbot
+@enduml
+```

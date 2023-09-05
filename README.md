@@ -147,8 +147,6 @@ Die Bausteinsicht ist eine hierarchische Sammlung von Blackboxen und Whiteboxen 
 
 Das vorliegende Business Process Model and Notation (BPMN) beschreibt den Ablauf der Benutzerinteraktionen mit der Software, die drei spezialisierte Chatbots integriert. Diese Chatbots rufen Informationen von Wikipedia, Openweather und DeepL über APIs ab.
 
----
-
 #### Benutzerauthentifizierung
 
 ##### Anwendungsstart
@@ -169,8 +167,6 @@ Das vorliegende Business Process Model and Notation (BPMN) beschreibt den Ablauf
         - Ist der Benutzername verfügbar, wird der Nutzer aufgefordert, ein Passwort zu setzen.
         - Die Anmeldedaten werden gespeichert, und der Nutzer wird automatisch eingeloggt.
 
----
-
 #### Hauptmenü
 
 ##### Eingabeaufforderung
@@ -185,8 +181,6 @@ Nach dem erfolgreichen Login wartet die Software auf die Eingabe des Nutzers. De
    
    - **Beenden**: Durch den Befehl `quit` kann der Nutzer die Anwendung jederzeit beenden.
 
----
-
 #### Zusatzinformationen
 
 Weitere Einzelheiten zu den spezifischen Bots und zusätzliche Konfigurationsoptionen sind in den Abschnitten [Konfiguration](#konfiguration) und [Bot-Dokumentation (Erweiterungen)](#bot-dokumentation-erweiterungen) ausführlich beschrieben.
@@ -196,7 +190,6 @@ Weitere Einzelheiten zu den spezifischen Bots und zusätzliche Konfigurationsopt
 Die Funktionalität der Software ist stark von den APIs von DeepL, Wikipedia und Openweather abhängig. Sollten diese Schnittstellen bei den Drittanbietern ausfallen oder nicht ordnungsgemäß funktionieren, kann die Software dem Nutzer keine korrekten Informationen liefern. Es ist daher von großer Bedeutung, die Verfügbarkeit und Zuverlässigkeit dieser APIs im Auge zu behalten.
 
 Aus Gründen der Übersichtlichkeit und Fokussierung wurden diese kritischen Schnittstellen nicht im BPMN-Diagramm dargestellt.
-
 
 ### Infrastruktursicht
 Technische Infrastruktur mit Prozessoren, Systemtopologie, und die Abbildung der Software-Bausteine auf diese Infrastruktur.

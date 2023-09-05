@@ -131,13 +131,14 @@ Neben technischen Entscheidungen berücksichtigt unsere Lösungsstrategie auch o
 Die getroffenen Entscheidungen dienen als Grundlage für den Entwurf und die Implementierung unseres Systems. Sie ermöglichen es, die Anforderungen der Aufgabenstellung effektiv zu erfüllen und gleichzeitig eine robuste und erweiterbare Architektur zu schaffen. Die folgenden Abschnitte vertiefen die einzelnen Entscheidungen und beleuchten ihre Auswirkungen auf die Gesamtarchitektur.
 
 ### Bausteinsicht
-Statische Zerlegung des Systems. Die Abstraktion des Sourcecodes, dargestellt als Hierarchie von “White-Boxes” (die wiederum kleinere Black-Boxes beinhalten), bis zu einem angemessenen Detaillierungsgrad
 
-Motivation
-Behalten Sie den Überblick über den Quellcode, indem Sie die statische Struktur des Systems durch Abstraktion verständlich machen. Damit ermöglichen Sie Kommunikation auf abstrakterer Ebene, ohne zu viele Implemenierungsdetails offenlegen zu müssen.
+![Klassenübersicht](documentation/Klassenübersicht.png)
 
-Form
-Die Bausteinsicht ist eine hierarchische Sammlung von Blackboxen und Whiteboxen und deren Beschreibungen.
+Wir haben uns bei der Darstellung der Architektur und Beziehungen unserer Klassen für die Verwendung von UML (Unified Modeling Language) Diagrammen entschieden. UML ermöglicht es uns, die verschiedenen Aspekte unseres Systems klar und standardisiert darzustellen.
+
+Aufgrund der Komplexität und Größe unseres Codes ist es jedoch nicht praktikabel, ein einziges, ganzheitliches UML-Diagramm zu erstellen, das alle Klassen und ihre Beziehungen abbildet. Eine solche Darstellung ist uns aber technisch nicht möglich gewesen und würde zudem an Übersichtlichkeit verlieren und könnte das Verständnis für die Systemarchitektur eher erschweren als erleichtern.
+
+Aus diesem Grund haben wir eine vereinfachte Klassenübersicht als Einstiegspunkt geschaffen. Diese gibt einen allgemeinen Überblick über die Hauptkomponenten des Systems und ihre grundlegenden Beziehungen. Für eine detaillierte Betrachtung haben wir das UML-Diagramm in sechs verschiedene Teilbereiche aufgeteilt. Jeder dieser Teilbereiche konzentriert sich auf bestimmte Klassen und ihre jeweiligen Beziehungen, Attribute und Methoden. So ist es uns möglich, alle Aspekte unseres Systems umfangreich und doch übersichtlich darzustellen.
 
 ### Laufzeitsichten
 

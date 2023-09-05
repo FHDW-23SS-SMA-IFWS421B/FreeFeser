@@ -175,11 +175,11 @@ Nach dem erfolgreichen Login wartet die Software auf die Eingabe des Nutzers. De
 
    - **Chatbot-Aktivierung**: Durch Eingabe des Befehls `@botname` kann der Nutzer einen der verfügbaren Chatbots aktivieren. Das Ergebnis der Bot-Interaktion wird dem Nutzer präsentiert, und die Software kehrt zum Warte-Status zurück.
    
-   - **Bot-Übersicht**: Mit dem Befehl `list Bots` kann sich der Nutzer eine Liste aller verfügbaren Chatbots anzeigen lassen.
+   - **Bot-Übersicht**: Mit dem Befehl `!list Bots` kann sich der Nutzer eine Liste aller verfügbaren Chatbots anzeigen lassen.
    
    - **Bot-Verwaltung/Konfiguration**: Mit den Befehlen `@botname deactivate` und `@botname activate` kann der Nutzer nicht benötigte Bots deaktivieren bzw. wieder aktivierte Bots aktivieren. Eine Bestätigungsnachricht wird im Anschluss angezeigt.
    
-   - **Beenden**: Durch den Befehl `quit` kann der Nutzer die Anwendung jederzeit beenden.
+   - **Beenden**: Durch den Befehl `!quit` kann der Nutzer die Anwendung jederzeit beenden.
 
 #### Zusatzinformationen
 
@@ -358,7 +358,7 @@ Wählt der Nutzer die Option, dass er noch keinen Account besitzt, wird er dazu 
 
 #### Bots Auflisten
 
-Um dem Nutzer eine Übersicht über die verfügbaren Bots zu verschaffen, kann er den Befehl `list Bots` ausführen. Dadurch erhält der Nutzer eine klare Übersicht über die drei verfügbaren Bots, die er anschließend auswählen und nutzen kann.
+Um dem Nutzer eine Übersicht über die verfügbaren Bots zu verschaffen, kann er den Befehl `!list Bots` ausführen. Dadurch erhält der Nutzer eine klare Übersicht über die drei verfügbaren Bots, die er anschließend auswählen und nutzen kann.
 
 #### Aktivieren und Deaktivieren von Bots
 
@@ -376,6 +376,9 @@ Falls der Nutzer einen Bot vorübergehend nicht verwenden möchte, kann er diese
 
 - Um einen deaktivierten Bot zu aktivieren, kann der Nutzer den Befehl `@botname activate` ausführen. Dadurch wird der ausgewählte Bot sofort aktiviert und einsatzbereit.
 - Um einen aktiven Bot zu deaktivieren, kann der Nutzer den Befehl `@botname deactivate` verwenden. Durch diese Aktion wird der Bot vorübergehend deaktiviert und kann nicht mehr durch Erwähnung aktiviert werden.
+
+#### Software beenden
+Möchte der Nutzer das Programm beenden, kann er dies mit dem Befehl `!quit`. Das Programm wird dann direkt nach Eingabe des Befehls beendet.
 
 ##### Vorteile
 

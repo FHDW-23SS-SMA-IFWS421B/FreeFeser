@@ -19,12 +19,12 @@ public class AppConsolePrinter implements ConsolePrinter {
 
     @Override
     public void println(String value) {
-        //saveMessage(value);
         println(value, true);
     }
 
     @Override
     public void println(String value, boolean askForInput) {
+        saveMessage(value);
         System.out.println(value);
         if(askForInput) {
             User loggedInUser = this.userManager.getLoggedInUser();
@@ -41,10 +41,10 @@ public class AppConsolePrinter implements ConsolePrinter {
     }
 
     private void saveMessage(String value) {
-        if(!value.startsWith("[system]") && this.userManager != null && this.chatMessageDatabaseManager != null && this.userManager.getLoggedInUser() != null) {
+        if(this.userManager.getLoggedInUser() != null) {
             User user = this.userManager.getLoggedInUser();
             AppChatMessageEntity messageEntity = new AppChatMessageEntity(value, LocalDateTime.now(), user.getEntity());
-            //this.chatMessageDatabaseManager.create(messageEntity);
+            this.chatMessageDatabaseManager.create(messageEntity);
         }
     }
 

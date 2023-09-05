@@ -27,8 +27,10 @@ public class ChatbotManagerConsoleReaderCallback extends AppConsoleReaderCallbac
 
         if(this.userManager.getLoggedInUser() != null) {
             User user = this.userManager.getLoggedInUser();
-            AppChatMessageEntity messageEntity = new AppChatMessageEntity(input, LocalDateTime.now(), user.getEntity());
-            this.chatMessageManager.create(messageEntity);
+            //if(input.startsWith("["+user.getEntity().getUsername()+"]")) {
+                AppChatMessageEntity messageEntity = new AppChatMessageEntity(input, LocalDateTime.now(), user.getEntity());
+                this.chatMessageManager.create(messageEntity);
+            //}
         }
 
         this.chatbotManager.executeCommand(this.userManager.getLoggedInUser(), input);

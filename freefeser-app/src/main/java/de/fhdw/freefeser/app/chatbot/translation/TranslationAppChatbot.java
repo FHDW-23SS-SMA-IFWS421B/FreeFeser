@@ -12,7 +12,6 @@ import de.fhdw.freefeser.app.databases.managers.AppChatMessageDatabaseManager;
 import de.fhdw.freefeser.app.textanalyzer.AppTranslationTextAnalyzer;
 import de.fhdw.freefeser.app.util.Credentials;
 
-import java.io.InputStream;
 import java.util.HashMap;
 
 public class TranslationAppChatbot extends AppChatbot {

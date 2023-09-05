@@ -3,9 +3,12 @@ package de.fhdw.freefeser.app.chatbot;
 import de.fhdw.freefeser.api.bot.Chatbot;
 import de.fhdw.freefeser.api.console.printer.ConsolePrinter;
 import de.fhdw.freefeser.api.database.ChatbotEntityDatabaseManager;
+import de.fhdw.freefeser.api.user.User;
 import de.fhdw.freefeser.api.user.UserManager;
+import de.fhdw.freefeser.app.databases.entities.AppChatMessageEntity;
 import de.fhdw.freefeser.app.databases.managers.AppChatMessageDatabaseManager;
 
+import java.time.LocalDateTime;
 import java.util.concurrent.CompletableFuture;
 
 public abstract class AppChatbot implements Chatbot {

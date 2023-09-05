@@ -1,5 +1,6 @@
 package de.fhdw.freefeser.app.user;
 
+import de.fhdw.freefeser.api.bot.Chatbot;
 import de.fhdw.freefeser.api.bot.ChatbotManager;
 import de.fhdw.freefeser.api.console.printer.ConsolePrinter;
 import de.fhdw.freefeser.api.console.reader.ConsoleReader;
@@ -46,9 +47,10 @@ public class AppUserManager implements UserManager {
                 future.complete(null);
             } else {
                 User newUser = new AppUser(user, this.printer);
-                this.loggedInUser = newUser;
-                onLogin(newUser);
-                future.complete(newUser);
+                onLogin(newUser, false).thenAccept(success -> {
+                    this.loggedInUser = newUser;
+                    future.complete(newUser);
+                });
             }
         });
 
@@ -64,9 +66,10 @@ public class AppUserManager implements UserManager {
                 UserEntity entity = new AppUserEntity(username, password);
                 this.userDatabaseManager.create(entity).thenAcceptAsync(createdEntity -> {
                     User newUser = new AppUser(createdEntity, printer);
-                    this.loggedInUser = newUser;
-                    onLogin(newUser);
-                    future.complete(newUser);
+                    onLogin(newUser, true).thenAccept(success -> {
+                        this.loggedInUser = newUser;
+                        future.complete(newUser);
+                    });
                 });
             } else {
                 future.complete(null);
@@ -76,13 +79,35 @@ public class AppUserManager implements UserManager {
         return future;
     }
 
-    private void onLogin(User user) {
+    private CompletableFuture<Void> onLogin(User user, boolean register) {
+        CompletableFuture<Void> future = new CompletableFuture<>();
+        if(register) {
+            this.printer.println("[system] Der Benutzer wurde erfolgreich erstellt.", false);
+            this.printer.println("[system] Herzlich Willkommen im Chatbot-System! Geben Sie einen Befehl/Frage ein:");
+        } else {
+            this.printer.println("[system] Login erfolgreich.", false);
+            this.printer.println("[system] Herzlich Willkommen im Chatbot-System! Geben Sie einen Befehl/Frage ein:", false);
+        }
         this.reader.addCallback(new ChatbotManagerConsoleReaderCallback(reader, this.chatbotManager, this, chatMessageDatabaseManager));
-        this.chatMessageDatabaseManager.getAll().thenAccept(messages -> {
-            for (ChatMessageEntity<AppUserEntity, AppChatbotEntity> message : messages) {
-                this.printer.println(message.getText(), false);
+        this.chatMessageDatabaseManager.getAll(user.getEntity().getUsername()).thenAccept(messages -> {
+            for (ChatMessageEntity<AppUserEntity, AppChatbotEntity> messageHistory : messages) {
+                String message = messageHistory.getText();
+                String prefix = isBotMessage(message) ? "" : "[" + user.getEntity().getUsername() + "] ";
+
+                this.printer.println(prefix + message, false);
             }
             this.printer.println("====================");
+            future.complete(null);
         });
+        return future;
+    }
+
+    private boolean isBotMessage(String message) {
+        for (Chatbot bot : this.chatbotManager.getBots()) {
+            if(message.startsWith("["+bot.getName()+"]")) {
+                return true;
+            }
+        }
+        return false;
     }
 }

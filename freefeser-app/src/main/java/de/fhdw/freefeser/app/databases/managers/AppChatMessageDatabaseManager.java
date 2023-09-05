@@ -129,4 +129,33 @@ public class AppChatMessageDatabaseManager implements ChatMessageEntityDatabaseM
             }
         });
     }
+
+    @Override
+    public CompletableFuture<List<ChatMessageEntity<AppUserEntity, AppChatbotEntity>>> getAll(String username) {
+        return CompletableFuture.supplyAsync(() -> {
+            List<ChatMessageEntity<AppUserEntity, AppChatbotEntity>> chatMessageList = new ArrayList<>();
+
+            try (Session session = this.hibernateUtil.getSessionFactory().openSession()) {
+                // Define the HQL query to select the top 100 chat messages, fetch related user and chatbot entities, and order by timestamp
+                String hql = "SELECT cm FROM AppChatMessageEntity cm WHERE user.username = :username ORDER BY cm.timestamp ASC";
+
+                // Create the query object
+                Query<AppChatMessageEntity> query = session.createQuery(hql, AppChatMessageEntity.class);
+                query.setParameter("username", username);
+
+                // Set the maximum number of results to 100
+                query.setMaxResults(100);
+
+                // Execute the query and get the result list
+                List<AppChatMessageEntity> resultList = query.getResultList();
+
+                // Process the result list and add to the final chatMessageList
+                chatMessageList.addAll(resultList);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            return chatMessageList;
+        });
+    }
 }

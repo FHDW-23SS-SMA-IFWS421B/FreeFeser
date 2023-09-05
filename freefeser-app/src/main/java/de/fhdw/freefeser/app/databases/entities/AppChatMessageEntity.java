@@ -4,6 +4,7 @@ import de.fhdw.freefeser.api.database.ChatMessageEntity;
 import de.fhdw.freefeser.api.database.ChatbotEntity;
 import de.fhdw.freefeser.api.database.UserEntity;
 import jakarta.persistence.*;
+import org.hibernate.annotations.Type;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -16,6 +17,7 @@ public class AppChatMessageEntity implements ChatMessageEntity<AppUserEntity, Ap
     @Column(name = "id")
     private UUID id;
 
+    @Lob
     @Column(name = "text", nullable = false)
     private String text;
 

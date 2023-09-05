@@ -31,7 +31,7 @@ public class WikiAppChatbot extends AppChatbot {
             String keyword = analysisResult.get("SearchTerm");
 
             wikiApi.search(keyword).thenAccept(results -> {
-                StringBuilder message = new StringBuilder("Folgende Informationen habe ich zu " + keyword + " gefunden:");
+                StringBuilder message = new StringBuilder("Folgende Informationen habe ich zu " + transformKeyword(keyword) + " gefunden:");
                 for (WikiResult result : results) {
                     message.append("\n- ").append(result.getTitle()).append(": ").append(result.getDescription());
                 }
@@ -40,5 +40,20 @@ public class WikiAppChatbot extends AppChatbot {
         } catch (Exception e) {
             sendErrorMessage();
         }
+    }
+
+    private String transformKeyword(String keyword) {
+        keyword = keyword.replace("_", " ");
+        String[] parts = keyword.split(" ");
+        StringBuilder transformedKeyword = new StringBuilder();
+        for (String part : parts) {
+            if (transformedKeyword.length() > 0) {
+                transformedKeyword.append(" ");
+            }
+            transformedKeyword.append(part.substring(0, 1).toUpperCase());
+            transformedKeyword.append(part.substring(1).toLowerCase());
+        }
+
+        return transformedKeyword.toString();
     }
 }

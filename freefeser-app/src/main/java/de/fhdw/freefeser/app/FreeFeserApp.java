@@ -9,9 +9,9 @@ import de.fhdw.freefeser.api.util.HttpWrapper;
 import de.fhdw.freefeser.api.util.JsonParser;
 import de.fhdw.freefeser.api.util.YamlParser;
 import de.fhdw.freefeser.app.chatbot.AppChatbotManager;
-import de.fhdw.freefeser.app.chatbot.translation.TranslationAppChatbot;
-import de.fhdw.freefeser.app.chatbot.weather.WeatherAppChatbot;
-import de.fhdw.freefeser.app.chatbot.wiki.WikiAppChatbot;
+import de.fhdw.freefeser.app.chatbot.translation.AppTranslationChatbot;
+import de.fhdw.freefeser.app.chatbot.weather.AppWeatherChatbot;
+import de.fhdw.freefeser.app.chatbot.wiki.AppWikiChatbot;
 import de.fhdw.freefeser.app.console.printer.AppConsolePrinter;
 import de.fhdw.freefeser.app.console.reader.AppConsoleReader;
 import de.fhdw.freefeser.app.console.reader.callbacks.LoginConsoleReaderCallback;
@@ -25,7 +25,7 @@ import java.io.InputStream;
 
 public class FreeFeserApp {
     public static void main(String[] args) throws Exception {
-        String filePath = "./credentials.yaml";
+        String filePath = "credentials.yaml";
         InputStream inputStream = loadConfig(filePath);
         HibernateUtil hibernateUtil = new HibernateUtil();
 
@@ -48,9 +48,9 @@ public class FreeFeserApp {
 
         Credentials credentials = yamlParser.load(inputStream, Credentials.class);
 
-        Chatbot translationBot = new TranslationAppChatbot(printer, "translationbot", userManager, chatMessageDatabaseManager, jsonParser, httpWrapper, credentials, chatbotEntityDatabaseManager);
-        Chatbot weatherBot = new WeatherAppChatbot(jsonParser, httpWrapper, credentials, printer, "weatherbot", userManager, chatMessageDatabaseManager, chatbotEntityDatabaseManager);
-        Chatbot wikiBot = new WikiAppChatbot(jsonParser, httpWrapper, printer, "wikibot", userManager, chatMessageDatabaseManager, chatbotEntityDatabaseManager);
+        Chatbot translationBot = new AppTranslationChatbot(printer, "translationbot", userManager, chatMessageDatabaseManager, jsonParser, httpWrapper, credentials, chatbotEntityDatabaseManager);
+        Chatbot weatherBot = new AppWeatherChatbot(jsonParser, httpWrapper, credentials, printer, "weatherbot", userManager, chatMessageDatabaseManager, chatbotEntityDatabaseManager);
+        Chatbot wikiBot = new AppWikiChatbot(jsonParser, httpWrapper, printer, "wikibot", userManager, chatMessageDatabaseManager, chatbotEntityDatabaseManager);
         chatbotManager.registerBot(translationBot).thenAccept(complete1 -> chatbotManager.registerBot(weatherBot).thenAccept(complete2 -> chatbotManager.registerBot(wikiBot)));
 
         // in der Main Auswechseln der GUI oder Bots etc ermöglichen

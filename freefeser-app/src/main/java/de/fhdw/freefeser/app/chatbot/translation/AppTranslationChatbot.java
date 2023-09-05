@@ -14,12 +14,12 @@ import de.fhdw.freefeser.app.util.Credentials;
 
 import java.util.HashMap;
 
-public class TranslationAppChatbot extends AppChatbot {
+public class AppTranslationChatbot extends AppChatbot {
 
     private final TranslationApi translationApi;
     private final TranslationTextAnalyzer translationTextAnalyzer;
 
-    public TranslationAppChatbot(ConsolePrinter printer, String name, UserManager userManager, AppChatMessageDatabaseManager chatMessageDatabaseManager, JsonParser jsonParser, HttpWrapper httpWrapper, Credentials credentials, ChatbotEntityDatabaseManager databaseManager) {
+    public AppTranslationChatbot(ConsolePrinter printer, String name, UserManager userManager, AppChatMessageDatabaseManager chatMessageDatabaseManager, JsonParser jsonParser, HttpWrapper httpWrapper, Credentials credentials, ChatbotEntityDatabaseManager databaseManager) {
         super(printer, name, userManager, chatMessageDatabaseManager, databaseManager);
         this.translationApi = new DeepLTranslationApi(jsonParser, httpWrapper, credentials);
         this.translationTextAnalyzer = new AppTranslationTextAnalyzer();

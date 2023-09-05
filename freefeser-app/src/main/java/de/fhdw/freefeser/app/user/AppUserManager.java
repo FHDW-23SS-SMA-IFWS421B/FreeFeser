@@ -83,10 +83,8 @@ public class AppUserManager implements UserManager {
         CompletableFuture<Void> future = new CompletableFuture<>();
         if(register) {
             this.printer.println("[system] Der Benutzer wurde erfolgreich erstellt.", false);
-            this.printer.println("[system] Herzlich Willkommen im Chatbot-System! Geben Sie einen Befehl/Frage ein:");
         } else {
             this.printer.println("[system] Login erfolgreich.", false);
-            this.printer.println("[system] Herzlich Willkommen im Chatbot-System! Geben Sie einen Befehl/Frage ein:", false);
         }
         this.reader.addCallback(new ChatbotManagerConsoleReaderCallback(reader, this.chatbotManager, this, chatMessageDatabaseManager));
         this.chatMessageDatabaseManager.getAll(user.getEntity().getUsername()).thenAccept(messages -> {
@@ -96,7 +94,9 @@ public class AppUserManager implements UserManager {
 
                 this.printer.println(prefix + message, false);
             }
-            this.printer.println("====================");
+            this.printer.println("====================", false);
+            this.printer.println("[system] Herzlich Willkommen im Chatbot-System! Nutzen Sie den !help-Befehl oder geben Sie einen anderen Befehl/Frage ein:", false);
+            this.printer.print("["+user.getEntity().getUsername()+"] ");
             future.complete(null);
         });
         return future;

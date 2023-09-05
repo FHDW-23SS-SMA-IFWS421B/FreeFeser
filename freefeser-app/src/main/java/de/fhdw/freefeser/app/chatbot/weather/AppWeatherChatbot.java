@@ -14,12 +14,12 @@ import de.fhdw.freefeser.app.util.Credentials;
 
 import java.util.HashMap;
 
-public class WeatherAppChatbot extends AppChatbot {
+public class AppWeatherChatbot extends AppChatbot {
 
     private final WeatherApi weatherApi;
     private final WeatherTextAnalyzer weatherTextAnalyzer;
 
-    public WeatherAppChatbot(JsonParser jsonParser, HttpWrapper httpWrapper, Credentials credentials, ConsolePrinter printer, String name, UserManager userManager, AppChatMessageDatabaseManager chatMessageDatabaseManager, ChatbotEntityDatabaseManager databaseManager) {
+    public AppWeatherChatbot(JsonParser jsonParser, HttpWrapper httpWrapper, Credentials credentials, ConsolePrinter printer, String name, UserManager userManager, AppChatMessageDatabaseManager chatMessageDatabaseManager, ChatbotEntityDatabaseManager databaseManager) {
         super(printer, name, userManager, chatMessageDatabaseManager, databaseManager);
         this.weatherApi = new OpenWeatherApi(jsonParser, httpWrapper, credentials);
         this.weatherTextAnalyzer = new AppWeatherTextAnalyzer();
@@ -34,7 +34,7 @@ public class WeatherAppChatbot extends AppChatbot {
 
             if(weatherType.equalsIgnoreCase("current")) {
                 weatherApi.getCurrentWeather(location).thenAcceptAsync(result -> {
-                    String message = result.getDate() + " verhält sich das Wetter in " + location + "wie folgt:";
+                    String message = result.getDate() + " verhält sich das Wetter in " + location + " wie folgt:";
                     message += "\n- Wetterlage: " + result.getWeatherCondition();
                     message += "\n- Temperatur: " + result.getTemperature() + "ºC";
                     message += "\n- Windgeschwindigkeit: " + result.getWindspeed() + " m/s";

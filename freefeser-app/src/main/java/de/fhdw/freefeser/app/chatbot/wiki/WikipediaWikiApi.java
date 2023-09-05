@@ -11,12 +11,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
-public class MediaWikiApi implements WikiApi {
+public class WikipediaWikiApi implements WikiApi {
 
     private final JsonParser jsonParser;
     private final HttpWrapper httpWrapper;
 
-    public MediaWikiApi(JsonParser jsonParser, HttpWrapper httpWrapper) {
+    public WikipediaWikiApi(JsonParser jsonParser, HttpWrapper httpWrapper) {
         this.jsonParser = jsonParser;
         this.httpWrapper = httpWrapper;
     }

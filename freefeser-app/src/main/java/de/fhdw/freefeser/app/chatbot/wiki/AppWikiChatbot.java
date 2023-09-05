@@ -13,14 +13,14 @@ import de.fhdw.freefeser.app.textanalyzer.AppWikiTextAnalyzer;
 
 import java.util.HashMap;
 
-public class WikiAppChatbot extends AppChatbot {
+public class AppWikiChatbot extends AppChatbot {
 
     private final WikiApi wikiApi;
     private final WikiTextAnalyzer wikiTextAnalyzer;
 
-    public WikiAppChatbot(JsonParser jsonParser, HttpWrapper httpWrapper, ConsolePrinter printer, String name, UserManager userManager, AppChatMessageDatabaseManager chatMessageDatabaseManager, ChatbotEntityDatabaseManager databaseManager) {
+    public AppWikiChatbot(JsonParser jsonParser, HttpWrapper httpWrapper, ConsolePrinter printer, String name, UserManager userManager, AppChatMessageDatabaseManager chatMessageDatabaseManager, ChatbotEntityDatabaseManager databaseManager) {
         super(printer, name, userManager, chatMessageDatabaseManager, databaseManager);
-        this.wikiApi = new MediaWikiApi(jsonParser, httpWrapper);
+        this.wikiApi = new WikipediaWikiApi(jsonParser, httpWrapper);
         this.wikiTextAnalyzer = new AppWikiTextAnalyzer();
     }
 

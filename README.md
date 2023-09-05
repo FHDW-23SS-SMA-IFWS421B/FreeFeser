@@ -158,7 +158,7 @@ Das vorliegende Business Process Model and Notation (BPMN) beschreibt den Ablauf
     - **Bestehender Nutzer**: 
         - Der Nutzer wird aufgefordert, seinen Benutzernamen einzugeben.
         - Anschließend wird das Passwort abgefragt.
-        - Bei erfolgreicher Authentifizierung wird der Nutzer in das System eingeloggt.
+        - Bei erfolgreicher Authentifizierung wird der Nutzer in das System eingeloggt. Ist der Nutzer erfolgreich eingeloggt, wird der bisherige Chatverlauf des Nutzers geladen und dem Nutzer angezeigt.
     
     - **Neuer Nutzer**:
         - Der Nutzer wird aufgefordert, einen Wunsch-Benutzernamen einzugeben.

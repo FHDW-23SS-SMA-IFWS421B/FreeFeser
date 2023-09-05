@@ -393,22 +393,22 @@ In diesem Kapitel steht die detaillierte Dokumentation der einzelnen Chatbots im
 
 Jede Bot-Dokumentation folgt einer spezifischen Struktur und beleuchtet für jeden Bot die folgenden Themen:
 
-#### Zweck und Funktionalität
+1. **Zweck und Funktionalität**  
 Hier wird erläutert, welche Aufgaben der Bot erfüllt und welche Funktionen er bietet.
 
-#### Funktionsweise
+2. **Funktionsweise**  
 In diesem Abschnitt wird dargelegt, wie der Bot technisch arbeitet, um die genannten Funktionen zu erfüllen.
 
-#### Schlüsselmerkmale
+3. **Schlüsselmerkmale**  
 Dieser Teil beschreibt die Hauptfunktionen, die den Bot einzigartig machen.
 
-#### Schnittstellen
+4. **Schnittstellen**  
 Dieser Abschnitt gibt Aufschluss über die externen APIs, die jeder Bot nutzt, um seine jeweiligen Funktionen bereitzustellen.
 
-#### Beispielanfragen
+5. **Beispielanfragen**  
 Hier werden typische Nutzeranfragen präsentiert, die den Bot aktivieren oder eine bestimmte Funktion auslösen.
 
-#### Antwortformat
+6. **Antwortformat**  
 Dieser Abschnitt klärt, in welcher Form der Bot normalerweise auf Anfragen reagiert.
 
 
@@ -433,9 +433,8 @@ Der TranslationBot nutzt die DeepL-API, um die Übersetzungsfunktionen bereitzus
 
 #### Beispielanfragen
 
-- `@translationbot Übersetze 'Hallo' ins Spanische.`
-- `@translationbot Kannst du diesen Satz ins Französische übersetzen? 'Ich liebe das Reisen.'`
-- `@translationbot Bitte übersetze diesen Absatz ins Deutsche: 'The world is full of beauty.'`
+- `@translationbot Übersetze ins DE: Hello friends!`
+- `@translationbot Übersetze auf IT: Guten Morgen.`
 
 #### Antwortformat
 
@@ -448,7 +447,7 @@ Der Wetterbot wurde entwickelt, um Nutzern Informationen über das aktuelle Wett
 
 #### Funktionsweise
 
-Der Wetterbot verwendet fortschrittliche natürliche Sprachverarbeitungstechniken, um die Benutzereingabe zu analysieren und den gewünschten Ort zu extrahieren. Dabei kann der Bot verschiedene Formulierungen und Varianten von Anfragen verstehen, z. B. "Wie ist das Wetter in Berlin?" oder "Sag mir das aktuelle Wetter in Berlin". Die Verwendung der speziellen Bibliothek zur Sprachverständlichkeit ermöglicht es dem Bot, flexibel auf eine Vielzahl von Nutzerprompts zu reagieren.
+Der Wetterbot verwendet fortschrittliche natürliche Sprachverarbeitungstechniken, um die Benutzereingabe zu analysieren und den gewünschten Ort zu extrahieren. Dabei kann der Bot verschiedene Formulierungen und Varianten von Anfragen verstehen, z. B. "Wie ist das Wetter in Berlin?" oder "Sag mir wie die aktuelle Wetterlage in Berlin ist.". Die Verwendung der speziellen Bibliothek zur Sprachverständlichkeit ermöglicht es dem Bot, flexibel auf eine Vielzahl von Nutzerprompts zu reagieren.
 
 #### Schlüsselmerkmale
 
@@ -463,8 +462,7 @@ Der WeatherBot verwendet die OpenWeather-API, um Wetterdaten in Echtzeit abzuruf
 #### Beispielanfragen
 
 - `@weatherbot Wie ist das Wetter in New York?`
-- `@weatherbot Gibt es Regen in London?`
-- `@weatherbot Zeig mir die aktuelle Wetterlage in Paris.`
+- `@weatherbot Wie wird das Wetter in London in den nächsten Tagen?`
 
 #### Antwortformat
 
@@ -491,9 +489,8 @@ Der WikiBot nutzt die Wikipedia-API, um auf die Datenbank von Wikipedia zuzugrei
 
 #### Beispielanfragen
 
-- `@wikibot Erzähle mir etwas über Albert Einstein.`
-- `@wikibot Was kannst du mir über erneuerbare Energien sagen?`
-- `@wikibot Ich möchte Informationen über die französische Revolution.`
+- `@wikibot Wer war Albert Einstein?`
+- `@wikibot Was war die französische Revolution?`
 
 #### Antwortformat
 

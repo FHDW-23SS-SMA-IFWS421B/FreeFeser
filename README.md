@@ -80,7 +80,7 @@
         - [Schnittstellen](#schnittstellen-3)
         - [Beispielanfragen](#beispielanfragen-2)
         - [Antwortformat](#antwortformat-2)
-- [weitere Schritte](#weitere-schritte)
+- [Weitere Schritte](#weitere-schritte)
 
 ## Systemdokumentation
 Es folgt eine Beschreibung der internen Arbeitsweise der Software, einschließlich der Schnittstellen und APIs Beschreibung der Code-Architektur und -Struktur.

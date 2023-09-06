@@ -289,13 +289,63 @@ Die Anforderungen an Fehlerbehandlung, Timeouts, Retry-Strategien und Skalierbar
   Die Datenbank kann in der Konfiguration leicht ausgetauscht werden, da Hibernate als ORM verwendet wird.
 
 ### Risiken und technische Schulden
-Bekannte Risiken und angehäufte technische Schulden. Welche potentiellen Probleme lauern im und um das System? Über welche Schwächen beklagen sich die Entwicklungsteams?
 
-Erläutern Sie hier die Verletzung bekannter Prinzipien und weiteres Themen aus der Vorlesung.
+Bei der Entwicklung dieser MVP-Anwendung wurde besonderes Augenmerk darauf gelegt, möglichst geringe Risiken und technische Schulden zu akkumulieren. Zu den technischen Schulden gehören:
+
+#### Fragmentarische Fehlerbehandlung
+In einigen Teilen der Anwendung wird die Fehlerausgabe fragmentarisch implementiert. Das bedeutet, dass nicht in allen Fällen angemessene Fehlermeldungen generiert werden, wenn u.a. ungültige Methodenparameter übergeben werden.
+
+#### Unsichere Passwortspeicherung
+Aktuell werden die Passwörter der Benutzer unverschlüsselt in der Datenbank gespeichert. Um die Sicherheit zu erhöhen, sollte eine angemessene Hash-Funktion wie zum Beispiel Argon2 verwendet werden, um die Passwörter gehasht in der Datenbank abzulegen.
+
+#### Klartext-Passworteingabe
+Bei der Eingabe des Passworts durch den Benutzer während des Login- und Registrierungsvorgangs wird das Passwort im Klartext in der Konsole angezeigt. Dies birgt das Risiko, dass unbefugte Personen, die Zugang zum Bildschirm haben, das Passwort einfach ablesen können. Es sollte stattdessen eine Zensur oder Maskierung der Passworteingabe in der Konsole implementiert werden, um dieses Sicherheitsrisiko zu minimieren.
+
+Diese technischen Schulden und Sicherheitsprobleme stellen bekannte Risiken für die Anwendung dar und sollten bei der Entwicklung einer Produktivversion behoben werden.
 
 ### Erweiterungen
-Anweisungen zum Erstellen von Erweiterungen oder zur Anpassung der Software
-Als Erweiterung ist hier ein neuer Chatbot zu sehen.
+
+Die Erweiterung der Software im MVP um einen neuen Bot funktioniert in dem man zunächst eine neue Botklasse erstellt, welche das Interface Chatbot implementiert. Bei diesem Interface müssen alle Methoden implementiert werden. Mit weniger Aufwand zur Implementation eines neuen Bots, kann die abstrakte Klasse `AppChatbot` extended werden.
+````java
+public class ExampleBot implements Chatbot {
+
+    @Override
+    public String getName() {
+        return "ExampleBot";//Hier soll der Name des Bots zurückgegeben werden
+    }
+
+    @Override
+    public CompletableFuture<Boolean> isEnabled() {
+        //Hier sollte zurückgegeben werden, ob der Bot aktiviert ist. Dabei kann auch die bereits vorhandene Datenbank zugegriffen werden.
+        return CompletableFuture.completedFuture(true);
+    }
+
+    @Override
+    public void setEnabled(boolean enabled) {
+        //Hier sollte der Bot aktiviert oder deaktiviert werden. Dabei sollte auch auf die bereits vorhandene Datenbank zugegriffen werden.
+    }
+
+    @Override
+    public void onExecute(User sender, String rawText) {
+        //Hier soll die Logik für den Bot implementiert werden. Der `rawText` ist dabei die reine Eingabe ohne den Präfix des Bots.
+    }
+
+    @Override
+    public void sendMessageOnBehalf(String message, boolean askForInput) {
+        //Hier sollte eine Logik implementiert werden, dass die Message mit dem Namen des Bots als Präfix aus Sicht des Bots gesendet wird. Danach sollte der Benutzer nach einer Eingabe gefragt werden.
+    }
+
+    @Override
+    public void sendMessageOnBehalf(String message) {
+        //Hier sollte eine Logik implementiert werden, dass die Message mit dem Namen des Bots als Präfix aus Sicht des Bots gesendet wird.
+    }
+}
+````
+Im nächsten Schritt muss der Bot im vorhanden `ChatbotManager` in der `FreeFeserApp` Klasse registriert werden.
+````java
+ExampleBot bot = ... //Hier die Bot Instanz erstellen
+chatbotManager.registerBot(bot)
+````
 
 ### Fehlerbehebung
 1. **Bot gibt nicht die richtige Response**   

@@ -53,10 +53,6 @@ public class FreeFeserApp {
         Chatbot wikiBot = new AppWikiChatbot(jsonParser, httpWrapper, printer, "wikibot", userManager, chatMessageDatabaseManager, chatbotEntityDatabaseManager);
         chatbotManager.registerBot(translationBot).thenAccept(complete1 -> chatbotManager.registerBot(weatherBot).thenAccept(complete2 -> chatbotManager.registerBot(wikiBot)));
 
-        // in der Main Auswechseln der GUI oder Bots etc ermöglichen
-        // Chatbot
-        // Register //@Todo ask for impl for new bot
-
         reader.start();
     }
 

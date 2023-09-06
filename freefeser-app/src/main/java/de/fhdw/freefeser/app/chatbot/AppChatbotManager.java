@@ -117,20 +117,9 @@ public class AppChatbotManager implements ChatbotManager {
         }
 
         String botName = firstPart.substring(1);
-        String selectedBot;
-
-        if(botName.equalsIgnoreCase("translationbot")) {
-            selectedBot = "translationbot";
-        } else if (botName.equalsIgnoreCase("weatherbot")) {
-            selectedBot = "weatherbot";
-        } else if (botName.equalsIgnoreCase("wikibot")) {
-            selectedBot = "wikibot";
-        } else {
-            return null;
-        }
 
         for (Chatbot bot : bots) {
-            if (bot.getName().equalsIgnoreCase(selectedBot)) {
+            if (bot.getName().equalsIgnoreCase(botName)) {
                 return bot;
             }
         }

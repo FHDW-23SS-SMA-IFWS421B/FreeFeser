@@ -21,6 +21,7 @@
         - [Organisatorische Entscheidungen](#organisatorische-entscheidungen)
         - [Zusammenfassung](#zusammenfassung-1)
     - [Bausteinsicht](#bausteinsicht)
+        - [UML-Diagramm](#uml-diagramm)
     - [Laufzeitsichten](#laufzeitsichten)
         - [Einleitung](#einleitung-1)
         - [Benutzerauthentifizierung](#benutzerauthentifizierung)
@@ -30,6 +31,15 @@
         - [Zusatzinformationen](#zusatzinformationen)
         - [Kritische Schnittstellen](#kritische-schnittstellen)
     - [Infrastruktursicht](#infrastruktursicht)
+        - [Technologie-Stack](#technologie-stack)
+        - [Externe APIs](#externe-apis)
+        - [Deploymentdiagramm](#deployment-diagramm)
+        - [Datenbankschema](#datenbankschema)
+            - [App-Chatbot-Entity](#appchatbotentity)
+            - [App-User-Entity](#appuserentity)
+            - [App-Chatmessage-Entity](#appchatmessageentity)
+        - [Beziehungen](#beziehungen)
+        - [Zusammenfassung](#zusammenfassung-2)
     - [Querschnittliche Konzepte](#querschnittliche-konzepte)
     - [Schnittstellen](#schnittstellen)
         - [Spezifikation zur robusten Kommunikation](#spezifikation-zur-robusten-kommunikation)
@@ -41,14 +51,13 @@
         - [Aktivieren der Logs](#aktivieren-der-logs)
     - [Installationsanleitung](#installationsanleitung)
     - [Konfiguration](#konfiguration)
-        - [Chatbotprogramm](#chatbotprogramm)
-            - [Nutzerverwaltung](#nutzerverwaltung)
-            - [Bots Auflisten](#bots-auflisten)
-            - [Aktivieren und Deaktivieren von Bots](#aktivieren-und-deaktivieren-von-bots)
-                - [Durchführung](#durchführung)
-            - [Software beenden](#software-beenden)
-            - [Hilfestellung für Nutzer](#hilfestellung-für-nutzer)
-            - [Zusammenfassung](#zusammenfassung-2)
+        - [Nutzerverwaltung](#nutzerverwaltung)
+        - [Bots Auflisten](#bots-auflisten)
+        - [Aktivieren und Deaktivieren von Bots](#aktivieren-und-deaktivieren-von-bots)
+            - [Durchführung](#durchführung)
+        - [Software beenden](#software-beenden)
+        - [Hilfestellung für Nutzer](#hilfestellung-für-nutzer)
+        - [Zusammenfassung](#zusammenfassung-3)
 - [Bot-Dokumentation (Erweiterungen)](#bot-dokumentation-erweiterungen)
     - [TranslationBot](#translationbot)
         - [Zweck und Funktionalität](#zweck-und-funktionalität)
@@ -293,19 +302,22 @@ Zusätzlich beinhaltet diese Sicht ein Datenbankschema, das die Struktur und Bez
 
 Die Infrastruktursicht dient als Grundlage für das Verständnis der Systemarchitektur und für mögliche zukünftige Erweiterungen oder Anpassungen.
 
-
 ### Querschnittliche Konzepte
-Übergreifende, generelle Prinzipien und Lösungsansätze, die in vielen Teilen der Architektur einheitlich benutzt werden. Konzepte beziehen sich oft auf mehrere Bausteine. Hier findet man Themen wie Domänenmodelle, Architekturmuster und -stile, Regeln zur Nutzung bestimmter Technologiestacks, etc.
+In unserer Architektur verwenden wir eine Reihe von querschnittlichen Konzepten und bewährten Praktiken, die zur Konsistenz und Qualität unserer Software beitragen. Hier sind die relevanten Aspekte:
 
-Motivation
-Konzepte bilden die Grundlage für konzeptionelle Integrität (Konsistenz, Homogenität) der Architektur und damit eine wesentliche Grundlage für die innere Qualität Ihrer Systeme. Manche dieser Themen lassen sich nur schwer als Baustein in der Architektur unterbringen (z.B. das Thema „Sicherheit“).
+1. **Hibernate für die Datenpersistenz:**  
+   Hibernate ist ein leistungsstarkes Object-Relational Mapping (ORM) Framework, das die Schnittstelle zwischen unserer Java-Anwendung und der Datenbank vereinfacht. Es ermöglicht effizientes Datenmanagement und trägt zur Datenintegrität und Sicherheit bei.
 
-Form
-Kann vielfältig sein:
-Konzeptpapiere mit beliebiger Gliederung,
-übergreifende Modelle/Szenarien mit Notationen, die Sie auch in den Architektursichten nutzen,
-beispielhafte Implementierung speziell für technische Konzepte,
-Verweise auf „übliche“ Nutzung von Standard-Frameworks (beispielsweise die Nutzung von Hibernate als Object/Relational Mapper).
+2. **SOLID-Prinzipien in der objektorientierten Entwicklung:**  
+   Wir folgen den SOLID-Prinzipien (Single Responsibility, Open-Closed, Liskov Substitution, Interface Segregation, Dependency Inversion), um eine flexible und wartbare Codebasis zu schaffen. Diese Prinzipien sind integraler Bestandteil unserer Architektur.
+
+3. **Verwendung von "private" und "final" in Java:**  
+   In unserer Java-Entwicklung setzen wir die Sichtbarkeitsmodifizierer "private" und das Schlüsselwort "final" konsequent ein, um die Kontrolle über den Zugriff auf unsere Klassen und Methoden zu erhöhen. Dies fördert die Sicherheit und Zuverlässigkeit unserer Software.
+
+4. **Sicherheitsaspekte durch Auslagerung von API-Keys in eine YAML-Datei:**  
+   Wir nehmen die Sicherheit unserer Anwendung ernst und schützen sensible Informationen wie API-Keys, indem wir sie in einer YAML-Datei auslagern. Diese Praxis minimiert das Risiko von Datenlecks und erhöht die Sicherheit unserer Anwendung.
+
+Die Beachtung dieser querschnittlichen Konzepte bildet die Grundlage für die konzeptionelle Integrität unserer Architektur und trägt wesentlich zur inneren Qualität unserer Systeme bei.
 
 ### Schnittstellen
 | Schnittstelle       | Zweck und Funktion                                   | Operationen | Kommunikationsprotokoll | Datenformat      | Authentifizierung                                  |
@@ -341,7 +353,6 @@ Die Anforderungen an Fehlerbehandlung, Timeouts, Retry-Strategien und Skalierbar
   Die Datenbank kann in der Konfiguration leicht ausgetauscht werden, da Hibernate als ORM verwendet wird.
 
 ### Risiken und technische Schulden
-
 Bei der Entwicklung dieser MVP-Anwendung wurde besonderes Augenmerk darauf gelegt, möglichst geringe Risiken und technische Schulden zu akkumulieren. Zu den technischen Schulden gehören:
 
 #### Fragmentarische Fehlerbehandlung
@@ -489,7 +500,6 @@ Bitte beachten Sie, dass eine detaillierte [Java/Maven-Installationsanleitung](d
 **Hinweis:** Stellen Sie sicher, dass Sie eine gültige Java-Version auf Ihrem System haben, um die Software erfolgreich auszuführen.
 
 ### Konfiguration
-### Chatbotprogramm
 Das Chatbotprogramm bietet neben der Interaktion mit den Bots verschiedene Konfigurationsmöglichkeiten, die sowohl die Personalisierung für den Nutzer als auch die Bedienung der Software erleichtern.
 
 #### Nutzerverwaltung

@@ -228,18 +228,71 @@ Die Funktionalität der Software ist stark von den APIs von DeepL, Wikipedia und
 Aus Gründen der Übersichtlichkeit und Fokussierung wurden diese kritischen Schnittstellen nicht im BPMN-Diagramm dargestellt.
 
 ### Infrastruktursicht
-Technische Infrastruktur mit Prozessoren, Systemtopologie, und die Abbildung der Software-Bausteine auf diese Infrastruktur.
+In der Infrastruktursicht werden die technischen Aspekte des Chatbot-Systems beleuchtet. Diese Sicht stellt dar, wie die Softwarekomponenten in der technischen Umgebung miteinander interagieren und gibt einen Überblick über die verwendeten Technologien.
 
-Motivation
-Software läuft nicht ohne Infrastruktur. Diese zugrundeliegende Infrastruktur beeinflusst Ihr System und/oder querschnittliche Lösungskonzepte, daher müssen Sie diese Infrastruktur kennen.
+#### Technologie-Stack
+- **Programmiersprache**: Java
+- **ORM Framework**: Hibernate
+- **Datenbank**: H2
+- **HTTP-Bibliothek**: Java-eigene HTTP-Bibliothek
 
-Form
-Das oberste Verteilungsdiagramm könnte bereits in Ihrem technischen Kontext enthalten sein, mit Ihrer Infrastruktur als EINE Blackbox. Jetzt zoomen Sie in diese Infrastruktur mit weiteren Verteilungsdiagrammen hinein:
+#### Externe APIs
+Das System interagiert mit folgenden externen APIs:
 
-Die UML stellt mit Verteilungsdiagrammen (Deployment diagrams) eine Diagrammart zur Verfügung, um diese Sicht auszudrücken. Nutzen Sie diese, evtl. auch geschachtelt, wenn Ihre Verteilungsstruktur es verlangt.
-Falls Ihre Infrastruktur-Stakeholder andere Diagrammarten bevorzugen, die beispielsweise Prozessoren und Kanäle zeigen, sind diese hier ebenfalls einsetzbar.
+- **Wikipedia API**: Zur Abfrage von Informationen für den WikiBot
+- **OpenWeather API**: Für Wetterinformationen im WeatherBot
+- **DeepL API**: Zur Übersetzung von Texten im TranslationBot
+
+#### Deployment-Diagramm
+Ein Deployment-Diagramm wurde in PlantUML erstellt, um die Beziehungen und Abhängigkeiten der einzelnen Komponenten grafisch darzustellen. Das Diagramm beleuchtet, wie die Anwendung mit den verschiedenen APIs kommuniziert und wie die Daten mit der H2-Datenbank mithilfe von Hibernate persistiert werden.
+
+![Deploymentdiagramm](documentation/Deploymentdiagramm.svg)
+
+#### Datenbankschema
+
+In der Infrastruktursicht ist ebenfalls ein Datenbankschema enthalten, das den Aufbau der Datenbank darstellt. Die Datenbank besteht aus drei Hauptentitäten:
+
+##### `app_chatbot_entity`
+- **id (INTEGER)**: Eindeutige Identifikationsnummer für jeden Chatbot.
+- **botname (VARCHAR(255))**: Der Name des Chatbots.
+- **active (BOOLEAN)**: Gibt an, ob der Bot aktiviert oder deaktiviert ist.
+
+Diese Tabelle speichert Informationen über die verschiedenen Chatbots im System, einschließlich ihrer Identifikationsnummer, ihres Namens und ihres aktuellen Status.
+
+##### `app_user_entity`
+- **id (INTEGER)**: Eindeutige Identifikationsnummer für jeden Benutzer.
+- **username (VARCHAR(255))**: Der Benutzername des Benutzers.
+- **password (VARCHAR(255))**: Das Passwort des Benutzers.
+
+Diese Tabelle speichert Informationen über die Benutzer des Systems, einschließlich ihrer Identifikationsnummer, ihres Benutzernamens und ihres Passworts.
+
+##### `app_chat_message_entity`
+- **id (INTEGER)**: Eindeutige Identifikationsnummer für jede Chat-Nachricht.
+- **text (VARCHAR(255) notnull)**: Der Textinhalt der Chat-Nachricht. Dieses Feld kann nicht leer sein.
+- **timestamp (TIMESTAMP notnull)**: Zeitstempel, der den Zeitpunkt der Erstellung der Nachricht angibt. Dieses Feld kann nicht leer sein.
+- **user_id (INTEGER)**: Fremdschlüssel, der die `id` aus der `app_user_entity` Tabelle referenziert.
+
+Diese Tabelle speichert die Chat-Nachrichten und ist mit der `app_user_entity` Tabelle durch den Fremdschlüssel `user_id` verknüpft, um anzugeben, welcher Benutzer die Nachricht gesendet hat.
+
+#### Beziehungen
+- Die `user_id` in der `app_chat_message_entity` ist ein Fremdschlüssel, der die `id` in der `app_user_entity` als Referenz verwendet. Diese Beziehung stellt sicher, dass jede Chat-Nachricht einem Benutzer zugeordnet ist.
+
+Das Datenbankschema dient als Blaupause für die Strukturierung der Daten und erleichtert die Verwaltung von Benutzerinformationen, Chatbots und Chat-Nachrichten im System.
 
 ![Datenbank-Schema](documentation/db_schema.png)
+
+#### Zusammenfassung
+Die Infrastruktursicht bietet eine umfassende Darstellung der technischen Aspekte des Systems, einschließlich der verwendeten Technologien und externen Abhängigkeiten. Hierzu zählen:
+
+- Die Programmiersprache Java
+- Das ORM-Framework Hibernate
+- Die H2 Datenbank
+- Die Java-eigene HTTP-Bibliothek für die Kommunikation mit verschiedenen APIs (OpenWeather, Wikipedia, DeepL)
+
+Zusätzlich beinhaltet diese Sicht ein Datenbankschema, das die Struktur und Beziehungen der Datenbank-Entitäten beschreibt. Das Schema enthält drei Haupttabellen: `app_chatbot_entity`, `app_user_entity` und `app_chat_message_entity`, die jeweils verschiedene Aspekte des Systems abdecken, wie die Verwaltung von Chatbots, Benutzerinformationen und Chat-Nachrichten.
+
+Die Infrastruktursicht dient als Grundlage für das Verständnis der Systemarchitektur und für mögliche zukünftige Erweiterungen oder Anpassungen.
+
 
 ### Querschnittliche Konzepte
 Übergreifende, generelle Prinzipien und Lösungsansätze, die in vielen Teilen der Architektur einheitlich benutzt werden. Konzepte beziehen sich oft auf mehrere Bausteine. Hier findet man Themen wie Domänenmodelle, Architekturmuster und -stile, Regeln zur Nutzung bestimmter Technologiestacks, etc.

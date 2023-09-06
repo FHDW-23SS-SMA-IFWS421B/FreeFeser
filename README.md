@@ -181,7 +181,6 @@ Aus diesem Grund haben wir eine vereinfachte Klassenübersicht als Einstiegspunk
 ![UML_Part_5](documentation/UML_Part_5.svg)
 ![UML_Part_6](documentation/UML_Part_6.svg)
 
-
 ### Laufzeitsichten
 ![BPMN Diagramm](documentation/BPMN.svg)
 

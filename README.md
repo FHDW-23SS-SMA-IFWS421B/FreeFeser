@@ -319,6 +319,9 @@ In unserer Architektur verwenden wir eine Reihe von querschnittlichen Konzepten 
 4. **Sicherheitsaspekte durch Auslagerung von API-Keys in eine YAML-Datei:**  
    Wir nehmen die Sicherheit unserer Anwendung ernst und schützen sensible Informationen wie API-Keys, indem wir sie in einer YAML-Datei auslagern. Diese Praxis minimiert das Risiko von Datenlecks und erhöht die Sicherheit unserer Anwendung.
 
+5. **Verwendung der sendAsync-Methode für API-Anfragen:**  
+   Bei der Kommunikation mit externen Diensten setzen wir die `sendAsync()` Methode ein, um asynchrone API-Anfragen zu ermöglichen. Dies verbessert die Skalierbarkeit und Reaktionsfähigkeit unserer Anwendung.
+
 Die Beachtung dieser querschnittlichen Konzepte bildet die Grundlage für die konzeptionelle Integrität unserer Architektur und trägt wesentlich zur inneren Qualität unserer Systeme bei.
 
 ### Schnittstellen
@@ -637,7 +640,11 @@ Der WikiBot nutzt die Wikipedia-API, um auf die Datenbank von Wikipedia zuzugrei
 Der Wikibot gibt in der Regel eine kurze und prägnante Zusammenfassung der wichtigsten Informationen zum angegebenen Thema aus Wikipedia aus. Dies könnte biografische Details, historische Ereignisse, wissenschaftliche Konzepte oder andere relevante Informationen umfassen.
 
 ## Weitere Schritte
-Nach der erfolgreichen Implementierung und Inbetriebnahme des Chatbot-Systems gibt es noch einige Aspekte, die weiter optimiert oder hinzugefügt werden könnten, um die Leistung, Sicherheit und Benutzerfreundlichkeit des Systems zu verbessern. Folgende Schritte sollten noch zur Verbesserung des Systems in Erwägung gezogen werden sollten.
+Nach der erfolgreichen Implementierung und Inbetriebnahme des Chatbot-MVP gibt es noch einige Aspekte, die weiter optimiert oder hinzugefügt werden könnten, um die Leistung, Sicherheit sowie Benutzerfreundlichkeit des Systems zu verbessern und den MVP zu einem vollständigen System zu transformieren. Folgende Schritte sollten noch zur Verbesserung des Systems in Erwägung gezogen werden sollten.
 
 1. Fehlerbehandlung verbessern
 2. Unit-/Integration-Tests schreiben
+3. bessere Bot-Integration
+4. Sprachen in Ländercodes umwandeln/parsen
+5. Multilanguage-Support anbieten
+6. Frontend-Entwicklung

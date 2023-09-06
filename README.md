@@ -165,7 +165,6 @@ Neben technischen Entscheidungen berücksichtigt unsere Lösungsstrategie auch o
 Die getroffenen Entscheidungen dienen als Grundlage für den Entwurf und die Implementierung unseres Systems. Sie ermöglichen es, die Anforderungen der Aufgabenstellung effektiv zu erfüllen und gleichzeitig eine robuste und erweiterbare Architektur zu schaffen. Die folgenden Abschnitte vertiefen die einzelnen Entscheidungen und beleuchten ihre Auswirkungen auf die Gesamtarchitektur.
 
 ### Bausteinsicht
-
 ![Klassenübersicht](documentation/class_overview.png)
 
 Wir haben uns bei der Darstellung der Architektur und Beziehungen unserer Klassen für die Verwendung von UML (Unified Modeling Language) Diagrammen entschieden. UML ermöglicht es uns, die verschiedenen Aspekte unseres Systems klar und standardisiert darzustellen.
@@ -175,17 +174,13 @@ Aufgrund der Komplexität und Größe unseres Codes ist es jedoch nicht praktika
 Aus diesem Grund haben wir eine vereinfachte Klassenübersicht als Einstiegspunkt geschaffen. Diese gibt einen allgemeinen Überblick über die Hauptkomponenten des Systems und ihre grundlegenden Beziehungen. Für eine detaillierte Betrachtung haben wir das UML-Diagramm in sechs verschiedene Teilbereiche aufgeteilt. Jeder dieser Teilbereiche konzentriert sich auf bestimmte Klassen und ihre jeweiligen Beziehungen, Attribute und Methoden. So ist es uns möglich, alle Aspekte unseres Systems umfangreich und doch übersichtlich darzustellen.
 
 ### Laufzeitsichten
-
 ![BPMN Diagramm](documentation/BPMN.svg)
 
 #### Einleitung
-
 Das vorliegende Business Process Model and Notation (BPMN) beschreibt den Ablauf der Benutzerinteraktionen mit der Software, die drei spezialisierte Chatbots integriert. Diese Chatbots rufen Informationen von Wikipedia, Openweather und DeepL über APIs ab.
 
 #### Benutzerauthentifizierung
-
 ##### Anwendungsstart
-
 1. **Start der Anwendung**: Der Prozess beginnt, wenn der Nutzer die Softwareanwendung startet.
   
 2. **Account-Prüfung**: Die Software fragt den Nutzer, ob er bereits einen Account besitzt. Der Nutzer hat die Möglichkeit, zwischen 'Ja' und 'Nein' zu wählen.
@@ -203,9 +198,7 @@ Das vorliegende Business Process Model and Notation (BPMN) beschreibt den Ablauf
         - Die Anmeldedaten werden gespeichert, und der Nutzer wird automatisch eingeloggt.
 
 #### Hauptmenü
-
 ##### Eingabeaufforderung
-
 Nach dem erfolgreichen Login wartet die Software auf die Eingabe des Nutzers. Der Nutzer hat sieben verschiedene Optionen zur Verfügung:
 
    - **Chatbot-Aktivierung**: Durch Eingabe des Befehls `@botname` kann der Nutzer einen der verfügbaren Chatbots aktivieren. Das Ergebnis der Bot-Interaktion wird dem Nutzer präsentiert, und die Software kehrt zum Warte-Status zurück.
@@ -219,11 +212,9 @@ Nach dem erfolgreichen Login wartet die Software auf die Eingabe des Nutzers. De
    - **Beenden**: Durch den Befehl `!quit` kann der Nutzer die Anwendung jederzeit beenden.
 
 #### Zusatzinformationen
-
 Weitere Einzelheiten zu den spezifischen Bots und zusätzliche Konfigurationsoptionen sind in den Abschnitten [Konfiguration](#konfiguration) und [Bot-Dokumentation (Erweiterungen)](#bot-dokumentation-erweiterungen) ausführlich beschrieben.
 
 #### Kritische Schnittstellen
-
 Die Funktionalität der Software ist stark von den APIs von DeepL, Wikipedia und Openweather abhängig. Sollten diese Schnittstellen bei den Drittanbietern ausfallen oder nicht ordnungsgemäß funktionieren, kann die Software dem Nutzer keine korrekten Informationen liefern. Es ist daher von großer Bedeutung, die Verfügbarkeit und Zuverlässigkeit dieser APIs im Auge zu behalten.
 
 Aus Gründen der Übersichtlichkeit und Fokussierung wurden diese kritischen Schnittstellen nicht im BPMN-Diagramm dargestellt.
@@ -342,14 +333,25 @@ public class ExampleBot implements Chatbot {
 }
 ````
 Im nächsten Schritt muss der Bot im vorhanden `ChatbotManager` in der `FreeFeserApp` Klasse registriert werden.
+
 ````java
-ExampleBot bot = ... //Hier die Bot Instanz erstellen
-chatbotManager.registerBot(bot)
+public class FreeFeserApp {
+    public static void main(String[] args) {
+        ExampleBot bot = new ExampleBot(); //Hier die Bot Instanz erstellen
+        chatbotManager.registerBot(bot);
+    }
+}
 ````
 
 ### Fehlerbehebung
 1. **Bot gibt nicht die richtige Response**   
    Es kann sein, dass ein Bot Ihnen eventuell nicht die richtige Antwort ausgibt. Prüfen Sie in dem Fall die Rechtschreibung und achten Sie darauf Satzanfänge und Nomen groß zu schreiben.
+
+2. **User-Prompt-Eingabe funktioniert nicht**  
+   Wenn ein Bot nach längerem Warten keine Antwort ausgibt, muss eine falsche Eingabe erfolgen, um die User-Prompt-Eingabe wiederherzustellen.
+
+3. **Unerwarteter Fehler**  
+   Starten Sie die Applikation neu!
 
 #### Aktivieren der Logs
 Gehen Sie in `logback.xml` und ändern Sie den Code, um Fehlermeldungen in der Konsole zu erhalten.
@@ -427,7 +429,6 @@ Bitte beachten Sie, dass eine detaillierte [Java/Maven-Installationsanleitung](d
 
 ### Konfiguration
 ### Chatbotprogramm
-
 Das Chatbotprogramm bietet neben der Interaktion mit den Bots verschiedene Konfigurationsmöglichkeiten, die sowohl die Personalisierung für den Nutzer als auch die Bedienung der Software erleichtern.
 
 #### Nutzerverwaltung
@@ -493,15 +494,12 @@ Dieser Abschnitt klärt, in welcher Form der Bot normalerweise auf Anfragen reag
 
 ### TranslationBot
 #### Zweck und Funktionalität
-
 Der Übersetzerbot wurde entwickelt, um Nutzern die Möglichkeit zu bieten, Wörter und Texte in verschiedene Sprachen zu übersetzen. Mithilfe der DeepL-API kann der Bot Benutzereingaben analysieren und diese in die gewünschte Zielsprache übersetzen. Der Bot wird durch die Erwähnung `@translationbot` zusammen mit dem zu übersetzenden Text und der gewünschten Zielsprache aktiviert.
 
 #### Funktionsweise
-
 Der Übersetzerbot nutzt leistungsstarke natürliche Sprachverarbeitungstechniken, um den eingegebenen Text und die gewünschte Zielsprache zu extrahieren. Der Bot ist darauf ausgelegt, eine Vielzahl von Nutzeranfragen zu verstehen, ohne an feste Muster gebunden zu sein. Diese Flexibilität wird durch die Implementierung einer speziellen Bibliothek zur Verbesserung der Sprachverständlichkeit ermöglicht.
 
 #### Schlüsselmerkmale
-
 - **Vielsprachige Unterstützung**: Der Übersetzerbot kann Texte in eine breite Palette von Zielsprachen übersetzen.
 - **Variation der Anfragen**: Nutzer können verschiedene Formulierungen verwenden, um Texte zur Übersetzung anzugeben, ohne an eine feste Syntax gebunden zu sein.
 - **Natürliche Sprachverarbeitung**: Durch den Einsatz von NLP-Techniken kann der Bot die Absichten der Benutzer besser erfassen und angemessen reagieren.
@@ -511,25 +509,20 @@ Der Übersetzerbot nutzt leistungsstarke natürliche Sprachverarbeitungstechnike
 Der TranslationBot nutzt die DeepL-API, um die Übersetzungsfunktionen bereitzustellen. Durch diese Schnittstelle wird der Text, der übersetzt werden soll, an DeepL übertragen und die übersetzten Ergebnisse zurück an den Bot gesendet.
 
 #### Beispielanfragen
-
 - `@translationbot Übersetze ins DE: Hello friends!`
 - `@translationbot Übersetze auf IT: Guten Morgen.`
 
 #### Antwortformat
-
 Der Übersetzerbot antwortet normalerweise mit dem übersetzten Text in der angeforderten Zielsprache.
 
 ### WeatherBot
 #### Zweck und Funktionalität
-
 Der Wetterbot wurde entwickelt, um Nutzern Informationen über das aktuelle Wetter an einem beliebigen Ort auf der Welt bereitzustellen. Er wird durch die Erwähnung `@weatherbot` zusammen mit dem gewünschten Ort aktiviert. Der Bot ist darauf ausgelegt, eine breite Palette von Nutzeranfragen zu verstehen, ohne auf feste Muster angewiesen zu sein. Dies wird durch die Implementierung einer speziellen Bibliothek zur Verbesserung der Sprachverständlichkeit ermöglicht.
 
 #### Funktionsweise
-
 Der Wetterbot verwendet fortschrittliche natürliche Sprachverarbeitungstechniken, um die Benutzereingabe zu analysieren und den gewünschten Ort zu extrahieren. Dabei kann der Bot verschiedene Formulierungen und Varianten von Anfragen verstehen, z. B. "Wie ist das Wetter in Berlin?" oder "Sag mir wie die aktuelle Wetterlage in Berlin ist.". Die Verwendung der speziellen Bibliothek zur Sprachverständlichkeit ermöglicht es dem Bot, flexibel auf eine Vielzahl von Nutzerprompts zu reagieren.
 
 #### Schlüsselmerkmale
-
 - **Ortsunabhängigkeit**: Der Wetterbot kann für jeden Ort auf der Welt verwendet werden, solange der Ort in der Benutzereingabe angegeben wird.
 - **Variation der Anfragen**: Nutzer können verschiedene Formulierungen verwenden, um das Wetter abzurufen, ohne an eine feste Syntax gebunden zu sein.
 - **Natürliche Sprachverarbeitung**: Durch den Einsatz von NLP-Techniken kann der Bot die Absichten der Benutzer besser verstehen und angemessen darauf reagieren.
@@ -539,25 +532,20 @@ Der Wetterbot verwendet fortschrittliche natürliche Sprachverarbeitungstechnike
 Der WeatherBot verwendet die OpenWeather-API, um Wetterdaten in Echtzeit abzurufen. Diese API ermöglicht dem Bot, aktuelle Wetterinformationen für nahezu jeden Ort auf der Welt zu beziehen.
 
 #### Beispielanfragen
-
 - `@weatherbot Wie ist das Wetter in New York?`
 - `@weatherbot Wie wird das Wetter in London in den nächsten Tagen?`
 
 #### Antwortformat
-
 Der Wetterbot antwortet in der Regel mit Informationen zum aktuellen Wetter am angegebenen Ort. Dies könnte Informationen wie Temperatur, Luftfeuchtigkeit, Windgeschwindigkeit, Wetterbedingungen (z. B. sonnig, bewölkt, regnerisch) und gegebenenfalls Vorhersagen für die kommenden Stunden oder Tage umfassen.
 
 ### WikiBot
 #### Zweck und Funktionalität
-
 Der Wikibot wurde entwickelt, um Nutzern Kerninformationen zu einer Vielzahl von Themen bereitzustellen, basierend auf ihren Anfragen. Durch die Nutzung der Wikipedia-API kann der Bot den Benutzern kurz und prägnant die wichtigsten Informationen zu dem gewünschten Thema vermitteln. Der Bot wird aktiviert, indem der Nutzer `@wikibot` gefolgt vom gewünschten Thema anspricht.
 
 #### Funktionsweise
-
 Der Wikibot verwendet fortschrittliche natürliche Sprachverarbeitungstechniken, um die Eingabe des Benutzers zu analysieren und das gewünschte Thema zu extrahieren. Der Bot ist darauf ausgelegt, verschiedene Formulierungen und Varianten von Anfragen zu verstehen, ohne an feste Muster gebunden zu sein. Diese Flexibilität wird durch die Implementierung einer speziellen Bibliothek zur Verbesserung der Sprachverständlichkeit ermöglicht.
 
 #### Schlüsselmerkmale
-
 - **Breites Themenspektrum**: Der Wikibot kann Informationen zu einer breiten Palette von Themen liefern, die in der Wikipedia abgedeckt werden.
 - **Variation der Anfragen**: Nutzer können unterschiedliche Satzstrukturen und Formulierungen verwenden, um Informationen abzurufen, ohne an eine bestimmte Syntax gebunden zu sein.
 - **Natürliche Sprachverarbeitung**: Durch den Einsatz von NLP-Techniken kann der Bot die Absichten der Benutzer besser erfassen und angemessen reagieren.
@@ -567,14 +555,11 @@ Der Wikibot verwendet fortschrittliche natürliche Sprachverarbeitungstechniken,
 Der WikiBot nutzt die Wikipedia-API, um auf die Datenbank von Wikipedia zuzugreifen und relevante Informationen für den Benutzer abzurufen. Diese Schnittstelle ermöglicht eine schnelle und zuverlässige Datenextraktion aus Wikipedia-Artikeln.
 
 #### Beispielanfragen
-
 - `@wikibot Wer war Albert Einstein?`
 - `@wikibot Was war die französische Revolution?`
 
 #### Antwortformat
-
 Der Wikibot gibt in der Regel eine kurze und prägnante Zusammenfassung der wichtigsten Informationen zum angegebenen Thema aus Wikipedia aus. Dies könnte biografische Details, historische Ereignisse, wissenschaftliche Konzepte oder andere relevante Informationen umfassen.
-
 
 ## weitere Schritte
 1. Fehlerbehandlung verbessern

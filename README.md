@@ -173,6 +173,15 @@ Aufgrund der Komplexität und Größe unseres Codes ist es jedoch nicht praktika
 
 Aus diesem Grund haben wir eine vereinfachte Klassenübersicht als Einstiegspunkt geschaffen. Diese gibt einen allgemeinen Überblick über die Hauptkomponenten des Systems und ihre grundlegenden Beziehungen. Für eine detaillierte Betrachtung haben wir das UML-Diagramm in sechs verschiedene Teilbereiche aufgeteilt. Jeder dieser Teilbereiche konzentriert sich auf bestimmte Klassen und ihre jeweiligen Beziehungen, Attribute und Methoden. So ist es uns möglich, alle Aspekte unseres Systems umfangreich und doch übersichtlich darzustellen.
 
+#### UML Diagramm
+![UML_Part_1](documentation/UML_Part_1.svg)
+![UML_Part_2](documentation/UML_Part_2.svg)
+![UML_Part_3](documentation/UML_Part_3.svg)
+![UML_Part_4](documentation/UML_Part_4.svg)
+![UML_Part_5](documentation/UML_Part_5.svg)
+![UML_Part_6](documentation/UML_Part_6.svg)
+
+
 ### Laufzeitsichten
 ![BPMN Diagramm](documentation/BPMN.svg)
 

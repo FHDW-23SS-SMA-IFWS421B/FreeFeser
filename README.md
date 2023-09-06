@@ -6,37 +6,71 @@
 
 ## Inhaltsverzeichnis
 - [Systemdokumentation](#systemdokumentation)
-   - [Einleitung](#einleitung)
-      - [Zweck der Dokumentation](#zweck-der-dokumentation)
-      - [Kontext des Chatbot-Basissystems](#kontext-des-chatbot-basissystems)
-   - [Kontextabgrenzung](#kontextabgrenzung)
-      - [Fachlicher Kontext](#fachlicher-kontext)
-      - [Technischer Kontext](#technischer-kontext)
-      - [Visualisierung](#visualisierung)
-      - [Zusammenfassung](#zusammenfassung)
-   - [Lösungsstrategie](#lösungsstrategie)
-      - [Technologieentscheidungen](#technologieentscheidungen)
-      - [Architektur- und Entwurfsmuster](#architektur--und-entwurfsmuster)
-      - [Qualitätsanforderungen](#qualitätsanforderungen)
-      - [Organisatorische Entscheidungen](#organisatorische-entscheidungen)
-      - [Motivation](#motivation)
-   - [Bausteinsicht](#bausteinsicht)
-   - [Laufzeitsichten](#laufzeitsichten)
-   - [Infrastruktursicht](#infrastruktursicht)
-   - [Querschnittliche Konzepte](#querschnittliche-konzepte)
-   - [Schnittstellen](#schnittstellen)
-      - [Spezifikation zur robusten Kommunikation](#spezifikation-zur-robusten-kommunikation)
-         - [RESTful APIs](#restful-apis)
-         - [Datenbank Connector](#datenbank-connector)
-   - [Risiken und technische Schulden](#risiken-und-technische-schulden)
-   - [Erweiterungen](#erweiterungen)
-   - [Fehlerbehebung](#fehlerbehebung)
-   - [Installationsanleitung](#installationsanleitung)
-   - [Konfiguration](#konfiguration)
+    - [Einleitung](#einleitung)
+        - [Zweck der Dokumentation](#zweck-der-dokumentation)
+        - [Kontext des Chatbot-Basissystems](#kontext-des-chatbot-basissystems)
+    - [Kontextabgrenzung](#kontextabgrenzung)
+        - [Fachlicher Kontext](#fachlicher-kontext)
+        - [Technischer Kontext](#technischer-kontext)
+        - [Visualisierung](#visualisierung)
+        - [Zusammenfassung](#zusammenfassung)
+    - [Lösungsstrategie](#lösungsstrategie)
+        - [Technologieentscheidungen](#technologieentscheidungen)
+        - [Architektur- und Entwurfsmuster](#architektur--und-entwurfsmuster)
+        - [Qualitätsanforderungen](#qualitätsanforderungen)
+        - [Organisatorische Entscheidungen](#organisatorische-entscheidungen)
+        - [Motivation](#motivation)
+    - [Bausteinsicht](#bausteinsicht)
+        - [Laufzeitsichten](#laufzeitsichten)
+            - [Einleitung](#einleitung-1)
+            - [Benutzerauthentifizierung](#benutzerauthentifizierung)
+                - [Anwendungsstart](#anwendungsstart)
+            - [Hauptmenü](#hauptmenü)
+                - [Eingabeaufforderung](#eingabeaufforderung)
+            - [Zusatzinformationen](#zusatzinformationen)
+            - [Kritische Schnittstellen](#kritische-schnittstellen)
+    - [Infrastruktursicht](#infrastruktursicht)
+    - [Querschnittliche Konzepte](#querschnittliche-konzepte)
+    - [Schnittstellen](#schnittstellen)
+        - [Spezifikation zur robusten Kommunikation](#spezifikation-zur-robusten-kommunikation)
+            - [RESTful APIs](#restful-apis)
+            - [Datenbank Connector](#datenbank-connector)
+    - [Risiken und technische Schulden](#risiken-und-technische-schulden)
+    - [Erweiterungen](#erweiterungen)
+    - [Fehlerbehebung](#fehlerbehebung)
+        - [Aktivieren der Logs](#aktivieren-der-logs)
+    - [Installationsanleitung](#installationsanleitung)
+    - [Konfiguration](#konfiguration)
+        - [Chatbotprogramm](#chatbotprogramm)
+            - [Nutzerverwaltung](#nutzerverwaltung)
+            - [Bots Auflisten](#bots-auflisten)
+            - [Aktivieren und Deaktivieren von Bots](#aktivieren-und-deaktivieren-von-bots)
+                - [Durchführung](#durchführung)
+            - [Software beenden](#software-beenden)
+            - [Hilfestellung für Nutzer](#hilfestellung-für-nutzer)
+            - [Zusammenfassung](#zusammenfassung-1)
 - [Bot-Dokumentation (Erweiterungen)](#bot-dokumentation-erweiterungen)
-   - [TranslationBot](#translationbot)
-   - [WeatherBot](#weatherbot)
-   - [WikiBot](#wikibot)
+    - [TranslationBot](#translationbot)
+        - [Zweck und Funktionalität](#zweck-und-funktionalität)
+        - [Funktionsweise](#funktionsweise)
+        - [Schlüsselmerkmale](#schlüsselmerkmale)
+        - [Schnittstellen](#schnittstellen-1)
+        - [Beispielanfragen](#beispielanfragen)
+        - [Antwortformat](#antwortformat)
+    - [WeatherBot](#weatherbot)
+        - [Zweck und Funktionalität](#zweck-und-funktionalität-1)
+        - [Funktionsweise](#funktionsweise-1)
+        - [Schlüsselmerkmale](#schlüsselmerkmale-1)
+        - [Schnittstellen](#schnittstellen-2)
+        - [Beispielanfragen](#beispielanfragen-1)
+        - [Antwortformat](#antwortformat-1)
+    - [WikiBot](#wikibot)
+        - [Zweck und Funktionalität](#zweck-und-funktionalität-2)
+        - [Funktionsweise](#funktionsweise-2)
+        - [Schlüsselmerkmale](#schlüsselmerkmale-2)
+        - [Schnittstellen](#schnittstellen-3)
+        - [Beispielanfragen](#beispielanfragen-2)
+        - [Antwortformat](#antwortformat-2)
 - [weitere Schritte](#weitere-schritte)
 
 ## Systemdokumentation
@@ -127,7 +161,7 @@ Unsere Lösungsstrategie zielt darauf ab, die wichtigsten Qualitätsanforderunge
 #### Organisatorische Entscheidungen
 Neben technischen Entscheidungen berücksichtigt unsere Lösungsstrategie auch organisatorische Aspekte. Hierzu gehören beispielsweise bestimmte Entwicklungsprozesse und die Delegation von Aufgaben an relevante Stakeholder. Diese Entscheidungen tragen dazu bei, eine effiziente Zusammenarbeit und einen reibungslosen Entwicklungsverlauf sicherzustellen. (Siehe [Bausteinsicht](#bausteinsicht) für organisatorische Überlegungen.)
 
-##### Motivation
+#### Zusammenfassung
 Die getroffenen Entscheidungen dienen als Grundlage für den Entwurf und die Implementierung unseres Systems. Sie ermöglichen es, die Anforderungen der Aufgabenstellung effektiv zu erfüllen und gleichzeitig eine robuste und erweiterbare Architektur zu schaffen. Die folgenden Abschnitte vertiefen die einzelnen Entscheidungen und beleuchten ihre Auswirkungen auf die Gesamtarchitektur.
 
 ### Bausteinsicht
@@ -222,11 +256,11 @@ beispielhafte Implementierung speziell für technische Konzepte,
 Verweise auf „übliche“ Nutzung von Standard-Frameworks (beispielsweise die Nutzung von Hibernate als Object/Relational Mapper).
 
 ### Schnittstellen
-| Schnittstelle       | Zweck und Funktion                                   | Operationen | Kommunikationsprotokoll | Datenformat      | Authentifizierung                                 |
-|---------------------|------------------------------------------------------|-------------|-------------------------|------------------|---------------------------------------------------|
-| DeepL API           | Übersetzungsdienst für Texte                         | GET         | HTTP                    | JSON             | API-Key (aus Credential-Ordner)                   |
-| Wikipedia API       | Abruf von Informationen aus Wikipedia                | GET         | HTTP                    | JSON             | Keine                                             |
-| OpenWeather API     | Wetterdatenabruf für bestimmte Standorte             | GET         | HTTP                    | JSON             | API-Key (aus Credential-Ordner)                   |
+| Schnittstelle       | Zweck und Funktion                                   | Operationen | Kommunikationsprotokoll | Datenformat      | Authentifizierung                                  |
+|---------------------|------------------------------------------------------|-------------|-------------------------|------------------|----------------------------------------------------|
+| DeepL API           | Übersetzungsdienst für Texte                         | GET         | HTTP                    | JSON             | API-Key (aus Credential-Ordner)                    |
+| Wikipedia API       | Abruf von Informationen aus Wikipedia                | GET         | HTTP                    | JSON             | Keine                                              |
+| OpenWeather API     | Wetterdatenabruf für bestimmte Standorte             | GET         | HTTP                    | JSON             | API-Key (aus Credential-Ordner)                    |
 | Datenbank Connector | Kommunikation mit der Datenbank über Hibernate (HQL) | Lesen       | SQL (HQL)               | Tabellen/Objekte | Username und Passwort (in Hibernate-Configuration) |
 
 #### Spezifikation zur robusten Kommunikation
@@ -349,10 +383,10 @@ Das Chatbotprogramm bietet neben der Interaktion mit den Bots verschiedene Konfi
 #### Nutzerverwaltung
 Vor dem Start des Programms wird der Nutzer aufgefordert, sich entweder mit einem bestehenden Nutzeraccount einzuloggen oder einen neuen Nutzer anzulegen.
 
-##### 1. Bestehender Nutzer
+1. **Bestehender Nutzer**  
 Der Nutzer wählt die Option aus, dass er bereits über einen Account verfügt. Anschließend gibt er seinen Nutzernamen sowie sein Passwort ein. Sind die eingegebenen Daten korrekt, wird der Nutzer erfolgreich eingeloggt und erhält Zugriff auf die Chatbots. Falls das eingegebene Passwort nicht korrekt ist, wird der Nutzer aufgefordert, das Passwort erneut einzugeben, bis die korrekten Daten eingegeben wurden.
 
-##### 2. Neuer Nutzer
+2. **Neuer Nutzer**  
 Wählt der Nutzer die Option, dass er noch keinen Account besitzt, wird er dazu aufgefordert, einen neuen Nutzernamen zu vergeben. Sollte dieser Nutzername bereits vergeben sein, wird der Nutzer gebeten, einen anderen Nutzernamen einzugeben. Anschließend wird der Nutzer aufgefordert, ein Passwort für seinen neuen Account festzulegen. Nach erfolgreicher Passwortvergabe erfolgt automatisch der Login mit dem neu erstellten Benutzeraccount.
 
 #### Bots Auflisten
@@ -361,10 +395,10 @@ Um dem Nutzer eine Übersicht über die verfügbaren Bots zu verschaffen, kann e
 #### Aktivieren und Deaktivieren von Bots
 Im Konfigurationsbereich des Chatbotprogramms hat der Nutzer die Möglichkeit, die einzelnen Bots nach Bedarf zu aktivieren oder zu deaktivieren.
 
-##### Bot Aktivieren
+**Bot Aktivieren**  
 Der Nutzer kann jeden einzelnen Bot aktivieren, indem er den entsprechenden Befehl ausführt. Nach der Aktivierung ist der Bot sofort einsatzbereit und kann durch die Erwähnung mit `@botname` angesprochen werden.
 
-##### Bot Deaktivieren
+**Bot Deaktivieren**  
 Falls der Nutzer einen Bot vorübergehend nicht verwenden möchte, kann er diesen deaktivieren. Ein deaktivierter Bot kann nicht mehr durch einfaches Ansprechen mit `@botname` aktiviert werden. Stattdessen muss der Nutzer den Bot manuell wieder aktivieren.
 
 ##### Durchführung
@@ -377,7 +411,7 @@ Möchte der Nutzer das Programm beenden, kann er dies mit dem Befehl `!quit`. Da
 #### Hilfestellung für Nutzer
 Der `!help` Befehl gibt den Nutzern eine Übersicht über alle verfügbaren Bots und Systembefehle. Bei Eingabe des Befehls erscheint eine Nachricht, die sowohl die Befehle für die speziellen Funktionen der einzelnen Bots als auch die Systembefehle auflistet. Er ist unkompliziert und kann zu jeder Zeit verwendet werden, um einen vollständigen Überblick über die Funktionsweise des Chatbot-Systems zu erhalten.
 
-##### Vorteile
+**Vorteile**  
 Die Möglichkeit, Bots nach Bedarf zu aktivieren oder zu deaktivieren, bietet dem Nutzer eine erhöhte Flexibilität und Kontrolle über die Nutzung des Chatbotprogramms. Dies ermöglicht es dem Nutzer, die verfügbaren Ressourcen effizient zu verwalten und die Bots entsprechend den individuellen Anforderungen zu nutzen.
 
 #### Zusammenfassung

@@ -103,6 +103,10 @@ public class AppUserManager implements UserManager {
     }
 
     private boolean isBotMessage(String message) {
+        if(message.startsWith("[system]")) {
+            return true;
+        }
+
         for (Chatbot bot : this.chatbotManager.getBots()) {
             if(message.startsWith("["+bot.getName()+"]")) {
                 return true;

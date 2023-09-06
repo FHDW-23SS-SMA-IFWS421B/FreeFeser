@@ -6,13 +6,10 @@ import de.fhdw.freefeser.api.console.printer.ConsolePrinter;
 import de.fhdw.freefeser.api.database.ChatbotEntity;
 import de.fhdw.freefeser.api.database.ChatbotEntityDatabaseManager;
 import de.fhdw.freefeser.api.user.User;
-import de.fhdw.freefeser.app.console.printer.AppConsolePrinter;
 import de.fhdw.freefeser.app.databases.entities.AppChatbotEntity;
-import de.fhdw.freefeser.app.textanalyzer.AppTranslationTextAnalyzer;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.concurrent.CompletableFuture;
 
 public class AppChatbotManager implements ChatbotManager {
@@ -88,9 +85,8 @@ public class AppChatbotManager implements ChatbotManager {
 
         extractedBot.isEnabled().thenAccept(enabled -> {
             boolean statusChanged = handleCommandEnable(extractedBot, processedMessage);
-            if(statusChanged) {
-                return;
-            } else if(!enabled) {
+            if (statusChanged) {
+            } else if (!enabled) {
                 extractedBot.sendMessageOnBehalf("Dieser Bot ist aktuell deaktiviert. Bitte verwende '@" + extractedBot.getName() + " activate', um ihn zu aktivieren.");
             } else {
                 extractedBot.onExecute(sender, processedMessage);
@@ -162,8 +158,6 @@ public class AppChatbotManager implements ChatbotManager {
                 future.complete(null);
             });
         }
-        CompletableFuture.allOf(futures.toArray(new CompletableFuture[0])).thenRun(() -> {
-            this.printer.println(message.toString());
-        });
+        CompletableFuture.allOf(futures.toArray(new CompletableFuture[0])).thenRun(() -> this.printer.println(message.toString()));
     }
 }

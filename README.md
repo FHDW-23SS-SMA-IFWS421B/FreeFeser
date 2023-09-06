@@ -622,6 +622,8 @@ Der WikiBot nutzt die Wikipedia-API, um auf die Datenbank von Wikipedia zuzugrei
 #### Antwortformat
 Der Wikibot gibt in der Regel eine kurze und prägnante Zusammenfassung der wichtigsten Informationen zum angegebenen Thema aus Wikipedia aus. Dies könnte biografische Details, historische Ereignisse, wissenschaftliche Konzepte oder andere relevante Informationen umfassen.
 
-## weitere Schritte
+## Weitere Schritte
+Nach der erfolgreichen Implementierung und Inbetriebnahme des Chatbot-Systems gibt es noch einige Aspekte, die weiter optimiert oder hinzugefügt werden könnten, um die Leistung, Sicherheit und Benutzerfreundlichkeit des Systems zu verbessern. Folgende Schritte sollten noch zur Verbesserung des Systems in Erwägung gezogen werden sollten.
+
 1. Fehlerbehandlung verbessern
 2. Unit-/Integration-Tests schreiben

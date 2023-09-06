@@ -491,11 +491,13 @@ Folgen Sie diesen Schritten, um unsere Software auf Ihrem System zu installieren
        ```bash
        java -jar FreeFeser.jar
        ```
+      c. eigenen User erstellen (siehe [Nutzerverwaltung](#nutzerverwaltung))
    
    2. **Verwendung einer IDE**  
       a. Öffnen Sie Ihre bevorzugte Java-IDE.  
       b. Importieren Sie das geklonte Verzeichnis als Projekt.  
-      c. Finden Sie die `FreeFeserApp`-Klasse und führen Sie sie in der IDE aus.
+      c. Finden Sie die `FreeFeserApp`-Klasse und führen Sie sie in der IDE aus.  
+      d. *Vorhandener User* Name: `Matze` Passwort: `1234`
 
 Bitte beachten Sie, dass eine detaillierte [Java/Maven-Installationsanleitung](documentation/JAVA.md) im Repository vorhanden ist. Diese enthält spezifische Anweisungen für die Java- sowie Maven-Installation.
 

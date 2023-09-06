@@ -174,6 +174,8 @@ Neben technischen Entscheidungen berücksichtigt unsere Lösungsstrategie auch o
 Die getroffenen Entscheidungen dienen als Grundlage für den Entwurf und die Implementierung unseres Systems. Sie ermöglichen es, die Anforderungen der Aufgabenstellung effektiv zu erfüllen und gleichzeitig eine robuste und erweiterbare Architektur zu schaffen. Die folgenden Abschnitte vertiefen die einzelnen Entscheidungen und beleuchten ihre Auswirkungen auf die Gesamtarchitektur.
 
 ### Bausteinsicht
+In diesem Kapitel werden Sie sowohl eine abstrakte als auch eine detaillierte Sicht auf die statische Struktur unseres Systems finden. Durch die Verwendung von UML-Diagrammen erleichtern wir das Verständnis der komplexen Architektur und bieten eine klare Visualisierung der verschiedenen Klassen und ihrer Beziehungen. Diese Bausteinsicht dient als Navigationshilfe durch den Quellcode und ermöglicht eine Kommunikation auf einer abstrakteren Ebene, ohne zu sehr in die Implementierungsdetails einzusteigen.
+
 ![Klassenübersicht](documentation/class_overview.png)
 
 Wir haben uns bei der Darstellung der Architektur und Beziehungen unserer Klassen für die Verwendung von UML (Unified Modeling Language) Diagrammen entschieden. UML ermöglicht es uns, die verschiedenen Aspekte unseres Systems klar und standardisiert darzustellen.

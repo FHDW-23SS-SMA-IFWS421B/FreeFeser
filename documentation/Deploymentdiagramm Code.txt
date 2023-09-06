@@ -1,0 +1,24 @@
+@startuml
+
+!define RECTANGLE class
+!define DATABASE (Database,DatabaseIcon) rectangle
+
+package "Chatbot-System" {
+
+    [Chatbot Application] ..> [Java HTTP Library] : uses
+    [Java HTTP Library] ..> [Hibernate] : uses
+    [Hibernate] ..> [H2 Database] : maps to
+    [Chatbot Application] ..> [Hibernate] : uses
+}
+
+node "External APIs" {
+    [Wikipedia API]
+    [OpenWeather API]
+    [DeepL API]
+}
+
+[Chatbot Application] ..> [Wikipedia API] : requests
+[Chatbot Application] ..> [OpenWeather API] : requests
+[Chatbot Application] ..> [DeepL API] : requests
+
+@enduml
